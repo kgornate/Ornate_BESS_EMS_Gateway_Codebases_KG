@@ -102,9 +102,54 @@ void main() {
     expect(plant.pcsDevices.first.label, 'PCS 1');
     expect(plant.pcsDevices.first.point('grid_frequency')?.value, 50.01);
   });
-}
 
-test('Stage 3C cached control sample populates the control model', () {
+  test('solar asset is parsed from compact snapshot and live delta', () {
+    final plant = PlantSnapshot();
+    plant.applyMessage({
+      'type': 'snapshot',
+      'sequence': 20,
+      'gateway_id': 'gw',
+      'mode': 'control_enabled',
+      'bank': null,
+      'racks': [],
+      'environment': {},
+      'pcs_devices': {},
+      'solar': {
+        'asset_id': 'solar_plant',
+        'asset_type': 'solar_plant',
+        'label': 'Solar Plant / PCC',
+        'online': true,
+        'telemetry': {
+          'solar_active_power_kw': {'v': 2233.1, 'q': 'good', 'u': 'kW'},
+          'pcc_export_power_kw': {'v': 1844.8, 'q': 'good', 'u': 'kW'},
+          'grid_import_power_kw': {'v': 0.0, 'q': 'good', 'u': 'kW'},
+        },
+      },
+      'alarms': [],
+    });
+
+    plant.applyMessage({
+      'type': 'telemetry_update',
+      'sequence': 21,
+      'assets': [
+        {
+          'asset_id': 'solar_plant',
+          'asset_type': 'solar_plant',
+          'online': true,
+          'telemetry': {
+            'pcc_export_power_kw': {'v': 1834.8, 'q': 'good', 'u': 'kW'},
+          },
+        },
+      ],
+    });
+
+    expect(plant.solar?.online, isTrue);
+    expect(plant.solar?.point('solar_active_power_kw')?.value, 2233.1);
+    expect(plant.solar?.point('pcc_export_power_kw')?.value, 1834.8);
+    expect(plant.environment.any((asset) => asset.assetId == 'solar_plant'), isFalse);
+  });
+
+  test('Stage 3C cached control sample populates the control model', () {
   final status = ControlSequenceStatus.fromJson({
     'pair': {'pair_id': 'pair_1'},
     'timestamp': '2026-07-28T19:10:00+00:00',
@@ -146,4 +191,5 @@ test('Stage 3C cached control sample populates the control model', () {
   expect(status.controlEnabled, isTrue);
   expect(status.value('rack_voltage_v'), 1380.8);
   expect(status.errors, isEmpty);
-});
+  });
+}

@@ -8,6 +8,7 @@ import 'bau_screen.dart';
 import 'environment_asset_screen.dart';
 import 'pcs_detail_screen.dart';
 import 'rack_detail_screen.dart';
+import 'solar_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key, required this.controller});
@@ -20,6 +21,7 @@ class DashboardScreen extends StatelessWidget {
     final racks = controller.plant.racks;
     final environments = controller.plant.environment;
     final pcsDevices = controller.plant.pcsDevices;
+    final solar = controller.plant.solar;
     final onlineAssets = controller.plant.assets.values.where((asset) => asset.online).length;
     final effectiveVoltage = _effectiveBankVoltage(bank, racks);
     final effectiveCurrent = _effectiveBankCurrent(bank, racks);
@@ -52,6 +54,9 @@ class DashboardScreen extends StatelessWidget {
               _bankMetric(bank, 'bank_dsgable_power', 'Discharge power limit', Icons.power),
               MetricTile(label: 'Assets online', value: '$onlineAssets/${controller.plant.assets.length}', icon: Icons.hub),
               MetricTile(label: 'Active alarms', value: '${controller.activeAlarms.length}', icon: Icons.warning_amber),
+              if (solar != null) _assetMetric(solar, 'solar_active_power_kw', 'Solar generation', Icons.solar_power, emphasis: true),
+              if (solar != null) _assetMetric(solar, 'pcc_export_power_kw', 'Grid export', Icons.upload),
+              if (solar != null) _assetMetric(solar, 'grid_import_power_kw', 'Grid import', Icons.download),
             ],
           ),
           const SizedBox(height: 24),
@@ -135,6 +140,34 @@ class DashboardScreen extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           SectionHeader(
+            'Solar plant and PCC',
+            subtitle: 'Hopewind generation and ABB grid import/export meter',
+          ),
+          const SizedBox(height: 12),
+          if (solar == null)
+            const Card(
+              child: ListTile(
+                leading: Icon(Icons.solar_power_outlined),
+                title: Text('No solar_plant asset received yet'),
+              ),
+            )
+          else
+            SizedBox(
+              height: 190,
+              child: RichAssetCard(
+                asset: solar,
+                title: 'Solar Plant / PCC',
+                metrics: solarSummary(solar),
+                warningCount: _alarmCount(solar.assetId),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => SolarScreen(controller: controller),
+                  ),
+                ),
+              ),
+            ),
+          const SizedBox(height: 24),
+          SectionHeader(
             'Power conversion system',
             subtitle: 'Four Modbus RTU PCS units on one RS485 bus',
           ),
@@ -207,6 +240,14 @@ class DashboardScreen extends StatelessWidget {
     final shown = point == null
         ? const PresentedValue(value: '--', unit: '', valid: false)
         : presentPoint(bank!.assetType, key, point);
+    return MetricTile(label: label, value: shown.text, subtitle: shown.note, icon: icon, emphasis: emphasis);
+  }
+
+  Widget _assetMetric(AssetSnapshot asset, String key, String label, IconData icon, {bool emphasis = false}) {
+    final point = asset.telemetry[key];
+    final shown = point == null
+        ? const PresentedValue(value: '--', unit: '', valid: false)
+        : presentPoint(asset.assetType, key, point);
     return MetricTile(label: label, value: shown.text, subtitle: shown.note, icon: icon, emphasis: emphasis);
   }
 

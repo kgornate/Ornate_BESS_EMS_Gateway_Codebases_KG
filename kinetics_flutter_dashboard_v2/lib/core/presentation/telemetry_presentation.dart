@@ -212,6 +212,39 @@ const Map<String, String> _friendlyNames = <String, String>{
   'reg_140d': 'DC current setpoint',
   'reg_140e': 'AC voltage setpoint',
   'reg_140f': 'AC current setpoint',
+  'solar_active_power_kw': 'Solar active power',
+  'solar_reactive_power_kvar': 'Solar reactive power',
+  'pcc_export_power_kw': 'Grid export power',
+  'grid_import_power_kw': 'Grid import power',
+  'site_load_power_kw': 'Calculated site load',
+  'solar_surplus_available_kw': 'Available solar surplus',
+  'solar_dispatch_ready': 'Solar dispatch ready',
+  'total_export_energy_kwh': 'Total grid export energy',
+  'total_grid_import_energy_kwh': 'Total grid import energy',
+  'total_site_load_energy_kwh': 'Total site-load energy',
+  'daily_yield': 'Daily solar yield',
+  'total_yield_kwh': 'Total solar yield',
+  'inverters_online': 'Inverters online',
+  'inverters_offline': 'Inverters offline',
+  'inverters_on_grid': 'Inverters on grid',
+  'inverters_faulted': 'Inverters faulted',
+  'array_operation_status': 'Array operating status',
+  'array_running': 'Array running',
+  'array_shutdown': 'Array shutdown',
+  'array_fault_or': 'Array fault (OR)',
+  'array_fault_and': 'Array fault (AND)',
+  'actual_active_regulation_kw': 'Active-power regulation',
+  'reactive_regulation_kvar': 'Reactive-power regulation',
+  'rated_power_kw': 'Rated solar power',
+  'grid_reactive_power_kvar': 'Grid reactive power',
+  'grid_apparent_power_kva': 'Grid apparent power',
+  'grid_line_voltage_v': 'Grid line voltage',
+  'grid_phase_voltage_v': 'Grid phase voltage',
+  'grid_average_current_a': 'Grid average current',
+  'grid_frequency_hz': 'Grid frequency',
+  'meter_power_factor': 'Grid meter power factor',
+  'meter_communication_status': 'Grid meter communication',
+  'grid_meter_source': 'Grid meter source',
 };
 
 String friendlyName(String key, TelemetryPoint point) {
@@ -460,6 +493,25 @@ double float32FromUint32(int bits) {
 }
 
 String categoryTitle(String key, TelemetryPoint point) {
+  if (key.startsWith('hopewind_reported_')) {
+    return 'Hopewind diagnostic PCC values';
+  }
+  if (key.startsWith('grid_') ||
+      key.startsWith('pcc_') ||
+      key.startsWith('meter_')) {
+    return 'ABB grid meter / PCC';
+  }
+  if (key.contains('energy') || key.contains('yield')) {
+    return 'Energy counters';
+  }
+  if (key.startsWith('inverters_') || key.startsWith('array_')) {
+    return 'Inverter and array status';
+  }
+  if (key.startsWith('solar_') ||
+      key.contains('regulation') ||
+      key == 'rated_power_kw') {
+    return 'Hopewind solar plant';
+  }
   final category = (point.category ?? '').toLowerCase();
   if (category == 'control') return 'Control and command registers';
   if (category == 'parameter') return 'Configuration and thresholds';
@@ -667,4 +719,21 @@ List<String> environmentSummary(AssetSnapshot asset) {
     default:
       return ['${asset.telemetry.length} telemetry points'];
   }
+}
+
+List<String> solarSummary(AssetSnapshot asset) {
+  String shown(String key, String prefix) {
+    final point = asset.telemetry[key];
+    if (point == null) return '';
+    return '$prefix${presentPoint(asset.assetType, key, point).text}';
+  }
+
+  return <String>[
+    shown('solar_active_power_kw', 'Solar '),
+    shown('pcc_export_power_kw', 'Export '),
+    shown('grid_import_power_kw', 'Import '),
+    shown('site_load_power_kw', 'Load '),
+    shown('inverters_online', 'Online '),
+    shown('grid_frequency_hz', 'Grid '),
+  ];
 }

@@ -33,4 +33,21 @@ void main() {
     expect(presentPoint('pcs', 'actual_product_mode', product).value, 'PQ mode');
     expect(presentPoint('pcs', 'actual_pq_mode', pq).value, 'Constant power');
   });
+
+  test('solar summary exposes generation and ABB grid flow', () {
+    final asset = AssetSnapshot(
+      assetId: 'solar_plant',
+      assetType: 'solar_plant',
+      online: true,
+      telemetry: const {
+        'solar_active_power_kw': TelemetryPoint(value: 2233.1, quality: 'good', unit: 'kW'),
+        'pcc_export_power_kw': TelemetryPoint(value: 1844.8, quality: 'good', unit: 'kW'),
+        'grid_import_power_kw': TelemetryPoint(value: 0.0, quality: 'good', unit: 'kW'),
+      },
+    );
+    final summary = solarSummary(asset);
+    expect(summary, contains('Solar 2233 kW'));
+    expect(summary, contains('Export 1845 kW'));
+    expect(summary, contains('Import 0 kW'));
+  });
 }

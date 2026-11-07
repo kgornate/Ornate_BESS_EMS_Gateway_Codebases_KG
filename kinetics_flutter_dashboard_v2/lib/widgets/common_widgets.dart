@@ -443,6 +443,8 @@ IconData iconForAsset(String type) {
       return Icons.view_column;
     case 'pcs':
       return Icons.electrical_services;
+    case 'solar_plant':
+      return Icons.solar_power;
     case 'hvac':
       return Icons.ac_unit;
     case 'liquid_cooling':
@@ -470,6 +472,7 @@ String assetTitle(AssetSnapshot asset) {
     'dehumidifier_1': 'Dehumidifier 1',
     'dehumidifier_2': 'Dehumidifier 2',
     'safety_io': 'Safety and fire I/O',
+    'solar_plant': 'Solar Plant / PCC',
     'environment_other': 'Other environment',
   };
   return names[asset.assetId] ?? prettifyKey(asset.assetId);

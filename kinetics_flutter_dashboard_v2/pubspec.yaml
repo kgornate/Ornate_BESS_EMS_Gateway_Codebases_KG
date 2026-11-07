@@ -1,7 +1,7 @@
 name: kinetics_gateway_dashboard
 description: Kinetics Gateway V3.0.2 reliable multi-pair BMS and PCS control dashboard.
 publish_to: 'none'
-version: 3.0.2+10
+version: 3.1.0+11
 
 environment:
   sdk: '>=3.3.0 <4.0.0'

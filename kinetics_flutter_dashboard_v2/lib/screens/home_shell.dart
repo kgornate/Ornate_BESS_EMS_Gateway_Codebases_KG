@@ -11,6 +11,7 @@ import 'environment_screen.dart';
 import 'historian_screen.dart';
 import 'pcs_screen.dart';
 import 'racks_screen.dart';
+import 'solar_screen.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key, required this.controller});
@@ -30,6 +31,7 @@ class _HomeShellState extends State<HomeShell> {
         const NavigationDestination(icon: Icon(Icons.view_column_outlined), selectedIcon: Icon(Icons.view_column), label: 'Racks'),
         const NavigationDestination(icon: Icon(Icons.ac_unit_outlined), selectedIcon: Icon(Icons.ac_unit), label: 'Environment'),
         const NavigationDestination(icon: Icon(Icons.power_outlined), selectedIcon: Icon(Icons.power), label: 'PCS'),
+        const NavigationDestination(icon: Icon(Icons.solar_power_outlined), selectedIcon: Icon(Icons.solar_power), label: 'Solar / PCC'),
         if (widget.controller.isInternal)
           const NavigationDestination(icon: Icon(Icons.account_tree_outlined), selectedIcon: Icon(Icons.account_tree), label: 'Control'),
         const NavigationDestination(icon: Icon(Icons.warning_amber_outlined), selectedIcon: Icon(Icons.warning_amber), label: 'Alarms'),
@@ -72,6 +74,7 @@ class _HomeShellState extends State<HomeShell> {
       RacksScreen(controller: widget.controller),
       EnvironmentScreen(controller: widget.controller),
       PcsScreen(controller: widget.controller),
+      SolarScreen(controller: widget.controller),
       if (widget.controller.isInternal)
         ControlSequenceScreen(controller: widget.controller),
       AlarmsScreen(controller: widget.controller),

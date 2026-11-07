@@ -50,7 +50,7 @@ class TelemetryPoint {
     if (json is! Map) {
       return TelemetryPoint(value: json, quality: 'unknown');
     }
-    final map = Map<String, dynamic>.from(json as Map);
+    final map = Map<String, dynamic>.from(json);
     final bits = map['b'] ?? map['bitfields'];
     final rawLabels = map['bitfield_labels'];
     final labels = <String, String>{};
@@ -257,6 +257,7 @@ class PlantSnapshot {
 
   AssetSnapshot? get bank => assets['bms_bank'];
   AssetSnapshot? get pcs => assets['pcs_1'];
+  AssetSnapshot? get solar => assets['solar_plant'];
 
   List<AssetSnapshot> get pcsDevices {
     final result = assets.values
@@ -283,7 +284,8 @@ class PlantSnapshot {
         .where((asset) =>
             asset.assetType != 'bms_bank' &&
             asset.assetType != 'bms_rack' &&
-            asset.assetType != 'pcs')
+            asset.assetType != 'pcs' &&
+            asset.assetType != 'solar_plant')
         .toList();
     result.sort((a, b) => a.assetId.compareTo(b.assetId));
     return result;
@@ -345,6 +347,9 @@ class PlantSnapshot {
         _upsert(Map<String, dynamic>.from(item));
       }
     }
+
+    final solarJson = message['solar'];
+    if (solarJson is Map) _upsert(Map<String, dynamic>.from(solarJson));
 
     final alarmJson = message['alarms'];
     if (alarmJson is List) {
