@@ -1,0 +1,10 @@
+[Unit]
+Description=Stop BESS discharge 90 minutes after actual discharge start
+After=bess-all-pairs-scheduler.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /root/bess_stop_after_90m.py
+Restart=no
+Environment=PYTHONUNBUFFERED=1
+TimeoutStopSec=30

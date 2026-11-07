@@ -1,0 +1,7 @@
+[Match]
+Name=eth0
+
+[Network]
+Address=172.16.0.117/24
+DHCP=no
+IPv6AcceptRA=no
