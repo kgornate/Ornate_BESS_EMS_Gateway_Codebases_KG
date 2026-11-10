@@ -104,14 +104,19 @@ class _ControlSequenceScreenState extends State<ControlSequenceScreen> {
               onAbort: _abort,
             ),
             const SizedBox(height: 20),
-            _SequenceSteps(status: status),
-            if (controller.controlEventFor(controller.selectedControlPair) != null) ...[
+            _SequenceSteps(
+              status: status,
+              safeStopAll: widget.controller.safeStopAllProgress,
+            ),
+            if (controller.controlEventFor(controller.selectedControlPair) !=
+                null) ...[
               const SizedBox(height: 14),
               Card(
                 child: ListTile(
                   leading: const Icon(Icons.check_circle_outline),
                   title: const Text('Latest control event'),
-                  subtitle: Text(controller.controlEventFor(controller.selectedControlPair)!),
+                  subtitle: Text(controller
+                      .controlEventFor(controller.selectedControlPair)!),
                 ),
               ),
             ],
@@ -126,22 +131,31 @@ class _ControlSequenceScreenState extends State<ControlSequenceScreen> {
                 ),
               ),
             ],
-            if (controller.controlResponseFor(controller.selectedControlPair).isNotEmpty) ...[
+            if (controller
+                .controlResponseFor(controller.selectedControlPair)
+                .isNotEmpty) ...[
               const SizedBox(height: 14),
               Card(
                 child: ExpansionTile(
                   title: const Text('Latest gateway response'),
                   subtitle: Text(
-                    controller.controlResponseFor(controller.selectedControlPair)['stage']?.toString() ??
-                        controller.controlResponseFor(controller.selectedControlPair)['run_id']?.toString() ??
+                    controller
+                            .controlResponseFor(
+                                controller.selectedControlPair)['stage']
+                            ?.toString() ??
+                        controller
+                            .controlResponseFor(
+                                controller.selectedControlPair)['run_id']
+                            ?.toString() ??
                         'Response details',
                   ),
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                       child: SelectableText(
-                        const JsonEncoder.withIndent('  ')
-                            .convert(controller.controlResponseFor(controller.selectedControlPair)),
+                        const JsonEncoder.withIndent('  ').convert(
+                            controller.controlResponseFor(
+                                controller.selectedControlPair)),
                         style: const TextStyle(fontFamily: 'monospace'),
                       ),
                     ),
@@ -164,7 +178,8 @@ class _ControlSequenceScreenState extends State<ControlSequenceScreen> {
     return value;
   }
 
-  Future<bool> _confirm(String title, String message, {bool dangerous = false}) async {
+  Future<bool> _confirm(String title, String message,
+      {bool dangerous = false}) async {
     return await showDialog<bool>(
           context: context,
           barrierDismissible: false,
@@ -364,7 +379,8 @@ class _PairOverview extends StatelessWidget {
                       ? refresh['source']?.toString() ?? 'cache'
                       : 'cache';
                   final stale = refresh is Map && refresh['stale'] == true;
-                  final selected = pair.pairId == controller.selectedControlPair;
+                  final selected =
+                      pair.pairId == controller.selectedControlPair;
                   final busy = controller.isControlPairBusy(pair.pairId);
                   return SizedBox(
                     width: 245,
@@ -390,14 +406,16 @@ class _PairOverview extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     '${pair.pairId} • Rack ${pair.rackId} / ${pair.pcsAssetId}',
-                                    style: const TextStyle(fontWeight: FontWeight.w700),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w700),
                                   ),
                                 ),
                                 if (busy)
                                   const SizedBox(
                                     width: 16,
                                     height: 16,
-                                    child: CircularProgressIndicator(strokeWidth: 2),
+                                    child: CircularProgressIndicator(
+                                        strokeWidth: 2),
                                   )
                                 else
                                   Icon(
@@ -420,10 +438,15 @@ class _PairOverview extends StatelessWidget {
                             ),
                             Text(
                               '${stale ? 'STALE • ' : ''}$source',
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
                                     color: stale
                                         ? Theme.of(context).colorScheme.error
-                                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                                        : Theme.of(context)
+                                            .colorScheme
+                                            .onSurfaceVariant,
                                   ),
                             ),
                           ],
@@ -453,24 +476,29 @@ class _GateBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stageEnabled = capabilities?.enabled == true && status?.controlEnabled == true;
+    final stageEnabled =
+        capabilities?.enabled == true && status?.controlEnabled == true;
     final automatic = capabilities?.fullAutomaticAllowed == true;
     return Wrap(
       spacing: 8,
       runSpacing: 8,
       children: [
         StatusPill(
-          label: stageEnabled ? 'Staged writes armed' : 'Control writes blocked',
+          label:
+              stageEnabled ? 'Staged writes armed' : 'Control writes blocked',
           good: stageEnabled,
           icon: Icons.security,
         ),
         StatusPill(
-          label: automatic ? 'Automatic mode enabled' : 'Automatic mode disabled',
+          label:
+              automatic ? 'Automatic mode enabled' : 'Automatic mode disabled',
           good: automatic,
           icon: Icons.auto_mode,
         ),
         StatusPill(
-          label: status?.hardBlocked == true ? 'Hard safety blocker active' : 'No hard safety blocker',
+          label: status?.hardBlocked == true
+              ? 'Hard safety blocker active'
+              : 'No hard safety blocker',
           good: status?.hardBlocked != true,
           icon: Icons.health_and_safety,
         ),
@@ -553,13 +581,16 @@ class _SystemStateCard extends StatelessWidget {
                   if (status?.lastError != null)
                     Text(
                       status!.lastError!,
-                      style: TextStyle(color: Theme.of(context).colorScheme.error),
+                      style:
+                          TextStyle(color: Theme.of(context).colorScheme.error),
                     ),
                 ],
               ),
             ),
             StatusPill(
-              label: status?.readyForPower == true ? 'Ready for power' : 'Not power-ready',
+              label: status?.readyForPower == true
+                  ? 'Ready for power'
+                  : 'Not power-ready',
               good: status?.readyForPower == true && good,
               icon: Icons.electric_bolt,
             ),
@@ -683,12 +714,12 @@ class _CommandPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final requestBusy = controller.controlBusy;
-    final automaticActive =
-        status?.automaticRunning == true || controller.selectedAutomaticTracking;
+    final automaticActive = status?.automaticRunning == true ||
+        controller.selectedAutomaticTracking;
     final enabled = status?.controlEnabled == true && !requestBusy;
     final startupCommandEnabled = enabled && !automaticActive;
-    final automaticEnabled = startupCommandEnabled &&
-        capabilities?.fullAutomaticAllowed == true;
+    final automaticEnabled =
+        startupCommandEnabled && capabilities?.fullAutomaticAllowed == true;
     final pairs = capabilities?.pairs.where((pair) => pair.enabled).toList() ??
         const <ControlPairSummary>[];
     return Card(
@@ -727,7 +758,8 @@ class _CommandPanel extends StatelessWidget {
                         .toList(),
                     onChanged: pairs.isNotEmpty
                         ? (value) {
-                            if (value != null) controller.selectControlPair(value);
+                            if (value != null)
+                              controller.selectControlPair(value);
                           }
                         : null,
                   ),
@@ -816,9 +848,10 @@ class _CommandPanel extends StatelessWidget {
                   label: const Text('Execute next step'),
                 ),
                 FilledButton.tonalIcon(
-                  onPressed: startupCommandEnabled && status?.readyForPower == true
-                      ? onSetPower
-                      : null,
+                  onPressed:
+                      startupCommandEnabled && status?.readyForPower == true
+                          ? onSetPower
+                          : null,
                   icon: const Icon(Icons.speed),
                   label: const Text('Set power directly'),
                 ),
@@ -862,12 +895,18 @@ class _CommandPanel extends StatelessWidget {
 }
 
 class _SequenceSteps extends StatelessWidget {
-  const _SequenceSteps({required this.status});
+  const _SequenceSteps({required this.status, required this.safeStopAll});
 
   final ControlSequenceStatus? status;
+  final Map<String, dynamic> safeStopAll;
 
   @override
   Widget build(BuildContext context) {
+    final safeStatus = safeStopAll['status']?.toString() ?? 'idle';
+    final safeActive = safeStatus != 'idle' && safeStopAll['run_id'] != null;
+    final safePairs = safeStopAll['pairs'] is Map
+        ? Map<String, dynamic>.from(safeStopAll['pairs'] as Map)
+        : <String, dynamic>{};
     final automatic = status?.runSteps ?? const <ControlSequenceStep>[];
     final steps = automatic.isNotEmpty
         ? automatic
@@ -879,16 +918,48 @@ class _SequenceSteps extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              automatic.isNotEmpty
-                  ? 'Automatic sequence progress'
-                  : 'Validated startup readiness',
+              safeActive
+                  ? 'Safe Stop All progress'
+                  : automatic.isNotEmpty
+                      ? 'Automatic sequence progress'
+                      : 'Validated startup readiness',
               style: Theme.of(context)
                   .textTheme
                   .titleLarge
                   ?.copyWith(fontWeight: FontWeight.w800),
             ),
             const SizedBox(height: 10),
-            if (steps.isEmpty)
+            if (safeActive) ...[
+              Text(
+                safeStatus == 'running' || safeStatus == 'accepted'
+                    ? 'Processing ${safeStopAll['current_pair'] ?? 'enabled pairs'} — ${_humanize(safeStopAll['current_step']?.toString() ?? 'queued')}'
+                    : _humanize(safeStatus),
+              ),
+              const SizedBox(height: 8),
+              ...safePairs.entries.map((entry) {
+                final pair = entry.value is Map
+                    ? Map<String, dynamic>.from(entry.value as Map)
+                    : <String, dynamic>{};
+                final pairStatus = pair['status']?.toString() ?? 'pending';
+                final step = pair['current_step']?.toString();
+                final synthetic = ControlSequenceStep(
+                  key: entry.key,
+                  label: entry.key.replaceAll('_', ' ').toUpperCase(),
+                  complete: pairStatus == 'success',
+                  status: pairStatus,
+                  message: step == null ? null : _humanize(step),
+                );
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: _StepIcon(step: synthetic),
+                  title: Text(synthetic.label),
+                  subtitle: synthetic.message == null
+                      ? null
+                      : Text(synthetic.message!),
+                  trailing: Text(_humanize(pairStatus)),
+                );
+              }),
+            ] else if (steps.isEmpty)
               const Text('Waiting for control-sequence status...')
             else
               ...steps.map((step) => ListTile(
@@ -896,13 +967,42 @@ class _SequenceSteps extends StatelessWidget {
                     leading: _StepIcon(step: step),
                     title: Text(step.label),
                     subtitle: step.message == null ? null : Text(step.message!),
-                    trailing: Text(_humanize(step.status)),
+                    trailing: _StepStatus(step: step),
                   )),
           ],
         ),
       ),
     );
   }
+}
+
+class _StepStatus extends StatelessWidget {
+  const _StepStatus({required this.step});
+
+  final ControlSequenceStep step;
+
+  @override
+  Widget build(BuildContext context) {
+    final duration = _formatStepDuration(step.elapsed);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(_humanize(step.status)),
+        if (duration != null)
+          Text(duration, style: Theme.of(context).textTheme.bodySmall),
+      ],
+    );
+  }
+}
+
+String? _formatStepDuration(Duration? duration) {
+  if (duration == null) return null;
+  final seconds = duration.inMilliseconds / 1000.0;
+  if (seconds < 60) return '${seconds.toStringAsFixed(1)} s';
+  final minutes = seconds ~/ 60;
+  final remaining = seconds - (minutes * 60);
+  return '$minutes min ${remaining.toStringAsFixed(1)} s';
 }
 
 class _StepIcon extends StatelessWidget {
@@ -915,9 +1015,14 @@ class _StepIcon extends StatelessWidget {
     if (step.failed) {
       return Icon(Icons.cancel, color: Theme.of(context).colorScheme.error);
     }
-    if (step.running) return const SizedBox(width: 24, height: 24, child: CircularProgressIndicator(strokeWidth: 2));
+    if (step.running)
+      return const SizedBox(
+          width: 24,
+          height: 24,
+          child: CircularProgressIndicator(strokeWidth: 2));
     if (step.complete) {
-      return Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primary);
+      return Icon(Icons.check_circle,
+          color: Theme.of(context).colorScheme.primary);
     }
     return const Icon(Icons.radio_button_unchecked);
   }

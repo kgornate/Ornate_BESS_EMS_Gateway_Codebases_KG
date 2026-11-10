@@ -8,8 +8,7 @@ import '../../models/gateway_models.dart';
 import '../api/gateway_api_client.dart';
 
 class GatewayController extends ChangeNotifier {
-  GatewayController({GatewayApiClient? api})
-      : api = api ?? GatewayApiClient();
+  GatewayController({GatewayApiClient? api}) : api = api ?? GatewayApiClient();
 
   final GatewayApiClient api;
   final PlantSnapshot plant = PlantSnapshot();
@@ -34,12 +33,18 @@ class GatewayController extends ChangeNotifier {
   final Map<String, ControlSequenceStatus> controlStatuses =
       <String, ControlSequenceStatus>{};
   Map<String, dynamic> controlPlantSummary = <String, dynamic>{};
+  Map<String, dynamic> safeStopAllProgress = <String, dynamic>{};
+  Map<String, dynamic> automationConfig = <String, dynamic>{};
+  Map<String, dynamic> automationStatus = <String, dynamic>{};
   Map<String, dynamic> lastControlResponse = <String, dynamic>{};
   final Map<String, Map<String, dynamic>> lastControlResponsesByPair =
       <String, Map<String, dynamic>>{};
   final Set<String> _controlBusyPairs = <String>{};
   final Set<String> _automaticTrackingPairs = <String>{};
   final Map<String, Timer> _automaticTrackers = <String, Timer>{};
+  final Set<String> _pairStatusInFlight = <String>{};
+  final Map<String, int> _pairStatusFailures = <String, int>{};
+  final Map<String, DateTime> _pairStatusRetryAfter = <String, DateTime>{};
   final Map<String, DateTime> _pairStatusReceivedAt = <String, DateTime>{};
   final Map<String, DateTime> _pairPayloadTimestamps = <String, DateTime>{};
   String selectedControlPair = 'pair_1';
@@ -48,10 +53,13 @@ class GatewayController extends ChangeNotifier {
   StreamSubscription<dynamic>? _telemetrySubscription;
   Timer? _diagnosticTimer;
   Timer? _controlTimer;
+  Timer? _automationTimer;
   Timer? _reconnectTimer;
   int _reconnectAttempt = 0;
   bool _controlStatusInFlight = false;
-  bool _controlStatusRefreshPending = false;
+  bool _diagnosticsInFlight = false;
+  int _controlStatusFailures = 0;
+  DateTime? _controlStatusRetryAfter;
   bool _controlPollingEnabled = false;
   int _controlStatusGeneration = 0;
   int controlStatusSkippedRefreshes = 0;
@@ -74,7 +82,8 @@ class GatewayController extends ChangeNotifier {
       final response = await api.login(username: username, password: password);
       final token = response['access_token']?.toString();
       if (token == null || token.isEmpty) {
-        throw const ApiException('Login response did not contain an access token');
+        throw const ApiException(
+            'Login response did not contain an access token');
       }
       session = GatewaySession(
         baseUrl: api.baseUrl,
@@ -149,7 +158,8 @@ class GatewayController extends ChangeNotifier {
       );
       plant.applyMessage(payload);
       restConnected = true;
-      lastEventMessage = 'Complete fast, normal, slow and bulk extraction finished.';
+      lastEventMessage =
+          'Complete fast, normal, slow and bulk extraction finished.';
     } catch (error) {
       errorMessage = error.toString();
       rethrow;
@@ -193,22 +203,26 @@ class GatewayController extends ChangeNotifier {
   }
 
   Future<void> refreshDiagnostics({bool silent = false}) async {
+    if (_diagnosticsInFlight || _disposed) return;
+    _diagnosticsInFlight = true;
     try {
-      final results = await Future.wait<Map<String, dynamic>>(<Future<Map<String, dynamic>>>[
-        api.getJson('/api/health'),
-        api.getJson('/api/storage/status'),
-        api.getJson('/api/diagnostics/polling'),
-        api.getJson('/api/diagnostics/data-rate'),
-      ]);
-      health = results[0];
-      storage = results[1];
-      polling = results[2];
-      dataRate = results[3];
+      // Keep diagnostics single-flight and sequential. A dashboard refresh must
+      // never create a burst of five competing gateway requests.
+      health =
+          await api.getJson('/api/health', timeout: const Duration(seconds: 5));
+      storage = await api.getJson('/api/storage/status',
+          timeout: const Duration(seconds: 8));
+      polling = await api.getJson('/api/diagnostics/polling',
+          timeout: const Duration(seconds: 8));
+      dataRate = await api.getJson('/api/diagnostics/data-rate',
+          timeout: const Duration(seconds: 8));
       restConnected = true;
       await refreshAlarms(silent: true);
     } catch (error) {
       restConnected = false;
       if (!silent) errorMessage = error.toString();
+    } finally {
+      _diagnosticsInFlight = false;
     }
     if (!_disposed) notifyListeners();
   }
@@ -269,8 +283,7 @@ class GatewayController extends ChangeNotifier {
   Future<void> refreshControlCapabilities({bool silent = false}) async {
     if (!isInternal) return;
     try {
-      final payload =
-          await api.getJson('/api/control-sequence/capabilities');
+      final payload = await api.getJson('/api/control-sequence/capabilities');
       controlCapabilities = ControlSequenceCapabilities.fromJson(payload);
       final enabledPairs = controlCapabilities!.pairs
           .where((pair) => pair.enabled)
@@ -288,6 +301,58 @@ class GatewayController extends ChangeNotifier {
     }
   }
 
+  Future<void> refreshAutomation({bool silent = false}) async {
+    if (!isInternal || _disposed) return;
+    try {
+      final payload = await api.getJson(
+        '/api/automation/schedule',
+        timeout: const Duration(seconds: 10),
+      );
+      automationConfig = payload['config'] is Map
+          ? Map<String, dynamic>.from(payload['config'] as Map)
+          : <String, dynamic>{};
+      automationStatus = payload['status'] is Map
+          ? Map<String, dynamic>.from(payload['status'] as Map)
+          : <String, dynamic>{};
+      restConnected = true;
+    } catch (error) {
+      if (!silent) errorMessage = error.toString();
+      if (!silent) rethrow;
+    } finally {
+      if (!_disposed) notifyListeners();
+    }
+  }
+
+  Future<void> saveAutomation(Map<String, dynamic> config) async {
+    if (!isInternal) throw const ApiException('Internal role is required');
+    final payload = await api.putJson('/api/automation/schedule', body: config);
+    automationConfig = payload['config'] is Map
+        ? Map<String, dynamic>.from(payload['config'] as Map)
+        : config;
+    automationStatus = payload['status'] is Map
+        ? Map<String, dynamic>.from(payload['status'] as Map)
+        : automationStatus;
+    lastEventMessage = automationConfig['enabled'] == true
+        ? 'Time and solar automation enabled.'
+        : 'Time and solar automation disabled.';
+    notifyListeners();
+  }
+
+  void startAutomationPolling() {
+    if (!isInternal || _disposed) return;
+    _automationTimer?.cancel();
+    unawaited(refreshAutomation(silent: true));
+    _automationTimer = Timer.periodic(
+      const Duration(seconds: 3),
+      (_) => unawaited(refreshAutomation(silent: true)),
+    );
+  }
+
+  void stopAutomationPolling() {
+    _automationTimer?.cancel();
+    _automationTimer = null;
+  }
+
   Future<void> refreshControlStatus({bool silent = false}) async {
     if (!isInternal || _disposed) return;
 
@@ -295,7 +360,11 @@ class GatewayController extends ChangeNotifier {
     // requests direct Modbus reads, so telemetry display cannot compete with
     // startup, safe-stop or runtime safety monitoring.
     if (_controlStatusInFlight) {
-      _controlStatusRefreshPending = true;
+      controlStatusSkippedRefreshes += 1;
+      return;
+    }
+    final now = DateTime.now().toUtc();
+    if (_controlStatusRetryAfter?.isAfter(now) == true) {
       controlStatusSkippedRefreshes += 1;
       return;
     }
@@ -305,7 +374,10 @@ class GatewayController extends ChangeNotifier {
     try {
       final payload = await api.getJson(
         '/api/control-sequence/status/all/compact',
-        timeout: const Duration(seconds: 10),
+        // Normal Phase 5.7.2 responses are expected in well under one second.
+        // Keep a generous transport fallback for commissioning networks while
+        // single-flight prevents overlapping overview requests.
+        timeout: const Duration(seconds: 30),
       );
       if (_disposed || generation != _controlStatusGeneration) return;
 
@@ -314,18 +386,28 @@ class GatewayController extends ChangeNotifier {
       if (byPair is Map) {
         for (final entry in byPair.entries) {
           if (entry.value is Map) {
-            final status = ControlSequenceStatus.fromJson(
+            final pairId = entry.key.toString();
+            final incoming = _preserveDetailedRunSteps(
+              pairId,
               Map<String, dynamic>.from(entry.value as Map),
             );
-            parsed[entry.key.toString()] = status;
+            final status = ControlSequenceStatus.fromJson(
+              incoming,
+            );
+            parsed[pairId] = status;
           }
         }
       } else {
         final pairs = payload['pairs'];
         if (pairs is List) {
           for (final item in pairs.whereType<Map>()) {
+            final incoming = Map<String, dynamic>.from(item);
+            final pair = incoming['pair'];
+            final pairId = pair is Map
+                ? pair['pair_id']?.toString() ?? 'pair_1'
+                : 'pair_1';
             final status = ControlSequenceStatus.fromJson(
-              Map<String, dynamic>.from(item),
+              _preserveDetailedRunSteps(pairId, incoming),
             );
             parsed[status.pairId] = status;
           }
@@ -351,21 +433,76 @@ class GatewayController extends ChangeNotifier {
       controlPlantSummary = payload['summary'] is Map
           ? Map<String, dynamic>.from(payload['summary'] as Map)
           : <String, dynamic>{};
+      safeStopAllProgress = payload['safe_stop_all'] is Map
+          ? Map<String, dynamic>.from(payload['safe_stop_all'] as Map)
+          : <String, dynamic>{};
+      final safeStopStatus =
+          safeStopAllProgress['status']?.toString() ?? 'idle';
+      if (<String>{'success', 'failed', 'idle'}.contains(safeStopStatus)) {
+        _controlBusyPairs.removeAll(controlStatuses.keys);
+      }
       controlStatus = controlStatuses[selectedControlPair];
       controlStatusReceivedAt = DateTime.now().toUtc();
+
+      // The compact overview deliberately omits detailed automatic steps.
+      // A scheduler-owned run may have started while Flutter was closed, so
+      // there may be no local detailed copy to preserve. During an active or
+      // prepared run, hydrate only the selected pair from the gateway's
+      // cache-only status endpoint. This never requests fresh Modbus reads and
+      // remains protected by the existing per-pair single-flight/backoff.
+      final selected = controlStatus;
+      final selectedSteps = selected?.runtime['steps'];
+      final needsDetailedAutomaticRun = selected != null &&
+          <String>{'queued', 'accepted', 'running', 'prepared'}
+              .contains(selected.runStatus) &&
+          (selectedSteps is! List || selectedSteps.isEmpty);
+      if (needsDetailedAutomaticRun) {
+        unawaited(_refreshOneControlPair(selectedControlPair, silent: true));
+      }
       restConnected = true;
+      _controlStatusFailures = 0;
+      _controlStatusRetryAfter = null;
     } catch (error) {
+      _controlStatusFailures += 1;
+      _controlStatusRetryAfter = DateTime.now().toUtc().add(
+            _retryDelay(_controlStatusFailures),
+          );
       if (!silent) errorMessage = error.toString();
       if (!silent) rethrow;
     } finally {
       _controlStatusInFlight = false;
-      final runPending = _controlStatusRefreshPending && !_disposed;
-      _controlStatusRefreshPending = false;
       if (!_disposed) notifyListeners();
-      if (runPending) {
-        unawaited(refreshControlStatus(silent: true));
-      }
     }
+  }
+
+  Map<String, dynamic> _preserveDetailedRunSteps(
+    String pairId,
+    Map<String, dynamic> incoming,
+  ) {
+    final existing = controlStatuses[pairId];
+    if (existing == null) return incoming;
+
+    final incomingRuntime = incoming['runtime'] is Map
+        ? Map<String, dynamic>.from(incoming['runtime'] as Map)
+        : <String, dynamic>{};
+    final existingRuntime = existing.runtime;
+    final incomingRunId = incomingRuntime['run_id']?.toString();
+    final existingRunId = existingRuntime['run_id']?.toString();
+    final incomingSteps = incomingRuntime['steps'];
+    final existingSteps = existingRuntime['steps'];
+
+    // The compact overview intentionally omits the six detailed steps. Keep
+    // the last detailed copy only for the same run. A new run_id therefore
+    // starts clean and can never inherit an earlier sequence's progress.
+    if (incomingRunId != null &&
+        incomingRunId == existingRunId &&
+        (incomingSteps is! List || incomingSteps.isEmpty) &&
+        existingSteps is List &&
+        existingSteps.isNotEmpty) {
+      incomingRuntime['steps'] = List<dynamic>.from(existingSteps);
+      incoming['runtime'] = incomingRuntime;
+    }
+    return incoming;
   }
 
   Future<void> refreshSelectedControlStatusFresh({bool silent = false}) async {
@@ -412,6 +549,7 @@ class GatewayController extends ChangeNotifier {
     if (!isInternal || _disposed) return;
     _controlPollingEnabled = true;
     _controlTimer?.cancel();
+    _automationTimer?.cancel();
     unawaited(refreshControlStatus(silent: true));
     _controlTimer = Timer.periodic(
       const Duration(seconds: 5),
@@ -427,7 +565,6 @@ class GatewayController extends ChangeNotifier {
     _controlPollingEnabled = false;
     _controlTimer?.cancel();
     _controlTimer = null;
-    _controlStatusRefreshPending = false;
   }
 
   bool get controlPollingActive =>
@@ -443,7 +580,8 @@ class GatewayController extends ChangeNotifier {
       _automaticTrackingPairs.contains(selectedControlPair);
 
   bool isControlPairBusy(String pairId) =>
-      _controlBusyPairs.contains(pairId) || _automaticTrackingPairs.contains(pairId);
+      _controlBusyPairs.contains(pairId) ||
+      _automaticTrackingPairs.contains(pairId);
 
   Map<String, dynamic> controlResponseFor(String pairId) =>
       lastControlResponsesByPair[pairId] ?? const <String, dynamic>{};
@@ -593,11 +731,11 @@ class GatewayController extends ChangeNotifier {
           'confirmation': _stageConfirmation,
           'open_bms': openBms,
         },
-        timeout: const Duration(minutes: 5),
+        timeout: const Duration(seconds: 20),
       );
       lastControlResponse = result;
-      lastEventMessage = result['ok'] == true
-          ? 'All enabled pairs were safely stopped.'
+      lastEventMessage = result['accepted'] == true
+          ? 'Safe Stop All accepted; live shutdown progress is shown below.'
           : 'Safe Stop All completed with one or more pair failures.';
       await refreshControlStatus(silent: true);
       return result;
@@ -605,7 +743,8 @@ class GatewayController extends ChangeNotifier {
       errorMessage = error.toString();
       rethrow;
     } finally {
-      _controlBusyPairs.removeAll(pairIds);
+      // Busy state is released by compact-status terminal progress, not by
+      // the short HTTP acceptance request.
       if (!_disposed) notifyListeners();
     }
   }
@@ -669,6 +808,10 @@ class GatewayController extends ChangeNotifier {
     String pairId, {
     bool silent = false,
   }) async {
+    if (_disposed || _pairStatusInFlight.contains(pairId)) return;
+    final retryAfter = _pairStatusRetryAfter[pairId];
+    if (retryAfter?.isAfter(DateTime.now().toUtc()) == true) return;
+    _pairStatusInFlight.add(pairId);
     try {
       final payload = await api.getJson(
         '/api/control-sequence/$pairId/status',
@@ -700,12 +843,20 @@ class GatewayController extends ChangeNotifier {
         _stopAutomaticTracking(pairId);
       }
       restConnected = true;
+      _pairStatusFailures.remove(pairId);
+      _pairStatusRetryAfter.remove(pairId);
     } catch (error) {
+      final failures = (_pairStatusFailures[pairId] ?? 0) + 1;
+      _pairStatusFailures[pairId] = failures;
+      _pairStatusRetryAfter[pairId] = DateTime.now().toUtc().add(
+            _retryDelay(failures),
+          );
       if (!silent) {
         errorMessage = error.toString();
         rethrow;
       }
     } finally {
+      _pairStatusInFlight.remove(pairId);
       if (!_disposed) notifyListeners();
     }
   }
@@ -777,7 +928,8 @@ class GatewayController extends ChangeNotifier {
   }
 
   void _scheduleReconnect() {
-    if (_disposed || session == null || _reconnectTimer?.isActive == true) return;
+    if (_disposed || session == null || _reconnectTimer?.isActive == true)
+      return;
     _reconnectAttempt += 1;
     final exponent = _reconnectAttempt.clamp(0, 5).toInt();
     final seconds = (1 << exponent).clamp(2, 30).toInt();
@@ -800,6 +952,7 @@ class GatewayController extends ChangeNotifier {
     _diagnosticTimer?.cancel();
     _diagnosticTimer = null;
     stopControlPolling();
+    stopAutomationPolling();
     await _closeSocket();
     session = null;
     api.token = null;
@@ -811,10 +964,18 @@ class GatewayController extends ChangeNotifier {
     controlStatuses.clear();
     _pairPayloadTimestamps.clear();
     controlPlantSummary = <String, dynamic>{};
+    safeStopAllProgress = <String, dynamic>{};
+    automationConfig = <String, dynamic>{};
+    automationStatus = <String, dynamic>{};
     controlStatusReceivedAt = null;
     _controlBusyPairs.clear();
     _controlStatusInFlight = false;
-    _controlStatusRefreshPending = false;
+    _diagnosticsInFlight = false;
+    _controlStatusFailures = 0;
+    _controlStatusRetryAfter = null;
+    _pairStatusInFlight.clear();
+    _pairStatusFailures.clear();
+    _pairStatusRetryAfter.clear();
     _controlPollingEnabled = false;
     _controlStatusGeneration += 1;
     controlStatusSkippedRefreshes = 0;
@@ -834,6 +995,7 @@ class GatewayController extends ChangeNotifier {
     _disposed = true;
     _diagnosticTimer?.cancel();
     _controlTimer?.cancel();
+    _automationTimer?.cancel();
     for (final timer in _automaticTrackers.values) {
       timer.cancel();
     }
@@ -846,8 +1008,13 @@ class GatewayController extends ChangeNotifier {
   }
 }
 
-
 double? _asControllerDouble(dynamic value) {
   if (value is num) return value.toDouble();
   return double.tryParse(value?.toString() ?? '');
+}
+
+Duration _retryDelay(int failures) {
+  final exponent = failures.clamp(1, 5).toInt();
+  final seconds = (1 << exponent).clamp(2, 30).toInt();
+  return Duration(seconds: seconds);
 }

@@ -9,9 +9,8 @@ class ApiException implements Exception {
   final int? statusCode;
 
   @override
-  String toString() => statusCode == null
-      ? message
-      : 'HTTP $statusCode: $message';
+  String toString() =>
+      statusCode == null ? message : 'HTTP $statusCode: $message';
 }
 
 class GatewayApiClient {
@@ -67,6 +66,14 @@ class GatewayApiClient {
     );
   }
 
+  Future<Map<String, dynamic>> putJson(
+    String path, {
+    Object? body,
+    Duration timeout = const Duration(seconds: 30),
+  }) {
+    return requestJson('PUT', path, body: body, timeout: timeout);
+  }
+
   Future<Map<String, dynamic>> requestJson(
     String method,
     String path, {
@@ -87,7 +94,8 @@ class GatewayApiClient {
     }
 
     final response = await request.close().timeout(timeout);
-    final responseText = await response.transform(utf8.decoder).join().timeout(timeout);
+    final responseText =
+        await response.transform(utf8.decoder).join().timeout(timeout);
     dynamic decoded;
     if (responseText.trim().isNotEmpty) {
       try {
@@ -127,7 +135,8 @@ class GatewayApiClient {
         'mode': mode,
       },
     );
-    return WebSocket.connect(uri.toString()).timeout(const Duration(seconds: 60));
+    return WebSocket.connect(uri.toString())
+        .timeout(const Duration(seconds: 60));
   }
 
   Uri _buildUri(String path, Map<String, String>? query) {
