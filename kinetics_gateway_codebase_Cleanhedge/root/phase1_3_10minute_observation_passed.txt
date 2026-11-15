@@ -1,0 +1,70 @@
+===== SAMPLE 1 2026-08-05T10:43:33+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1098301440
+MemoryPeak=1121079296
+TasksCurrent=16
+health status=200 seconds=0.271340
+===== SAMPLE 2 2026-08-05T10:44:33+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1100668928
+MemoryPeak=1121079296
+TasksCurrent=16
+health status=200 seconds=0.075030
+===== SAMPLE 3 2026-08-05T10:45:33+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1100382208
+MemoryPeak=1121079296
+TasksCurrent=16
+health status=200 seconds=0.009096
+===== SAMPLE 4 2026-08-05T10:46:34+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1100042240
+MemoryPeak=1121079296
+TasksCurrent=14
+health status=200 seconds=0.008823
+===== SAMPLE 5 2026-08-05T10:47:34+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1099976704
+MemoryPeak=1121079296
+TasksCurrent=14
+health status=200 seconds=0.009407
+===== SAMPLE 6 2026-08-05T10:48:34+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1087995904
+MemoryPeak=1121079296
+TasksCurrent=16
+health status=200 seconds=0.009640
+===== SAMPLE 7 2026-08-05T10:49:34+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1087635456
+MemoryPeak=1121079296
+TasksCurrent=15
+health status=200 seconds=0.018750
+===== SAMPLE 8 2026-08-05T10:50:34+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1089093632
+MemoryPeak=1121079296
+TasksCurrent=16
+health status=200 seconds=0.009840
+===== SAMPLE 9 2026-08-05T10:51:34+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1089339392
+MemoryPeak=1121079296
+TasksCurrent=14
+health status=200 seconds=0.010249
+===== SAMPLE 10 2026-08-05T10:52:34+05:30 =====
+MainPID=263166
+NRestarts=0
+MemoryCurrent=1090732032
+MemoryPeak=1121079296
+TasksCurrent=16
+health status=200 seconds=0.009847

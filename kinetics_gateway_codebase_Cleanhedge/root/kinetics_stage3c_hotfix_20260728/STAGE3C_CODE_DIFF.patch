@@ -1,0 +1,797 @@
+--- /tmp/current_baseline/app/services/bms_pcs_control.py	2026-07-28 16:58:06.000000000 +0000
++++ /tmp/current_backend/app/services/bms_pcs_control.py	2026-07-28 17:20:47.838219194 +0000
+@@ -6,7 +6,7 @@
+ import uuid
+ from copy import deepcopy
+ from datetime import datetime, timezone
+-from typing import Any, Literal
++from typing import Any, Callable, Literal
+ 
+ from app.assets.bms_driver import BmsModbusDriver
+ from app.assets.pcs_driver import PcsModbusDriver
+@@ -73,18 +73,35 @@
+         bms_driver: BmsModbusDriver,
+         pcs_driver: PcsModbusDriver,
+         store: SQLiteStore,
++        snapshot_provider: Callable[[int, str], dict[str, Any]] | None = None,
+     ) -> None:
+         self.gateway_config = gateway_config
+         self.config: ControlSequenceConfig = gateway_config.control_sequence
+         self.bms_driver = bms_driver
+         self.pcs_driver = pcs_driver
+         self.store = store
++        self._snapshot_provider = snapshot_provider
+         self._lock = threading.RLock()
+         self._sequence_threads: dict[str, threading.Thread] = {}
+         self._abort_events: dict[str, threading.Event] = {
+             pair.pair_id: threading.Event() for pair in self.config.pairs
+         }
+         self._monitor_threads: dict[str, threading.Thread] = {}
++        self._runtime_monitor_stats: dict[str, dict[str, Any]] = {
++            pair.pair_id: {
++                "samples": 0,
++                "cache_samples": 0,
++                "live_fallbacks": 0,
++                "cache_quality_failures": 0,
++                "safety_stops": 0,
++                "last_sample_at": None,
++                "last_source": None,
++                "last_cache_ages_seconds": {},
++                "last_errors": [],
++                "last_violations": [],
++            }
++            for pair in self.config.pairs
++        }
+ 
+         # Live control-status reads are expensive: one request performs many BMS
+         # and PCS transactions.  Keep exactly one live refresh per pair and one
+@@ -306,6 +323,396 @@
+             return False
+         return abs(float(first) - float(second)) <= self.config.ready_voltage_match_tolerance_v
+ 
++    @staticmethod
++    def _iso_age_seconds(value: Any) -> float | None:
++        if not value:
++            return None
++        try:
++            stamp = datetime.fromisoformat(str(value))
++            if stamp.tzinfo is None:
++                stamp = stamp.replace(tzinfo=timezone.utc)
++            return max(0.0, (datetime.now(timezone.utc) - stamp).total_seconds())
++        except (TypeError, ValueError):
++            return None
++
++    def _poll_quality(
++        self,
++        asset: dict[str, Any],
++        poll_class: str,
++        *,
++        label: str,
++        max_age_seconds: float,
++    ) -> tuple[dict[str, Any], list[dict[str, str]]]:
++        errors: list[dict[str, str]] = []
++        status = (asset or {}).get("poll_status", {}).get(poll_class, {})
++        timestamp = status.get("timestamp")
++        age = self._iso_age_seconds(timestamp)
++        read_errors = status.get("read_errors") or []
++        online = bool(status.get("online", (asset or {}).get("online", False)))
++        if not status:
++            errors.append({"target": label, "error": f"missing_{poll_class}_poll_status"})
++        elif not online:
++            errors.append({"target": label, "error": f"{poll_class}_poll_offline"})
++        elif read_errors:
++            errors.append({"target": label, "error": f"{poll_class}_poll_read_error: {read_errors}"})
++        elif age is None:
++            errors.append({"target": label, "error": f"invalid_{poll_class}_poll_timestamp"})
++        elif age > max_age_seconds:
++            errors.append(
++                {
++                    "target": label,
++                    "error": (
++                        f"stale_{poll_class}_poll age={age:.3f}s "
++                        f"limit={max_age_seconds:.3f}s"
++                    ),
++                }
++            )
++        return {
++            "timestamp": timestamp,
++            "age_seconds": None if age is None else round(age, 3),
++            "max_age_seconds": round(max_age_seconds, 3),
++            "online": online,
++            "read_errors": deepcopy(read_errors),
++            "fresh": not errors,
++        }, errors
++
++    @staticmethod
++    def _cached_point(
++        asset: dict[str, Any],
++        key: str,
++        *,
++        target: str,
++        required: bool,
++        errors: list[dict[str, str]],
++    ) -> dict[str, Any] | None:
++        point = (asset or {}).get("telemetry", {}).get(key)
++        if point is None and required:
++            errors.append({"target": target, "error": f"missing_cached_point:{key}"})
++        return deepcopy(point) if point is not None else None
++
++    def _build_status_from_reads(
++        self,
++        pair_id: str,
++        pair: ControlPairConfig,
++        reads: dict[str, dict[str, Any] | None],
++        errors: list[dict[str, str]],
++        *,
++        timestamp: str | None = None,
++    ) -> dict[str, Any]:
++        rack_voltage = self._value(reads["rack_voltage"])
++        charge_limit = self._value(reads["rack_charge_limit"])
++        discharge_limit = self._value(reads["rack_discharge_limit"])
++        pcs_dc_bus = self._value(reads["pcs_dc_bus_voltage"])
++        pcs_state = self._value(reads["pcs_operating_state"])
++        pcs_battery_voltage = self._value(reads["pcs_battery_voltage"])
++        pcs_status_word_1 = self._value(reads["pcs_status_word_1"])
++        pcs_status_word_2 = self._value(reads["pcs_status_word_2"])
++        pcs_input_fault_word = self._value(reads["pcs_input_fault_word"])
++        pcs_system_fault_ext3 = self._value(reads["pcs_system_fault_ext3"])
++
++        pcs_status_word_1_raw = None if pcs_status_word_1 is None else int(pcs_status_word_1)
++        pcs_status_word_2_raw = None if pcs_status_word_2 is None else int(pcs_status_word_2)
++        pcs_input_fault_word_raw = None if pcs_input_fault_word is None else int(pcs_input_fault_word)
++        pcs_system_fault_ext3_raw = None if pcs_system_fault_ext3 is None else int(pcs_system_fault_ext3)
++
++        pcs_remote_feedback = (
++            None if pcs_status_word_1_raw is None else bool(pcs_status_word_1_raw & (1 << 0))
++        )
++        pcs_authorized = (
++            None if pcs_status_word_1_raw is None else bool(pcs_status_word_1_raw & (1 << 1))
++        )
++        pcs_dc_breaker_open = (
++            None if pcs_status_word_2_raw is None else bool(pcs_status_word_2_raw & (1 << 6))
++        )
++        pcs_dc_breaker_feedback_closed = (
++            None if pcs_input_fault_word_raw is None else bool(pcs_input_fault_word_raw & (1 << 7))
++        )
++        pcs_dc_soft_start_fault = (
++            None if pcs_system_fault_ext3_raw is None else bool(pcs_system_fault_ext3_raw & (1 << 2))
++        )
++        pcs_dc_soft_start_relay_fault = (
++            None if pcs_system_fault_ext3_raw is None else bool(pcs_system_fault_ext3_raw & (1 << 3))
++        )
++        enable_raw = self._value(reads["bank_rack_enable_state"])
++        enable_bit = None
++        if enable_raw is not None and 1 <= pair.rack_id <= 16:
++            enable_bit = (int(enable_raw) >> (pair.rack_id - 1)) & 1
++        contactor_bits = (reads["contactor_state"] or {}).get("bitfields", {})
++        positive_closed = contactor_bits.get("positive_contactor_state") == 1
++        negative_closed = contactor_bits.get("negitive_contactor_state") == 1
++        contactors_ready = (
++            positive_closed and negative_closed
++            if self.config.require_positive_and_negative_contactors
++            else positive_closed or negative_closed
++        )
++        precharge_ok = self._value(reads["precharge_state"]) == 3
++        bms_charge_power_limit_kw = None
++        bms_discharge_power_limit_kw = None
++        if rack_voltage is not None and charge_limit is not None:
++            bms_charge_power_limit_kw = abs(float(rack_voltage) * float(charge_limit) / 1000.0)
++        if rack_voltage is not None and discharge_limit is not None:
++            bms_discharge_power_limit_kw = abs(float(rack_voltage) * float(discharge_limit) / 1000.0)
++
++        bank_fault_bits = (reads["bank_external_fault"] or {}).get("bitfields", {})
++        detailed_fault_points = {
++            "bank_level1_alarm_1": reads.get("bank_level1_alarm_1"),
++            "bank_level1_alarm_2": reads.get("bank_level1_alarm_2"),
++            "bank_rack_fault": reads.get("bank_rack_fault"),
++            "bank_fault_summary_2": reads.get("bank_fault_summary_2"),
++            "rack_external_fault": reads.get("rack_external_fault"),
++            "rack_critical_1": reads.get("rack_critical_1"),
++            "rack_critical_2": reads.get("rack_critical_2"),
++        }
++        detailed_fault_raw = {
++            key: int((point or {}).get("raw") or 0)
++            for key, point in detailed_fault_points.items()
++        }
++        documented_critical_fault = any(value != 0 for value in detailed_fault_raw.values())
++        summary_system_fault_bit = bank_fault_bits.get("system_fault") == 1
++
++        global_system_full_summary = bank_fault_bits.get("system_full") == 1
++        global_system_empty_summary = bank_fault_bits.get("system_empty") == 1
++        rack_charge_limit_available = (
++            charge_limit is not None
++            and float(charge_limit) >= self.config.minimum_bms_current_limit_a
++        )
++        rack_discharge_limit_available = (
++            discharge_limit is not None
++            and float(discharge_limit) >= self.config.minimum_bms_current_limit_a
++        )
++
++        blockers = {
++            "emergency_stop_fault": bank_fault_bits.get("emergency_stop_fault") == 1,
++            "system_fault": documented_critical_fault,
++            "documented_critical_fault": documented_critical_fault,
++            "summary_system_fault_bit": summary_system_fault_bit,
++            "detailed_fault_raw": detailed_fault_raw,
++            "system_charge_prohibited": documented_critical_fault or not rack_charge_limit_available,
++            "system_discharge_prohibited": documented_critical_fault or not rack_discharge_limit_available,
++            "global_summary_system_full": global_system_full_summary,
++            "global_summary_system_empty": global_system_empty_summary,
++            "global_summary_direction_bits_contradictory": (
++                global_system_full_summary and global_system_empty_summary
++            ),
++            "direction_permission_source": "selected_rack_current_limits_and_detailed_faults",
++            "pcs_control_fault": bank_fault_bits.get("pcs_ctrl") == 1,
++        }
++
++        result = {
++            "pair": pair.model_dump(),
++            "timestamp": timestamp or now_iso(),
++            "runtime": self._runtime_snapshot(pair_id),
++            "write_gates": {
++                "control_sequence_enabled": self.config.enabled,
++                "gateway_mode": self.gateway_config.mode,
++                "bms_write_enabled": self.gateway_config.bms.write_enabled,
++                "pcs_write_enabled": self.gateway_config.pcs.write_enabled,
++                "full_automatic_sequence_allowed": self.config.allow_full_automatic_sequence,
++            },
++            "summary": {
++                "rack_enabled": 1 if (precharge_ok and contactors_ready) else 0,
++                "rack_runtime_ready": precharge_ok and contactors_ready,
++                "bau_rack_enable_feedback": enable_bit,
++                "rack_run_state": self._value(reads.get("rack_run_state")),
++                "rack_voltage_v": rack_voltage,
++                "rack_voltage_valid": (
++                    rack_voltage is not None
++                    and self.config.bms_rack_voltage_min_v <= float(rack_voltage) <= self.config.bms_rack_voltage_max_v
++                ),
++                "insulation_command": self._value(reads["insulation_command"]),
++                "insulation_resistance_kohm": self._value(reads["insulation_resistance"]),
++                "insulation_resistance_pos_kohm": self._value(reads["insulation_resistance_pos"]),
++                "insulation_resistance_neg_kohm": self._value(reads["insulation_resistance_neg"]),
++                "precharge_state": self._value(reads["precharge_state"]),
++                "precharge_command": self._value(reads["precharge_command"]),
++                "precharge_success": precharge_ok,
++                "positive_contactor_closed": positive_closed,
++                "negative_contactor_closed": negative_closed,
++                "contactors_ready": contactors_ready,
++                "pcs_dc_bus_voltage_v": pcs_dc_bus,
++                "pcs_battery_voltage_v": pcs_battery_voltage,
++                "pcs_status_word_1_raw": pcs_status_word_1_raw,
++                "pcs_remote_feedback": pcs_remote_feedback,
++                "pcs_authorized": pcs_authorized,
++                "pcs_status_word_2_raw": pcs_status_word_2_raw,
++                "pcs_dc_breaker_open": pcs_dc_breaker_open,
++                "pcs_dc_breaker_feedback_closed": pcs_dc_breaker_feedback_closed,
++                "pcs_dc_soft_start_fault": pcs_dc_soft_start_fault,
++                "pcs_dc_soft_start_relay_fault": pcs_dc_soft_start_relay_fault,
++                "pcs_dc_bus_valid": (
++                    pcs_dc_bus is not None
++                    and self.config.pcs_dc_bus_voltage_min_v <= float(pcs_dc_bus) <= self.config.pcs_dc_bus_voltage_max_v
++                ),
++                "pcs_operating_state": pcs_state,
++                "pcs_fault_shutdown": pcs_state is not None and bool(int(pcs_state) & PCS_FAULT_SHUTDOWN_BIT),
++                "pcs_actual_power_kw": self._value(reads["pcs_actual_power"]),
++                "pcs_power_setpoint_kw": self._value(reads["pcs_power_setpoint"]),
++                "rack_charge_current_limit_a": charge_limit,
++                "rack_discharge_current_limit_a": discharge_limit,
++                "bms_charge_power_limit_kw": bms_charge_power_limit_kw,
++                "bms_discharge_power_limit_kw": bms_discharge_power_limit_kw,
++                "blockers": blockers,
++            },
++            "points": reads,
++            "errors": errors,
++        }
++        result["workflow"] = self._workflow_from_summary(
++            result["summary"], result["runtime"]
++        )
++        return result
++
++    def _read_cached_runtime_status(
++        self,
++        pair_id: str,
++        pair: ControlPairConfig,
++    ) -> dict[str, Any]:
++        if self._snapshot_provider is None:
++            raise RuntimeError("Runtime monitor snapshot provider is unavailable")
++        snapshot = self._snapshot_provider(pair.rack_id, pair.pcs_asset_id)
++        bank = snapshot.get("bank") or {}
++        rack = snapshot.get("rack") or {}
++        pcs = snapshot.get("pcs") or {}
++        errors: list[dict[str, str]] = []
++
++        fast_limit = max(3.0, float(self.gateway_config.bms.poll_fast_seconds) * 3.0)
++        normal_limit = max(15.0, float(self.gateway_config.bms.poll_normal_seconds) * 3.0)
++        pcs_limit = max(15.0, float(self.gateway_config.pcs.poll_seconds) * 3.0)
++        freshness: dict[str, dict[str, Any]] = {}
++        for key, asset, poll_class, label, limit in (
++            ("bank_fast", bank, "fast", "bms_bank", fast_limit),
++            ("rack_fast", rack, "fast", f"bms_rack_{pair.rack_id}", fast_limit),
++            ("rack_normal", rack, "normal", f"bms_rack_{pair.rack_id}", normal_limit),
++            ("pcs", pcs, "pcs", pair.pcs_asset_id, pcs_limit),
++        ):
++            quality, quality_errors = self._poll_quality(
++                asset,
++                poll_class,
++                label=label,
++                max_age_seconds=limit,
++            )
++            freshness[key] = quality
++            errors.extend(quality_errors)
++
++        def cached(
++            asset: dict[str, Any],
++            key: str,
++            target: str,
++            *,
++            required: bool = True,
++        ) -> dict[str, Any] | None:
++            return self._cached_point(
++                asset,
++                key,
++                target=target,
++                required=required,
++                errors=errors,
++            )
++
++        reads: dict[str, dict[str, Any] | None] = {
++            "bank_external_fault": cached(bank, "external_fault_state", "bank_external_fault"),
++            "bank_level1_alarm_1": cached(bank, "external_level1_alarm", "bank_level1_alarm_1"),
++            "bank_level1_alarm_2": cached(bank, "bcu_external_lv1_alm_sum_ii", "bank_level1_alarm_2"),
++            "bank_rack_fault": cached(bank, "rack_fault", "bank_rack_fault"),
++            "bank_fault_summary_2": cached(bank, "fault_info_sum2", "bank_fault_summary_2"),
++            "bank_rack_enable_state": cached(bank, "rack_enable_state_l16", "bank_rack_enable_state", required=False),
++            "rack_external_fault": cached(rack, "bcu_external_fault_alarm", "rack_external_fault"),
++            "rack_critical_1": cached(rack, "external_critical", "rack_critical_1"),
++            "rack_critical_2": cached(rack, "external_stop_alarm2", "rack_critical_2"),
++            "rack_run_state": cached(rack, "bcu_run_state", "rack_run_state", required=False),
++            "rack_voltage": cached(rack, "vrack", "rack_voltage"),
++            "rack_charge_limit": cached(rack, "irack_chg_limit", "rack_charge_limit"),
++            "rack_discharge_limit": cached(rack, "irack_dsg_limit", "rack_discharge_limit"),
++            "insulation_command": cached(rack, "start_insulation_sampleing", "insulation_command", required=False),
++            "insulation_resistance": cached(rack, "ir", "insulation_resistance", required=False),
++            "insulation_resistance_pos": cached(rack, "ir_pos", "insulation_resistance_pos", required=False),
++            "insulation_resistance_neg": cached(rack, "ir_neg", "insulation_resistance_neg", required=False),
++            "precharge_state": cached(rack, "pre_charge_state", "precharge_state"),
++            "precharge_command": cached(rack, "start_pre_chg_operate", "precharge_command", required=False),
++            "contactor_state": cached(rack, "contactor_state", "contactor_state"),
++            "pcs_dc_bus_voltage": cached(pcs, "dc_bus_voltage", "pcs_dc_bus_voltage"),
++            "pcs_battery_voltage": cached(pcs, "battery_voltage", "pcs_battery_voltage"),
++            "pcs_operating_state": cached(pcs, "operating_state", "pcs_operating_state"),
++            "pcs_status_word_1": cached(pcs, "status_word_1", "pcs_status_word_1"),
++            "pcs_status_word_2": cached(pcs, "status_word_2", "pcs_status_word_2"),
++            "pcs_input_fault_word": cached(pcs, "reg_1210", "pcs_input_fault_word"),
++            "pcs_system_fault_ext3": cached(pcs, "reg_121a", "pcs_system_fault_ext3"),
++            "pcs_actual_power": cached(pcs, "grid_active_power", "pcs_actual_power"),
++            "pcs_on_off_command": cached(pcs, "remote_on_off_command", "pcs_on_off_command", required=False),
++            "pcs_remote_local_mode": cached(pcs, "remote_local_mode", "pcs_remote_local_mode", required=False),
++            "pcs_product_mode": cached(pcs, "product_run_mode", "pcs_product_mode", required=False),
++            "pcs_pq_mode": cached(pcs, "pq_work_mode", "pcs_pq_mode", required=False),
++            "pcs_power_setpoint": cached(pcs, "active_power_setpoint", "pcs_power_setpoint"),
++        }
++        result = self._build_status_from_reads(
++            pair_id,
++            pair,
++            reads,
++            errors,
++            timestamp=snapshot.get("timestamp"),
++        )
++        result["refresh"] = {
++            "requested_fresh": False,
++            "source": "background_poll_cache",
++            "busy": False,
++            "stale": bool(errors),
++            "snapshot_sequence": snapshot.get("sequence"),
++            "snapshot_timestamp": snapshot.get("timestamp"),
++            "freshness": freshness,
++        }
++        return result
++
++    def runtime_monitor_sample(self, pair_id: str) -> dict[str, Any]:
++        pair = self._pair(pair_id)
++        return self._read_cached_runtime_status(pair_id, pair)
++
++    def runtime_monitor_diagnostics(self) -> dict[str, Any]:
++        with self._lock:
++            stats = deepcopy(self._runtime_monitor_stats)
++            active = {
++                pair_id: bool(thread and thread.is_alive())
++                for pair_id, thread in self._monitor_threads.items()
++            }
++        return {
++            "mode": "background_poll_cache_with_live_fallback",
++            "bms_fast_poll_seconds": self.gateway_config.bms.poll_fast_seconds,
++            "bms_normal_poll_seconds": self.gateway_config.bms.poll_normal_seconds,
++            "pcs_poll_seconds": self.gateway_config.pcs.poll_seconds,
++            "runtime_monitor_interval_seconds": self.config.runtime_monitor_interval_seconds,
++            "active_threads": active,
++            "pairs": stats,
++        }
++
++    def _runtime_monitor_status(
++        self,
++        pair_id: str,
++        pair: ControlPairConfig,
++    ) -> dict[str, Any]:
++        cached = self._read_cached_runtime_status(pair_id, pair)
++        if not cached.get("errors"):
++            return cached
++        with self._lock:
++            self._runtime_monitor_stats[pair_id]["cache_quality_failures"] += 1
++        # A stale or incomplete background cache is never silently trusted.
++        # Attempt one immediate direct confirmation through the Stage 3B global
++        # single-flight lane. Do not wait behind unrelated diagnostics: if the
++        # lane is busy or the confirmation fails, the existing monitor exception
++        # path performs a fail-safe stop instead of leaving the pair unverified.
++        live = self.status(
++            pair_id,
++            fresh=True,
++            wait_for_refresh=False,
++            return_cached_if_busy=False,
++        )
++        live["refresh"] = {
++            **live.get("refresh", {}),
++            "source": "live_hardware_fallback_for_cache_quality",
++            "cache_errors": deepcopy(cached.get("errors", [])),
++            "cache_freshness": deepcopy(cached.get("refresh", {}).get("freshness", {})),
++        }
++        with self._lock:
++            self._runtime_monitor_stats[pair_id]["live_fallbacks"] += 1
++        return live
++
+     def _workflow_from_summary(self, summary: dict[str, Any], runtime: dict[str, Any]) -> dict[str, Any]:
+         blockers = summary.get("blockers", {})
+         state = summary.get("pcs_operating_state")
+@@ -523,185 +930,12 @@
+             if error:
+                 errors.append(error)
+ 
+-        rack_voltage = self._value(reads["rack_voltage"])
+-        charge_limit = self._value(reads["rack_charge_limit"])
+-        discharge_limit = self._value(reads["rack_discharge_limit"])
+-        pcs_dc_bus = self._value(reads["pcs_dc_bus_voltage"])
+-        pcs_state = self._value(reads["pcs_operating_state"])
+-        pcs_battery_voltage = self._value(reads["pcs_battery_voltage"])
+-        pcs_status_word_1 = self._value(reads["pcs_status_word_1"])
+-        pcs_status_word_2 = self._value(reads["pcs_status_word_2"])
+-        pcs_input_fault_word = self._value(reads["pcs_input_fault_word"])
+-        pcs_system_fault_ext3 = self._value(reads["pcs_system_fault_ext3"])
+-
+-        pcs_status_word_1_raw = None if pcs_status_word_1 is None else int(pcs_status_word_1)
+-        pcs_status_word_2_raw = None if pcs_status_word_2 is None else int(pcs_status_word_2)
+-        pcs_input_fault_word_raw = None if pcs_input_fault_word is None else int(pcs_input_fault_word)
+-        pcs_system_fault_ext3_raw = None if pcs_system_fault_ext3 is None else int(pcs_system_fault_ext3)
+-
+-        pcs_remote_feedback = (
+-            None if pcs_status_word_1_raw is None else bool(pcs_status_word_1_raw & (1 << 0))
+-        )
+-        pcs_authorized = (
+-            None if pcs_status_word_1_raw is None else bool(pcs_status_word_1_raw & (1 << 1))
+-        )
+-        # PCS protocol 0x1202 bit 6: 0=DC breaker closed, 1=DC breaker open.
+-        pcs_dc_breaker_open = (
+-            None if pcs_status_word_2_raw is None else bool(pcs_status_word_2_raw & (1 << 6))
+-        )
+-        # PCS protocol 0x1210 bit 7: 0=DC breaker feedback open, 1=closed.
+-        pcs_dc_breaker_feedback_closed = (
+-            None if pcs_input_fault_word_raw is None else bool(pcs_input_fault_word_raw & (1 << 7))
+-        )
+-        pcs_dc_soft_start_fault = (
+-            None if pcs_system_fault_ext3_raw is None else bool(pcs_system_fault_ext3_raw & (1 << 2))
+-        )
+-        pcs_dc_soft_start_relay_fault = (
+-            None if pcs_system_fault_ext3_raw is None else bool(pcs_system_fault_ext3_raw & (1 << 3))
+-        )
+-        enable_raw = self._value(reads["bank_rack_enable_state"])
+-        enable_bit = None
+-        if enable_raw is not None and 1 <= pair.rack_id <= 16:
+-            enable_bit = (int(enable_raw) >> (pair.rack_id - 1)) & 1
+-        contactor_bits = (reads["contactor_state"] or {}).get("bitfields", {})
+-        positive_closed = contactor_bits.get("positive_contactor_state") == 1
+-        negative_closed = contactor_bits.get("negitive_contactor_state") == 1
+-        contactors_ready = (
+-            positive_closed and negative_closed
+-            if self.config.require_positive_and_negative_contactors
+-            else positive_closed or negative_closed
+-        )
+-        precharge_ok = self._value(reads["precharge_state"]) == 3
+-        bms_charge_power_limit_kw = None
+-        bms_discharge_power_limit_kw = None
+-        if rack_voltage is not None and charge_limit is not None:
+-            bms_charge_power_limit_kw = abs(float(rack_voltage) * float(charge_limit) / 1000.0)
+-        if rack_voltage is not None and discharge_limit is not None:
+-            bms_discharge_power_limit_kw = abs(float(rack_voltage) * float(discharge_limit) / 1000.0)
+-
+-        bank_fault_bits = (reads["bank_external_fault"] or {}).get("bitfields", {})
+-
+-        # This BMS firmware can keep the 0x1001 summary system-fault bit active
+-        # after the HMI's Level-1 fault is cleared. For commissioning, use the
+-        # documented detailed fault words as the energising-command gate while
+-        # still exposing the raw summary bit for diagnostics.
+-        detailed_fault_points = {
+-            "bank_level1_alarm_1": reads.get("bank_level1_alarm_1"),
+-            "bank_level1_alarm_2": reads.get("bank_level1_alarm_2"),
+-            "bank_rack_fault": reads.get("bank_rack_fault"),
+-            "bank_fault_summary_2": reads.get("bank_fault_summary_2"),
+-            "rack_external_fault": reads.get("rack_external_fault"),
+-            "rack_critical_1": reads.get("rack_critical_1"),
+-            "rack_critical_2": reads.get("rack_critical_2"),
+-        }
+-        detailed_fault_raw = {
+-            key: int((point or {}).get("raw") or 0)
+-            for key, point in detailed_fault_points.items()
+-        }
+-        documented_critical_fault = any(value != 0 for value in detailed_fault_raw.values())
+-        summary_system_fault_bit = bank_fault_bits.get("system_fault") == 1
+-
+-        global_system_full_summary = bank_fault_bits.get("system_full") == 1
+-        global_system_empty_summary = bank_fault_bits.get("system_empty") == 1
+-        rack_charge_limit_available = (
+-            charge_limit is not None
+-            and float(charge_limit) >= self.config.minimum_bms_current_limit_a
+-        )
+-        rack_discharge_limit_available = (
+-            discharge_limit is not None
+-            and float(discharge_limit) >= self.config.minimum_bms_current_limit_a
+-        )
+-
+-        blockers = {
+-            "emergency_stop_fault": bank_fault_bits.get("emergency_stop_fault") == 1,
+-            # Legacy key used by the staged state machine. It now represents
+-            # confirmed documented critical faults, not the stale 0x1001 bit.
+-            "system_fault": documented_critical_fault,
+-            "documented_critical_fault": documented_critical_fault,
+-            "summary_system_fault_bit": summary_system_fault_bit,
+-            "detailed_fault_raw": detailed_fault_raw,
+-            # Field finding: BAU 0x1001 can assert system_full and system_empty
+-            # simultaneously during an individually precharged rack. Those
+-            # global summary bits remain visible below for diagnostics, but
+-            # pair-level permission is derived from the selected rack's own
+-            # current limits plus the documented detailed fault words.
+-            "system_charge_prohibited": documented_critical_fault or not rack_charge_limit_available,
+-            "system_discharge_prohibited": documented_critical_fault or not rack_discharge_limit_available,
+-            "global_summary_system_full": global_system_full_summary,
+-            "global_summary_system_empty": global_system_empty_summary,
+-            "global_summary_direction_bits_contradictory": (
+-                global_system_full_summary and global_system_empty_summary
+-            ),
+-            "direction_permission_source": "selected_rack_current_limits_and_detailed_faults",
+-            "pcs_control_fault": bank_fault_bits.get("pcs_ctrl") == 1,
+-        }
+-
+-        result = {
+-            "pair": pair.model_dump(),
+-            "timestamp": now_iso(),
+-            "runtime": self._runtime_snapshot(pair_id),
+-            "write_gates": {
+-                "control_sequence_enabled": self.config.enabled,
+-                "gateway_mode": self.gateway_config.mode,
+-                "bms_write_enabled": self.gateway_config.bms.write_enabled,
+-                "pcs_write_enabled": self.gateway_config.pcs.write_enabled,
+-                "full_automatic_sequence_allowed": self.config.allow_full_automatic_sequence,
+-            },
+-            "summary": {
+-                # Backward-compatible runtime field: for individual pair
+-                # operation, a rack is considered enabled when local BCU
+-                # precharge has succeeded and both required contactors are
+-                # closed. The central BAU bit is retained separately.
+-                "rack_enabled": 1 if (precharge_ok and contactors_ready) else 0,
+-                "rack_runtime_ready": precharge_ok and contactors_ready,
+-                "bau_rack_enable_feedback": enable_bit,
+-                "rack_run_state": self._value(reads.get("rack_run_state")),
+-                "rack_voltage_v": rack_voltage,
+-                "rack_voltage_valid": (
+-                    rack_voltage is not None
+-                    and self.config.bms_rack_voltage_min_v <= float(rack_voltage) <= self.config.bms_rack_voltage_max_v
+-                ),
+-                "insulation_command": self._value(reads["insulation_command"]),
+-                "insulation_resistance_kohm": self._value(reads["insulation_resistance"]),
+-                "insulation_resistance_pos_kohm": self._value(reads["insulation_resistance_pos"]),
+-                "insulation_resistance_neg_kohm": self._value(reads["insulation_resistance_neg"]),
+-                "precharge_state": self._value(reads["precharge_state"]),
+-                "precharge_command": self._value(reads["precharge_command"]),
+-                "precharge_success": precharge_ok,
+-                "positive_contactor_closed": positive_closed,
+-                "negative_contactor_closed": negative_closed,
+-                "contactors_ready": contactors_ready,
+-                "pcs_dc_bus_voltage_v": pcs_dc_bus,
+-                "pcs_battery_voltage_v": pcs_battery_voltage,
+-                "pcs_status_word_1_raw": pcs_status_word_1_raw,
+-                "pcs_remote_feedback": pcs_remote_feedback,
+-                "pcs_authorized": pcs_authorized,
+-                "pcs_status_word_2_raw": pcs_status_word_2_raw,
+-                "pcs_dc_breaker_open": pcs_dc_breaker_open,
+-                "pcs_dc_breaker_feedback_closed": pcs_dc_breaker_feedback_closed,
+-                "pcs_dc_soft_start_fault": pcs_dc_soft_start_fault,
+-                "pcs_dc_soft_start_relay_fault": pcs_dc_soft_start_relay_fault,
+-                "pcs_dc_bus_valid": (
+-                    pcs_dc_bus is not None
+-                    and self.config.pcs_dc_bus_voltage_min_v <= float(pcs_dc_bus) <= self.config.pcs_dc_bus_voltage_max_v
+-                ),
+-                "pcs_operating_state": pcs_state,
+-                "pcs_fault_shutdown": pcs_state is not None and bool(int(pcs_state) & PCS_FAULT_SHUTDOWN_BIT),
+-                "pcs_actual_power_kw": self._value(reads["pcs_actual_power"]),
+-                "pcs_power_setpoint_kw": self._value(reads["pcs_power_setpoint"]),
+-                "rack_charge_current_limit_a": charge_limit,
+-                "rack_discharge_current_limit_a": discharge_limit,
+-                "bms_charge_power_limit_kw": bms_charge_power_limit_kw,
+-                "bms_discharge_power_limit_kw": bms_discharge_power_limit_kw,
+-                "blockers": blockers,
+-            },
+-            "points": reads,
+-            "errors": errors,
+-        }
+-        result["workflow"] = self._workflow_from_summary(
+-            result["summary"], result["runtime"]
++        return self._build_status_from_reads(
++            pair_id,
++            pair,
++            reads,
++            errors,
+         )
+-        return result
+ 
+     def precheck(self, pair_id: str, direction: Direction, requested_power_kw: float) -> dict[str, Any]:
+         pair = self._pair(pair_id)
+@@ -2076,12 +2310,20 @@
+         pair_id = pair.pair_id
+         try:
+             while True:
+-                status = self.status(pair_id, fresh=True)
+-                summary = status["summary"]
+-                commanded = float(summary.get("pcs_power_setpoint_kw") or 0.0)
+-                if abs(commanded) <= PCS_ZERO_SETPOINT_TOLERANCE_KW:
++                runtime = self._runtime_snapshot(pair_id)
++                expected_commanded = float(runtime.get("commanded_power_kw") or 0.0)
++                if abs(expected_commanded) <= PCS_ZERO_SETPOINT_TOLERANCE_KW:
+                     break
+-                direction: Direction = "charge" if commanded < 0 else "discharge"
++
++                status = self._runtime_monitor_status(pair_id, pair)
++                summary = status["summary"]
++                source = status.get("refresh", {}).get("source", "unknown")
++                direction_value = runtime.get("requested_direction")
++                direction: Direction = (
++                    direction_value
++                    if direction_value in {"charge", "discharge"}
++                    else "charge" if expected_commanded < 0 else "discharge"
++                )
+                 dynamic_limit = (
+                     summary.get("bms_charge_power_limit_kw")
+                     if direction == "charge"
+@@ -2110,8 +2352,26 @@
+                     violations.append(f"{direction}_prohibited_by_selected_rack_limit_or_detailed_fault")
+                 if current_limit is None or float(current_limit) < self.config.minimum_bms_current_limit_a:
+                     violations.append("selected_rack_current_limit_unavailable")
+-                if dynamic_limit is None or abs(commanded) > float(dynamic_limit) + 1e-9:
++                if dynamic_limit is None or abs(expected_commanded) > float(dynamic_limit) + 1e-9:
+                     violations.append("bms_dynamic_power_limit_below_command")
++
++                freshness = status.get("refresh", {}).get("freshness", {})
++                ages = {
++                    key: value.get("age_seconds")
++                    for key, value in freshness.items()
++                    if isinstance(value, dict)
++                }
++                with self._lock:
++                    stats = self._runtime_monitor_stats[pair_id]
++                    stats["samples"] += 1
++                    if source == "background_poll_cache":
++                        stats["cache_samples"] += 1
++                    stats["last_sample_at"] = now_iso()
++                    stats["last_source"] = source
++                    stats["last_cache_ages_seconds"] = ages
++                    stats["last_errors"] = deepcopy(status.get("errors", []))
++                    stats["last_violations"] = deepcopy(violations)
++
+                 if violations:
+                     stop = self._safe_stop_internal(
+                         username,
+@@ -2119,6 +2379,8 @@
+                         open_bms=True,
+                         reason=f"runtime_monitor_violation: {violations}",
+                     )
++                    with self._lock:
++                        self._runtime_monitor_stats[pair_id]["safety_stops"] += 1
+                     self._update_runtime(
+                         pair_id,
+                         stage="runtime_safety_stop",
+@@ -2141,6 +2403,11 @@
+                 )
+             except Exception as stop_error:
+                 stop = {"ok": False, "error": str(stop_error)}
++            with self._lock:
++                stats = self._runtime_monitor_stats[pair_id]
++                stats["last_sample_at"] = now_iso()
++                stats["last_error"] = str(error)
++                stats["safety_stops"] += 1
+             self._update_runtime(
+                 pair_id,
+                 stage="runtime_monitor_failed",
+@@ -2153,6 +2420,7 @@
+         finally:
+             self._update_runtime(pair_id, monitor_active=False)
+ 
++
+     def capabilities(self) -> dict[str, Any]:
+         return {
+             "controller": "field_validated_bms_pcs_sequence_controller",
+--- /tmp/current_baseline/app/services/gateway_service.py	2026-07-28 16:20:58.000000000 +0000
++++ /tmp/current_backend/app/services/gateway_service.py	2026-07-28 17:18:37.790224620 +0000
+@@ -42,7 +42,11 @@
+         self.bms_driver = BmsModbusDriver(config.bms, self.bms_catalog)
+         self.pcs_driver = PcsModbusDriver(config.pcs, self.pcs_catalog)
+         self.control_sequence = BmsPcsControlService(
+-            config, self.bms_driver, self.pcs_driver, store
++            config,
++            self.bms_driver,
++            self.pcs_driver,
++            store,
++            snapshot_provider=self.control_pair_snapshot,
+         )
+         self.alarm_engine = AlarmEngine()
+         self._lock = threading.RLock()
+@@ -413,6 +417,36 @@
+             self._store_snapshot_if_due(self._snapshot)
+         return event
+ 
++    def control_pair_snapshot(self, rack_id: int, pcs_asset_id: str) -> dict[str, Any]:
++        """Return only the cached assets required by runtime safety monitoring.
++
++        This avoids deep-copying the complete plant snapshot for every active
++        pair every two seconds while preserving a consistent view under the
++        gateway cache lock.
++        """
++        with self._lock:
++            rack = next(
++                (
++                    item
++                    for item in self._snapshot.get("racks", [])
++                    if int(item.get("rack_id") or 0) == int(rack_id)
++                ),
++                None,
++            )
++            pcs = self._snapshot.get("pcs_devices", {}).get(pcs_asset_id)
++            if rack is None:
++                raise KeyError(f"Cached BMS rack {rack_id} is unavailable")
++            if pcs is None:
++                raise KeyError(f"Cached PCS asset {pcs_asset_id} is unavailable")
++            return {
++                "gateway_id": self.config.gateway_id,
++                "sequence": self._sequence,
++                "timestamp": self._snapshot.get("timestamp"),
++                "bank": deepcopy(self._snapshot.get("bank", {})),
++                "rack": deepcopy(rack),
++                "pcs": deepcopy(pcs),
++            }
++
+     def snapshot(self) -> dict[str, Any]:
+         with self._lock:
+             return deepcopy(self._snapshot)
+--- /tmp/current_baseline/app/api/routes.py	2026-07-28 16:58:06.000000000 +0000
++++ /tmp/current_backend/app/api/routes.py	2026-07-28 17:18:37.790224620 +0000
+@@ -109,6 +109,24 @@
+     ) -> dict[str, Any]:
+         return service.control_sequence.refresh_diagnostics()
+ 
++    @router.get("/api/diagnostics/runtime-monitor")
++    def diagnostics_runtime_monitor(
++        user: User = Depends(current_user),
++    ) -> dict[str, Any]:
++        return service.control_sequence.runtime_monitor_diagnostics()
++
++    @router.get("/api/diagnostics/runtime-monitor/{pair_id}/sample")
++    def diagnostics_runtime_monitor_sample(
++        pair_id: str,
++        user: User = Depends(current_user),
++    ) -> dict[str, Any]:
++        try:
++            return service.control_sequence.runtime_monitor_sample(pair_id)
++        except KeyError as error:
++            raise HTTPException(status_code=404, detail=str(error)) from error
++        except Exception as error:
++            raise HTTPException(status_code=502, detail=str(error)) from error
++
+     @router.get("/api/telemetry/key-signals")
+     def key_signals(user: User = Depends(current_user)) -> dict[str, Any]:
+         snapshot = service.snapshot()

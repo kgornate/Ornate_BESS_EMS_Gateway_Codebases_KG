@@ -36,6 +36,10 @@ class GatewayController extends ChangeNotifier {
   Map<String, dynamic> safeStopAllProgress = <String, dynamic>{};
   Map<String, dynamic> automationConfig = <String, dynamic>{};
   Map<String, dynamic> automationStatus = <String, dynamic>{};
+  List<Map<String, dynamic>> automationEvents = <Map<String, dynamic>>[];
+  bool automationEventsHasMore = false;
+  bool automationEventsLoading = false;
+  DateTime? automationStatusReceivedAt;
   Map<String, dynamic> lastControlResponse = <String, dynamic>{};
   final Map<String, Map<String, dynamic>> lastControlResponsesByPair =
       <String, Map<String, dynamic>>{};
@@ -54,6 +58,7 @@ class GatewayController extends ChangeNotifier {
   Timer? _diagnosticTimer;
   Timer? _controlTimer;
   Timer? _automationTimer;
+  Timer? _automationEventsTimer;
   Timer? _reconnectTimer;
   int _reconnectAttempt = 0;
   bool _controlStatusInFlight = false;
@@ -314,11 +319,73 @@ class GatewayController extends ChangeNotifier {
       automationStatus = payload['status'] is Map
           ? Map<String, dynamic>.from(payload['status'] as Map)
           : <String, dynamic>{};
+      automationStatusReceivedAt = DateTime.now();
       restConnected = true;
     } catch (error) {
       if (!silent) errorMessage = error.toString();
       if (!silent) rethrow;
     } finally {
+      if (!_disposed) notifyListeners();
+    }
+  }
+
+  DateTime get estimatedGatewayTime {
+    final timestamp = DateTime.tryParse(
+      automationStatus['timestamp']?.toString() ?? '',
+    );
+    final receivedAt = automationStatusReceivedAt;
+    if (timestamp == null || receivedAt == null) return DateTime.now();
+    return timestamp.add(DateTime.now().difference(receivedAt));
+  }
+
+  Future<void> refreshAutomationEvents({
+    bool loadOlder = false,
+    bool silent = false,
+  }) async {
+    if (!isInternal || _disposed || automationEventsLoading) return;
+    automationEventsLoading = true;
+    if (!silent) notifyListeners();
+    try {
+      final query = <String, String>{'limit': loadOlder ? '200' : '100'};
+      if (loadOlder && automationEvents.isNotEmpty) {
+        final before = automationEvents.last['timestamp']?.toString();
+        if (before != null && before.isNotEmpty) query['before'] = before;
+      }
+      final payload = await api.getJson(
+        '/api/automation/events',
+        query: query,
+        timeout: const Duration(seconds: 10),
+      );
+      final page = payload['events'] is List
+          ? (payload['events'] as List)
+              .whereType<Map>()
+              .map((item) => Map<String, dynamic>.from(item))
+              .toList()
+          : <Map<String, dynamic>>[];
+      if (loadOlder) {
+        final known = automationEvents
+            .map((item) => '${item['timestamp']}|${item['event']}')
+            .toSet();
+        automationEvents.addAll(page.where(
+          (item) => known.add('${item['timestamp']}|${item['event']}'),
+        ));
+      } else {
+        final known = page
+            .map((item) => '${item['timestamp']}|${item['event']}')
+            .toSet();
+        automationEvents = <Map<String, dynamic>>[
+          ...page,
+          ...automationEvents.where(
+            (item) => known.add('${item['timestamp']}|${item['event']}'),
+          ),
+        ];
+      }
+      automationEventsHasMore = payload['has_more'] == true;
+    } catch (error) {
+      if (!silent) errorMessage = error.toString();
+      if (!silent) rethrow;
+    } finally {
+      automationEventsLoading = false;
       if (!_disposed) notifyListeners();
     }
   }
@@ -341,16 +408,24 @@ class GatewayController extends ChangeNotifier {
   void startAutomationPolling() {
     if (!isInternal || _disposed) return;
     _automationTimer?.cancel();
+    _automationEventsTimer?.cancel();
     unawaited(refreshAutomation(silent: true));
     _automationTimer = Timer.periodic(
       const Duration(seconds: 3),
       (_) => unawaited(refreshAutomation(silent: true)),
+    );
+    unawaited(refreshAutomationEvents(silent: true));
+    _automationEventsTimer = Timer.periodic(
+      const Duration(seconds: 20),
+      (_) => unawaited(refreshAutomationEvents(silent: true)),
     );
   }
 
   void stopAutomationPolling() {
     _automationTimer?.cancel();
     _automationTimer = null;
+    _automationEventsTimer?.cancel();
+    _automationEventsTimer = null;
   }
 
   Future<void> refreshControlStatus({bool silent = false}) async {
@@ -444,21 +519,8 @@ class GatewayController extends ChangeNotifier {
       controlStatus = controlStatuses[selectedControlPair];
       controlStatusReceivedAt = DateTime.now().toUtc();
 
-      // The compact overview deliberately omits detailed automatic steps.
-      // A scheduler-owned run may have started while Flutter was closed, so
-      // there may be no local detailed copy to preserve. During an active or
-      // prepared run, hydrate only the selected pair from the gateway's
-      // cache-only status endpoint. This never requests fresh Modbus reads and
-      // remains protected by the existing per-pair single-flight/backoff.
-      final selected = controlStatus;
-      final selectedSteps = selected?.runtime['steps'];
-      final needsDetailedAutomaticRun = selected != null &&
-          <String>{'queued', 'accepted', 'running', 'prepared'}
-              .contains(selected.runStatus) &&
-          (selectedSteps is! List || selectedSteps.isEmpty);
-      if (needsDetailedAutomaticRun) {
-        unawaited(_refreshOneControlPair(selectedControlPair, silent: true));
-      }
+      // Phase 5.8.1.2 carries bounded steps in this canonical overview, so a
+      // scheduler-owned run is visible without another selected-pair request.
       restConnected = true;
       _controlStatusFailures = 0;
       _controlStatusRetryAfter = null;
@@ -552,7 +614,7 @@ class GatewayController extends ChangeNotifier {
     _automationTimer?.cancel();
     unawaited(refreshControlStatus(silent: true));
     _controlTimer = Timer.periodic(
-      const Duration(seconds: 5),
+      const Duration(seconds: 2),
       (_) {
         if (_controlPollingEnabled) {
           unawaited(refreshControlStatus(silent: true));
@@ -967,6 +1029,9 @@ class GatewayController extends ChangeNotifier {
     safeStopAllProgress = <String, dynamic>{};
     automationConfig = <String, dynamic>{};
     automationStatus = <String, dynamic>{};
+    automationEvents = <Map<String, dynamic>>[];
+    automationEventsHasMore = false;
+    automationStatusReceivedAt = null;
     controlStatusReceivedAt = null;
     _controlBusyPairs.clear();
     _controlStatusInFlight = false;
@@ -996,6 +1061,7 @@ class GatewayController extends ChangeNotifier {
     _diagnosticTimer?.cancel();
     _controlTimer?.cancel();
     _automationTimer?.cancel();
+    _automationEventsTimer?.cancel();
     for (final timer in _automaticTrackers.values) {
       timer.cancel();
     }

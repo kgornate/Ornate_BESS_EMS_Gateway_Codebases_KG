@@ -1,0 +1,7 @@
+MainPID=380532
+NRestarts=0
+ExecMainStartTimestamp=Sat 2026-11-14 22:51:35 IST
+MemoryCurrent=163618816
+MemoryPeak=170160128
+ActiveState=active
+SubState=running

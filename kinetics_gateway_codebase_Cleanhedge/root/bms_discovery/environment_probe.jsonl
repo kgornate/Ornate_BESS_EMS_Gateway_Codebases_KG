@@ -1,0 +1,13 @@
+{"host": "192.168.111.22", "port": 502, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "ok": false, "error": "Modbus TCP transport error 192.168.111.22:502: [Errno 111] Connection refused"}
+{"host": "192.168.111.22", "port": 502, "unit_id": 127, "function_code": 3, "address": 1536, "count": 4, "ok": false, "error": "Modbus TCP transport error 192.168.111.22:502: [Errno 111] Connection refused"}
+{"host": "192.168.111.22", "port": 503, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 503, "unit_id": 127, "function_code": 3, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 504, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 504, "unit_id": 127, "function_code": 3, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 505, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 505, "unit_id": 127, "function_code": 3, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 506, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 506, "unit_id": 127, "function_code": 3, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"host": "192.168.111.22", "port": 507, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "ok": false, "error": "Modbus TCP transport error 192.168.111.22:507: [Errno 111] Connection refused"}
+{"host": "192.168.111.22", "port": 507, "unit_id": 127, "function_code": 3, "address": 1536, "count": 4, "ok": false, "error": "Modbus TCP transport error 192.168.111.22:507: [Errno 111] Connection refused"}
+{"summary": {"attempts": 12, "successes": 8}}

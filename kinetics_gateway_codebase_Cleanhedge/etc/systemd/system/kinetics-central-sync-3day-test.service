@@ -1,0 +1,15 @@
+[Unit]
+Description=CleanEdge Central Sync 72-Hour Observation
+After=network-online.target kinetics-gateway.service kinetics-central-sync.service
+Wants=network-online.target kinetics-central-sync.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/kinetics-central-sync-3day-test
+Restart=on-failure
+RestartSec=30
+Nice=10
+IOSchedulingClass=idle
+
+[Install]
+WantedBy=multi-user.target

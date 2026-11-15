@@ -1,0 +1,6 @@
+Python compile: PASS
+Stage 3C cache/live-fallback synthetic checks: PASS
+Safe-stop-before-physical-stop ordering: PASS
+Abort-before-physical-stop ordering: PASS
+Stop-during-in-flight-cache-read race check: PASS
+No synthetic safety stop or driver writes after stop signal: PASS

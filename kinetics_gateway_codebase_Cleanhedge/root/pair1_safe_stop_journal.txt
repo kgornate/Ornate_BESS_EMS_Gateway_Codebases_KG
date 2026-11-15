@@ -1,0 +1,400 @@
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:01,683 INFO kinetics.http GET /api/health status=200 elapsed_ms=22.9
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:01,687 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=410.5
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:01,694 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=30.6
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:01,698 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=29.8
+Nov 09 17:14:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:14:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:02,423 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=13.1
+Nov 09 17:14:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:14:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:03,672 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=404.1
+Nov 09 17:14:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:14:09 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:09,347 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=946.9
+Nov 09 17:14:09 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:14:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:13,903 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=890.3
+Nov 09 17:14:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:14:19 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:19,498 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=1527.6
+Nov 09 17:14:19 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:14:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:24,152 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=718.8
+Nov 09 17:14:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:14:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:29,098 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=374.7
+Nov 09 17:14:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:31,298 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=16.3
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:31,336 INFO kinetics.http GET /api/health status=200 elapsed_ms=29.2
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:31,855 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=495.4
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:31,857 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=491.6
+Nov 09 17:14:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:14:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:32,350 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=18.2
+Nov 09 17:14:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:14:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:14:33,588 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=412.8
+Nov 09 17:14:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:01,592 INFO kinetics.http GET /api/health status=200 elapsed_ms=22.2
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:01,599 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=33.0
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:01,606 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=32.7
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:01,609 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=31.0
+Nov 09 17:15:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:15:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:02,087 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=10.7
+Nov 09 17:15:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:15:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:24,844 INFO kinetics.http GET /api/control-sequence/capabilities status=200 elapsed_ms=1974.0
+Nov 09 17:15:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/capabilities HTTP/1.1" 200 OK
+Nov 09 17:15:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:24,884 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=2032.8
+Nov 09 17:15:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:29,744 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=802.4
+Nov 09 17:15:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:31,449 INFO kinetics.http GET /api/health status=200 elapsed_ms=32.8
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:31,456 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=45.5
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:31,470 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=50.2
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:31,477 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=51.1
+Nov 09 17:15:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:15:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:32,365 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=482.9
+Nov 09 17:15:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:15:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:33,617 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=772.9
+Nov 09 17:15:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:34,698 INFO kinetics.http POST /api/control-sequence/pair_1/automatic-start status=202 elapsed_ms=21.8
+Nov 09 17:15:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "POST /api/control-sequence/pair_1/automatic-start HTTP/1.1" 202 Accepted
+Nov 09 17:15:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:35,308 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=81.5
+Nov 09 17:15:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:37,526 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=138.8
+Nov 09 17:15:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:39 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:39,157 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=819.2
+Nov 09 17:15:39 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:39 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:39,923 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=753.7
+Nov 09 17:15:39 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:41,255 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=114.3
+Nov 09 17:15:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:43 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:43,774 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=943.0
+Nov 09 17:15:43 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:44,344 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=633.9
+Nov 09 17:15:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:45 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:45,254 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=102.0
+Nov 09 17:15:45 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:47 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:47,528 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=108.1
+Nov 09 17:15:47 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:49 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:49,393 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=1383.8
+Nov 09 17:15:49 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:49 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:49,987 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=626.9
+Nov 09 17:15:49 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:52 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:52,272 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=576.3
+Nov 09 17:15:52 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:53,693 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=873.5
+Nov 09 17:15:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:15:54 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:54,220 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=555.0
+Nov 09 17:15:54 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:55 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:55,495 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=146.2
+Nov 09 17:15:55 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:57 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:57,306 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=167.9
+Nov 09 17:15:57 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:15:58 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:15:58,842 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=878.4
+Nov 09 17:15:58 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:16:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:00,182 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=705.1
+Nov 09 17:16:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:01,305 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=169.5
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:01,336 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=44.9
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:01,351 INFO kinetics.http GET /api/health status=200 elapsed_ms=28.0
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:01,372 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=37.2
+Nov 09 17:16:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:16:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:02,024 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=6.0
+Nov 09 17:16:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:16:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:02,783 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=14.3
+Nov 09 17:16:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:16:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:03,763 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=946.0
+Nov 09 17:16:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:16:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:04,535 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=1363.9
+Nov 09 17:16:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:06 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:06,394 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=1229.1
+Nov 09 17:16:06 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:07 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:07,339 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=168.5
+Nov 09 17:16:07 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:08 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:08,791 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=829.9
+Nov 09 17:16:08 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:16:09 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:09,489 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=167.1
+Nov 09 17:16:09 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:11 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:11,289 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=152.0
+Nov 09 17:16:11 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:13,693 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=856.7
+Nov 09 17:16:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:16:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:13,867 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=182.5
+Nov 09 17:16:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:15,292 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=156.8
+Nov 09 17:16:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:18 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:18,602 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=938.6
+Nov 09 17:16:18 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:19 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:19,324 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=1419.9
+Nov 09 17:16:19 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:16:21 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:21,472 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=179.5
+Nov 09 17:16:21 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:24,125 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=964.9
+Nov 09 17:16:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:24,130 INFO kinetics.http GET /api/control-sequence/status/all/compact status=200 elapsed_ms=989.1
+Nov 09 17:16:24 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:16:25 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:25,989 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=566.6
+Nov 09 17:16:26 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:27 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:27,290 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=154.9
+Nov 09 17:16:27 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:29,318 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=152.7
+Nov 09 17:16:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:31,957 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=754.6
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:31,963 INFO kinetics.http GET /api/health status=200 elapsed_ms=611.4
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:31,969 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=637.6
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:31,976 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=610.9
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:31,978 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=558.5
+Nov 09 17:16:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:16:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:32,453 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=10.0
+Nov 09 17:16:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:16:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:33,521 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=193.2
+Nov 09 17:16:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:35,299 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=150.4
+Nov 09 17:16:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:37,424 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=148.4
+Nov 09 17:16:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:39 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:39,989 INFO kinetics.http GET /api/control-sequence/capabilities status=200 elapsed_ms=346.6
+Nov 09 17:16:40 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/capabilities HTTP/1.1" 200 OK
+Nov 09 17:16:40 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:40,935 INFO kinetics.http GET /api/control-sequence/pair_1/status status=200 elapsed_ms=1475.3
+Nov 09 17:16:40 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:43 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:43,920 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=4311.2
+Nov 09 17:16:43 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:16:50 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:50,966 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=7143.5
+Nov 09 17:16:50 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:16:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:16:53,500 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=8041.7
+Nov 09 17:16:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:17:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:00,247 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=6096.7
+Nov 09 17:17:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:03,533 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=6944.0
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:03,810 INFO kinetics.http GET /api/health status=200 elapsed_ms=1731.1
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:03,836 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=1776.8
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:03,903 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=1810.3
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:03,919 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=1780.1
+Nov 09 17:17:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:17:07 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:07,089 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=1304.7
+Nov 09 17:17:07 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:17:08 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:08,227 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=6189.7
+Nov 09 17:17:08 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:17:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:15,142 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=5707.3
+Nov 09 17:17:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:17:20 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:20,638 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=12005.3
+Nov 09 17:17:20 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:36,464 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=117.8
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:36,537 INFO kinetics.http GET /api/health status=200 elapsed_ms=312.9
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:36,764 WARNING kinetics.http Slow HTTP request method=GET path=/api/storage/status status=200 elapsed_ms=2053.8
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:36,803 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=556.5
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:36,855 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=527.3
+Nov 09 17:17:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:17:38 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:38,291 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=636.5
+Nov 09 17:17:38 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:17:38 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:38,732 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=106.4
+Nov 09 17:17:38 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:17:40 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:40,114 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=105.4
+Nov 09 17:17:40 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:17:46 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:45,999 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=101.5
+Nov 09 17:17:46 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:17:50 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:50,227 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=438.1
+Nov 09 17:17:50 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:17:50 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:50,254 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=30609.8
+Nov 09 17:17:50 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:17:54 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:17:54,984 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=114.5
+Nov 09 17:17:54 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:18:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:00,111 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=22935.6
+Nov 09 17:18:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:01,919 INFO kinetics.http GET /api/health status=200 elapsed_ms=171.0
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:01,946 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=232.9
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:01,959 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=170.3
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:01,979 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=205.8
+Nov 09 17:18:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:18:08 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:08,074 WARNING kinetics.http Slow HTTP request method=GET path=/api/alarms status=200 elapsed_ms=5679.5
+Nov 09 17:18:08 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:18:12 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:12,596 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=19009.7
+Nov 09 17:18:12 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:18:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:15,052 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=55475.3
+Nov 09 17:18:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:18:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:15,276 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=40778.2
+Nov 09 17:18:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:18:21 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:21,763 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/capabilities status=200 elapsed_ms=2123.8
+Nov 09 17:18:21 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/capabilities HTTP/1.1" 200 OK
+Nov 09 17:18:25 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:25,965 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=17806.2
+Nov 09 17:18:25 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:18:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:35,931 WARNING kinetics.http Slow HTTP request method=GET path=/api/health status=200 elapsed_ms=3983.0
+Nov 09 17:18:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:18:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:36,363 WARNING kinetics.http Slow HTTP request method=GET path=/api/diagnostics/data-rate status=200 elapsed_ms=4340.3
+Nov 09 17:18:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:18:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:36,373 WARNING kinetics.http Slow HTTP request method=GET path=/api/diagnostics/polling status=200 elapsed_ms=4410.3
+Nov 09 17:18:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:18:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:36,411 WARNING kinetics.http Slow HTTP request method=GET path=/api/storage/status status=200 elapsed_ms=4258.7
+Nov 09 17:18:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:18:40 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:40,080 WARNING kinetics.http Slow HTTP request method=GET path=/api/alarms status=200 elapsed_ms=2118.0
+Nov 09 17:18:40 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:18:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:44,233 INFO kinetics.http GET /api/control-sequence/capabilities status=200 elapsed_ms=226.2
+Nov 09 17:18:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/capabilities HTTP/1.1" 200 OK
+Nov 09 17:18:47 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:47,368 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=111.0
+Nov 09 17:18:47 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:18:49 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:49,608 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=101.5
+Nov 09 17:18:49 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:18:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:53,663 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=122.9
+Nov 09 17:18:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:18:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:53,855 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=118.6
+Nov 09 17:18:53 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:18:54 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:54,468 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=157.5
+Nov 09 17:18:54 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:18:57 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:18:57,289 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=107.3
+Nov 09 17:18:57 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:01,320 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=964.7
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:01,731 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=1307.2
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:01,779 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=42045.5
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:01,944 INFO kinetics.http GET /api/health status=200 elapsed_ms=107.4
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:01,970 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=205.6
+Nov 09 17:19:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:19:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:01,997 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=190.4
+Nov 09 17:19:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:19:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:02,019 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=174.8
+Nov 09 17:19:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:19:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:04,559 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=502.4
+Nov 09 17:19:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:04,583 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=30748.0
+Nov 09 17:19:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:19:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:04,688 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=633.4
+Nov 09 17:19:04 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:19:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:13,665 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=116.2
+Nov 09 17:19:13 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     127.0.0.1:38816 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:15,974 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=13664.2
+Nov 09 17:19:15 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:19:19 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:19,004 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=101.3
+Nov 09 17:19:19 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:22 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:22,368 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=62729.0
+Nov 09 17:19:22 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:19:31 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:31,976 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=243.3
+Nov 09 17:19:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:32,047 INFO kinetics.http GET /api/health status=503 elapsed_ms=224.1
+Nov 09 17:19:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     127.0.0.1:49176 - "GET /api/health HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:33,936 INFO kinetics.http GET /api/health status=503 elapsed_ms=1960.6
+Nov 09 17:19:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:34,145 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=210.5
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:34,168 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=199.0
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:34,188 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=112.1
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:34,209 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=231.5
+Nov 09 17:19:34 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:19:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:35,381 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=134.8
+Nov 09 17:19:35 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:36,353 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=114.5
+Nov 09 17:19:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:41,833 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=1618.6
+Nov 09 17:19:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:41,845 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=1566.0
+Nov 09 17:19:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:41,947 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=57942.0
+Nov 09 17:19:41 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:19:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:44,472 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/capabilities status=200 elapsed_ms=4193.5
+Nov 09 17:19:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/capabilities HTTP/1.1" 200 OK
+Nov 09 17:19:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:44,501 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=28493.4
+Nov 09 17:19:44 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:19:56 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:56,218 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=112.1
+Nov 09 17:19:56 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:56 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:56,291 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=109.2
+Nov 09 17:19:56 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:19:58 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:19:58,749 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=113.1
+Nov 09 17:19:58 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:20:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:00,466 INFO kinetics.http GET /api/control-sequence/pair_1/status status=503 elapsed_ms=120.3
+Nov 09 17:20:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 503 Service Unavailable
+Nov 09 17:20:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:00,499 INFO kinetics.http GET /api/control-sequence/status/all/compact status=503 elapsed_ms=152.0
+Nov 09 17:20:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 503 Service Unavailable
+Nov 09 17:20:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:00,573 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=47057.7
+Nov 09 17:20:00 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:03,367 INFO kinetics.http GET /api/health status=503 elapsed_ms=165.1
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 503 Service Unavailable
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:03,761 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=560.5
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:03,849 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=389.9
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:03,898 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=531.7
+Nov 09 17:20:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:20:05 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:05,593 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=21598.9
+Nov 09 17:20:05 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:20:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:29,943 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=26743.3
+Nov 09 17:20:29 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:20:30 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:30,137 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=65060.4
+Nov 09 17:20:30 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:33,643 INFO kinetics.http GET /api/health status=200 elapsed_ms=1599.1
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:33,765 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=1880.1
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:33,868 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=1937.7
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:33,895 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=430.8
+Nov 09 17:20:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:20:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:36,767 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=22482.0
+Nov 09 17:20:36 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK
+Nov 09 17:20:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:37,407 WARNING kinetics.http Slow HTTP request method=POST path=/api/control-sequence/pair_1/safe-stop status=200 elapsed_ms=103748.7
+Nov 09 17:20:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "POST /api/control-sequence/pair_1/safe-stop HTTP/1.1" 200 OK
+Nov 09 17:20:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:37,410 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/status/all/compact status=200 elapsed_ms=52408.7
+Nov 09 17:20:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/control-sequence/status/all/compact HTTP/1.1" 200 OK
+Nov 09 17:20:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:20:37,430 WARNING kinetics.http Slow HTTP request method=GET path=/api/alarms status=200 elapsed_ms=2118.7
+Nov 09 17:20:37 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:01,375 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=7.6
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:01,399 INFO kinetics.http GET /api/health status=200 elapsed_ms=6.0
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:01,439 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=9.9
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:01,445 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=20.5
+Nov 09 17:21:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:21:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:02,301 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=472.4
+Nov 09 17:21:02 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:21:30 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:30,403 WARNING app.services.gateway_service Solar/PCC poll failed: Modbus exception 11 for FC03
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:32,060 INFO kinetics.http GET /api/health status=200 elapsed_ms=561.7
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:32,062 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=583.2
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:32,064 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=552.0
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:32,069 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=541.6
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:32,467 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=11.2
+Nov 09 17:21:32 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:21:33 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:33,419 WARNING app.services.gateway_service Solar/PCC poll failed: Invalid Modbus TCP response header
+Nov 09 17:21:55 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:21:55,792 INFO kinetics.http POST /api/auth/login status=200 elapsed_ms=212.6
+Nov 09 17:21:55 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     127.0.0.1:39926 - "POST /api/auth/login HTTP/1.1" 200 OK
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:22:01,897 INFO kinetics.http GET /api/diagnostics/data-rate status=200 elapsed_ms=632.2
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/data-rate HTTP/1.1" 200 OK
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:22:01,933 INFO kinetics.http GET /api/health status=200 elapsed_ms=130.9
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/health HTTP/1.1" 200 OK
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:22:01,973 INFO kinetics.http GET /api/diagnostics/polling status=200 elapsed_ms=178.4
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/diagnostics/polling HTTP/1.1" 200 OK
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:22:01,993 INFO kinetics.http GET /api/storage/status status=200 elapsed_ms=204.8
+Nov 09 17:22:01 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/storage/status HTTP/1.1" 200 OK
+Nov 09 17:22:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:22:03,689 INFO kinetics.http GET /api/alarms status=200 elapsed_ms=318.9
+Nov 09 17:22:03 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     171.79.125.61:0 - "GET /api/alarms HTTP/1.1" 200 OK
+Nov 09 17:22:05 imx93-11x11-lpddr4x-frdm uvicorn[750]: 2026-11-09 17:22:05,175 WARNING kinetics.http Slow HTTP request method=GET path=/api/control-sequence/pair_1/status status=200 elapsed_ms=9324.3
+Nov 09 17:22:05 imx93-11x11-lpddr4x-frdm uvicorn[750]: INFO:     127.0.0.1:39930 - "GET /api/control-sequence/pair_1/status?fresh=false HTTP/1.1" 200 OK

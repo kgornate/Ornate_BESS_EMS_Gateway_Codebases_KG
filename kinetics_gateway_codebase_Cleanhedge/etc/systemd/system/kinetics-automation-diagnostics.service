@@ -1,0 +1,14 @@
+[Unit]
+Description=Kinetics Phase 5.8.1.5 persistent diagnostics recorder
+After=kinetics-gateway.service bess-seven-day-v302.service
+Wants=kinetics-gateway.service bess-seven-day-v302.service
+
+[Service]
+Type=simple
+ExecStart=/root/kinetics-automation-diagnostics.sh
+Restart=always
+RestartSec=10
+Nice=10
+
+[Install]
+WantedBy=multi-user.target

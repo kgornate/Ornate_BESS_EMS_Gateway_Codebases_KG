@@ -1,0 +1,30 @@
+===== SAMPLE 1 Mon Jul 27 06:03:36 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [1, 0, 65522, 0, 0, 7906, 7965, 7972, 0, 0, 0, 0, 4987, 0, 0, 0, 249, 245, 254, 421, 1, 0, 89, 112, 83, 82, 12775, 10606, 0, 4584, 4600, 4613, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 2 Mon Jul 27 06:03:38 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [2, 0, 65498, 0, 0, 7906, 7965, 7973, 0, 0, 0, 0, 4986, 0, 0, 0, 249, 245, 255, 421, 1, 0, 89, 112, 83, 82, 12768, 16756, 0, 4585, 4599, 4613, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 3 Mon Jul 27 06:03:40 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [2, 0, 65493, 0, 0, 7913, 7944, 7982, 0, 0, 0, 0, 4986, 0, 0, 0, 249, 245, 255, 421, 1, 0, 89, 113, 83, 82, 12770, 53795, 0, 4594, 4591, 4608, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 4 Mon Jul 27 06:03:41 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [1, 0, 65482, 0, 0, 7915, 7945, 7985, 0, 0, 0, 0, 4986, 0, 0, 0, 249, 245, 254, 421, 1, 0, 89, 112, 83, 82, 12771, 49172, 0, 4596, 4592, 4608, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 5 Mon Jul 27 06:03:43 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [1, 0, 65487, 0, 0, 7905, 7964, 7974, 0, 0, 0, 0, 4985, 0, 0, 0, 249, 245, 254, 421, 0, 0, 89, 112, 83, 82, 12779, 51179, 0, 4584, 4599, 4613, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 6 Mon Jul 27 06:03:44 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [2, 0, 65518, 0, 0, 7907, 7966, 7976, 0, 0, 0, 0, 4985, 0, 0, 0, 249, 245, 254, 421, 1, 0, 89, 112, 83, 82, 12777, 32204, 0, 4586, 4599, 4614, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 7 Mon Jul 27 06:03:46 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [1, 0, 65506, 0, 0, 7915, 7944, 7985, 0, 0, 0, 0, 4985, 0, 0, 0, 249, 245, 255, 421, 0, 0, 89, 112, 83, 82, 12769, 38718, 0, 4596, 4592, 4609, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 8 Mon Jul 27 06:03:48 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [1, 0, 65489, 0, 0, 7917, 7946, 7988, 0, 0, 0, 0, 4984, 0, 0, 0, 249, 245, 255, 421, 1, 0, 89, 112, 83, 82, 12772, 57876, 0, 4598, 4593, 4610, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 9 Mon Jul 27 06:03:49 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [1, 0, 65492, 0, 0, 7917, 7944, 7987, 0, 0, 0, 0, 4984, 0, 0, 0, 249, 245, 255, 421, 0, 0, 89, 112, 83, 82, 12781, 9119, 0, 4594, 4588, 4604, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 10 Mon Jul 27 06:03:51 UTC 2026 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4352, "count": 34, "registers": [1, 0, 65478, 0, 0, 7917, 7945, 7986, 0, 0, 0, 0, 4984, 0, 0, 0, 249, 245, 254, 421, 1, 0, 89, 112, 83, 82, 12768, 56759, 0, 4593, 4589, 4604, 5000, 5000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}

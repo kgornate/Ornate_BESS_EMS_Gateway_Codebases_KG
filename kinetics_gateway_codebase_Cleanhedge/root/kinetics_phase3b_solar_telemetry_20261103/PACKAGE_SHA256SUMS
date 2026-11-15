@@ -1,0 +1,5 @@
+ce2cb44544f4b5bdf4df7fae0b9d52064906c90f43deef4f2a2b6ddf36cda755  payload/opt/kinetics-gateway/backend/app/assets/solar_driver.py
+eecad9bc674cdbf69e4ffaebfe9008ebe18f53093592cf9a6e0f16edf7d54baf  payload/opt/kinetics-gateway/backend/app/core/config.py
+98d3f2548ba855565df1b453d8e6cfac7d086601092460bf3a5739cbb81c49fa  payload/opt/kinetics-gateway/backend/app/main.py
+f3e489351a907922fbc1a0599b5fdc936f42476698fb31723cc4148fcd2cbbce  payload/opt/kinetics-gateway/backend/app/services/gateway_service.py
+e7b43e1935188eed8ff59d2ff79b11d67e32b7f10b011fa81013dc989e135748  payload/opt/kinetics-gateway/backend/tests/test_solar_phase3b.py

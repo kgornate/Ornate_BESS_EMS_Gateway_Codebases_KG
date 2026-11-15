@@ -1,0 +1,40 @@
+===== SAMPLE 1 2026-08-05T11:57:31+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 78.695, 'peak_lag_ms': 687.984, 'task_count': 13, 'peak_task_count': 17}
+health status=200 seconds=0.177954
+===== SAMPLE 2 2026-08-05T11:58:32+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 0.499, 'peak_lag_ms': 687.984, 'task_count': 15, 'peak_task_count': 17}
+health status=200 seconds=0.008782
+===== SAMPLE 3 2026-08-05T11:59:32+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 348.85, 'peak_lag_ms': 687.984, 'task_count': 13, 'peak_task_count': 17}
+health status=200 seconds=0.008705
+===== SAMPLE 4 2026-08-05T12:00:32+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 5.606, 'peak_lag_ms': 687.984, 'task_count': 13, 'peak_task_count': 17}
+health status=200 seconds=0.014699
+===== SAMPLE 5 2026-08-05T12:01:33+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 0.541, 'peak_lag_ms': 687.984, 'task_count': 13, 'peak_task_count': 17}
+health status=200 seconds=0.161304
+===== SAMPLE 6 2026-08-05T12:02:33+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 0.592, 'peak_lag_ms': 687.984, 'task_count': 13, 'peak_task_count': 17}
+health status=200 seconds=0.294845
+===== SAMPLE 7 2026-08-05T12:03:34+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 0.848, 'peak_lag_ms': 766.479, 'task_count': 13, 'peak_task_count': 19}
+health status=200 seconds=0.008783
+===== SAMPLE 8 2026-08-05T12:04:34+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 0.387, 'peak_lag_ms': 766.479, 'task_count': 13, 'peak_task_count': 21}
+health status=200 seconds=0.008707
+===== SAMPLE 9 2026-08-05T12:05:34+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 0.0, 'peak_lag_ms': 766.479, 'task_count': 13, 'peak_task_count': 21}
+health status=200 seconds=0.241964
+===== SAMPLE 10 2026-08-05T12:06:35+05:30 =====
+websockets = {'active': 2, 'peak_active': 2, 'accepted': 2, 'disconnected': 0, 'send_failures': 0, 'rejected_clients': 0, 'send_timeouts': 0, 'backpressure_disconnects': 0}
+event_loop = {'lag_ms': 53.84, 'peak_lag_ms': 766.479, 'task_count': 13, 'peak_task_count': 21}
+health status=200 seconds=0.012849

@@ -1,0 +1,18 @@
+[Unit]
+Description=Kinetics solar-qualified time automation
+Wants=network-online.target kinetics-gateway.service
+After=network-online.target kinetics-gateway.service
+Requires=kinetics-gateway.service
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/bess-seven-day-v302.env
+WorkingDirectory=/opt/kinetics-gateway/backend
+ExecStart=/usr/bin/python3 /root/bess_solar_time_automation.py
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=900
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target

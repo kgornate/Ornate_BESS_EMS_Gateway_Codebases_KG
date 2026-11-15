@@ -1,0 +1,30 @@
+===== PCC SAMPLE 1 2026-11-03T18:02:30+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 2 2026-11-03T18:02:36+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 3 2026-11-03T18:02:41+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 4 2026-11-03T18:02:47+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 5 2026-11-03T18:02:52+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 6 2026-11-03T18:02:58+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 7 2026-11-03T18:03:03+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 8 2026-11-03T18:03:09+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 9 2026-11-03T18:03:15+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== PCC SAMPLE 10 2026-11-03T18:03:20+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2100, "count": 26, "registers": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31049, 18846, 0, 0, 0, 16256, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}

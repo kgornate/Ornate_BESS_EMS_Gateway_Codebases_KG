@@ -1,0 +1,61 @@
+Captured: 2026-11-12T22:05:29+05:30
+Hostname: imx93-11x11-lpddr4x-frdm
+
+Linux imx93-11x11-lpddr4x-frdm 6.18.2-1.0.0-gf49f45233f7b #1 SMP PREEMPT Wed Feb 11 18:37:47 UTC 2026 aarch64 GNU/Linux
+
+● kinetics-gateway.service - Kinetics EMS Gateway V2
+     Loaded: loaded (/etc/systemd/system/kinetics-gateway.service; enabled; preset: disabled)
+    Drop-In: /etc/systemd/system/kinetics-gateway.service.d
+             └─20-sd-storage.conf, network-guard.conf, override.conf
+     Active: active (running) since Sun 2026-08-02 01:53:11 IST; 3 months 11 days ago
+ Invocation: 63a557dea11446799596b11f0dc22a38
+   Main PID: 749 (uvicorn)
+      Tasks: 17 (limit: 2062)
+     Memory: 989.6M (peak: 1.5G)
+        CPU: 2h 54min 12.953s
+     CGroup: /system.slice/kinetics-gateway.service
+             └─749 /opt/kinetics-gateway/venv/bin/python3 /opt/kinetics-gateway/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+Nov 12 22:05:19 imx93-11x11-lpddr4x-frdm uvicorn[749]: 2026-11-12 22:05:19,960 INFO kinetics.http GET /api/internal/control-sequence/automation-snapshot status=200 elapsed_ms=335.6
+Nov 12 22:05:19 imx93-11x11-lpddr4x-frdm uvicorn[749]: INFO:     127.0.0.1:42826 - "GET /api/internal/control-sequence/automation-snapshot HTTP/1.1" 200 OK
+Nov 12 22:05:22 imx93-11x11-lpddr4x-frdm uvicorn[749]: 2026-11-12 22:05:22,065 INFO kinetics.http GET /api/internal/control-sequence/automation-snapshot status=200 elapsed_ms=78.7
+Nov 12 22:05:22 imx93-11x11-lpddr4x-frdm uvicorn[749]: INFO:     127.0.0.1:42832 - "GET /api/internal/control-sequence/automation-snapshot HTTP/1.1" 200 OK
+Nov 12 22:05:24 imx93-11x11-lpddr4x-frdm uvicorn[749]: 2026-11-12 22:05:24,356 INFO kinetics.http GET /api/internal/control-sequence/automation-snapshot status=200 elapsed_ms=257.3
+Nov 12 22:05:24 imx93-11x11-lpddr4x-frdm uvicorn[749]: INFO:     127.0.0.1:42834 - "GET /api/internal/control-sequence/automation-snapshot HTTP/1.1" 200 OK
+Nov 12 22:05:26 imx93-11x11-lpddr4x-frdm uvicorn[749]: 2026-11-12 22:05:26,581 INFO kinetics.http GET /api/internal/control-sequence/automation-snapshot status=200 elapsed_ms=191.4
+Nov 12 22:05:26 imx93-11x11-lpddr4x-frdm uvicorn[749]: INFO:     127.0.0.1:36210 - "GET /api/internal/control-sequence/automation-snapshot HTTP/1.1" 200 OK
+Nov 12 22:05:29 imx93-11x11-lpddr4x-frdm uvicorn[749]: 2026-11-12 22:05:29,102 INFO kinetics.http GET /api/internal/control-sequence/automation-snapshot status=200 elapsed_ms=438.3
+Nov 12 22:05:29 imx93-11x11-lpddr4x-frdm uvicorn[749]: INFO:     127.0.0.1:36212 - "GET /api/internal/control-sequence/automation-snapshot HTTP/1.1" 200 OK
+
+● bess-seven-day-v302.service - Kinetics solar-qualified time automation
+     Loaded: loaded (/etc/systemd/system/bess-seven-day-v302.service; enabled; preset: disabled)
+    Drop-In: /etc/systemd/system/bess-seven-day-v302.service.d
+             └─20-time-sync-guard.conf
+     Active: active (running) since Thu 2026-11-12 17:27:08 IST; 4h 38min ago
+ Invocation: d575ca520021478cbf122c67517c5a70
+   Main PID: 5588 (python3)
+      Tasks: 1 (limit: 2062)
+     Memory: 14.7M (peak: 16.3M)
+        CPU: 1min 43.962s
+     CGroup: /system.slice/bess-seven-day-v302.service
+             └─5588 /usr/bin/python3 /root/bess_solar_time_automation.py
+
+Nov 12 17:27:03 imx93-11x11-lpddr4x-frdm systemd[1]: Starting Kinetics solar-qualified time automation...
+Nov 12 17:27:03 imx93-11x11-lpddr4x-frdm bess-wait-for-valid-time.sh[5564]: TIME-GUARD: waiting for active NTP and valid external time
+Nov 12 17:27:08 imx93-11x11-lpddr4x-frdm bess-wait-for-valid-time.sh[5564]: TIME-GUARD: ntpd=active timedatectl=yes external drift=0s
+Nov 12 17:27:08 imx93-11x11-lpddr4x-frdm bess-wait-for-valid-time.sh[5564]: TIME-GUARD: system time validation passed
+Nov 12 17:27:08 imx93-11x11-lpddr4x-frdm systemd[1]: Started Kinetics solar-qualified time automation.
+
+● kinetics-automation-diagnostics.service - Kinetics Phase 5.8.1.5 persistent diagnostics recorder
+     Loaded: loaded (/etc/systemd/system/kinetics-automation-diagnostics.service; enabled; preset: disabled)
+     Active: active (running) since Thu 2026-11-12 17:31:34 IST; 4h 33min ago
+ Invocation: 08247fd28b0b4bdf998fcd7cca65fa07
+   Main PID: 6086 (kinetics-automa)
+      Tasks: 2 (limit: 2062)
+     Memory: 4.7M (peak: 6.8M)
+        CPU: 30.928s
+     CGroup: /system.slice/kinetics-automation-diagnostics.service
+             ├─ 6086 /bin/bash /root/kinetics-automation-diagnostics.sh
+             └─33196 sleep 30
+
+Nov 12 17:31:34 imx93-11x11-lpddr4x-frdm systemd[1]: Started Kinetics Phase 5.8.1.5 persistent diagnostics recorder.

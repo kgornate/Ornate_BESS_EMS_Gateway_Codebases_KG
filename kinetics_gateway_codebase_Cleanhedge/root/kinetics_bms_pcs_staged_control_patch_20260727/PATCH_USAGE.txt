@@ -1,0 +1,7 @@
+1. Copy ZIP to /root on FRDM.
+2. Extract the ZIP.
+3. Enter kinetics_bms_pcs_staged_control_patch_20260727.
+4. Run: sh deployment/update_staged_control_on_imx93.sh
+5. Verify BMS and PCS read-only telemetry.
+6. Read STAGED_BMS_PCS_CONTROL.md.
+7. Arm staged writes only when ready.

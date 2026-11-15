@@ -1,0 +1,48 @@
+● kinetics-gateway.service - Kinetics EMS Gateway V2
+     Loaded: loaded (/etc/systemd/system/kinetics-gateway.service; enabled; preset: disabled)
+    Drop-In: /etc/systemd/system/kinetics-gateway.service.d
+             └─20-sd-storage.conf, network-guard.conf, override.conf
+     Active: active (running) since Fri 2026-11-13 10:26:30 IST; 23h ago
+ Invocation: 6d270d264cf64979bc7f992d4336c759
+   Main PID: 107252 (uvicorn)
+      Tasks: 22 (limit: 2062)
+     Memory: 836.8M (peak: 1.2G)
+        CPU: 17h 33min 21.271s
+     CGroup: /system.slice/kinetics-gateway.service
+             └─107252 /opt/kinetics-gateway/venv/bin/python3 /opt/kinetics-gateway/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+Nov 14 10:22:25 imx93-11x11-lpddr4x-frdm uvicorn[107252]: 2026-11-14 10:22:25,637 INFO kinetics.http GET /api/health status=200 elapsed_ms=801.8
+Nov 14 10:22:25 imx93-11x11-lpddr4x-frdm uvicorn[107252]: INFO:     127.0.0.1:49058 - "GET /api/health HTTP/1.1" 200 OK
+Nov 14 10:22:26 imx93-11x11-lpddr4x-frdm uvicorn[107252]: 2026-11-14 10:22:26,780 INFO kinetics.http GET /api/alarms/history status=200 elapsed_ms=380.6
+Nov 14 10:22:26 imx93-11x11-lpddr4x-frdm uvicorn[107252]: INFO:     127.0.0.1:49058 - "GET /api/alarms/history?limit=5000&since=2026-11-14T04%3A48%3A36.986648%2B00%3A00 HTTP/1.1" 200 OK
+Nov 14 10:22:26 imx93-11x11-lpddr4x-frdm uvicorn[107252]: 2026-11-14 10:22:26,947 WARNING kinetics.http Slow HTTP request method=GET path=/api/telemetry/snapshot status=200 elapsed_ms=2124.0
+Nov 14 10:22:26 imx93-11x11-lpddr4x-frdm uvicorn[107252]: INFO:     127.0.0.1:54300 - "GET /api/telemetry/snapshot HTTP/1.1" 200 OK
+Nov 14 10:22:28 imx93-11x11-lpddr4x-frdm uvicorn[107252]: 2026-11-14 10:22:28,156 INFO kinetics.http GET /api/automation/schedule status=200 elapsed_ms=621.3
+Nov 14 10:22:28 imx93-11x11-lpddr4x-frdm uvicorn[107252]: INFO:     49.36.144.14:0 - "GET /api/automation/schedule HTTP/1.1" 200 OK
+Nov 14 10:22:28 imx93-11x11-lpddr4x-frdm uvicorn[107252]: 2026-11-14 10:22:28,529 INFO kinetics.http GET /api/health status=200 elapsed_ms=1901.5
+Nov 14 10:22:28 imx93-11x11-lpddr4x-frdm uvicorn[107252]: INFO:     49.36.144.14:0 - "GET /api/health HTTP/1.1" 200 OK
+
+● bess-seven-day-v302.service - Kinetics solar-qualified time automation
+     Loaded: loaded (/etc/systemd/system/bess-seven-day-v302.service; enabled; preset: disabled)
+    Drop-In: /etc/systemd/system/bess-seven-day-v302.service.d
+             └─20-time-sync-guard.conf
+     Active: active (running) since Sat 2026-11-14 06:20:23 IST; 4h 2min ago
+ Invocation: 474ac2bc285e4347800e390f63607994
+    Process: 259203 ExecStartPre=/usr/local/sbin/bess-wait-for-valid-time.sh (code=exited, status=0/SUCCESS)
+   Main PID: 259231 (python3)
+      Tasks: 1 (limit: 2062)
+     Memory: 25M (peak: 36.8M)
+        CPU: 2min 48.424s
+     CGroup: /system.slice/bess-seven-day-v302.service
+             └─259231 /usr/bin/python3 /root/bess_solar_time_automation.py
+
+Nov 14 10:22:06 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:06.146213+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 18.0s
+Nov 14 10:22:08 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:08.155838+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 16.0s
+Nov 14 10:22:10 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:10.163325+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 14.0s
+Nov 14 10:22:12 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:12.170825+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 12.0s
+Nov 14 10:22:14 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:14.178273+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 10.0s
+Nov 14 10:22:16 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:16.186563+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 8.0s
+Nov 14 10:22:18 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:18.190262+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 5.9s
+Nov 14 10:22:20 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:20.198909+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 3.9s
+Nov 14 10:22:22 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:22.204826+05:30 Supervisor cycle failed: scheduler snapshot circuit open; retry in 1.9s
+Nov 14 10:22:28 imx93-11x11-lpddr4x-frdm python3[259231]: 2026-11-14T10:22:28.220714+05:30 Supervisor cycle failed: gateway unavailable for /api/internal/control-sequence/automation-snapshot: timed out

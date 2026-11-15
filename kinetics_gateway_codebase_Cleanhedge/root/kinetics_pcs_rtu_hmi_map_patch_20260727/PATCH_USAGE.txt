@@ -1,0 +1,8 @@
+1. Run: sh deployment/update_pcs_hmi_map_on_imx93.sh
+2. Verify BMS/gateway health.
+3. Confirm: ls -l /dev/ttyUSB0
+4. Close/disconnect the Windows PCS software.
+5. Run: sh /opt/kinetics-gateway/backend/deployment/enable_pcs1_readonly_on_imx93.sh
+6. Watch: journalctl -u kinetics-gateway.service -f
+7. Test API: curl -sS http://127.0.0.1:8000/api/pcs/all
+8. Stop PCS polling if needed: sh /opt/kinetics-gateway/backend/deployment/disable_pcs_polling_on_imx93.sh

@@ -1,0 +1,16 @@
+  File: /opt/kinetics-gateway/backend/app/api/routes.py
+  Size: 30167     	Blocks: 64         IO Block: 4096   regular file
+Device: 179,2	Inode: 518855      Links: 1
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2026-07-28 17:10:27.138518340 +0000
+Modify: 2026-07-28 06:43:12.355899690 +0000
+Change: 2026-07-28 17:10:23.993198686 +0000
+ Birth: 2026-07-28 17:00:11.304633204 +0000
+  File: /opt/kinetics-gateway/backend/app/services/bms_pcs_control.py
+  Size: 97736     	Blocks: 192        IO Block: 4096   regular file
+Device: 179,2	Inode: 522567      Links: 1
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2026-07-28 17:10:27.414522771 +0000
+Modify: 2026-07-28 10:27:23.246122830 +0000
+Change: 2026-07-28 17:10:23.997606799 +0000
+ Birth: 2026-07-28 17:00:11.308633268 +0000

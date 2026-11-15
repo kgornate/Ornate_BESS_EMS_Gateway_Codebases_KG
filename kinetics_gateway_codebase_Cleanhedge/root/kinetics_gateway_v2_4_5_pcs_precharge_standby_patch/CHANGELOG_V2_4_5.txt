@@ -1,0 +1,20 @@
+Kinetics Gateway V2.4.5 - PCS Precharge Standby Preparation
+
+Changes:
+- Adds guarded CLI/API stage: prepare-pcs-standby.
+- New sequence configures PCS 0 kW, Remote, PQ, Constant Power, then Start.
+- Requires BMS rack disabled, contactors open, precharge idle, PCS DC/input below 50 V,
+  no E-stop, no documented critical BMS fault, and PCS initially stopped.
+- Monitors PCS Stop -> Soft Start -> Self Test -> Standby states.
+- Requires PCS 0x1201 Remote feedback and Authorization before declaring ready.
+- Automatically requests PCS 0 kW and Stop if the stage faults, times out, produces
+  non-zero power, or enters an unexpected state.
+- Adds diagnostics for PCS battery/input voltage 0x1102, status words 0x1201/0x1202,
+  DC breaker feedback 0x1210 bit 7, and DC soft-start faults 0x121A bits 2/3.
+- Manual BMS insulation command 0x0401 is blocked per BMS vendor confirmation;
+  insulation sampling remains BMS-internal.
+- No automatic full startup sequence is enabled.
+
+Validation:
+- Python compileall passed.
+- Full backend test suite: 29 passed.

@@ -1,0 +1,4 @@
+{
+  "_note": "The working HMI map is already loaded in generated_protocols/pcs_catalog.json. Use this file only for verified site-specific corrections. PCS writes remain disabled.",
+  "points": {}
+}

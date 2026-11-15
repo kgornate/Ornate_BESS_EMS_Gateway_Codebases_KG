@@ -1,0 +1,314 @@
+--- /mnt/data/stage3b_work/kinetics_stage2_review_20260728_154405/backend/app/api/routes.py	2026-07-28 06:43:12.000000000 +0000
++++ /mnt/data/kinetics_stage3b_hotfix_20260728/files/app/api/routes.py	2026-07-28 16:58:06.130276002 +0000
+@@ -8,6 +8,7 @@
+ from pydantic import BaseModel
+ 
+ from app.security.auth import AuthService, User, build_user_dependencies
++from app.services.bms_pcs_control import ControlStatusBusyError
+ from app.services.gateway_service import GatewayService
+ 
+ 
+@@ -102,6 +103,12 @@
+     def diagnostics_polling(user: User = Depends(current_user)) -> dict[str, Any]:
+         return {"polling": service.health().get("polling", {})}
+ 
++    @router.get("/api/diagnostics/control-refresh")
++    def diagnostics_control_refresh(
++        user: User = Depends(current_user),
++    ) -> dict[str, Any]:
++        return service.control_sequence.refresh_diagnostics()
++
+     @router.get("/api/telemetry/key-signals")
+     def key_signals(user: User = Depends(current_user)) -> dict[str, Any]:
+         snapshot = service.snapshot()
+@@ -229,11 +236,28 @@
+     @router.get("/api/control-sequence/{pair_id}/status")
+     def control_sequence_status(
+         pair_id: str,
+-        fresh: bool = Query(True),
++        fresh: bool = Query(False),
+         user: User = Depends(current_user),
+     ) -> dict[str, Any]:
+         try:
+-            return service.control_sequence.status(pair_id, fresh=fresh)
++            return service.control_sequence.status(
++                pair_id,
++                fresh=fresh,
++                # Public live refreshes are engineering diagnostics. Never let
++                # repeated HTTP polling queue behind fieldbus activity.
++                wait_for_refresh=not fresh,
++                return_cached_if_busy=fresh,
++            )
++        except ControlStatusBusyError as error:
++            raise HTTPException(
++                status_code=status.HTTP_409_CONFLICT,
++                detail={
++                    "code": "live_status_busy",
++                    "message": str(error),
++                    "pair_id": pair_id,
++                    "normal_polling": f"/api/control-sequence/{pair_id}/status?fresh=false",
++                },
++            ) from error
+         except KeyError as error:
+             raise HTTPException(status_code=404, detail=str(error)) from error
+         except PermissionError as error:
+--- /mnt/data/stage3b_work/kinetics_stage2_review_20260728_154405/backend/app/services/bms_pcs_control.py	2026-07-28 10:27:23.000000000 +0000
++++ /mnt/data/kinetics_stage3b_hotfix_20260728/files/app/services/bms_pcs_control.py	2026-07-28 16:58:06.130276002 +0000
+@@ -17,6 +17,14 @@
+ Direction = Literal["charge", "discharge"]
+ 
+ 
++class ControlStatusBusyError(RuntimeError):
++    """Raised when an engineering live refresh cannot start immediately."""
++
++
++LIVE_STATUS_WAIT_TIMEOUT_SECONDS = 120.0
++LIVE_STATUS_STALE_AFTER_SECONDS = 30.0
++
++
+ PCS_STOPPED_STATE = 0x0001
+ PCS_SOFT_START_STATE = 0x0002
+ PCS_SELF_TEST_STATE = 0x0004
+@@ -77,6 +85,32 @@
+             pair.pair_id: threading.Event() for pair in self.config.pairs
+         }
+         self._monitor_threads: dict[str, threading.Thread] = {}
++
++        # Live control-status reads are expensive: one request performs many BMS
++        # and PCS transactions.  Keep exactly one live refresh per pair and one
++        # live refresh globally so HTTP polling cannot create an unbounded queue
++        # of Modbus work. Internal control operations may wait for the bounded
++        # lane; public engineering requests use non-blocking single-flight mode.
++        self._status_refresh_locks: dict[str, threading.Lock] = {
++            pair.pair_id: threading.Lock() for pair in self.config.pairs
++        }
++        self._status_refresh_global = threading.BoundedSemaphore(value=1)
++        self._last_live_status: dict[str, dict[str, Any]] = {}
++        self._status_refresh_stats: dict[str, dict[str, Any]] = {
++            pair.pair_id: {
++                "active": False,
++                "started": 0,
++                "completed": 0,
++                "failed": 0,
++                "busy_responses": 0,
++                "last_started_at": None,
++                "last_completed_at": None,
++                "last_duration_ms": None,
++                "last_error": None,
++            }
++            for pair in self.config.pairs
++        }
++
+         self._runtime: dict[str, dict[str, Any]] = {
+             pair.pair_id: {
+                 "pair_id": pair.pair_id,
+@@ -133,6 +167,87 @@
+             runtime.update(changes)
+             runtime["last_updated_at"] = now_iso()
+ 
++    def _runtime_snapshot(self, pair_id: str) -> dict[str, Any]:
++        with self._lock:
++            return deepcopy(self._runtime[pair_id])
++
++    @staticmethod
++    def _acquire_refresh_gate(
++        gate: threading.Lock | threading.BoundedSemaphore,
++        *,
++        wait: bool,
++    ) -> bool:
++        if not wait:
++            return gate.acquire(blocking=False)
++        return gate.acquire(timeout=LIVE_STATUS_WAIT_TIMEOUT_SECONDS)
++
++    def _busy_live_status(
++        self,
++        pair_id: str,
++        *,
++        reason: str,
++        return_cached_if_busy: bool,
++    ) -> dict[str, Any]:
++        with self._lock:
++            stats = self._status_refresh_stats[pair_id]
++            stats["busy_responses"] += 1
++            cached = deepcopy(self._last_live_status.get(pair_id))
++
++        if return_cached_if_busy and cached is not None:
++            completed_at = cached.get("refresh", {}).get("completed_at")
++            age_seconds = None
++            if completed_at:
++                try:
++                    age_seconds = max(
++                        0.0,
++                        (
++                            datetime.now(timezone.utc)
++                            - datetime.fromisoformat(str(completed_at))
++                        ).total_seconds(),
++                    )
++                except (TypeError, ValueError):
++                    age_seconds = None
++            cached["runtime"] = self._runtime_snapshot(pair_id)
++            cached["refresh"] = {
++                **cached.get("refresh", {}),
++                "requested_fresh": True,
++                "source": "cached_while_live_refresh_busy",
++                "busy": True,
++                "busy_reason": reason,
++                "cache_age_seconds": (
++                    None if age_seconds is None else round(age_seconds, 3)
++                ),
++                "stale": (
++                    True
++                    if age_seconds is None
++                    else age_seconds > LIVE_STATUS_STALE_AFTER_SECONDS
++                ),
++            }
++            return cached
++
++        raise ControlStatusBusyError(
++            f"Live status refresh is already busy for {pair_id} ({reason}). "
++            "Use fresh=false for normal polling and retry the engineering "
++            "fresh=true request later."
++        )
++
++    def refresh_diagnostics(self) -> dict[str, Any]:
++        with self._lock:
++            pairs = deepcopy(self._status_refresh_stats)
++            cached_pairs = sorted(self._last_live_status)
++        for pair_id, values in pairs.items():
++            values["pair_gate_locked"] = self._status_refresh_locks[pair_id].locked()
++            values["has_cached_live_status"] = pair_id in cached_pairs
++        return {
++            "mode": "single_flight",
++            "normal_status_default": "cached_runtime",
++            "global_live_refresh_limit": 1,
++            "internal_wait_timeout_seconds": LIVE_STATUS_WAIT_TIMEOUT_SECONDS,
++            "cached_busy_stale_after_seconds": LIVE_STATUS_STALE_AFTER_SECONDS,
++            "global_active": any(item.get("active") for item in pairs.values()),
++            "pairs": pairs,
++        }
++
+     def _audit(
+         self,
+         username: str,
+@@ -277,12 +392,92 @@
+             ),
+         }
+ 
+-    def status(self, pair_id: str, *, fresh: bool = True) -> dict[str, Any]:
++    def status(
++        self,
++        pair_id: str,
++        *,
++        fresh: bool = False,
++        wait_for_refresh: bool = True,
++        return_cached_if_busy: bool = False,
++    ) -> dict[str, Any]:
++        """Return cached runtime state or a bounded engineering live refresh.
++
++        Normal UI polling must use ``fresh=False``. A live refresh performs many
++        fieldbus transactions and is therefore protected by per-pair and global
++        single-flight gates. Internal control logic may wait for the bounded lane;
++        HTTP engineering requests should use ``wait_for_refresh=False``.
++        """
+         pair = self._pair(pair_id)
+         if not fresh:
++            return self._runtime_snapshot(pair_id)
++
++        pair_gate = self._status_refresh_locks[pair_id]
++        if not self._acquire_refresh_gate(pair_gate, wait=wait_for_refresh):
++            return self._busy_live_status(
++                pair_id,
++                reason="pair_refresh_in_progress",
++                return_cached_if_busy=return_cached_if_busy,
++            )
++
++        global_acquired = False
++        started_monotonic = time.monotonic()
++        try:
++            global_acquired = self._acquire_refresh_gate(
++                self._status_refresh_global,
++                wait=wait_for_refresh,
++            )
++            if not global_acquired:
++                return self._busy_live_status(
++                    pair_id,
++                    reason="global_refresh_lane_busy",
++                    return_cached_if_busy=return_cached_if_busy,
++                )
++
++            started_at = now_iso()
++            with self._lock:
++                stats = self._status_refresh_stats[pair_id]
++                stats["active"] = True
++                stats["started"] += 1
++                stats["last_started_at"] = started_at
++                stats["last_error"] = None
++
++            try:
++                result = self._read_live_status(pair_id, pair)
++            except Exception as error:
++                with self._lock:
++                    stats = self._status_refresh_stats[pair_id]
++                    stats["failed"] += 1
++                    stats["last_error"] = str(error)
++                raise
++
++            duration_ms = (time.monotonic() - started_monotonic) * 1000.0
++            completed_at = now_iso()
++            result["refresh"] = {
++                "requested_fresh": True,
++                "source": "live_hardware",
++                "busy": False,
++                "stale": False,
++                "started_at": started_at,
++                "completed_at": completed_at,
++                "duration_ms": round(duration_ms, 3),
++            }
+             with self._lock:
+-                return deepcopy(self._runtime[pair_id])
++                self._last_live_status[pair_id] = deepcopy(result)
++                stats = self._status_refresh_stats[pair_id]
++                stats["completed"] += 1
++                stats["last_completed_at"] = completed_at
++                stats["last_duration_ms"] = round(duration_ms, 3)
++            return result
++        finally:
++            with self._lock:
++                self._status_refresh_stats[pair_id]["active"] = False
++            if global_acquired:
++                self._status_refresh_global.release()
++            pair_gate.release()
+ 
++    def _read_live_status(
++        self, pair_id: str, pair: ControlPairConfig
++    ) -> dict[str, Any]:
+         rack_asset = f"bms_rack_{pair.rack_id}"
+         reads: dict[str, dict[str, Any] | None] = {}
+         errors: list[dict[str, str]] = []
+@@ -444,7 +639,7 @@
+         result = {
+             "pair": pair.model_dump(),
+             "timestamp": now_iso(),
+-            "runtime": deepcopy(self._runtime[pair_id]),
++            "runtime": self._runtime_snapshot(pair_id),
+             "write_gates": {
+                 "control_sequence_enabled": self.config.enabled,
+                 "gateway_mode": self.gateway_config.mode,
+@@ -1646,7 +1841,7 @@
+             "pair_id": pair_id,
+             "direction": direction,
+             "target_power_kw": target,
+-            "status_endpoint": f"/api/control-sequence/{pair_id}/status?fresh=true",
++            "status_endpoint": f"/api/control-sequence/{pair_id}/status?fresh=false",
+         }
+         self._audit(username, pair, "automatic_start", response, response)
+         return response
+@@ -2024,7 +2219,7 @@
+             "confirmation_phrase": self.config.confirmation_phrase,
+             "automatic_confirmation_phrase": self.config.automatic_confirmation_phrase,
+             "api_endpoints": {
+-                "status": "GET /api/control-sequence/{pair_id}/status?fresh=true",
++                "status": "GET /api/control-sequence/{pair_id}/status?fresh=false",
+                 "next_step": "POST /api/control-sequence/{pair_id}/next-step",
+                 "automatic_start": "POST /api/control-sequence/{pair_id}/automatic-start",
+                 "set_power": "POST /api/control-sequence/{pair_id}/set-power",

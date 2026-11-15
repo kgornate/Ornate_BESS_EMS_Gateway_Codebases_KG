@@ -1,0 +1,52 @@
+
+================================================
+PORT 503
+================================================
+--- Unit 1: summary block 0x2001 ---
+{"host": "192.168.111.22", "port": 503, "unit_id": 1, "function_code": 4, "address": 8193, "count": 5, "registers": [0, 0, 0, 917, 1000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 2: rack voltage/current 0x0231 ---
+{"host": "192.168.111.22", "port": 503, "unit_id": 2, "function_code": 4, "address": 561, "count": 2, "registers": [13880, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 127: environment status 0x0600 ---
+{"host": "192.168.111.22", "port": 503, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+
+================================================
+PORT 504
+================================================
+--- Unit 1: summary block 0x2001 ---
+{"host": "192.168.111.22", "port": 504, "unit_id": 1, "function_code": 4, "address": 8193, "count": 5, "registers": [0, 0, 0, 926, 1000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 2: rack voltage/current 0x0231 ---
+{"host": "192.168.111.22", "port": 504, "unit_id": 2, "function_code": 4, "address": 561, "count": 2, "registers": [13894, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 127: environment status 0x0600 ---
+{"host": "192.168.111.22", "port": 504, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+
+================================================
+PORT 505
+================================================
+--- Unit 1: summary block 0x2001 ---
+{"host": "192.168.111.22", "port": 505, "unit_id": 1, "function_code": 4, "address": 8193, "count": 5, "registers": [0, 0, 0, 923, 1000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 2: rack voltage/current 0x0231 ---
+{"host": "192.168.111.22", "port": 505, "unit_id": 2, "function_code": 4, "address": 561, "count": 2, "registers": [13900, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 127: environment status 0x0600 ---
+{"host": "192.168.111.22", "port": 505, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+
+================================================
+PORT 506
+================================================
+--- Unit 1: summary block 0x2001 ---
+{"host": "192.168.111.22", "port": 506, "unit_id": 1, "function_code": 4, "address": 8193, "count": 5, "registers": [0, 0, 0, 931, 1000], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 2: rack voltage/current 0x0231 ---
+{"host": "192.168.111.22", "port": 506, "unit_id": 2, "function_code": 4, "address": 561, "count": 2, "registers": [13887, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+--- Unit 127: environment status 0x0600 ---
+{"host": "192.168.111.22", "port": 506, "unit_id": 127, "function_code": 4, "address": 1536, "count": 4, "registers": [0, 0, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}

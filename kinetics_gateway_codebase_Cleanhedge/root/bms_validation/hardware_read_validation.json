@@ -1,0 +1,745 @@
+{
+  "timestamp": "2026-07-26T10:16:37.970899+00:00",
+  "gateway_id": "kinetics_gateway_1",
+  "mode": "read_only",
+  "network": {
+    "topology": "shared_switch",
+    "field_interface": "eth1",
+    "pc_interface": "eth0",
+    "wifi_interface": "mlan0",
+    "bms_interface": "eth1",
+    "pcs_interface": "eth1",
+    "pc_api_cidr": "192.168.10.2/24",
+    "field_primary_cidr": "192.168.111.2/24",
+    "field_secondary_cidrs": [
+      "192.168.1.2/24"
+    ]
+  },
+  "bms": {
+    "enabled": true,
+    "architecture": "three_level",
+    "host": "192.168.111.22",
+    "source_ip": "192.168.111.2",
+    "timeout_seconds": 2.0,
+    "address_offset": 0,
+    "connection_mode": "separate_ports",
+    "bau": {
+      "port": 503,
+      "unit_id": 1,
+      "read_function_fallback": true
+    },
+    "racks": [
+      {
+        "port": 503,
+        "unit_id": 2,
+        "read_function_fallback": true,
+        "rack_id": 1
+      },
+      {
+        "port": 504,
+        "unit_id": 2,
+        "read_function_fallback": true,
+        "rack_id": 2
+      },
+      {
+        "port": 505,
+        "unit_id": 2,
+        "read_function_fallback": true,
+        "rack_id": 3
+      },
+      {
+        "port": 506,
+        "unit_id": 2,
+        "read_function_fallback": true,
+        "rack_id": 4
+      }
+    ],
+    "power_environment": {
+      "port": 503,
+      "unit_id": 127,
+      "read_function_fallback": true
+    },
+    "max_registers_per_request": 120,
+    "max_gap_registers": 2,
+    "poll_fast_seconds": 1.0,
+    "poll_normal_seconds": 5.0,
+    "poll_slow_seconds": 60.0,
+    "poll_bulk_seconds": 30.0,
+    "include_bulk_in_live_snapshot": true,
+    "write_enabled": false
+  },
+  "pcs": {
+    "enabled": false,
+    "host": "192.168.1.200",
+    "source_ip": "192.168.1.2",
+    "port": 502,
+    "unit_id": 1,
+    "timeout_seconds": 2.0,
+    "address_offset": 0,
+    "poll_seconds": 5.0,
+    "write_enabled": false,
+    "overrides_file": "configs/pcs_overrides.json",
+    "max_registers_per_request": 120
+  },
+  "assets": [
+    {
+      "asset_id": "bms_bank",
+      "enabled": true,
+      "online": true,
+      "point_count": 155,
+      "quality": {
+        "good": 155
+      },
+      "read_errors": [],
+      "poll_status": {
+        "fast": {
+          "timestamp": "2026-07-26T10:16:36.728612+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 79
+        },
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.808935+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 0
+        },
+        "slow": {
+          "timestamp": "2026-07-26T10:16:37.000790+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 77
+        },
+        "bulk": {
+          "timestamp": "2026-07-26T10:16:37.234462+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 0
+        }
+      }
+    },
+    {
+      "asset_id": "bms_rack_1",
+      "enabled": true,
+      "online": true,
+      "point_count": 371,
+      "quality": {
+        "good": 371
+      },
+      "read_errors": [],
+      "poll_status": {
+        "fast": {
+          "timestamp": "2026-07-26T10:16:36.733284+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 34
+        },
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.819054+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 109
+        },
+        "slow": {
+          "timestamp": "2026-07-26T10:16:37.018864+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 222
+        },
+        "bulk": {
+          "timestamp": "2026-07-26T10:16:37.281267+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 6
+        }
+      }
+    },
+    {
+      "asset_id": "bms_rack_2",
+      "enabled": true,
+      "online": true,
+      "point_count": 371,
+      "quality": {
+        "good": 371
+      },
+      "read_errors": [],
+      "poll_status": {
+        "fast": {
+          "timestamp": "2026-07-26T10:16:36.738955+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 34
+        },
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.830629+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 109
+        },
+        "slow": {
+          "timestamp": "2026-07-26T10:16:37.036397+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 222
+        },
+        "bulk": {
+          "timestamp": "2026-07-26T10:16:37.326948+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 6
+        }
+      }
+    },
+    {
+      "asset_id": "bms_rack_3",
+      "enabled": true,
+      "online": true,
+      "point_count": 371,
+      "quality": {
+        "good": 371
+      },
+      "read_errors": [],
+      "poll_status": {
+        "fast": {
+          "timestamp": "2026-07-26T10:16:36.744459+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 34
+        },
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.839978+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 109
+        },
+        "slow": {
+          "timestamp": "2026-07-26T10:16:37.053854+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 222
+        },
+        "bulk": {
+          "timestamp": "2026-07-26T10:16:37.371958+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 6
+        }
+      }
+    },
+    {
+      "asset_id": "bms_rack_4",
+      "enabled": true,
+      "online": true,
+      "point_count": 371,
+      "quality": {
+        "good": 371
+      },
+      "read_errors": [],
+      "poll_status": {
+        "fast": {
+          "timestamp": "2026-07-26T10:16:36.750432+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 34
+        },
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.849681+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 109
+        },
+        "slow": {
+          "timestamp": "2026-07-26T10:16:37.072323+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 222
+        },
+        "bulk": {
+          "timestamp": "2026-07-26T10:16:37.415702+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 6
+        }
+      }
+    },
+    {
+      "asset_id": "hvac",
+      "enabled": true,
+      "online": true,
+      "point_count": 37,
+      "quality": {
+        "good": 37
+      },
+      "read_errors": [],
+      "poll_status": {
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.862318+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 37
+        }
+      }
+    },
+    {
+      "asset_id": "liquid_cooling",
+      "enabled": true,
+      "online": true,
+      "point_count": 34,
+      "quality": {
+        "good": 34
+      },
+      "read_errors": [],
+      "poll_status": {
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.862318+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 34
+        }
+      }
+    },
+    {
+      "asset_id": "energy_meter",
+      "enabled": true,
+      "online": true,
+      "point_count": 31,
+      "quality": {
+        "good": 31
+      },
+      "read_errors": [],
+      "poll_status": {
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.862318+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 31
+        }
+      }
+    },
+    {
+      "asset_id": "dehumidifier_1",
+      "enabled": true,
+      "online": true,
+      "point_count": 6,
+      "quality": {
+        "good": 6
+      },
+      "read_errors": [],
+      "poll_status": {
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.862318+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 6
+        }
+      }
+    },
+    {
+      "asset_id": "dehumidifier_2",
+      "enabled": true,
+      "online": true,
+      "point_count": 6,
+      "quality": {
+        "good": 6
+      },
+      "read_errors": [],
+      "poll_status": {
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.862318+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 6
+        }
+      }
+    },
+    {
+      "asset_id": "safety_io",
+      "enabled": true,
+      "online": true,
+      "point_count": 16,
+      "quality": {
+        "good": 16
+      },
+      "read_errors": [],
+      "poll_status": {
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.862318+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 16
+        }
+      }
+    },
+    {
+      "asset_id": "environment_other",
+      "enabled": true,
+      "online": true,
+      "point_count": 1,
+      "quality": {
+        "good": 1
+      },
+      "read_errors": [],
+      "poll_status": {
+        "normal": {
+          "timestamp": "2026-07-26T10:16:36.862318+00:00",
+          "online": true,
+          "read_errors": [],
+          "point_count": 1
+        }
+      }
+    },
+    {
+      "asset_id": "pcs_1",
+      "enabled": false,
+      "online": false,
+      "point_count": 0,
+      "quality": {},
+      "read_errors": [],
+      "poll_status": {
+        "pcs": {
+          "timestamp": "2026-07-26T10:16:37.546448+00:00",
+          "online": false,
+          "read_errors": [],
+          "point_count": 0
+        }
+      }
+    }
+  ],
+  "alarms": [
+    {
+      "alarm_key": "bms_bank:external_fault_state.ems_comm_fault",
+      "asset_id": "bms_bank",
+      "code": "external_fault_state.ems_comm_fault",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.546791+00:00",
+      "cleared_at": null,
+      "message": "bms_bank: ems comm fault active",
+      "payload": {
+        "point_key": "external_fault_state",
+        "bit_key": "ems_comm_fault",
+        "address": "0x1001"
+      }
+    },
+    {
+      "alarm_key": "bms_bank:external_fault_state.system_warn",
+      "asset_id": "bms_bank",
+      "code": "external_fault_state.system_warn",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.546870+00:00",
+      "cleared_at": null,
+      "message": "bms_bank: system warn active",
+      "payload": {
+        "point_key": "external_fault_state",
+        "bit_key": "system_warn",
+        "address": "0x1001"
+      }
+    },
+    {
+      "alarm_key": "bms_bank:bcu_external_lv3_alm_sum_ii.envi_summary",
+      "asset_id": "bms_bank",
+      "code": "bcu_external_lv3_alm_sum_ii.envi_summary",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.547050+00:00",
+      "cleared_at": null,
+      "message": "bms_bank: envi summary active",
+      "payload": {
+        "point_key": "bcu_external_lv3_alm_sum_ii",
+        "bit_key": "envi_summary",
+        "address": "0x1005"
+      }
+    },
+    {
+      "alarm_key": "bms_bank:external_bau_lv3_alm_sum.lv1_envi_summary",
+      "asset_id": "bms_bank",
+      "code": "external_bau_lv3_alm_sum.lv1_envi_summary",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.547970+00:00",
+      "cleared_at": null,
+      "message": "bms_bank: lv1 envi summary active",
+      "payload": {
+        "point_key": "external_bau_lv3_alm_sum",
+        "bit_key": "lv1_envi_summary",
+        "address": "0x10BC"
+      }
+    },
+    {
+      "alarm_key": "bms_rack_1:external_warn2.run_warn_summary",
+      "asset_id": "bms_rack_1",
+      "code": "external_warn2.run_warn_summary",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.552606+00:00",
+      "cleared_at": null,
+      "message": "bms_rack_1: run warn summary active",
+      "payload": {
+        "point_key": "external_warn2",
+        "bit_key": "run_warn_summary",
+        "address": "0x0017"
+      }
+    },
+    {
+      "alarm_key": "bms_rack_2:external_warn2.run_warn_summary",
+      "asset_id": "bms_rack_2",
+      "code": "external_warn2.run_warn_summary",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.562897+00:00",
+      "cleared_at": null,
+      "message": "bms_rack_2: run warn summary active",
+      "payload": {
+        "point_key": "external_warn2",
+        "bit_key": "run_warn_summary",
+        "address": "0x0017"
+      }
+    },
+    {
+      "alarm_key": "bms_rack_3:external_warn2.run_warn_summary",
+      "asset_id": "bms_rack_3",
+      "code": "external_warn2.run_warn_summary",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.573012+00:00",
+      "cleared_at": null,
+      "message": "bms_rack_3: run warn summary active",
+      "payload": {
+        "point_key": "external_warn2",
+        "bit_key": "run_warn_summary",
+        "address": "0x0017"
+      }
+    },
+    {
+      "alarm_key": "bms_rack_4:external_warn2.run_warn_summary",
+      "asset_id": "bms_rack_4",
+      "code": "external_warn2.run_warn_summary",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.583232+00:00",
+      "cleared_at": null,
+      "message": "bms_rack_4: run warn summary active",
+      "payload": {
+        "point_key": "external_warn2",
+        "bit_key": "run_warn_summary",
+        "address": "0x0017"
+      }
+    },
+    {
+      "alarm_key": "liquid_cooling:liquidcool_1_27",
+      "asset_id": "liquid_cooling",
+      "code": "liquidcool_1_27",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.595173+00:00",
+      "cleared_at": null,
+      "message": "liquid_cooling: High Outlet Pressure Alarm Setpt active",
+      "payload": {
+        "point_key": "liquidcool_1_27",
+        "address": "0x067E",
+        "value": 3.1
+      }
+    },
+    {
+      "alarm_key": "liquid_cooling:liquidcool_1_28",
+      "asset_id": "liquid_cooling",
+      "code": "liquidcool_1_28",
+      "severity": "alarm",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.595296+00:00",
+      "cleared_at": null,
+      "message": "liquid_cooling: Low Return Pressure Alarm Setpt active",
+      "payload": {
+        "point_key": "liquidcool_1_28",
+        "address": "0x067F",
+        "value": 0.5
+      }
+    },
+    {
+      "alarm_key": "pcs_1:communication_offline",
+      "asset_id": "pcs_1",
+      "code": "communication_offline",
+      "severity": "critical",
+      "active": true,
+      "raised_at": "2026-07-26T10:16:37.597467+00:00",
+      "cleared_at": null,
+      "message": "pcs_1 communication is offline",
+      "payload": {}
+    }
+  ],
+  "polling": {
+    "fast": {
+      "count": 1,
+      "errors": 0,
+      "last_started_at": "2026-07-26T10:16:36.705841+00:00",
+      "last_completed_at": "2026-07-26T10:16:36.769356+00:00",
+      "last_duration_ms": 45.746,
+      "last_event_bytes": 28390,
+      "total_event_bytes": 28390,
+      "average_event_bytes": 28390.0
+    },
+    "normal": {
+      "count": 1,
+      "errors": 0,
+      "last_started_at": "2026-07-26T10:16:36.807896+00:00",
+      "last_completed_at": "2026-07-26T10:16:36.932348+00:00",
+      "last_duration_ms": 58.075,
+      "last_event_bytes": 31511,
+      "total_event_bytes": 31511,
+      "average_event_bytes": 31511.0
+    },
+    "slow": {
+      "count": 1,
+      "errors": 0,
+      "last_started_at": "2026-07-26T10:16:36.987656+00:00",
+      "last_completed_at": "2026-07-26T10:16:37.136553+00:00",
+      "last_duration_ms": 85.845,
+      "last_event_bytes": 60175,
+      "total_event_bytes": 60175,
+      "average_event_bytes": 60175.0
+    },
+    "bulk": {
+      "count": 1,
+      "errors": 0,
+      "last_started_at": "2026-07-26T10:16:37.233377+00:00",
+      "last_completed_at": "2026-07-26T10:16:37.442863+00:00",
+      "last_duration_ms": 183.417,
+      "last_event_bytes": 46011,
+      "total_event_bytes": 46011,
+      "average_event_bytes": 46011.0
+    },
+    "pcs": {
+      "count": 1,
+      "errors": 0,
+      "last_started_at": "2026-07-26T10:16:37.546360+00:00",
+      "last_completed_at": "2026-07-26T10:16:37.546627+00:00",
+      "last_duration_ms": 0.135,
+      "last_event_bytes": 283,
+      "total_event_bytes": 283,
+      "average_event_bytes": 283.0
+    }
+  },
+  "data_rate": {
+    "field_modbus": {
+      "transport": "Persistent Modbus TCP connections",
+      "groups": {
+        "fast": {
+          "interval_seconds": 1.0,
+          "requests_per_cycle": 10,
+          "registers_per_cycle": 230,
+          "modbus_bytes_per_cycle": 670,
+          "requests_per_minute": 600.0,
+          "registers_per_minute": 13800.0,
+          "estimated_wire_bytes_per_minute": 105000.0
+        },
+        "normal": {
+          "interval_seconds": 5.0,
+          "requests_per_cycle": 16,
+          "registers_per_cycle": 618,
+          "modbus_bytes_per_cycle": 1572,
+          "requests_per_minute": 192.0,
+          "registers_per_minute": 7416.0,
+          "estimated_wire_bytes_per_minute": 39600.0
+        },
+        "slow": {
+          "interval_seconds": 60.0,
+          "requests_per_cycle": 25,
+          "registers_per_cycle": 1134,
+          "modbus_bytes_per_cycle": 2793,
+          "requests_per_minute": 25.0,
+          "registers_per_minute": 1134.0,
+          "estimated_wire_bytes_per_minute": 5493.0
+        },
+        "bulk": {
+          "interval_seconds": 30.0,
+          "requests_per_cycle": 24,
+          "registers_per_cycle": 6144,
+          "modbus_bytes_per_cycle": 12792,
+          "requests_per_minute": 48.0,
+          "registers_per_minute": 12288.0,
+          "estimated_wire_bytes_per_minute": 30768.0
+        },
+        "pcs": {
+          "interval_seconds": 5.0,
+          "requests_per_cycle": 2,
+          "registers_per_cycle": 230,
+          "modbus_bytes_per_cycle": 502,
+          "requests_per_minute": 24.0,
+          "registers_per_minute": 2760.0,
+          "estimated_wire_bytes_per_minute": 8616.0
+        }
+      },
+      "total_requests_per_minute": 889.0,
+      "total_registers_per_minute": 37398.0,
+      "modbus_adu_bytes_per_minute": 93465.0,
+      "estimated_wire_bytes_per_minute": 189477.0,
+      "estimated_average_bits_per_second": 25263.6,
+      "note": "Wire estimate includes basic Ethernet/IPv4/TCP headers, but excludes retransmissions and switch overhead."
+    },
+    "streaming": {
+      "transport": "WebSocket initial compact snapshot plus multi-rate delta events",
+      "initial_compact_snapshot_bytes": 167629,
+      "full_debug_snapshot_bytes": 537063,
+      "groups": {
+        "fast": {
+          "interval_seconds": 1.0,
+          "average_event_bytes": 28390.0,
+          "estimated_events_per_minute": 60.0,
+          "estimated_bytes_per_minute": 1703400.0
+        },
+        "normal": {
+          "interval_seconds": 5.0,
+          "average_event_bytes": 31511.0,
+          "estimated_events_per_minute": 12.0,
+          "estimated_bytes_per_minute": 378132.0
+        },
+        "slow": {
+          "interval_seconds": 60.0,
+          "average_event_bytes": 60175.0,
+          "estimated_events_per_minute": 1.0,
+          "estimated_bytes_per_minute": 60175.0
+        },
+        "bulk": {
+          "interval_seconds": 30.0,
+          "average_event_bytes": 46011.0,
+          "estimated_events_per_minute": 2.0,
+          "estimated_bytes_per_minute": 92022.0
+        },
+        "pcs": {
+          "interval_seconds": 5.0,
+          "average_event_bytes": 283.0,
+          "estimated_events_per_minute": 12.0,
+          "estimated_bytes_per_minute": 3396.0
+        }
+      },
+      "estimated_bytes_per_minute": 2237125.0,
+      "estimated_megabytes_per_minute": 2.2371,
+      "estimated_average_bits_per_second": 298283.33,
+      "estimated_megabytes_per_day": 3221.46
+    },
+    "storage": {
+      "sample_interval_seconds": 5.0,
+      "assets_per_sample": 13,
+      "uncompressed_bytes_per_complete_sample": 162655,
+      "estimated_stored_bytes_per_complete_sample": 21189,
+      "compression_ratio": 0.1303,
+      "estimated_megabytes_per_day": 366.15,
+      "estimated_gibibytes_per_day": 0.341,
+      "configured_quota_gb": 25.0,
+      "quota_high_watermark_percent": 90.0,
+      "effective_quota_bytes": 24159191040,
+      "estimated_days_to_high_watermark": 65.98,
+      "estimated_days_within_full_quota": 73.31,
+      "runtime_samples": {
+        "samples": 1,
+        "last_uncompressed_bytes": 162655,
+        "last_stored_bytes": 21189,
+        "total_uncompressed_bytes": 162655,
+        "total_stored_bytes": 21189,
+        "average_uncompressed_bytes": 162655.0,
+        "average_stored_bytes": 21189.0
+      }
+    }
+  }
+}

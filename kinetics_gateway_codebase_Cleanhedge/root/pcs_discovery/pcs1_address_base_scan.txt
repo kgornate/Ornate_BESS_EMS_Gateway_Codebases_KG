@@ -1,0 +1,128 @@
+
+===== FC3 address 0x0000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 0, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x0001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 1, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x0100 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 256, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x0101 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 257, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x1000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4096, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x1001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 4097, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x2000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 8192, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x2001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 8193, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x3000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 12288, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x3001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 12289, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x4000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 16384, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x4001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 16385, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x5000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 20480, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x5001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 20481, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x6000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 24576, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC3 address 0x6001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 24577, "count": 1, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x0000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 0, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x0001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 1, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x0100 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 256, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x0101 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 257, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x1000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 4096, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x1001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 4097, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x2000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 8192, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x2001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 8193, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x3000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 12288, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x3001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 12289, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x4000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 16384, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x4001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 16385, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x5000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 20480, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x5001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 20481, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x6000 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 24576, "count": 1, "ok": false, "error": "Modbus exception 2 for FC04"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+===== FC4 address 0x6001 =====
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 4, "address": 24577, "count": 1, "ok": false, "error": "Modbus RTU transport error /dev/ttyUSB0: Timed out waiting for Modbus RTU response (3 bytes missing)"}
+{"summary": {"attempts": 1, "successes": 0}}

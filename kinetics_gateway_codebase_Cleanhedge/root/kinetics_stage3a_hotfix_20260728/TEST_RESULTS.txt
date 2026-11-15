@@ -1,0 +1,23 @@
+Offline validation performed against the exact deployed Stage 2 review code.
+
+1. Python syntax compilation: PASS
+   - app/core/config.py
+   - app/storage/sqlite_store.py
+   - app/services/gateway_service.py
+
+2. Stage 3A targeted mock/SQLite trace test: PASS
+   - no COUNT/SUM status scans during repeated fast polls
+   - no unchanged alarm/database writes during repeated fast polls
+   - actual-mount detection selected fallback_rootfs when no mount was present
+   - effective fallback historian interval was 30 seconds
+   - WebSocket delta buffer remained bounded
+
+3. Full pytest comparison:
+   Original deployed code: 15 passed, 6 failed
+   Stage 3A patched code:   15 passed, 6 failed
+
+The same six pre-existing failures remain:
+- three outdated tests expect 230 PCS catalog points; deployed catalog has 288
+- three control mock tests do not implement all newer required status reads
+
+No additional test regression was introduced by Stage 3A.

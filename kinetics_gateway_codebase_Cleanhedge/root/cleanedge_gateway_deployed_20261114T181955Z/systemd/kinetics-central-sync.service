@@ -1,0 +1,24 @@
+[Unit]
+Description=CleanEdge Kinetics Central Sync
+After=network-online.target kinetics-gateway.service
+Wants=network-online.target
+Requires=kinetics-gateway.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/kinetics-gateway/backend
+EnvironmentFile=-/etc/kinetics-gateway/central_sync.env
+ExecStart=/opt/kinetics-gateway/venv/bin/python -m app.central_sync.service --config /etc/kinetics-gateway/central_sync.json
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+UMask=0077
+ReadWritePaths=/var/lib/kinetics-central-sync /mnt/ems-logs/kinetics-gateway/central_sync
+
+[Install]
+WantedBy=multi-user.target

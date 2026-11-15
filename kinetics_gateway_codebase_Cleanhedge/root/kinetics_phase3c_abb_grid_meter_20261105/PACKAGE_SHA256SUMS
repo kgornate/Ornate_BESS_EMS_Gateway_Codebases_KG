@@ -1,0 +1,3 @@
+8de75facde0ecaec32401dae64229dd3ee3b282f7c457094db6b95cabab9033f  payload/opt/kinetics-gateway/backend/app/core/config.py
+dc63759870299330f26e36be012bf5193cf53324755c274ca16ea124d4c00968  payload/opt/kinetics-gateway/backend/app/assets/solar_driver.py
+5e599e577edc9a0ad1fa9e1d0cda67e978d43e6fe9b2477177500b3ae6346614  payload/opt/kinetics-gateway/backend/tests/test_solar_grid_meter_phase3c.py

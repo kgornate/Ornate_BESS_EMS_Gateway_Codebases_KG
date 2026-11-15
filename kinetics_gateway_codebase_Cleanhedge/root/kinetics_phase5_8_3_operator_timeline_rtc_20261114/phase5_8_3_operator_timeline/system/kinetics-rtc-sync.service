@@ -1,0 +1,13 @@
+[Unit]
+Description=Kinetics external RTC system-clock restore
+DefaultDependencies=no
+After=local-fs.target
+Before=network-pre.target network-online.target time-sync.target
+
+[Service]
+Type=oneshot
+ExecStart=/root/kinetics-rtc-manager.sh boot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=sysinit.target

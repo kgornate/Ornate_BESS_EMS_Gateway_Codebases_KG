@@ -1,0 +1,7 @@
+/root/.bash_history:11:systemctl stop ems-safestop-20m.timer 2>/dev/null || true
+/root/.bash_history:71:cp -a /opt/kinetics-gateway/backend "$BACKUP/backend"
+/root/.bash_history:72:cp -a /etc/kinetics-gateway "$BACKUP/etc_kinetics_gateway"
+/root/.bash_history:75:cp -a /opt/kinetics-gateway/venv/pyvenv.cfg "$BACKUP/" 2>/dev/null || true
+/root/.bash_history:87:cp -a /opt/kinetics-gateway/backend "$REVIEW/backend"
+/root/.bash_history:88:cp -a /etc/kinetics-gateway "$REVIEW/etc_kinetics_gateway"
+/root/.bash_history:498:sh ./install_stage3a_on_gateway.sh

@@ -1,0 +1,234 @@
+CLEANEDGE KINETICS / CENTRAL SYNC DELIVERY MONITOR -- LIVE + SD v1.0
+2026-11-14 18:20:03 UTC | Service active | Status age 7s
+GENERATING       0.0 msg/min | 0 records/min | -- MB/min [warming: wait 60s]
+LIVE ACCEPTED    72 msg/min | 2,971 records/min | 3.117 MB/min | duplicate ACKs 0
+SD ACCEPTED      0 msg/min | 0 records/min | 0.000 MB/min | duplicate ACKs 0
+TOTAL ACCEPTED   72 msg/min | 2,971 records/min | 3.117 MB/min | duplicate ACKs 0
+ACK window: last 60s, per-message receipts; TOTAL deduplicates IDs across live/SD.
+Receipt tables LIVE 1/1; SD 36/36. Absent tables have no compact receipt evidence.
+QUEUE CURRENT COUNTS: unavailable until archive coverage catches up; partial counts withheld.
+Queue coverage: 12/37 DBs sampled | 12 verified this sweep | cache age 0s
+Queue counts are stored message copies; LIVE/SD overlap and archive duplicates are not deduplicated. Reads are not one cross-DB transaction.
+Queue refresh: 25 DB(s): refresh work budget reached; will retry
+RECOVERY: running=True | cycles 71 | opportunities 71 | latest decision archive_budget_wait
+TRANSPORT: dedicated_archive_client | archive mode limited | interval 1.0s | archive active 1/1
+ARCHIVE ACK TOTALS / THIS RECOVERY INSTANCE: accepted 122 msg | 12922 records | 11.865 MB | already processed 0 | retry rejected 8 | missing ACK 0 | byte-metric errors 0
+Recovery status age 6s | load 1.728515625 | RAM available 1276 MB
+
+STREAM DELIVERY / LAST 60s -- acceptance and backlog are separate facts
+Stream / substream                   Gen msg/m Gen rec/m Live ACK/m  SD ACK/m  ACK rec/m    Wait L/SD  Evidence
+S1 fast_bess_telemetry                      --        --         12         0         48          ?/?  ACKs observed; queue partial
+S2 general_asset_telemetry                  --        --         52         0       2897          ?/?  ACKs observed; queue partial
+  ems_system                                --        --          1         0         38          ?/?  ACKs observed; queue partial
+  pcs_extended                              --        --          7         0        368          ?/?  ACKs observed; queue partial
+  bms_extended                              --        --         26         0       2322          ?/?  ACKs observed; queue partial
+  io_module                                 --        --          2         0         35          ?/?  ACKs observed; queue partial
+  liquid_cooling                            --        --          3         0         27          ?/?  ACKs observed; queue partial
+  fire_protection                           --        --          1         0          3          ?/?  ACKs observed; queue partial
+  dehumidifier                              --        --          3         0         18          ?/?  ACKs observed; queue partial
+  remote_control                            --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+  bess_aux_consumption_meter                --        --          1         0         31          ?/?  ACKs observed; queue partial
+  combiner_box_meter                        --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+S3 gateway_health                           --        --          2         0          2          ?/?  ACKs observed; queue partial
+S4 alarms_events                            --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+S5 soc_controller                           --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S6 solis                                    --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S7 edge_ai                                  --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S8 configuration_audit                      --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+S9 command_results                          --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S10 battery_charge_discharge_control        --        --          6         0         24          ?/?  ACKs observed; queue partial
+
+RECENT MESSAGE ACKs -- location identifies sending DB; retained receipts only
+3421df0d-786f-4732-b01c-a9ffdbc74956 | LIVE | S2/bms_extended | accepted | 97.5 KB
+2e909435-b9b7-424b-9483-cbe28d166f4e | LIVE | S2/bms_extended | accepted | 97.5 KB
+58a9a70c-73bf-439f-b364-30b31af5c073 | LIVE | S1/bess_fast | accepted | 34.3 KB
+0f961315-5799-4f08-b747-2f07d04335c8 | LIVE | S10/pair_controller | accepted | 3.1 KB
+e88f59fa-7e96-4d46-bc50-e91afd195fc3 | LIVE | S2/solar_inverter | accepted | 1.4 KB
+15a1fb47-2d8c-42a6-bd9b-a62b3e1d84f9 | LIVE | S2/pcs_extended | accepted | 8.2 KB
+
+RECENT PENDING IDs -- newest outstanding sampled messages
+Queue coverage incomplete: pending ID samples below can be cached; verify individual IDs before drawing conclusions.
+3f1078ed-32fd-4f69-93d4-2e302295c629 | LIVE | S1/bess_fast | pending | age 6s
+d59a4601-498e-41c0-b923-18dc472d3565 | LIVE | S2/bms_extended | inflight | age 11s
+8d2d74c4-a955-4933-ae1f-19cebfc478f6 | LIVE | S2/solar_inverter | inflight | age 11s
+4e0cd9d5-0410-42ff-95d5-925929506afd | LIVE | S2/bms_extended | inflight | age 42s
+90413f1f-49d0-4b78-a281-d44b73e78ef7 | LIVE | S2/bms_extended | inflight | age 42s
+
+Per-minute ACKs are observed receipts, not generation-cohort delivery percentages.
+SD backlog includes older pending data even when fresh data is accepted. No ACK in 60s does not prove rejection.
+Queue reads use metadata indexes, refresh every 15s, and are not one cross-DB transaction. Incomplete counts and per-stream waits are withheld; pending counts represent copies, not
+ unique IDs.
+Receipt retention is bounded; missing cleaned history cannot be reconstructed. Files retained after replay are not pending-message counts.
+Read-only. Ctrl+C closes this view. --message UUID / --request UUID inspect retained evidence.
+HTTP LAST 60s LIVE: completed 12 | 2xx 12 | errors 0 | no response 0 | attempted 2.875 MB
+HTTP LAST 60s SD: completed 1 | 2xx 1 | errors 0 | no response 0 | attempted 0.195 MB
+
+RECENT HTTP BATCHES -- LIVE / SD; HTTP 200 is not per-message acceptance
+40a677e8-4166-4d46-a534-7f075c90df2f | SD | HTTP 200 | 2 msg | 194.2 KB | 2026-11-14T18:20:04.682005+00:00
+  S2/bms_extended x2
+11ee49b4-9271-4c65-a413-5b7c381b7246 | LIVE | HTTP 200 | 4 msg | 210.0 KB | 2026-11-14T18:20:04.454778+00:00
+  S2/bms_extended x3; S2/solar_inverter x1
+ca9ede3c-55be-4964-9b1b-c0a1825ba264 | LIVE | HTTP 200 | 4 msg | 232.5 KB | 2026-11-14T18:19:56.646735+00:00
+  S10/pair_controller x1; S1/bess_fast x1; S2/bms_extended x2
+7e28c9ac-8cc4-42b3-aea2-904f875b5ed3 | LIVE | HTTP 200 | 6 msg | 248.5 KB | 2026-11-14T18:19:51.783783+00:00
+  S1/bess_fast x1; S2/bms_extended x3; S2/pcs_extended x1; S2/solar_inverter x1
+402254d0-4042-4300-a26e-83ea737c8be7 | LIVE | HTTP 200 | 6 msg | 242.0 KB | 2026-11-14T18:19:46.675488+00:00
+  S10/pair_controller x1; S1/bess_fast x1; S2/bms_extended x2; S2/dehumidifier x1; S2/solar_inverter x1
+e7021c78-facf-4a73-8efa-33f5343d190c | LIVE | HTTP 200 | 5 msg | 256.3 KB | 2026-11-14T18:19:42.085222+00:00
+  S2/bms_extended x4; S2/solar_inverter x1
+CLEANEDGE KINETICS / CENTRAL SYNC DELIVERY MONITOR -- LIVE + SD v1.0
+2026-11-14 18:20:11 UTC | Service active | Status age 0s
+GENERATING       203.5 msg/min | 14,525 records/min | 13.553 MB/min [warming: wait 60s]
+LIVE ACCEPTED    65 msg/min | 2,953 records/min | 3.059 MB/min | duplicate ACKs 0
+SD ACCEPTED      2 msg/min | 210 records/min | 0.194 MB/min | duplicate ACKs 0
+TOTAL ACCEPTED   67 msg/min | 3,163 records/min | 3.253 MB/min | duplicate ACKs 0
+ACK window: last 60s, per-message receipts; TOTAL deduplicates IDs across live/SD.
+Receipt tables LIVE 1/1; SD 36/36. Absent tables have no compact receipt evidence.
+QUEUE CURRENT COUNTS: unavailable until archive coverage catches up; partial counts withheld.
+Queue coverage: 12/37 DBs sampled | 12 verified this sweep | cache age 8s
+Queue counts are stored message copies; LIVE/SD overlap and archive duplicates are not deduplicated. Reads are not one cross-DB transaction.
+Queue refresh: 25 DB(s): refresh work budget reached; will retry
+RECOVERY: running=True | cycles 71 | opportunities 71 | latest decision archive_budget_wait
+TRANSPORT: dedicated_archive_client | archive mode limited | interval 1.0s | archive active 0/1
+ARCHIVE ACK TOTALS / THIS RECOVERY INSTANCE: accepted 124 msg | 13132 records | 12.059 MB | already processed 0 | retry rejected 8 | missing ACK 0 | byte-metric errors 0
+Recovery status age 0s | load 2.0107421875 | RAM available 1271 MB
+
+STREAM DELIVERY / LAST 60s -- acceptance and backlog are separate facts
+Stream / substream                   Gen msg/m Gen rec/m Live ACK/m  SD ACK/m  ACK rec/m    Wait L/SD  Evidence
+S1 fast_bess_telemetry                     3.8        15         11         0         44          ?/?  ACKs observed; queue partial
+S2 general_asset_telemetry               187.2     14474         48         2       3098          ?/?  ACKs observed; queue partial
+  ems_system                                --        --          1         0         38          ?/?  ACKs observed; queue partial
+  pcs_extended                              --        --          6         0        361          ?/?  ACKs observed; queue partial
+  bms_extended                              --        --         26         2       2546          ?/?  ACKs observed; queue partial
+  io_module                                 --        --          1         0         31          ?/?  ACKs observed; queue partial
+  liquid_cooling                            --        --          2         0         26          ?/?  ACKs observed; queue partial
+  fire_protection                           --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+  dehumidifier                              --        --          3         0         18          ?/?  ACKs observed; queue partial
+  remote_control                            --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+  bess_aux_consumption_meter                --        --          1         0         31          ?/?  ACKs observed; queue partial
+  combiner_box_meter                        --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+S3 gateway_health                          1.6         2          1         0          1          ?/?  ACKs observed; queue partial
+S4 alarms_events                           4.8        10          0         0          0          ?/?  no ACK in 60s; queue partial
+S5 soc_controller                           --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S6 solis                                    --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S7 edge_ai                                  --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S8 configuration_audit                     0.0         0          0         0          0          ?/?  no ACK in 60s; queue partial
+S9 command_results                          --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S10 battery_charge_discharge_control       6.2        25          5         0         20          ?/?  ACKs observed; queue partial
+
+RECENT MESSAGE ACKs -- location identifies sending DB; retained receipts only
+a7fb378d-e92a-4aee-8b9f-4b3a8e682a29 | LIVE | S2/bms_extended | accepted | 97.2 KB
+a472d425-559a-4562-907a-3008f755b1bc | LIVE | S2/bms_extended | accepted | 97.5 KB
+3f1078ed-32fd-4f69-93d4-2e302295c629 | LIVE | S1/bess_fast | accepted | 34.3 KB
+8c043537-f270-457b-af79-8bc4e7793a2f | SD | S2/bms_extended | accepted | 96.9 KB
+f69c9733-3872-4dcc-8f65-d9d7c9067217 | SD | S2/bms_extended | accepted | 97.1 KB
+d59a4601-498e-41c0-b923-18dc472d3565 | LIVE | S2/bms_extended | accepted | 5.0 KB
+
+RECENT PENDING IDs -- newest outstanding sampled messages
+Queue coverage incomplete: pending ID samples below can be cached; verify individual IDs before drawing conclusions.
+3f1078ed-32fd-4f69-93d4-2e302295c629 | LIVE | S1/bess_fast | pending | age 14s
+d59a4601-498e-41c0-b923-18dc472d3565 | LIVE | S2/bms_extended | inflight | age 19s
+8d2d74c4-a955-4933-ae1f-19cebfc478f6 | LIVE | S2/solar_inverter | inflight | age 19s
+4e0cd9d5-0410-42ff-95d5-925929506afd | LIVE | S2/bms_extended | inflight | age 49s
+90413f1f-49d0-4b78-a281-d44b73e78ef7 | LIVE | S2/bms_extended | inflight | age 49s
+
+Per-minute ACKs are observed receipts, not generation-cohort delivery percentages.
+SD backlog includes older pending data even when fresh data is accepted. No ACK in 60s does not prove rejection.
+Queue reads use metadata indexes, refresh every 15s, and are not one cross-DB transaction. Incomplete counts and per-stream waits are withheld; pending counts represent copies, not
+ unique IDs.
+Receipt retention is bounded; missing cleaned history cannot be reconstructed. Files retained after replay are not pending-message counts.
+Read-only. Ctrl+C closes this view. --message UUID / --request UUID inspect retained evidence.
+HTTP LAST 60s LIVE: completed 13 | 2xx 13 | errors 0 | no response 0 | attempted 3.061 MB
+HTTP LAST 60s SD: completed 2 | 2xx 2 | errors 0 | no response 0 | attempted 0.389 MB
+
+RECENT HTTP BATCHES -- LIVE / SD; HTTP 200 is not per-message acceptance
+166e36e3-973c-46fd-a222-c7fe2be40a7a | LIVE | HTTP 200 | 3 msg | 229.2 KB | 2026-11-14T18:20:08.881470+00:00
+  S1/bess_fast x1; S2/bms_extended x2
+40a677e8-4166-4d46-a534-7f075c90df2f | SD | HTTP 200 | 2 msg | 194.2 KB | 2026-11-14T18:20:04.682005+00:00
+  S2/bms_extended x2
+11ee49b4-9271-4c65-a413-5b7c381b7246 | LIVE | HTTP 200 | 4 msg | 210.0 KB | 2026-11-14T18:20:04.454778+00:00
+  S2/bms_extended x3; S2/solar_inverter x1
+ca9ede3c-55be-4964-9b1b-c0a1825ba264 | LIVE | HTTP 200 | 4 msg | 232.5 KB | 2026-11-14T18:19:56.646735+00:00
+  S10/pair_controller x1; S1/bess_fast x1; S2/bms_extended x2
+7e28c9ac-8cc4-42b3-aea2-904f875b5ed3 | LIVE | HTTP 200 | 6 msg | 248.5 KB | 2026-11-14T18:19:51.783783+00:00
+  S1/bess_fast x1; S2/bms_extended x3; S2/pcs_extended x1; S2/solar_inverter x1
+402254d0-4042-4300-a26e-83ea737c8be7 | LIVE | HTTP 200 | 6 msg | 242.0 KB | 2026-11-14T18:19:46.675488+00:00
+  S10/pair_controller x1; S1/bess_fast x1; S2/bms_extended x2; S2/dehumidifier x1; S2/solar_inverter x1
+CLEANEDGE KINETICS / CENTRAL SYNC DELIVERY MONITOR -- LIVE + SD v1.0
+2026-11-14 18:20:16 UTC | Service active | Status age 2s
+GENERATING       126.6 msg/min | 8,525 records/min | 8.097 MB/min [warming: wait 60s]
+LIVE ACCEPTED    66 msg/min | 2,951 records/min | 3.055 MB/min | duplicate ACKs 0
+SD ACCEPTED      2 msg/min | 210 records/min | 0.194 MB/min | duplicate ACKs 0
+TOTAL ACCEPTED   68 msg/min | 3,161 records/min | 3.249 MB/min | duplicate ACKs 0
+ACK window: last 60s, per-message receipts; TOTAL deduplicates IDs across live/SD.
+Receipt tables LIVE 1/1; SD 36/36. Absent tables have no compact receipt evidence.
+QUEUE CURRENT COUNTS: unavailable until archive coverage catches up; partial counts withheld.
+Queue coverage: 12/37 DBs sampled | 12 verified this sweep | cache age 13s
+Queue counts are stored message copies; LIVE/SD overlap and archive duplicates are not deduplicated. Reads are not one cross-DB transaction.
+Queue refresh: 25 DB(s): refresh work budget reached; will retry
+RECOVERY: running=True | cycles 71 | opportunities 71 | latest decision archive_budget_wait
+TRANSPORT: dedicated_archive_client | archive mode limited | interval 1.0s | archive active 0/1
+ARCHIVE ACK TOTALS / THIS RECOVERY INSTANCE: accepted 124 msg | 13132 records | 12.059 MB | already processed 0 | retry rejected 8 | missing ACK 0 | byte-metric errors 0
+Recovery status age 2s | load 1.9296875 | RAM available 1271 MB
+
+STREAM DELIVERY / LAST 60s -- acceptance and backlog are separate facts
+Stream / substream                   Gen msg/m Gen rec/m Live ACK/m  SD ACK/m  ACK rec/m    Wait L/SD  Evidence
+S1 fast_bess_telemetry                     6.7        27         11         0         44          ?/?  ACKs observed; queue partial
+S2 general_asset_telemetry               109.5      8472         46         2       3089          ?/?  ACKs observed; queue partial
+  ems_system                                --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+  pcs_extended                              --        --          6         0        361          ?/?  ACKs observed; queue partial
+  bms_extended                              --        --         27         2       2659          ?/?  ACKs observed; queue partial
+  io_module                                 --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+  liquid_cooling                            --        --          1         0          1          ?/?  ACKs observed; queue partial
+  fire_protection                           --        --          1         0          3          ?/?  ACKs observed; queue partial
+  dehumidifier                              --        --          3         0         18          ?/?  ACKs observed; queue partial
+  remote_control                            --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+  bess_aux_consumption_meter                --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+  combiner_box_meter                        --        --          0         0          0          ?/?  no ACK in 60s; queue partial
+S3 gateway_health                          2.5         2          2         0          2          ?/?  ACKs observed; queue partial
+S4 alarms_events                           3.6         7          1         0          2          ?/?  ACKs observed; queue partial
+S5 soc_controller                           --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S6 solis                                    --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S7 edge_ai                                  --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S8 configuration_audit                     0.0         0          0         0          0          ?/?  no ACK in 60s; queue partial
+S9 command_results                          --        --          0         0          0          ?/?  DISABLED | no ACK in 60s; queue partial
+S10 battery_charge_discharge_control       4.3        17          6         0         24          ?/?  ACKs observed; queue partial
+
+RECENT MESSAGE ACKs -- location identifies sending DB; retained receipts only
+ac71947d-9bdc-458d-a27c-bdb4ebece464 | LIVE | S2/fire_protection | accepted | 3.0 KB
+366bffff-eaf2-4fa7-809c-4444d19a0fa6 | LIVE | S2/dehumidifier | accepted | 14.8 KB
+de61436c-6158-4be6-813c-d1aaf6475843 | LIVE | S2/bms_extended | accepted | 97.3 KB
+db872158-2cde-448e-9262-dc711226c723 | LIVE | S2/bms_extended | accepted | 97.3 KB
+08e0891e-6169-41f3-a660-e42faa113ddd | LIVE | S1/bess_fast | accepted | 34.3 KB
+1b02a9ff-dd50-4945-be4e-f2e6fcac027d | LIVE | S4/events | accepted | 2.1 KB
+
+RECENT PENDING IDs -- newest outstanding sampled messages
+Queue coverage incomplete: pending ID samples below can be cached; verify individual IDs before drawing conclusions.
+3f1078ed-32fd-4f69-93d4-2e302295c629 | LIVE | S1/bess_fast | pending | age 19s
+d59a4601-498e-41c0-b923-18dc472d3565 | LIVE | S2/bms_extended | inflight | age 25s
+8d2d74c4-a955-4933-ae1f-19cebfc478f6 | LIVE | S2/solar_inverter | inflight | age 25s
+4e0cd9d5-0410-42ff-95d5-925929506afd | LIVE | S2/bms_extended | inflight | age 55s
+90413f1f-49d0-4b78-a281-d44b73e78ef7 | LIVE | S2/bms_extended | inflight | age 55s
+
+Per-minute ACKs are observed receipts, not generation-cohort delivery percentages.
+SD backlog includes older pending data even when fresh data is accepted. No ACK in 60s does not prove rejection.
+Queue reads use metadata indexes, refresh every 15s, and are not one cross-DB transaction. Incomplete counts and per-stream waits are withheld; pending counts represent copies, not
+ unique IDs.
+Receipt retention is bounded; missing cleaned history cannot be reconstructed. Files retained after replay are not pending-message counts.
+Read-only. Ctrl+C closes this view. --message UUID / --request UUID inspect retained evidence.
+HTTP LAST 60s LIVE: completed 13 | 2xx 13 | errors 0 | no response 0 | attempted 3.057 MB
+HTTP LAST 60s SD: completed 2 | 2xx 2 | errors 0 | no response 0 | attempted 0.389 MB
+
+RECENT HTTP BATCHES -- LIVE / SD; HTTP 200 is not per-message acceptance
+cd66f854-8493-4a6f-b58c-5cc848095c25 | LIVE | HTTP 200 | 8 msg | 255.8 KB | 2026-11-14T18:20:14.652997+00:00
+  S4/events x1; S10/pair_controller x1; S1/bess_fast x1; S3/gateway x1; S2/bms_extended x2; S2/dehumidifier x1; S2/fire_protection x1
+166e36e3-973c-46fd-a222-c7fe2be40a7a | LIVE | HTTP 200 | 3 msg | 229.2 KB | 2026-11-14T18:20:08.881470+00:00
+  S1/bess_fast x1; S2/bms_extended x2
+40a677e8-4166-4d46-a534-7f075c90df2f | SD | HTTP 200 | 2 msg | 194.2 KB | 2026-11-14T18:20:04.682005+00:00
+  S2/bms_extended x2
+11ee49b4-9271-4c65-a413-5b7c381b7246 | LIVE | HTTP 200 | 4 msg | 210.0 KB | 2026-11-14T18:20:04.454778+00:00
+  S2/bms_extended x3; S2/solar_inverter x1
+ca9ede3c-55be-4964-9b1b-c0a1825ba264 | LIVE | HTTP 200 | 4 msg | 232.5 KB | 2026-11-14T18:19:56.646735+00:00
+  S10/pair_controller x1; S1/bess_fast x1; S2/bms_extended x2
+7e28c9ac-8cc4-42b3-aea2-904f875b5ed3 | LIVE | HTTP 200 | 6 msg | 248.5 KB | 2026-11-14T18:19:51.783783+00:00
+  S1/bess_fast x1; S2/bms_extended x3; S2/pcs_extended x1; S2/solar_inverter x1

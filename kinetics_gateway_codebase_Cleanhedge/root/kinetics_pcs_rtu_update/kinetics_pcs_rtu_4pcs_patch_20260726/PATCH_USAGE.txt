@@ -1,0 +1,16 @@
+This is the patch-only package for an already working FRDM i.MX93 Kinetics gateway.
+
+Copy/extract this folder on the board, enter the patch root, then run:
+
+  sh deployment/update_pcs_rtu_on_imx93.sh
+
+The updater installs pyserial and copies only the PCS RTU/multi-PCS application changes.
+It does not replace:
+
+- /etc/kinetics-gateway/config.json
+- /etc/kinetics-gateway/network.conf
+- kinetics-gateway.service
+- kinetics-network.service
+- BMS driver or BMS protocol catalog
+
+The current working configuration remains in use, so PCS stays disabled until you later merge verified RTU parameters.

@@ -1,0 +1,13 @@
+Stage 3B build validation
+
+- Python syntax compilation: PASS
+- Import app.api.routes: PASS
+- Import BmsPcsControlService and ControlStatusBusyError: PASS
+- Targeted single-flight tests: 4 PASS
+  * cached status is default and performs no live read
+  * duplicate same-pair fresh request returns cached result
+  * busy request without cache raises ControlStatusBusyError
+  * global gate prevents parallel live reads across pairs
+- Existing unrelated API/mock/storage tests: 10 PASS, 2 known pre-existing failures
+  caused by tests expecting 230 PCS points while deployed catalog contains 288.
+- Existing control-suite failures are pre-existing mock-driver/catalog mismatches documented in Stage 2.

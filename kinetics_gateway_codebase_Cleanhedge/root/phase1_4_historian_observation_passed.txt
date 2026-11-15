@@ -1,0 +1,50 @@
+===== SAMPLE 1 2026-08-05T11:32:16+05:30 =====
+historian= {'count': 26, 'errors': 0, 'missed_cycles': 0, 'total_ms': 4335.254, 'max_ms': 826.618, 'last_ms': 214.838, 'last_completed_at': '2026-08-05T06:02:13.151158+00:00', 'average_ms': 166.741}
+http_in_flight= 1
+event_loop= {'lag_ms': 0.035, 'peak_lag_ms': 480.506, 'task_count': 12, 'peak_task_count': 20}
+health status=200 seconds=0.150904
+===== SAMPLE 2 2026-08-05T11:32:26+05:30 =====
+historian= {'count': 28, 'errors': 0, 'missed_cycles': 0, 'total_ms': 4634.895, 'max_ms': 826.618, 'last_ms': 227.447, 'last_completed_at': '2026-08-05T06:02:24.210013+00:00', 'average_ms': 165.532}
+http_in_flight= 1
+event_loop= {'lag_ms': 0.322, 'peak_lag_ms': 480.506, 'task_count': 12, 'peak_task_count': 20}
+health status=200 seconds=0.009884
+===== SAMPLE 3 2026-08-05T11:32:37+05:30 =====
+historian= {'count': 30, 'errors': 0, 'missed_cycles': 0, 'total_ms': 4774.225, 'max_ms': 826.618, 'last_ms': 68.34, 'last_completed_at': '2026-08-05T06:02:34.985662+00:00', 'average_ms': 159.141}
+http_in_flight= 1
+event_loop= {'lag_ms': 0.341, 'peak_lag_ms': 480.506, 'task_count': 12, 'peak_task_count': 20}
+health status=200 seconds=0.008745
+===== SAMPLE 4 2026-08-05T11:32:47+05:30 =====
+historian= {'count': 32, 'errors': 0, 'missed_cycles': 0, 'total_ms': 5916.153, 'max_ms': 1069.679, 'last_ms': 72.249, 'last_completed_at': '2026-08-05T06:02:45.406340+00:00', 'average_ms': 184.88}
+http_in_flight= 1
+event_loop= {'lag_ms': 1.067, 'peak_lag_ms': 480.506, 'task_count': 12, 'peak_task_count': 20}
+health status=200 seconds=0.008932
+===== SAMPLE 5 2026-08-05T11:32:57+05:30 =====
+historian= {'count': 34, 'errors': 0, 'missed_cycles': 0, 'total_ms': 6113.521, 'max_ms': 1069.679, 'last_ms': 102.398, 'last_completed_at': '2026-08-05T06:02:56.449630+00:00', 'average_ms': 179.809}
+http_in_flight= 1
+event_loop= {'lag_ms': 0.146, 'peak_lag_ms': 480.506, 'task_count': 12, 'peak_task_count': 20}
+health status=200 seconds=0.009713
+===== SAMPLE 6 2026-08-05T11:33:07+05:30 =====
+historian= {'count': 36, 'errors': 0, 'missed_cycles': 0, 'total_ms': 6269.232, 'max_ms': 1069.679, 'last_ms': 71.714, 'last_completed_at': '2026-08-05T06:03:06.708389+00:00', 'average_ms': 174.145}
+http_in_flight= 1
+event_loop= {'lag_ms': 0.386, 'peak_lag_ms': 480.506, 'task_count': 12, 'peak_task_count': 20}
+health status=200 seconds=0.171748
+===== SAMPLE 7 2026-08-05T11:33:18+05:30 =====
+historian= {'count': 38, 'errors': 0, 'missed_cycles': 0, 'total_ms': 6436.33, 'max_ms': 1069.679, 'last_ms': 71.527, 'last_completed_at': '2026-08-05T06:03:17.414569+00:00', 'average_ms': 169.377}
+http_in_flight= 1
+event_loop= {'lag_ms': 1.527, 'peak_lag_ms': 480.506, 'task_count': 14, 'peak_task_count': 20}
+health status=200 seconds=0.361430
+===== SAMPLE 8 2026-08-05T11:33:28+05:30 =====
+historian= {'count': 40, 'errors': 0, 'missed_cycles': 0, 'total_ms': 6627.262, 'max_ms': 1069.679, 'last_ms': 93.628, 'last_completed_at': '2026-08-05T06:03:28.443172+00:00', 'average_ms': 165.682}
+http_in_flight= 1
+event_loop= {'lag_ms': 5.477, 'peak_lag_ms': 480.506, 'task_count': 13, 'peak_task_count': 20}
+health status=200 seconds=0.108368
+===== SAMPLE 9 2026-08-05T11:33:39+05:30 =====
+historian= {'count': 42, 'errors': 0, 'missed_cycles': 0, 'total_ms': 6832.254, 'max_ms': 1069.679, 'last_ms': 102.776, 'last_completed_at': '2026-08-05T06:03:38.441210+00:00', 'average_ms': 162.673}
+http_in_flight= 1
+event_loop= {'lag_ms': 228.761, 'peak_lag_ms': 480.506, 'task_count': 13, 'peak_task_count': 20}
+health status=200 seconds=0.009043
+===== SAMPLE 10 2026-08-05T11:33:49+05:30 =====
+historian= {'count': 44, 'errors': 0, 'missed_cycles': 0, 'total_ms': 7092.85, 'max_ms': 1069.679, 'last_ms': 133.484, 'last_completed_at': '2026-08-05T06:03:49.149265+00:00', 'average_ms': 161.201}
+http_in_flight= 1
+event_loop= {'lag_ms': 135.781, 'peak_lag_ms': 480.506, 'task_count': 13, 'peak_task_count': 21}
+health status=200 seconds=0.008912

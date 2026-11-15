@@ -1,0 +1,48 @@
+
+================================================
+Testing 38400 8N1
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+================================================
+Testing 38400 8E1
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "E", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus RTU transport error /dev/ttyUSB0: Timed out waiting for Modbus RTU response (2 bytes missing)"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+================================================
+Testing 38400 8O1
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "O", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus RTU transport error /dev/ttyUSB0: Timed out waiting for Modbus RTU response (2 bytes missing)"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+================================================
+Testing 38400 8N2
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "N", "stopbits": 2, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus exception 2 for FC03"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+================================================
+Testing 38400 8E2
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "E", "stopbits": 2, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus RTU transport error /dev/ttyUSB0: Timed out waiting for Modbus RTU response (2 bytes missing)"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+================================================
+Testing 38400 8O2
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "O", "stopbits": 2, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus RTU transport error /dev/ttyUSB0: Timed out waiting for Modbus RTU response (2 bytes missing)"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+================================================
+Testing 38400 7E1
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "E", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus RTU transport error /dev/ttyUSB0: Timed out waiting for Modbus RTU response (2 bytes missing)"}
+{"summary": {"attempts": 1, "successes": 0}}
+
+================================================
+Testing 38400 7O1
+================================================
+{"device": "/dev/ttyUSB0", "baudrate": 38400, "parity": "O", "stopbits": 1, "unit_id": 1, "function_code": 3, "address": 1, "count": 10, "ok": false, "error": "Modbus RTU transport error /dev/ttyUSB0: Timed out waiting for Modbus RTU response (2 bytes missing)"}
+{"summary": {"attempts": 1, "successes": 0}}

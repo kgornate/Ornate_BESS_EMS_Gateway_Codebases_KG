@@ -1,0 +1,7 @@
+MainPID=6961
+NRestarts=0
+MemoryCurrent=1777668096
+MemoryPeak=1808556032
+TasksCurrent=13
+ActiveState=active
+SubState=running

@@ -1,0 +1,31 @@
+# /etc/systemd/system/bess-seven-day-v302.service
+[Unit]
+Description=Kinetics solar-qualified time automation
+Wants=network-online.target kinetics-gateway.service
+After=network-online.target kinetics-gateway.service
+Requires=kinetics-gateway.service
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/bess-seven-day-v302.env
+WorkingDirectory=/opt/kinetics-gateway/backend
+ExecStart=/usr/bin/python3 /root/bess_solar_time_automation.py
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=900
+KillSignal=SIGTERM
+
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system/bess-seven-day-v302.service.d/20-time-sync-guard.conf
+[Unit]
+Wants=network-online.target ntpd.service kinetics-gateway.service
+After=network-online.target ntpd.service kinetics-gateway.service
+StartLimitIntervalSec=0
+
+[Service]
+ExecStartPre=/usr/local/sbin/bess-wait-for-valid-time.sh
+TimeoutStartSec=1900
+Restart=on-failure
+RestartSec=60

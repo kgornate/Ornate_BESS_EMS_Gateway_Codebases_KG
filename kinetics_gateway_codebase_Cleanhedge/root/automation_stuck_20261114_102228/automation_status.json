@@ -1,0 +1,294 @@
+{
+  "active_pairs": [],
+  "active_readback_failures": {
+    "pair_1": 0,
+    "pair_2": 0,
+    "pair_3": 0,
+    "pair_4": 0
+  },
+  "build": "phase5.8.1.8-runtime-resilience",
+  "direction": null,
+  "error": "scheduler snapshot circuit open; retry in 28.4s",
+  "fault_latch": null,
+  "message": "Automation fault; retrying",
+  "phase": "fault",
+  "prepared_pairs": [],
+  "prepared_run_ids": {},
+  "recent_events": [
+    {
+      "details": {
+        "solar_kw": 1389.5
+      },
+      "direction": "charge",
+      "event": "solar_qualified",
+      "message": "Solar start qualification completed",
+      "phase": "qualifying_solar",
+      "timestamp": "2026-11-14T08:46:37.327646+05:30"
+    },
+    {
+      "details": {},
+      "direction": "charge",
+      "event": "preparation_started",
+      "message": "Zero-power preparation started for charge",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:46:37.364062+05:30"
+    },
+    {
+      "details": {
+        "pair_id": "pair_1"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_started",
+      "message": "Preparing pair_1",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:46:38.727126+05:30"
+    },
+    {
+      "details": {
+        "attempt": 1,
+        "pair_id": "pair_1",
+        "run_id": "seq-20261114T031638-ea9e922e"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_accepted",
+      "message": "pair_1 preparation accepted",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:46:38.937588+05:30"
+    },
+    {
+      "details": {
+        "compact_ready_zero_diagnostic": false,
+        "duration_seconds": 67.7,
+        "pair_id": "pair_1",
+        "run_id": "seq-20261114T031638-ea9e922e",
+        "verification_source": "matching_automatic_prepared_runtime"
+      },
+      "direction": "charge",
+      "event": "pair_prepared",
+      "message": "pair_1 ready at zero power",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:47:46.377946+05:30"
+    },
+    {
+      "details": {
+        "pair_id": "pair_2"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_started",
+      "message": "Preparing pair_2",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:47:46.389476+05:30"
+    },
+    {
+      "details": {
+        "attempt": 1,
+        "pair_id": "pair_2",
+        "run_id": "seq-20261114T031746-3e9ce1df"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_accepted",
+      "message": "pair_2 preparation accepted",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:47:46.594456+05:30"
+    },
+    {
+      "details": {
+        "compact_ready_zero_diagnostic": false,
+        "duration_seconds": 67.9,
+        "pair_id": "pair_2",
+        "run_id": "seq-20261114T031746-3e9ce1df",
+        "verification_source": "matching_automatic_prepared_runtime"
+      },
+      "direction": "charge",
+      "event": "pair_prepared",
+      "message": "pair_2 ready at zero power",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:48:54.300612+05:30"
+    },
+    {
+      "details": {
+        "pair_id": "pair_3"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_started",
+      "message": "Preparing pair_3",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:48:54.309256+05:30"
+    },
+    {
+      "details": {
+        "attempt": 1,
+        "pair_id": "pair_3",
+        "run_id": "seq-20261114T031854-fd10b3eb"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_accepted",
+      "message": "pair_3 preparation accepted",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:48:54.348167+05:30"
+    },
+    {
+      "details": {
+        "compact_ready_zero_diagnostic": false,
+        "duration_seconds": 67.8,
+        "pair_id": "pair_3",
+        "run_id": "seq-20261114T031854-fd10b3eb",
+        "verification_source": "matching_automatic_prepared_runtime"
+      },
+      "direction": "charge",
+      "event": "pair_prepared",
+      "message": "pair_3 ready at zero power",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:50:02.073938+05:30"
+    },
+    {
+      "details": {
+        "pair_id": "pair_4"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_started",
+      "message": "Preparing pair_4",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:50:02.104443+05:30"
+    },
+    {
+      "details": {
+        "attempt": 1,
+        "pair_id": "pair_4",
+        "run_id": "seq-20261114T032002-b18e0333"
+      },
+      "direction": "charge",
+      "event": "pair_preparation_accepted",
+      "message": "pair_4 preparation accepted",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:50:02.651101+05:30"
+    },
+    {
+      "details": {
+        "failed_run_id": "seq-20261114T032002-b18e0333",
+        "failure": "PCS entered fault shutdown during startup: state=1024, module_fault_word_10=None, latched_fault_word_7=None; PCS zero-setpoint/stop was requested automatically",
+        "pair_id": "pair_4",
+        "window": "2026-11-14T09:00:00+05:30"
+      },
+      "direction": "charge",
+      "event": "pcs_1024_recovery_started",
+      "message": "Bounded PCS state-1024 recovery started for pair_4",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:50:42.168674+05:30"
+    },
+    {
+      "details": {
+        "pair_id": "pair_4"
+      },
+      "direction": "charge",
+      "event": "pcs_1024_recovery_reset_started",
+      "message": "Resetting pair_4 to a verified stopped baseline",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:50:42.201912+05:30"
+    },
+    {
+      "details": {
+        "final_state": 1.0,
+        "pair_id": "pair_4"
+      },
+      "direction": "charge",
+      "event": "pcs_1024_recovery_reset_complete",
+      "message": "pair_4 verified stopped before zero-power recovery",
+      "phase": "preparing_charge",
+      "timestamp": "2026-11-14T08:50:47.235389+05:30"
+    },
+    {
+      "details": {},
+      "direction": "charge",
+      "event": "safe_stop_started",
+      "message": "charge zero-power preparation failure",
+      "phase": "safe_stopping",
+      "timestamp": "2026-11-14T08:51:24.050474+05:30"
+    },
+    {
+      "details": {},
+      "direction": null,
+      "event": "safe_stop_complete",
+      "message": "All four pairs verified safely stopped",
+      "phase": "waiting",
+      "timestamp": "2026-11-14T08:51:57.266511+05:30"
+    },
+    {
+      "details": {
+        "direction": "charge",
+        "fault_phase": "zero_power_preparation",
+        "latched_at": "2026-11-14T08:51:57.323525+05:30",
+        "reason": "pair_4 preparation failed: {'pair_id': 'pair_4', 'run_id': 'seq-20261114T032047-0f32b0c0', 'run_mode': 'automatic', 'run_status': 'failed', 'stage': 'automatic_sequence_failed', 'requested_direction': 'charge', 'requested_power_kw': 0.0, 'commanded_power_kw': 0.0, 'last_error': 'PCS entered fault shutdown during startup: state=1024, module_fault_word_10=None, latched_fault_word_7=None; PCS zero-setpoint/stop was requested automatically', 'last_updated_at': '2026-11-14T03:21:22.973099+00:00', 'started_at': '2026-11-14T03:20:47.385983+00:00', 'completed_at': '2026-11-14T03:21:22.970791+00:00', 'abort_requested': False, 'monitor_active': False, 'monitor_state': 'healthy', 'runtime_revision': 13136, 'steps': [{'key': 'pcs_configuration', 'label': 'Configure PCS Remote/PQ/0 kW', 'status': 'success', 'started_at': '2026-11-14T03:20:47.387300+00:00', 'completed_at': '2026-11-14T03:20:51.041555+00:00', 'elapsed_ms': 3654}, {'key': 'rack_enable', 'label': 'Pair-specific BAU connection uses 0x3001', 'status': 'skipped', 'message': 'No BAU 0x3005-0x3008 write: the selected pair uses BAU 0x3001 on TCP port 506.', 'completed_at': '2026-11-14T03:20:51.041745+00:00'}, {'key': 'bms_precharge', 'label': 'BMS precharge and close contactors', 'status': 'success', 'started_at': '2026-11-14T03:20:51.041802+00:00', 'completed_at': '2026-11-14T03:21:08.024928+00:00', 'elapsed_ms': 16983}, {'key': 'pcs_start', 'label': 'Start PCS and complete DC soft-start', 'status': 'failed', 'message': 'PCS entered fault shutdown during startup: state=1024, module_fault_word_10=None, latched_fault_word_7=None; PCS zero-setpoint/stop was requested automatically', 'started_at': '2026-11-14T03:21:08.025101+00:00', 'completed_at': '2026-11-14T03:21:15.413930+00:00', 'elapsed_ms': 7389}, {'key': 'power_precheck', 'label': 'Verify BMS limits and direction permission', 'status': 'pending'}, {'key': 'power_ramp', 'label': 'Ramp to requested power', 'status': 'pending'}, {'key': 'power_tracking', 'label': 'Verify actual power tracking', 'status': 'pending'}]}",
+        "window": "2026-11-14T09:00:00+05:30"
+      },
+      "direction": null,
+      "event": "automation_fault_latched",
+      "message": "zero_power_preparation fault latched; automatic retries inhibited",
+      "phase": "fault_latched",
+      "timestamp": "2026-11-14T08:51:57.323600+05:30"
+    },
+    {
+      "details": {},
+      "direction": null,
+      "event": "automation_fault_reset",
+      "message": "Configuration changed; fault latch cleared for operator-requested retry",
+      "phase": "fault_latched",
+      "timestamp": "2026-11-14T09:56:51.834635+05:30"
+    },
+    {
+      "details": {
+        "previous_failures": 1,
+        "unavailable_seconds": 7.4
+      },
+      "direction": null,
+      "event": "scheduler_snapshot_restored",
+      "message": "Scheduler snapshot communication restored",
+      "phase": "fault",
+      "timestamp": "2026-11-14T09:57:07.173560+05:30"
+    },
+    {
+      "details": {
+        "previous_failures": 1,
+        "unavailable_seconds": 6.7
+      },
+      "direction": null,
+      "event": "scheduler_snapshot_restored",
+      "message": "Scheduler snapshot communication restored",
+      "phase": "fault",
+      "timestamp": "2026-11-14T09:57:35.466016+05:30"
+    },
+    {
+      "details": {
+        "previous_failures": 1,
+        "unavailable_seconds": 7.0
+      },
+      "direction": null,
+      "event": "scheduler_snapshot_restored",
+      "message": "Scheduler snapshot communication restored",
+      "phase": "fault",
+      "timestamp": "2026-11-14T09:58:18.167787+05:30"
+    }
+  ],
+  "running": true,
+  "safe_stop_requested": false,
+  "snapshot_failures": 43,
+  "snapshot_loss_safe_stop_seconds": 30.0,
+  "snapshot_loss_seconds": 1411.5,
+  "solar_diagnostic": {
+    "age_seconds": 1.409,
+    "condition": "healthy",
+    "errors": [],
+    "fresh": true,
+    "max_age_seconds": 15,
+    "online": true,
+    "quality": "good",
+    "stop_below_kw": 80.0,
+    "value_kw": 1980.5
+  },
+  "solar_fresh": true,
+  "solar_kw": 1980.5,
+  "solar_telemetry_loss_safe_stop_seconds": 120.0,
+  "solar_telemetry_loss_seconds": null,
+  "timestamp": "2026-11-14T10:22:30.238702+05:30",
+  "version": 2
+}

@@ -1,0 +1,94 @@
+#!/bin/bash
+
+STATE_DIR="/var/lib/kinetics-central-sync"
+TEST_ROOT="/mnt/ems-logs/kinetics-gateway/central_sync/tests"
+STATE_FILE="$STATE_DIR/three_day_test.state"
+DURATION_SECONDS=259200
+INTERVAL_SECONDS=300
+
+mkdir -p "$STATE_DIR" "$TEST_ROOT"
+
+if [ ! -f "$STATE_FILE" ]; then
+    START_EPOCH="$(date +%s)"
+    RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)"
+    RUN_DIR="$TEST_ROOT/cleanedge_central_sync_3day_$RUN_ID"
+
+    mkdir -p "$RUN_DIR"
+
+    {
+        echo "START_EPOCH=$START_EPOCH"
+        echo "RUN_DIR=$RUN_DIR"
+    } > "$STATE_FILE"
+fi
+
+. "$STATE_FILE"
+
+END_EPOCH=$((START_EPOCH + DURATION_SECONDS))
+START_ISO="$(date -u -d "@$START_EPOCH" '+%Y-%m-%d %H:%M:%S UTC')"
+
+echo "Test start: $START_ISO" >> "$RUN_DIR/test_status.log"
+echo "Expected end: $(date -u -d "@$END_EPOCH" '+%Y-%m-%d %H:%M:%S UTC')" \
+    >> "$RUN_DIR/test_status.log"
+
+while [ "$(date +%s)" -lt "$END_EPOCH" ]; do
+    NOW="$(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+
+    {
+        echo
+        echo "===== SAMPLE $NOW ====="
+
+        systemctl show kinetics-central-sync.service \
+            -p ActiveState \
+            -p SubState \
+            -p MainPID \
+            -p NRestarts \
+            -p MemoryCurrent \
+            -p MemoryPeak \
+            -p CPUUsageNSec
+
+        systemctl show kinetics-gateway.service \
+            -p ActiveState \
+            -p SubState \
+            -p MainPID \
+            -p NRestarts \
+            -p MemoryCurrent \
+            -p MemoryPeak \
+            -p CPUUsageNSec
+
+        uptime
+        free -m
+        df -h / /mnt/ems-logs 2>&1
+
+        timeout 8s /usr/local/bin/kinetics-delivery-dashboard 2>&1 || true
+    } >> "$RUN_DIR/samples.log" 2>&1
+
+    journalctl \
+        -u kinetics-central-sync.service \
+        -u kinetics-gateway.service \
+        --since "-6 minutes" \
+        -p warning --no-pager \
+        >> "$RUN_DIR/warnings.log" 2>&1
+
+    sleep "$INTERVAL_SECONDS"
+done
+
+journalctl \
+    -u kinetics-central-sync.service \
+    -u kinetics-gateway.service \
+    --since "$START_ISO" --no-pager \
+    > "$RUN_DIR/full_journal.log" 2>&1
+
+{
+    echo
+    echo "===== FINAL DASHBOARD ====="
+    timeout 8s /usr/local/bin/kinetics-delivery-dashboard 2>&1 || true
+    echo
+    echo "Test completed: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+} >> "$RUN_DIR/final_status.log" 2>&1
+
+ARCHIVE="${RUN_DIR}.tar.gz"
+tar -C "$TEST_ROOT" -czf "$ARCHIVE" "$(basename "$RUN_DIR")"
+sha256sum "$ARCHIVE" > "${ARCHIVE}.sha256"
+
+echo "ARCHIVE=$ARCHIVE" >> "$STATE_FILE"
+echo "COMPLETED_EPOCH=$(date +%s)" >> "$STATE_FILE"

@@ -1,0 +1,58 @@
+1) Safe baseline
+
+cd /opt/kinetics-gateway/backend
+
+/opt/kinetics-gateway/venv/bin/python \
+tools/control_sequence_cli.py safe-stop \
+--pair-id pair_1 \
+--open-bms \
+--confirmation EXECUTE_STAGE_WRITE
+
+2) Check status
+
+/opt/kinetics-gateway/venv/bin/python \
+tools/control_sequence_cli.py status \
+--pair-id pair_1
+
+3) Prepare PCS standby before BMS precharge
+
+/opt/kinetics-gateway/venv/bin/python \
+tools/control_sequence_cli.py prepare-pcs-standby \
+--pair-id pair_1 \
+--confirmation EXECUTE_STAGE_WRITE
+
+STOP unless ready_for_bms_precharge=true.
+
+4) Enable Rack1
+
+/opt/kinetics-gateway/venv/bin/python \
+tools/control_sequence_cli.py enable-rack \
+--pair-id pair_1 \
+--direction discharge \
+--power-kw 1 \
+--confirmation EXECUTE_STAGE_WRITE
+
+5) Start BMS precharge - no 0x0401 action
+
+/opt/kinetics-gateway/venv/bin/python \
+tools/control_sequence_cli.py start-precharge \
+--pair-id pair_1 \
+--confirmation EXECUTE_STAGE_WRITE
+
+6) Monitor status
+
+for i in 1 2 3 4 5 6; do
+  date
+  /opt/kinetics-gateway/venv/bin/python \
+  tools/control_sequence_cli.py status \
+  --pair-id pair_1
+  sleep 2
+done
+
+7) Emergency safe-stop
+
+/opt/kinetics-gateway/venv/bin/python \
+tools/control_sequence_cli.py safe-stop \
+--pair-id pair_1 \
+--open-bms \
+--confirmation EXECUTE_STAGE_WRITE

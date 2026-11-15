@@ -1,0 +1,200 @@
+  238  import urllib.error
+  239  BASE = "http://127.0.0.1:8000"
+  240  def api(path, token=None, method="GET", body=None):
+  241      headers = {"Content-Type": "application/json"}
+  242      if token:
+  243          headers["Authorization"] = f"Bearer {token}"
+  244      data = json.dumps(body).encode() if body is not None else None
+  245      request = urllib.request.Request(
+  246          BASE + path,
+  247          data=data,
+  248          headers=headers,
+  249          method=method,
+  250      )
+  251      with urllib.request.urlopen(request, timeout=30) as response:
+  252          return json.load(response)
+  253  def point_value(asset, key):
+  254      point = (asset or {}).get("telemetry", {}).get(key)
+  255      if isinstance(point, dict):
+  256          if "value" in point:
+  257              return point["value"]
+  258          return point.get("v")
+  259      return point
+  260  def point_bits(asset, key):
+  261      point = (asset or {}).get("telemetry", {}).get(key, {})
+  262      if not isinstance(point, dict):
+  263          return {}
+  264      return point.get("bitfields", point.get("b", {})) or {}
+  265  def show(value, digits=1):
+  266      if value is None:
+  267          return "N/A"
+  268      if isinstance(value, float):
+  269          return f"{value:.{digits}f}"
+  270      return str(value)
+  271  PCS_STATES = {
+  272      1: "STOPPED",
+  273      2: "SOFT START",
+  274      4: "SELF TEST",
+  275      8: "STANDBY",
+  276      16: "RUNNING",
+  277      32: "ENERGY SAVING",
+  278      64: "GRID CONNECTED",
+  279      80: "RUNNING + GRID",
+  280      1024: "FAULT SHUTDOWN",
+  281  }
+  282  try:
+  283      login = api(
+  284          "/api/auth/login",
+  285          method="POST",
+  286          body={
+  287              "username": "internal",
+  288              "password": "Internal@123",
+  289          },
+  290      )
+  291      token = login["access_token"]
+  292      snapshot = api("/api/telemetry/key-signals", token)
+  293      racks = {
+  294          int(rack.get("rack_id")): rack
+  295          for rack in snapshot.get("racks", [])
+  296          if rack.get("rack_id") is not None
+  297      }
+  298      pcs_devices = snapshot.get("pcs_devices", {})
+  299      print()
+  300      print("=" * 100)
+  301      print("ALL FOUR BMS-PCS PAIRS — CACHED STATUS")
+  302      print("Snapshot:", snapshot.get("timestamp"))
+  303      print("=" * 100)
+  304      for number in range(1, 5):
+  305          pair_id = f"pair_{number}"
+  306          pcs_id = f"pcs_{number}"
+  307          runtime = api(
+  308              f"/api/control-sequence/{pair_id}/status?fresh=false",
+  309              token,
+  310          )
+  311          rack = racks.get(number, {})
+  312          pcs = pcs_devices.get(pcs_id, {})
+  313          contactor_bits = point_bits(rack, "contactor_state")
+  314          positive = contactor_bits.get("positive_contactor_state")
+  315          negative = contactor_bits.get(
+  316              "negitive_contactor_state",
+  317              contactor_bits.get("negative_contactor_state"),
+  318          )
+  319          precharge = point_value(rack, "pre_charge_state")
+  320          rack_voltage = point_value(rack, "vrack")
+  321          pcs_state = point_value(pcs, "operating_state")
+  322          pcs_state_int = int(pcs_state) if pcs_state is not None else None
+  323          pcs_state_name = PCS_STATES.get(
+  324              pcs_state_int,
+  325              f"STATE {pcs_state_int}" if pcs_state_int is not None else "N/A",
+  326          )
+  327          setpoint = point_value(pcs, "active_power_setpoint")
+  328          actual = point_value(pcs, "grid_active_power")
+  329          input_voltage = point_value(pcs, "battery_voltage")
+  330          dc_bus_voltage = point_value(pcs, "dc_bus_voltage")
+  331          print()
+  332          print(f"{pair_id.upper()}  |  Rack {number}  |  {pcs_id.upper()}")
+  333          print("-" * 100)
+  334          print(
+  335              "Runtime : "
+  336              f"run_status={runtime.get('run_status')}  "
+  337              f"stage={runtime.get('stage')}  "
+  338              f"commanded={show(runtime.get('commanded_power_kw'))} kW  "
+  339              f"monitor_active={runtime.get('monitor_active')}"
+  340          )
+  341          print(
+  342              "BMS     : "
+  343              f"online={rack.get('online')}  "
+  344              f"precharge_state={show(precharge)}  "
+  345              f"positive_contactor={show(positive)}  "
+  346              f"negative_contactor={show(negative)}  "
+  347              f"rack_voltage={show(rack_voltage)} V"
+  348          )
+  349          print(
+  350              "PCS     : "
+  351              f"online={pcs.get('online')}  "
+  352              f"state={show(pcs_state)} ({pcs_state_name})  "
+  353              f"setpoint={show(setpoint)} kW  "
+  354              f"actual={show(actual)} kW  "
+  355              f"input_voltage={show(input_voltage)} V  "
+  356              f"dc_bus={show(dc_bus_voltage)} V"
+  357          )
+  358      print()
+  359      print("=" * 100)
+  360      print("Expected safe baseline: precharge=0, contactors=0/0, PCS state=1, setpoint=0, actual≈0")
+  361      print("=" * 100)
+  362  except urllib.error.HTTPError as error:
+  363      print("HTTP ERROR:", error.code)
+  364      print(error.read().decode(errors="replace"))
+  365  except Exception as error:
+  366      print("ERROR:", type(error).__name__, str(error))
+  367  TOKEN=$(curl -sS \
+  368  --connect-timeout 5 \
+  369  --max-time 60 \
+  370  -X POST \
+  371  "http://127.0.0.1:8000/api/auth/login" \
+  372  -H "Content-Type: application/json" \
+  373  -d '{"username":"internal","password":"Internal@123"}' |
+  374  python3 -c 'import json,sys; print(json.load(sys.stdin)["access_token"])')
+  375  export TOKEN
+  376  for PAIR in pair_1 pair_2 pair_3 pair_4; do     echo;     echo "============================================================";     echo "LIVE HARDWARE READ: $PAIR";     echo "Started: $(date -Is)";     echo "============================================================";      curl -sS     --connect-timeout 5     --max-time 180     -H "Authorization: Bearer $TOKEN"     "http://127.0.0.1:8000/api/control-sequence/${PAIR}/status?fresh=true"     -o "/tmp/${PAIR}_live.json"; 
+  377      python3 - <<PY
+  378  import json
+  379  pair = "${PAIR}"
+  380  path = f"/tmp/{pair}_live.json"
+  381  try:
+  382      data = json.load(open(path))
+  383      summary = data.get("summary", {})
+  384      runtime = data.get("automatic_run", data.get("runtime", {}))
+  385      print("Pair                 :", pair)
+  386      print("Run status           :", runtime.get("run_status"))
+  387      print("Stage                :", runtime.get("stage"))
+  388      fields = [
+  389          "precharge_state",
+  390          "positive_contactor_closed",
+  391          "negative_contactor_closed",
+  392          "pcs_operating_state",
+  393          "pcs_power_setpoint_kw",
+  394          "pcs_actual_power_kw",
+  395          "pcs_battery_voltage",
+  396          "pcs_dc_bus_voltage",
+  397          "safe_baseline",
+  398      ]
+  399      for field in fields:
+  400          print(f"{field:21}:", summary.get(field))
+  401      print("Errors               :", data.get("errors", summary.get("errors")))
+  402  except Exception as error:
+  403      print("Could not parse response:", error)
+  404      print(open(path).read())
+  405  PY
+  406        echo "Completed: $(date -Is)";     sleep 10; done
+  407  ip route
+  408  cd /root
+  409  tar -xzf kinetics_stage3a_hotfix_20260728.tar.gz
+  410  cd /root/kinetics_stage3a_hotfix_20260728
+  411  ls -lh
+  412  cd /root/kinetics_stage3a_hotfix_20260728
+  413  sh ./install_stage3a_on_gateway.sh
+  414  cd /root/kinetics_stage3a_hotfix_20260728
+  415  sh ./verify_stage3a_idle.sh
+  416  echo "=== STAGE 3B MARKERS IN DEPLOYED CODE ==="
+  417  grep -RniE 'control-refresh|single_flight|normal_status_default|cached_runtime|cached_while_live_refresh_busy|global_live_refresh_limit' /opt/kinetics-gateway/backend/app --include='*.py' --exclude-dir='__pycache__' || true
+  418  curl -sS --connect-timeout 5 --max-time 30 "http://127.0.0.1:8000/openapi.json" -o /tmp/current_openapi.json
+  419  python3 - <<'PY'
+import json
+
+data = json.load(open("/tmp/current_openapi.json"))
+
+for path in sorted(data.get("paths", {})):
+    if "control" in path or "diagnostic" in path:
+        print(path)
+PY
+
+  420  echo "=== STAGE 3B PACKAGE FILES ==="
+  421  find /root/kinetics_stage3b_hotfix_20260728/files -type f -print
+  422  for FILE in app/api/routes.py app/services/bms_pcs_control.py; do     echo;     echo "=== $FILE ===";      sha256sum     "/opt/kinetics-gateway/backend/$FILE"     "/root/kinetics_stage3b_hotfix_20260728/files/$FILE"     2>/dev/null || true; done
+  423  cd /root/kinetics_stage3b_hotfix_20260728
+  424  EVIDENCE="/root/stage3b_reversion_evidence_$(date +%Y%m%d_%H%M%S)"
+  425  mkdir -p "$EVIDENCE"
+  426  stat /opt/kinetics-gateway/backend/app/api/routes.py /opt/kinetics-gateway/backend/app/services/bms_pcs_control.py > "$EVIDENCE/deployed_file_stat.txt"
+  427  journalctl -u kinetics-gateway.service --since "2026-07-28 17:07:00" --until "2026-07-28 17:12:00" --no-pager -o short-precise > "$EVIDENCE/service_journal_1707_1712.txt"
+  428  history 2>/dev/null | tail -200 > "$EVIDENCE/current_shell_history.txt"

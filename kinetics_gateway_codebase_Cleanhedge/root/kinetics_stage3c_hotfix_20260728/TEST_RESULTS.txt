@@ -1,0 +1,35 @@
+Stage 3C build validation
+=========================
+
+1. Python compilation
+   PASS: bms_pcs_control.py
+   PASS: gateway_service.py
+   PASS: routes.py
+
+2. Synthetic runtime-cache checks
+   PASS: healthy cache builds the required safety summary
+   PASS: healthy cache does not call direct live status
+   PASS: stale cache performs exactly one live confirmation attempt
+   PASS: runtime command state remains independent of a temporarily lagging cached PCS setpoint
+
+3. Mock GatewayService integration
+   PASS: all four control pairs produced background_poll_cache samples
+   PASS: all four samples contained no required-read errors
+
+4. Live-status refactor equivalence
+   PASS: Stage 3B and Stage 3C live status results were identical for the same complete synthetic BMS/PCS read set, excluding timestamps.
+
+5. Existing deployed test suite
+   15 passed, 6 failed.
+   The same six pre-existing failures remain:
+   - three tests expect the old 230-point PCS catalog while the deployed catalog has 288 points;
+   - three older control mocks do not provide all points required by the deployed controller.
+   No additional existing-suite failure was introduced by Stage 3C.
+
+6. Field validation status
+   NOT YET PERFORMED for an energized pair.
+   Required after cache-only verification:
+   - one-pair low-power discharge runtime-monitor test;
+   - safe-stop and physical verification;
+   - one-pair low-power charge runtime-monitor test;
+   - then sequential multi-pair validation.

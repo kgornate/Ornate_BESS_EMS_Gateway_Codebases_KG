@@ -1,0 +1,30 @@
+===== SAMPLE 1 2026-11-03T17:59:15+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 2 2026-11-03T17:59:20+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 3 2026-11-03T17:59:26+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 4 2026-11-03T17:59:31+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 5 2026-11-03T17:59:37+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 6 2026-11-03T17:59:43+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 7 2026-11-03T17:59:48+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 8 2026-11-03T17:59:54+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 9 2026-11-03T17:59:59+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}
+===== SAMPLE 10 2026-11-03T18:00:05+05:30 =====
+{"host": "172.16.0.111", "port": 502, "unit_id": 1, "function_code": 3, "address": 2600, "count": 23, "registers": [7, 13, 0, 0, 0, 0, 0, 0, 1301, 23, 60430, 1980, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 0], "ok": true}
+{"summary": {"attempts": 1, "successes": 1}}

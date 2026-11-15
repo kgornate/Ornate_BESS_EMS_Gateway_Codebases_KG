@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "enabled": false,
+  "timezone": "Asia/Kolkata",
+  "days": [1, 2, 3, 4, 5, 6, 7],
+  "charge": {"start": "09:00", "stop": "14:30"},
+  "discharge": {"start": "15:00", "stop": "17:00"},
+  "solar": {
+    "start_above_kw": 100.0,
+    "start_hold_seconds": 60,
+    "stop_below_kw": 80.0,
+    "stop_hold_seconds": 30,
+    "max_age_seconds": 15
+  },
+  "pairs": {
+    "pair_1": {"enabled": true, "charge_kw": 5.0, "discharge_kw": 5.0},
+    "pair_2": {"enabled": true, "charge_kw": 5.0, "discharge_kw": 5.0},
+    "pair_3": {"enabled": true, "charge_kw": 5.0, "discharge_kw": 5.0},
+    "pair_4": {"enabled": true, "charge_kw": 5.0, "discharge_kw": 5.0}
+  },
+  "updated_at": null,
+  "updated_by": null
+}

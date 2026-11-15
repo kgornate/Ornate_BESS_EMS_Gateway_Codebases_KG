@@ -1,0 +1,543 @@
+from __future__ import annotations
+
+import importlib.util
+import os
+from datetime import datetime, timedelta
+from pathlib import Path
+from types import SimpleNamespace
+
+
+SCHEDULER = Path(os.getenv("KINETICS_TEST_SCHEDULER", "/root/bess_solar_time_automation.py"))
+ROUTES = Path(__file__).parents[1] / "app" / "api" / "routes.py"
+
+
+def load_scheduler():
+    spec = importlib.util.spec_from_file_location("field_recovery_scheduler", SCHEDULER)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_snapshot_request_timeout_defaults_to_field_proven_deadline() -> None:
+    scheduler = load_scheduler()
+    assert scheduler.SNAPSHOT_REQUEST_TIMEOUT_SECONDS == 15.0
+    assert scheduler.SNAPSHOT_REQUEST_TIMEOUT_SECONDS > 9.8725
+
+
+def test_snapshot_uses_configured_deadline() -> None:
+    scheduler = load_scheduler()
+    calls: list[tuple[str, str, float | None]] = []
+
+    class Gateway:
+        def request(self, method, path, body=None, timeout=15, discard=False):
+            calls.append((method, path, timeout))
+            return {"solar": {}}
+
+    supervisor = scheduler.Supervisor(Gateway())
+    assert supervisor.all_status() == {"solar": {}}
+    assert calls == [(
+        "GET",
+        "/api/internal/control-sequence/automation-snapshot",
+        scheduler.SNAPSHOT_REQUEST_TIMEOUT_SECONDS,
+    )]
+
+
+def test_internal_snapshot_has_dedicated_worker_boundary() -> None:
+    source = ROUTES.read_text(encoding="utf-8")
+    assert "ThreadPoolExecutor(" in source
+    assert 'thread_name_prefix="kinetics-scheduler-snapshot"' in source
+    assert "async def internal_automation_snapshot(" in source
+    assert "scheduler_snapshot_executor" in source
+    assert "service.scheduler_control_view" in source
+    assert "phase5.8.2.0-isolated-automation-snapshot-v3" in source
+
+
+def test_alarm_history_work_is_bounded_for_legacy_clients() -> None:
+    source = ROUTES.read_text(encoding="utf-8")
+    assert "effective_limit = min(limit, 500)" in source
+    assert "with historian_admission.lease():" in source
+    assert '"truncated": limit > effective_limit' in source
+
+
+def runtime_1024(*, hard_fault: bool = False) -> dict:
+    module_fault = "9" if hard_fault else "None"
+    message = (
+        "PCS entered fault shutdown during startup: state=1024, "
+        f"module_fault_word_10={module_fault}, latched_fault_word_7=None; "
+        "PCS zero-setpoint/stop was requested automatically"
+    )
+    return {
+        "run_status": "failed",
+        "last_error": message,
+        "steps": [{"key": "pcs_start", "status": "failed", "message": message}],
+    }
+
+
+def tracking_item(actual: float, setpoint: float = -5.0) -> dict:
+    return {
+        "summary": {
+            "pcs_power_setpoint_kw": setpoint,
+            "pcs_actual_power_kw": actual,
+            "pcs_operating_state": 80,
+            "precharge_state": 3,
+        },
+        "runtime": {"run_status": "success", "stage": "automatic_sequence_complete"},
+        "errors": [],
+    }
+
+
+def test_only_narrow_state_1024_failure_is_recoverable() -> None:
+    scheduler = load_scheduler()
+    assert scheduler.recoverable_pcs_1024(runtime_1024())
+    assert not scheduler.recoverable_pcs_1024(runtime_1024(hard_fault=True))
+    assert not scheduler.recoverable_pcs_1024({"run_status": "success", "steps": []})
+
+
+def test_tracking_evidence_preserves_trigger_values() -> None:
+    scheduler = load_scheduler()
+    evidence = scheduler.target_tracking_evidence(tracking_item(-0.2), "charge", 5.0)
+    assert evidence["tracking_ok"] is False
+    assert evidence["pcs_actual_power_kw"] == -0.2
+    assert evidence["pcs_power_setpoint_kw"] == -5.0
+    assert evidence["runtime_stage"] == "automatic_sequence_complete"
+
+
+def test_solar_evidence_distinguishes_stale_from_low(monkeypatch) -> None:
+    scheduler = load_scheduler()
+    stale = {
+        "solar": {
+            "online": True,
+            "timestamp": "2026-11-12T08:00:00+05:30",
+            "active_power_kw": {"v": 1200.0, "q": "good"},
+            "errors": ["Modbus exception 11 for FC03"],
+        }
+    }
+    evidence = scheduler.solar_evidence(stale, 15, 80.0)
+    assert evidence["condition"] == "stale"
+    assert evidence["value_kw"] == 1200.0
+    assert evidence["errors"] == ["Modbus exception 11 for FC03"]
+
+
+def test_single_fresh_readback_mismatch_does_not_stop_all(monkeypatch) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "ACTIVE_READBACK_CONFIRMATIONS", 3)
+    gateway = SimpleNamespace(
+        request=lambda *args, **kwargs: tracking_item(-0.1)
+    )
+    supervisor = scheduler.Supervisor(gateway)
+    supervisor.active_pairs = {"pair_1"}
+    supervisor.active_since = None
+    supervisor.all_status = lambda: {"by_pair_id": {"pair_1": tracking_item(-0.1)}}
+    stopped: list[str] = []
+    supervisor.stop_all = stopped.append
+    supervisor.event = lambda *args, **kwargs: None
+    config = {"pairs": {"pair_1": {"enabled": True, "charge_kw": 5.0}}}
+
+    supervisor.reconcile(config, "charge")
+
+    assert stopped == []
+    assert supervisor.active_readback_failures["pair_1"] == 1
+
+
+def test_three_fresh_readback_mismatches_trigger_safe_stop(monkeypatch) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "ACTIVE_READBACK_CONFIRMATIONS", 3)
+    gateway = SimpleNamespace(request=lambda *args, **kwargs: tracking_item(-0.1))
+    supervisor = scheduler.Supervisor(gateway)
+    supervisor.active_pairs = {"pair_1"}
+    supervisor.active_since = None
+    supervisor.all_status = lambda: {"by_pair_id": {"pair_1": tracking_item(-0.1)}}
+    stopped: list[str] = []
+    supervisor.stop_all = stopped.append
+    supervisor.event = lambda *args, **kwargs: None
+    config = {"pairs": {"pair_1": {"enabled": True, "charge_kw": 5.0}}}
+
+    for _ in range(3):
+        supervisor.reconcile(config, "charge")
+
+    assert len(stopped) == 1
+    assert "Confirmed active readback loss for pair_1" in stopped[0]
+
+
+def test_good_confirmation_clears_cached_mismatch(monkeypatch) -> None:
+    scheduler = load_scheduler()
+    gateway = SimpleNamespace(request=lambda *args, **kwargs: tracking_item(-5.0))
+    supervisor = scheduler.Supervisor(gateway)
+    supervisor.active_pairs = {"pair_1"}
+    supervisor.active_since = None
+    supervisor.all_status = lambda: {"by_pair_id": {"pair_1": tracking_item(-0.1)}}
+    supervisor.stop_all = lambda reason: (_ for _ in ()).throw(AssertionError(reason))
+    supervisor.event = lambda *args, **kwargs: None
+    config = {"pairs": {"pair_1": {"enabled": True, "charge_kw": 5.0}}}
+
+    supervisor.reconcile(config, "charge")
+
+    assert supervisor.active_readback_failures["pair_1"] == 0
+
+
+def test_operating_window_guard_blocks_late_restart(monkeypatch) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "MIN_RESTART_REMAINING_SECONDS", 480.0)
+    supervisor = scheduler.Supervisor(SimpleNamespace())
+    supervisor.publish = lambda message, **extra: setattr(
+        supervisor, "published", (message, extra)
+    )
+    supervisor.prepare_pairs = lambda *args, **kwargs: (_ for _ in ()).throw(
+        AssertionError("late preparation must be inhibited")
+    )
+    now = datetime.now(scheduler.IST)
+    plan = {
+        "direction": "charge",
+        "mode": "operate",
+        "active_by": now - timedelta(hours=1),
+        "stop_at": now + timedelta(seconds=120),
+    }
+    monkeypatch.setattr(scheduler, "schedule_plan", lambda config, current: plan)
+    monkeypatch.setattr(scheduler, "solar_sample", lambda view, age: (500.0, True, 0.1))
+
+    supervisor.cycle(
+        {"enabled": True, "solar": {"max_age_seconds": 15}}, {}, 0.0
+    )
+
+    assert supervisor.phase == "waiting_window_guard"
+    assert "insufficient operating window" in supervisor.published[0]
+
+
+def test_recovery_attempt_is_bounded_per_pair_and_window() -> None:
+    scheduler = load_scheduler()
+    supervisor = scheduler.Supervisor(SimpleNamespace())
+    key = ("2026-11-12T15:00:00+05:30", "pair_4")
+    supervisor.recovery_attempts.add(key)
+    try:
+        supervisor._recover_pcs_1024(
+            "pair_4", "discharge", key[0], runtime_1024()
+        )
+    except RuntimeError as error:
+        assert "already attempted" in str(error)
+    else:
+        raise AssertionError("second recovery attempt was not rejected")
+
+
+def test_recovery_executes_pre_reset_zero_prepare_then_final_stop(monkeypatch, tmp_path) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "EVENTS_PATH", tmp_path / "events.jsonl")
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    monkeypatch.setattr(scheduler, "RECOVERY_TIMEOUT_SECONDS", 2.0)
+
+    calls: list[tuple[str, str, object]] = []
+
+    class Gateway:
+        compact_reads = 0
+
+        def request(self, method, path, body=None, timeout=15, discard=False):
+            calls.append((method, path, body))
+            if method == "POST" and path.endswith("/automatic-start"):
+                assert body["power_kw"] == 0.0
+                assert body["prepare_only"] is True
+                return {"run_id": "recovery-run"}
+            if method == "POST" and path.endswith("/safe-stop"):
+                assert body["open_bms"] is True
+                return {"ok": True}
+            if method == "GET":
+                self.compact_reads += 1
+                if self.compact_reads == 1:
+                    return {
+                        "summary": {
+                            "precharge_state": 0,
+                            "positive_contactor_closed": False,
+                            "negative_contactor_closed": False,
+                            "pcs_operating_state": 1,
+                            "pcs_power_setpoint_kw": 0.0,
+                            "pcs_actual_power_kw": 0.0,
+                        }
+                    }
+                if self.compact_reads == 2:
+                    return {
+                        "runtime": {
+                            "run_id": "recovery-run",
+                            "run_status": "prepared",
+                            "stage": "automatic_prepared_zero_power",
+                            "requested_direction": "discharge",
+                            "requested_power_kw": 0.0,
+                            "last_error": None,
+                        }
+                    }
+                return {
+                    "summary": {
+                        "precharge_state": 0,
+                        "positive_contactor_closed": False,
+                        "negative_contactor_closed": False,
+                        "pcs_operating_state": 1,
+                        "pcs_power_setpoint_kw": 0.0,
+                        "pcs_actual_power_kw": 0.0,
+                    }
+                }
+            raise AssertionError((method, path, body))
+
+    supervisor = scheduler.Supervisor(Gateway())
+    supervisor._recover_pcs_1024(
+        "pair_4",
+        "discharge",
+        "2026-11-12T15:00:00+05:30",
+        runtime_1024(),
+    )
+
+    assert [call[0:2] for call in calls] == [
+        ("POST", "/api/control-sequence/pair_4/safe-stop"),
+        ("GET", "/api/control-sequence/pair_4/status/compact"),
+        ("POST", "/api/control-sequence/pair_4/automatic-start"),
+        ("GET", "/api/control-sequence/pair_4/status/compact"),
+        ("POST", "/api/control-sequence/pair_4/safe-stop"),
+        ("GET", "/api/control-sequence/pair_4/status/compact"),
+    ]
+
+
+def test_recovery_does_not_start_zero_prepare_until_pre_reset_is_verified(
+    monkeypatch, tmp_path
+) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "EVENTS_PATH", tmp_path / "events.jsonl")
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    monkeypatch.setattr(scheduler, "RECOVERY_TIMEOUT_SECONDS", 0.01)
+    monkeypatch.setattr(scheduler.time, "sleep", lambda seconds: None)
+    calls: list[tuple[str, str]] = []
+
+    class Gateway:
+        def request(self, method, path, body=None, timeout=15, discard=False):
+            calls.append((method, path))
+            if method == "POST" and path.endswith("/safe-stop"):
+                return {"ok": True}
+            if method == "GET":
+                return {
+                    "summary": {
+                        "precharge_state": 0,
+                        "positive_contactor_closed": False,
+                        "negative_contactor_closed": False,
+                        "pcs_operating_state": 1024,
+                        "pcs_power_setpoint_kw": 0.0,
+                        "pcs_actual_power_kw": 0.0,
+                    }
+                }
+            raise AssertionError((method, path, body))
+
+    supervisor = scheduler.Supervisor(Gateway())
+    try:
+        supervisor._recover_pcs_1024(
+            "pair_4",
+            "charge",
+            "2026-11-13T09:00:00+05:30",
+            runtime_1024(),
+        )
+    except TimeoutError as error:
+        assert "pre-recovery safe-stop timed out" in str(error)
+    else:
+        raise AssertionError("unverified pre-reset was incorrectly accepted")
+
+    assert ("POST", "/api/control-sequence/pair_4/automatic-start") not in calls
+
+
+def test_transient_pair_status_503_preserves_matching_run(monkeypatch, tmp_path) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "EVENTS_PATH", tmp_path / "events.jsonl")
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    monkeypatch.setattr(scheduler.time, "sleep", lambda seconds: None)
+    calls = 0
+
+    class Gateway:
+        def request(self, method, path, body=None, timeout=15, discard=False):
+            nonlocal calls
+            calls += 1
+            if calls == 1:
+                raise RuntimeError(
+                    'HTTP 503 /api/control-sequence/pair_4/status/compact: '
+                    '{"detail":"Gateway HTTP capacity is busy; retry shortly",'
+                    '"retryable":true}'
+                )
+            return {
+                "runtime": {
+                    "run_id": "same-run",
+                    "run_status": "prepared",
+                    "stage": "automatic_prepared_zero_power",
+                    "requested_direction": "charge",
+                    "requested_power_kw": 5.0,
+                    "last_error": None,
+                }
+            }
+
+    supervisor = scheduler.Supervisor(Gateway())
+    final = supervisor._wait_for_runtime(
+        "pair_4", "same-run", "charge", 5.0, 5.0
+    )
+
+    assert calls == 2
+    assert final["runtime"]["run_id"] == "same-run"
+    assert any(
+        item["event"] == "control_status_recovered"
+        for item in supervisor.recent_events
+    )
+
+
+def _active_plan(scheduler):
+    now = datetime.now(scheduler.IST)
+    return {
+        "direction": "charge",
+        "mode": "operate",
+        "active_by": now - timedelta(hours=1),
+        "stop_at": now + timedelta(hours=1),
+    }
+
+
+def test_short_stale_solar_preserves_active_pairs(monkeypatch, tmp_path) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    monkeypatch.setattr(
+        scheduler, "schedule_plan", lambda config, current: _active_plan(scheduler)
+    )
+    monkeypatch.setattr(
+        scheduler, "solar_sample", lambda view, max_age: (2232.8, False, 46.6)
+    )
+    monkeypatch.setattr(
+        scheduler,
+        "solar_evidence",
+        lambda view, max_age, stop: {
+            "condition": "stale",
+            "value_kw": 2232.8,
+            "age_seconds": 46.6,
+            "fresh": False,
+        },
+    )
+    supervisor = scheduler.Supervisor(SimpleNamespace())
+    supervisor.active_pairs = {"pair_1", "pair_2", "pair_3", "pair_4"}
+    stopped: list[str] = []
+    supervisor.stop_all = stopped.append
+
+    supervisor.cycle(
+        {"enabled": True, "solar": {"stop_below_kw": 80}}, {}, float("inf")
+    )
+
+    assert stopped == []
+    assert supervisor.active_pairs == {"pair_1", "pair_2", "pair_3", "pair_4"}
+    assert supervisor.phase == "solar_telemetry_degraded"
+
+
+def test_sustained_stale_solar_still_safe_stops(monkeypatch, tmp_path) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    monkeypatch.setattr(scheduler, "SOLAR_TELEMETRY_LOSS_SAFE_STOP_SECONDS", 60.0)
+    monkeypatch.setattr(
+        scheduler, "schedule_plan", lambda config, current: _active_plan(scheduler)
+    )
+    monkeypatch.setattr(
+        scheduler, "solar_sample", lambda view, max_age: (2232.8, False, 90.0)
+    )
+    monkeypatch.setattr(
+        scheduler,
+        "solar_evidence",
+        lambda view, max_age, stop: {"condition": "stale", "fresh": False},
+    )
+    supervisor = scheduler.Supervisor(SimpleNamespace())
+    supervisor.active_pairs = {"pair_1"}
+    supervisor.solar_unavailable_since = scheduler.time.monotonic() - 61.0
+    stopped: list[str] = []
+    supervisor.stop_all = stopped.append
+
+    supervisor.cycle(
+        {"enabled": True, "solar": {"stop_below_kw": 80}}, {}, float("inf")
+    )
+
+    assert stopped == ["Sustained solar telemetry loss"]
+
+
+def test_fresh_confirmed_low_solar_keeps_30_second_stop(monkeypatch, tmp_path) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    monkeypatch.setattr(
+        scheduler, "schedule_plan", lambda config, current: _active_plan(scheduler)
+    )
+    monkeypatch.setattr(
+        scheduler, "solar_sample", lambda view, max_age: (50.0, True, 1.0)
+    )
+    monkeypatch.setattr(
+        scheduler,
+        "solar_evidence",
+        lambda view, max_age, stop: {
+            "condition": "below_threshold",
+            "fresh": True,
+            "value_kw": 50.0,
+        },
+    )
+    supervisor = scheduler.Supervisor(SimpleNamespace())
+    supervisor.active_pairs = {"pair_1"}
+    supervisor.below_since = scheduler.time.monotonic() - 31.0
+    stopped: list[str] = []
+    supervisor.stop_all = stopped.append
+
+    supervisor.cycle(
+        {
+            "enabled": True,
+            "solar": {"stop_below_kw": 80, "stop_hold_seconds": 30},
+        },
+        {},
+        float("inf"),
+    )
+
+    assert stopped == ["Confirmed low-solar delay expired"]
+
+
+def test_single_retryable_snapshot_failure_retains_active_operation(
+    monkeypatch, tmp_path
+) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    supervisor = scheduler.Supervisor(SimpleNamespace())
+    supervisor.active_pairs = {"pair_1", "pair_2", "pair_3", "pair_4"}
+    supervisor.snapshot_failures = 1
+    supervisor.snapshot_unavailable_since = scheduler.time.monotonic()
+    stopped: list[str] = []
+    supervisor.stop_all = stopped.append
+
+    supervisor.handle_snapshot_unavailable(
+        scheduler.SnapshotUnavailable("HTTP 503 automation-snapshot: retryable")
+    )
+
+    assert stopped == []
+    assert supervisor.active_pairs == {"pair_1", "pair_2", "pair_3", "pair_4"}
+    assert supervisor.phase == "snapshot_degraded"
+    status = scheduler.read_json(tmp_path / "status.json")
+    assert status["snapshot_retryable"] is True
+    assert status["snapshot_failures"] == 1
+
+
+def test_snapshot_loss_is_safely_bounded(monkeypatch, tmp_path) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "STATUS_PATH", tmp_path / "status.json")
+    monkeypatch.setattr(scheduler, "EVENTS_PATH", tmp_path / "events.jsonl")
+    monkeypatch.setattr(scheduler, "SNAPSHOT_LOSS_SAFE_STOP_SECONDS", 30.0)
+    supervisor = scheduler.Supervisor(SimpleNamespace())
+    supervisor.active_pairs = {"pair_4"}
+    supervisor.snapshot_unavailable_since = scheduler.time.monotonic() - 31.0
+    stopped: list[str] = []
+    supervisor.stop_all = stopped.append
+
+    supervisor.handle_snapshot_unavailable(
+        scheduler.SnapshotUnavailable("scheduler snapshot circuit open")
+    )
+
+    assert stopped == ["Scheduler snapshot unavailable beyond bounded safety delay"]
+
+
+def test_successful_snapshot_resets_failure_window(monkeypatch, tmp_path) -> None:
+    scheduler = load_scheduler()
+    monkeypatch.setattr(scheduler, "EVENTS_PATH", tmp_path / "events.jsonl")
+    payload = {"by_pair_id": {}, "solar": {}}
+    gateway = SimpleNamespace(request=lambda *args, **kwargs: payload)
+    supervisor = scheduler.Supervisor(gateway)
+    supervisor.snapshot_failures = 2
+    supervisor.snapshot_unavailable_since = scheduler.time.monotonic() - 4.0
+    supervisor.snapshot_next_attempt = 0.0
+
+    assert supervisor.all_status() is payload
+    assert supervisor.snapshot_failures == 0
+    assert supervisor.snapshot_unavailable_since is None
+    assert "scheduler_snapshot_restored" in (tmp_path / "events.jsonl").read_text()

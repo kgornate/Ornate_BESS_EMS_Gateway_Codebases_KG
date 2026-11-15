@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "northbound_frozen_compatible_streams": {
+    "S1": "fast_bess_telemetry",
+    "S2": "general_asset_telemetry",
+    "S3": "gateway_health",
+    "S4": "alarms_events",
+    "S5": "soc_controller",
+    "S6": "solis",
+    "S7": "edge_ai",
+    "S8": "configuration_audit",
+    "S9": "command_results",
+    "S10": "battery_charge_discharge_control",
+    "D1": "command_requests"
+  },
+  "s2_substreams": [
+    "ems_system",
+    "pcs_extended",
+    "bms_extended",
+    "io_module",
+    "liquid_cooling",
+    "fire_protection",
+    "dehumidifier",
+    "remote_control",
+    "bess_aux_consumption_meter",
+    "combiner_box_meter",
+    "solar_inverter"
+  ]
+}

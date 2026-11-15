@@ -1,0 +1,18 @@
+Observing production for 300 seconds...
+Stream                                 Substream                         msg/min     MB/min
+general_asset_telemetry                bms_extended                        25.00      2.132
+fast_bess_telemetry                    bess_fast                           11.20      0.384
+general_asset_telemetry                pcs_extended                         5.80      0.300
+general_asset_telemetry                solar_inverter                       7.80      0.060
+general_asset_telemetry                ems_system                           1.00      0.027
+general_asset_telemetry                io_module                            1.80      0.026
+general_asset_telemetry                bess_aux_consumption_meter           0.80      0.023
+general_asset_telemetry                liquid_cooling                       2.20      0.022
+battery_charge_discharge_control       pair_controller                      6.20      0.020
+general_asset_telemetry                dehumidifier                         1.60      0.013
+gateway_health                         gateway                              1.80      0.006
+general_asset_telemetry                fire_protection                      0.80      0.002
+alarms_events                          events                               0.80      0.002
+Total: 66.8 messages/min,
+3.018 MB/min
+This is producer generation, not backend acceptance.

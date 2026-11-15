@@ -1,0 +1,3 @@
+925ce5712082e3de358a98603504ae28e63f8a037b02d35b69f4bb3773ebebfa  /opt/kinetics-gateway/backend/app/core/config.py
+81f891546a101ecbc2f473d9d8be41e4b51e5ed3bfaf507d09e706888732cfec  /opt/kinetics-gateway/backend/app/main.py
+4a00e55305ae97d110910847557d5e99c769dd24a19f399fe8d6c62099d798c9  /opt/kinetics-gateway/backend/app/services/gateway_service.py

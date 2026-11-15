@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+cd /opt/kinetics-gateway/backend
+exec /opt/kinetics-gateway/venv/bin/python delivery_dashboard/dashboard.py \
+  --config /etc/kinetics-gateway/central_sync.json "$@"

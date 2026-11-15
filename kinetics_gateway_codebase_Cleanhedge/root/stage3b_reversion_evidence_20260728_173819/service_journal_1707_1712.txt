@@ -1,0 +1,16 @@
+Jul 28 17:10:23.795725 imx93-11x11-lpddr4x-frdm systemd[1]: Stopping Kinetics EMS Gateway V2...
+Jul 28 17:10:23.841655 imx93-11x11-lpddr4x-frdm uvicorn[44608]: INFO:     Shutting down
+Jul 28 17:10:23.942834 imx93-11x11-lpddr4x-frdm uvicorn[44608]: INFO:     Waiting for application shutdown.
+Jul 28 17:10:23.944978 imx93-11x11-lpddr4x-frdm uvicorn[44608]: INFO:     Application shutdown complete.
+Jul 28 17:10:23.945625 imx93-11x11-lpddr4x-frdm uvicorn[44608]: INFO:     Finished server process [44608]
+Jul 28 17:10:23.978402 imx93-11x11-lpddr4x-frdm systemd[1]: kinetics-gateway.service: Deactivated successfully.
+Jul 28 17:10:23.979398 imx93-11x11-lpddr4x-frdm systemd[1]: Stopped Kinetics EMS Gateway V2.
+Jul 28 17:10:23.980292 imx93-11x11-lpddr4x-frdm systemd[1]: kinetics-gateway.service: Consumed 2min 53.818s CPU time, 78.4M memory peak.
+Jul 28 17:10:24.025592 imx93-11x11-lpddr4x-frdm systemd[1]: Starting Kinetics EMS Gateway V2...
+Jul 28 17:10:24.214697 imx93-11x11-lpddr4x-frdm systemd[1]: Started Kinetics EMS Gateway V2.
+Jul 28 17:10:36.497234 imx93-11x11-lpddr4x-frdm uvicorn[46110]: INFO:     Started server process [46110]
+Jul 28 17:10:36.498494 imx93-11x11-lpddr4x-frdm uvicorn[46110]: INFO:     Waiting for application startup.
+Jul 28 17:10:36.500503 imx93-11x11-lpddr4x-frdm uvicorn[46110]: INFO:     Application startup complete.
+Jul 28 17:10:36.502537 imx93-11x11-lpddr4x-frdm uvicorn[46110]: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Jul 28 17:11:57.635989 imx93-11x11-lpddr4x-frdm uvicorn[46110]: 2026-07-28 17:11:57,629 INFO kinetics.http GET /api/health status=200 elapsed_ms=1637.9
+Jul 28 17:11:57.637231 imx93-11x11-lpddr4x-frdm uvicorn[46110]: INFO:     127.0.0.1:37122 - "GET /api/health HTTP/1.1" 200 OK

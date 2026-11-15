@@ -1,0 +1,7 @@
+[Unit]
+Description=Persist validated system time to Kinetics external RTC
+After=time-sync.target
+
+[Service]
+Type=oneshot
+ExecStart=/root/kinetics-rtc-manager.sh save

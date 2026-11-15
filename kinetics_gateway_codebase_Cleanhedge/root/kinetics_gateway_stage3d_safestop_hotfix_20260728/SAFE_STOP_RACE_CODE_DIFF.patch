@@ -1,0 +1,188 @@
+--- /mnt/data/stage3c_patch_work/pkg/kinetics_stage3c_hotfix_20260728/files/app/services/bms_pcs_control.py	2026-07-28 17:21:04.000000000 +0000
++++ /mnt/data/kinetics_gateway_stage3d_safestop_hotfix_20260728/files/app/services/bms_pcs_control.py	2026-07-28 19:02:23.973964878 +0000
+@@ -87,6 +87,12 @@
+             pair.pair_id: threading.Event() for pair in self.config.pairs
+         }
+         self._monitor_threads: dict[str, threading.Thread] = {}
++        self._monitor_stop_events: dict[str, threading.Event] = {
++            pair.pair_id: threading.Event() for pair in self.config.pairs
++        }
++        self._safe_stop_locks: dict[str, threading.RLock] = {
++            pair.pair_id: threading.RLock() for pair in self.config.pairs
++        }
+         self._runtime_monitor_stats: dict[str, dict[str, Any]] = {
+             pair.pair_id: {
+                 "samples": 0,
+@@ -678,6 +684,7 @@
+             "bms_normal_poll_seconds": self.gateway_config.bms.poll_normal_seconds,
+             "pcs_poll_seconds": self.gateway_config.pcs.poll_seconds,
+             "runtime_monitor_interval_seconds": self.config.runtime_monitor_interval_seconds,
++            "safe_stop_monitor_quiesce": True,
+             "active_threads": active,
+             "pairs": stats,
+         }
+@@ -1765,6 +1772,25 @@
+         open_bms: bool,
+         reason: str,
+     ) -> dict[str, Any]:
++        # Runtime protection and operator stop paths may converge at the same
++        # moment. Serialize the physical stop sequence per pair so zero-power,
++        # PCS Stop and BMS-open writes cannot interleave.
++        with self._safe_stop_locks[pair.pair_id]:
++            return self._safe_stop_internal_locked(
++                username,
++                pair,
++                open_bms=open_bms,
++                reason=reason,
++            )
++
++    def _safe_stop_internal_locked(
++        self,
++        username: str,
++        pair: ControlPairConfig,
++        *,
++        open_bms: bool,
++        reason: str,
++    ) -> dict[str, Any]:
+         actions: list[dict[str, Any]] = []
+         errors: list[str] = []
+         pair_id = pair.pair_id
+@@ -1870,12 +1896,17 @@
+         pair = self._pair(pair_id)
+         self._require_write_gates(confirmation)
+         self._abort_events[pair_id].set()
++        monitor_quiesce = self._quiesce_runtime_monitor(
++            pair_id,
++            reason="operator_safe_stop",
++        )
+         response = self._safe_stop_internal(
+             username,
+             pair,
+             open_bms=open_bms,
+             reason="operator_safe_stop",
+         )
++        response["runtime_monitor_quiesce"] = monitor_quiesce
+         if response["errors"]:
+             raise RuntimeError("; ".join(response["errors"]))
+         return response
+@@ -2276,12 +2307,17 @@
+         pair = self._pair(pair_id)
+         self._require_write_gates(confirmation)
+         self._abort_events[pair_id].set()
++        monitor_quiesce = self._quiesce_runtime_monitor(
++            pair_id,
++            reason="operator_abort",
++        )
+         response = self._safe_stop_internal(
+             username,
+             pair,
+             open_bms=open_bms,
+             reason="operator_abort",
+         )
++        response["runtime_monitor_quiesce"] = monitor_quiesce
+         self._update_runtime(
+             pair_id,
+             run_status="aborted",
+@@ -2291,11 +2327,48 @@
+         )
+         return response
+ 
++    def _quiesce_runtime_monitor(
++        self,
++        pair_id: str,
++        *,
++        reason: str,
++        timeout_seconds: float = 5.0,
++    ) -> dict[str, Any]:
++        """Stop the active runtime monitor before opening the BMS contactors.
++
++        The stop event is checked again after any cache/live read returns. This
++        closes the operator-safe-stop race where a monitor could evaluate the
++        intentionally opened contactors against the previous non-zero command.
++        """
++        stop_event = self._monitor_stop_events[pair_id]
++        stop_event.set()
++        self._update_runtime(
++            pair_id,
++            commanded_power_kw=0.0,
++            requested_power_kw=0.0,
++            monitor_stop_requested=True,
++            monitor_stop_reason=reason,
++        )
++        with self._lock:
++            thread = self._monitor_threads.get(pair_id)
++        was_alive = bool(thread is not None and thread.is_alive())
++        if was_alive and thread is not threading.current_thread():
++            thread.join(timeout=max(0.0, timeout_seconds))
++        still_alive = bool(thread is not None and thread.is_alive())
++        return {
++            "requested": True,
++            "reason": reason,
++            "was_alive": was_alive,
++            "stopped": not still_alive,
++            "timeout_seconds": timeout_seconds,
++        }
++
+     def _ensure_runtime_monitor(self, username: str, pair: ControlPairConfig) -> None:
+         with self._lock:
+             current = self._monitor_threads.get(pair.pair_id)
+             if current is not None and current.is_alive():
+                 return
++            self._monitor_stop_events[pair.pair_id].clear()
+             thread = threading.Thread(
+                 target=self._runtime_monitor_worker,
+                 name=f"control-monitor-{pair.pair_id}",
+@@ -2308,14 +2381,22 @@
+ 
+     def _runtime_monitor_worker(self, username: str, pair: ControlPairConfig) -> None:
+         pair_id = pair.pair_id
++        stop_event = self._monitor_stop_events[pair_id]
+         try:
+             while True:
++                if stop_event.is_set():
++                    break
+                 runtime = self._runtime_snapshot(pair_id)
+                 expected_commanded = float(runtime.get("commanded_power_kw") or 0.0)
+                 if abs(expected_commanded) <= PCS_ZERO_SETPOINT_TOLERANCE_KW:
+                     break
+ 
+                 status = self._runtime_monitor_status(pair_id, pair)
++                # An operator safe-stop may have been requested while the cache
++                # or bounded live confirmation was in progress. Exit before
++                # interpreting the intentionally changing contactor/limit state.
++                if stop_event.is_set():
++                    break
+                 summary = status["summary"]
+                 source = status.get("refresh", {}).get("source", "unknown")
+                 direction_value = runtime.get("requested_direction")
+@@ -2391,7 +2472,8 @@
+                         runtime_safety_stop=stop,
+                     )
+                     return
+-                time.sleep(self.config.runtime_monitor_interval_seconds)
++                if stop_event.wait(self.config.runtime_monitor_interval_seconds):
++                    break
+         except Exception as error:
+             LOGGER.exception("Runtime monitor failed pair=%s", pair_id)
+             try:
+@@ -2418,7 +2500,11 @@
+                 runtime_safety_stop=stop,
+             )
+         finally:
+-            self._update_runtime(pair_id, monitor_active=False)
++            self._update_runtime(
++                pair_id,
++                monitor_active=False,
++                monitor_stop_requested=False,
++            )
+ 
+ 
+     def capabilities(self) -> dict[str, Any]:
+@@ -2432,6 +2518,7 @@
+                 "commissioning_next_step": True,
+                 "automatic_start": self.config.allow_full_automatic_sequence,
+                 "runtime_monitor": self.config.runtime_monitor_enabled,
++                "safe_stop_monitor_quiesce": True,
+             },
+             "validated_sequence": [
+                 "PCS stopped, Remote/PQ/constant-power, 0 kW",

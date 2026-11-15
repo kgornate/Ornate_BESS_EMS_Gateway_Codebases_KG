@@ -1,0 +1,503 @@
+--- /mnt/data/stage2_review/kinetics_stage2_review_20260728_154405/backend/app/core/config.py	2026-07-28 06:43:12.000000000 +0000
++++ /mnt/data/kinetics_stage3a_memory_storage_hotfix/backend/app/core/config.py	2026-07-28 16:16:33.834379974 +0000
+@@ -256,6 +256,37 @@
+     compress_history: bool = True
+     store_raw_when_distinct: bool = True
+ 
++    # Embedded-safe fallback policy used while the removable SD card is absent.
++    # These defaults deliberately protect the small root filesystem.
++    fallback_sample_interval_seconds: float = 30.0
++    fallback_telemetry_retention_days: int = 3
++    fallback_quota_gb: float = 0.5
++
++    # Runtime-memory and status-refresh bounds.
++    update_buffer_events: int = 200
++    status_refresh_seconds: float = 60.0
++    compression_level: int = 1
++
++    @model_validator(mode="after")
++    def validate_storage_settings(self) -> "StorageConfig":
++        if self.sample_interval_seconds <= 0:
++            raise ValueError("storage sample_interval_seconds must be positive")
++        if self.fallback_sample_interval_seconds <= 0:
++            raise ValueError("fallback_sample_interval_seconds must be positive")
++        if self.telemetry_retention_days <= 0 or self.fallback_telemetry_retention_days <= 0:
++            raise ValueError("telemetry retention days must be positive")
++        if self.quota_gb <= 0 or self.fallback_quota_gb <= 0:
++            raise ValueError("storage quota must be positive")
++        if not 1 <= self.quota_high_watermark_percent <= 100:
++            raise ValueError("quota_high_watermark_percent must be between 1 and 100")
++        if self.update_buffer_events < 10:
++            raise ValueError("update_buffer_events must be at least 10")
++        if self.status_refresh_seconds <= 0:
++            raise ValueError("status_refresh_seconds must be positive")
++        if not 0 <= self.compression_level <= 9:
++            raise ValueError("compression_level must be between 0 and 9")
++        return self
++
+ 
+ class SecurityConfig(BaseModel):
+     jwt_secret_env: str = "KINETICS_JWT_SECRET"
+--- /mnt/data/stage2_review/kinetics_stage2_review_20260728_154405/backend/app/storage/sqlite_store.py	2026-07-25 18:26:52.000000000 +0000
++++ /mnt/data/kinetics_stage3a_memory_storage_hotfix/backend/app/storage/sqlite_store.py	2026-07-28 16:18:20.566375522 +0000
+@@ -19,8 +19,7 @@
+ 
+ 
+ def _is_mount_ready(config: StorageConfig) -> bool:
+-    if not config.require_preferred_mount:
+-        return True
++    """Return True only when the preferred mount point is a real mounted filesystem."""
+     mount_point = Path(config.preferred_mount_point)
+     return mount_point.exists() and os.path.ismount(mount_point)
+ 
+@@ -30,9 +29,14 @@
+     fallback = Path(config.fallback_root)
+     if not fallback.is_absolute():
+         fallback = project_root() / fallback
+-    candidates: list[Path] = []
+-    if _is_mount_ready(config):
+-        candidates.append(preferred)
++
++    mount_ready = _is_mount_ready(config)
++    if config.require_preferred_mount and not mount_ready:
++        raise RuntimeError(
++            f"Required preferred storage is not mounted at {config.preferred_mount_point}"
++        )
++
++    candidates: list[Path] = [preferred] if mount_ready else []
+     candidates.append(fallback)
+     for candidate in candidates:
+         try:
+@@ -49,17 +53,52 @@
+ class SQLiteStore:
+     def __init__(self, config: StorageConfig) -> None:
+         self.config = config
++        self.preferred_mount_ready = _is_mount_ready(config)
+         self.root = choose_storage_root(config)
+         self.database_path = self.root / config.database_name
+         self.log_path = self.root / config.log_name
+         self._lock = threading.RLock()
+         self._connection = sqlite3.connect(self.database_path, check_same_thread=False)
+         self._connection.row_factory = sqlite3.Row
++        self._records: dict[str, int] = {}
++        self._telemetry_size: dict[str, float | int] = {}
+         self._initialize()
++        self._load_status_counters()
++
++    @property
++    def using_preferred_storage(self) -> bool:
++        return self.preferred_mount_ready and self.root == Path(self.config.preferred_root)
+ 
+     @property
+     def quota_bytes(self) -> int:
+-        return int(self.config.quota_gb * 1024**3)
++        quota_gb = (
++            self.config.quota_gb
++            if self.using_preferred_storage
++            else min(self.config.quota_gb, self.config.fallback_quota_gb)
++        )
++        return int(quota_gb * 1024**3)
++
++    @property
++    def retention_days(self) -> int:
++        return (
++            self.config.telemetry_retention_days
++            if self.using_preferred_storage
++            else min(
++                self.config.telemetry_retention_days,
++                self.config.fallback_telemetry_retention_days,
++            )
++        )
++
++    @property
++    def sample_interval_seconds(self) -> float:
++        return (
++            self.config.sample_interval_seconds
++            if self.using_preferred_storage
++            else max(
++                self.config.sample_interval_seconds,
++                self.config.fallback_sample_interval_seconds,
++            )
++        )
+ 
+     def _initialize(self) -> None:
+         with self._connection:
+@@ -144,15 +183,43 @@
+                 if name not in columns:
+                     self._connection.execute(f"ALTER TABLE telemetry ADD COLUMN {name} {definition}")
+ 
++    def _load_status_counters(self) -> None:
++        """Load record and size counters once; normal status calls use in-memory values."""
++        with self._lock:
++            self._records = {
++                table: int(self._connection.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0])
++                for table in ("telemetry", "alarms", "alarm_history", "command_audit", "events")
++            }
++            row = self._connection.execute(
++                """
++                SELECT COUNT(*) AS count,
++                       COALESCE(SUM(uncompressed_bytes),0) AS raw_sum,
++                       COALESCE(SUM(stored_bytes),0) AS stored_sum
++                FROM telemetry
++                """
++            ).fetchone()
++            count = int(row["count"])
++            raw_sum = int(row["raw_sum"])
++            stored_sum = int(row["stored_sum"])
++            self._telemetry_size = {
++                "records": count,
++                "uncompressed_bytes_total": raw_sum,
++                "stored_bytes_total": stored_sum,
++                "average_uncompressed_bytes": (raw_sum / count) if count else 0.0,
++                "average_stored_bytes": (stored_sum / count) if count else 0.0,
++            }
++
+     def close(self) -> None:
+         with self._lock:
+             self._connection.close()
+ 
+     @staticmethod
+-    def _encode_payload(payload: dict[str, Any], compress: bool) -> tuple[str, bytes | None, str, int, int]:
++    def _encode_payload(
++        payload: dict[str, Any], compress: bool, compression_level: int = 1
++    ) -> tuple[str, bytes | None, str, int, int]:
+         raw = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+         if compress:
+-            blob = zlib.compress(raw, level=6)
++            blob = zlib.compress(raw, level=compression_level)
+             return "", blob, "zlib-json", len(raw), len(blob)
+         text = raw.decode("utf-8")
+         return text, None, "json", len(raw), len(raw)
+@@ -164,21 +231,74 @@
+             return json.loads(zlib.decompress(row["payload_blob"]).decode("utf-8"))
+         return json.loads(row["payload_json"] or "{}")
+ 
+-    def store_telemetry(self, asset_id: str, payload: dict[str, Any], timestamp: str | None = None) -> dict[str, int]:
+-        text, blob, encoding, raw_size, stored_size = self._encode_payload(
+-            payload, self.config.compress_history
+-        )
++    def store_telemetry_batch(
++        self,
++        samples: list[tuple[str, dict[str, Any], str | None]],
++    ) -> dict[str, int]:
++        """Compress samples and insert them in one SQLite transaction."""
++        if not samples:
++            return {"records": 0, "uncompressed_bytes": 0, "stored_bytes": 0}
++
++        rows: list[tuple[Any, ...]] = []
++        raw_total = 0
++        stored_total = 0
++        for asset_id, payload, timestamp in samples:
++            text, blob, encoding, raw_size, stored_size = self._encode_payload(
++                payload,
++                self.config.compress_history,
++                self.config.compression_level,
++            )
++            rows.append(
++                (
++                    timestamp or utc_now(),
++                    asset_id,
++                    text,
++                    blob,
++                    encoding,
++                    raw_size,
++                    stored_size,
++                )
++            )
++            raw_total += raw_size
++            stored_total += stored_size
++
+         with self._lock, self._connection:
+-            self._connection.execute(
++            self._connection.executemany(
+                 """
+                 INSERT INTO telemetry(
+                     timestamp, asset_id, payload_json, payload_blob, encoding,
+                     uncompressed_bytes, stored_bytes
+                 ) VALUES(?,?,?,?,?,?,?)
+                 """,
+-                (timestamp or utc_now(), asset_id, text, blob, encoding, raw_size, stored_size),
++                rows,
+             )
+-        return {"uncompressed_bytes": raw_size, "stored_bytes": stored_size}
++            inserted = len(rows)
++            self._records["telemetry"] = self._records.get("telemetry", 0) + inserted
++            total_records = int(self._records["telemetry"])
++            raw_sum = int(self._telemetry_size.get("uncompressed_bytes_total", 0)) + raw_total
++            stored_sum = int(self._telemetry_size.get("stored_bytes_total", 0)) + stored_total
++            self._telemetry_size = {
++                "records": total_records,
++                "uncompressed_bytes_total": raw_sum,
++                "stored_bytes_total": stored_sum,
++                "average_uncompressed_bytes": (raw_sum / total_records) if total_records else 0.0,
++                "average_stored_bytes": (stored_sum / total_records) if total_records else 0.0,
++            }
++
++        return {
++            "records": len(rows),
++            "uncompressed_bytes": raw_total,
++            "stored_bytes": stored_total,
++        }
++
++    def store_telemetry(
++        self, asset_id: str, payload: dict[str, Any], timestamp: str | None = None
++    ) -> dict[str, int]:
++        result = self.store_telemetry_batch([(asset_id, payload, timestamp)])
++        return {
++            "uncompressed_bytes": result["uncompressed_bytes"],
++            "stored_bytes": result["stored_bytes"],
++        }
+ 
+     def query_telemetry(self, asset_id: str, *, limit: int = 500, since: str | None = None) -> list[dict[str, Any]]:
+         sql = "SELECT timestamp, asset_id, payload_json, payload_blob, encoding FROM telemetry WHERE asset_id=?"
+@@ -226,6 +346,8 @@
+                     raised_at, cleared_at, alarm["message"], json.dumps(payload, ensure_ascii=False),
+                 ),
+             )
++            if existing is None:
++                self._records["alarms"] = self._records.get("alarms", 0) + 1
+             if existing is None or int(existing["active"]) != active:
+                 self._connection.execute(
+                     "INSERT INTO alarm_history(timestamp, alarm_key, asset_id, code, severity, action, payload_json) VALUES(?,?,?,?,?,?,?)",
+@@ -234,6 +356,7 @@
+                         "raised" if active else "cleared", json.dumps(payload, ensure_ascii=False),
+                     ),
+                 )
++                self._records["alarm_history"] = self._records.get("alarm_history", 0) + 1
+ 
+     def list_alarms(self, *, active_only: bool = True, limit: int = 500) -> list[dict[str, Any]]:
+         sql = "SELECT payload_json FROM alarms"
+@@ -282,6 +405,7 @@
+                     json.dumps(response, ensure_ascii=False),
+                 ),
+             )
++            self._records["command_audit"] = self._records.get("command_audit", 0) + 1
+ 
+     def list_command_audit(self, limit: int = 200) -> list[dict[str, Any]]:
+         with self._lock:
+@@ -303,6 +427,7 @@
+                 "INSERT INTO events(timestamp,event_type,asset_id,message,payload_json) VALUES(?,?,?,?,?)",
+                 (utc_now(), event_type, asset_id, message, json.dumps(payload or {}, ensure_ascii=False)),
+             )
++            self._records["events"] = self._records.get("events", 0) + 1
+ 
+     def list_events(self, *, limit: int = 500, since: str | None = None, event_type: str | None = None) -> list[dict[str, Any]]:
+         clauses: list[str] = []
+@@ -368,23 +493,7 @@
+ 
+     def telemetry_size_stats(self) -> dict[str, float | int]:
+         with self._lock:
+-            row = self._connection.execute(
+-                """
+-                SELECT COUNT(*) AS count,
+-                       COALESCE(SUM(uncompressed_bytes),0) AS raw_sum,
+-                       COALESCE(SUM(stored_bytes),0) AS stored_sum,
+-                       COALESCE(AVG(uncompressed_bytes),0) AS raw_avg,
+-                       COALESCE(AVG(stored_bytes),0) AS stored_avg
+-                FROM telemetry
+-                """
+-            ).fetchone()
+-        return {
+-            "records": int(row["count"]),
+-            "uncompressed_bytes_total": int(row["raw_sum"]),
+-            "stored_bytes_total": int(row["stored_sum"]),
+-            "average_uncompressed_bytes": float(row["raw_avg"]),
+-            "average_stored_bytes": float(row["stored_avg"]),
+-        }
++            return dict(self._telemetry_size)
+ 
+     def status(self) -> dict[str, Any]:
+         try:
+@@ -393,20 +502,20 @@
+             total_bytes = usage.f_blocks * usage.f_frsize
+         except OSError:
+             free_bytes = total_bytes = None
+-        counts: dict[str, int] = {}
+         with self._lock:
+-            for table in ("telemetry", "alarms", "alarm_history", "command_audit", "events"):
+-                counts[table] = int(self._connection.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0])
++            counts = dict(self._records)
++            telemetry_size = dict(self._telemetry_size)
+         application_bytes = self._file_bytes()
+         quota = self.quota_bytes
+         return {
+             "root": str(self.root),
+             "database": str(self.database_path),
+             "log_file": str(self.log_path),
++            "storage_mode": "preferred_sd" if self.using_preferred_storage else "fallback_rootfs",
+             "preferred_mount_point": self.config.preferred_mount_point,
+-            "preferred_mount_ready": Path(self.config.preferred_mount_point).exists() and os.path.ismount(self.config.preferred_mount_point),
++            "preferred_mount_ready": self.preferred_mount_ready,
+             "preferred_mount_required": self.config.require_preferred_mount,
+-            "is_preferred_sd_path": str(self.root) == str(Path(self.config.preferred_root)),
++            "is_preferred_sd_path": self.using_preferred_storage,
+             "free_bytes": free_bytes,
+             "filesystem_total_bytes": total_bytes,
+             "database_bytes": self.database_path.stat().st_size if self.database_path.exists() else 0,
+@@ -415,9 +524,12 @@
+             "quota_used_percent": round((application_bytes / quota) * 100, 4) if quota else None,
+             "quota_remaining_bytes": max(0, quota - application_bytes),
+             "records": counts,
+-            "telemetry_size": self.telemetry_size_stats(),
++            "telemetry_size": telemetry_size,
+             "compression_enabled": self.config.compress_history,
++            "compression_level": self.config.compression_level,
+             "compact_history": self.config.compact_history,
++            "effective_sample_interval_seconds": self.sample_interval_seconds,
++            "effective_retention_days": self.retention_days,
+         }
+ 
+     def _delete_oldest_telemetry_batch(self, count: int = 10000) -> int:
+@@ -428,8 +540,8 @@
+             ).rowcount
+ 
+     def enforce_retention(self) -> dict[str, int]:
+-        telemetry_cutoff = (datetime.now(timezone.utc) - timedelta(days=self.config.telemetry_retention_days)).isoformat()
+-        audit_cutoff = (datetime.now(timezone.utc) - timedelta(days=max(self.config.telemetry_retention_days, 365))).isoformat()
++        telemetry_cutoff = (datetime.now(timezone.utc) - timedelta(days=self.retention_days)).isoformat()
++        audit_cutoff = (datetime.now(timezone.utc) - timedelta(days=max(self.retention_days, 365))).isoformat()
+         removed: dict[str, int] = {}
+         with self._lock, self._connection:
+             removed["telemetry_age"] = self._connection.execute(
+@@ -451,4 +563,5 @@
+         removed["telemetry_quota"] = removed_quota
+         with self._lock:
+             self._connection.execute("PRAGMA wal_checkpoint(PASSIVE)")
++        self._load_status_counters()
+         return removed
+--- /mnt/data/stage2_review/kinetics_stage2_review_20260728_154405/backend/app/services/gateway_service.py	2026-07-27 07:42:34.000000000 +0000
++++ /mnt/data/kinetics_stage3a_memory_storage_hotfix/backend/app/services/gateway_service.py	2026-07-28 16:18:52.350374196 +0000
+@@ -48,8 +48,16 @@
+         self._lock = threading.RLock()
+         self._snapshot: dict[str, Any] = self._empty_snapshot()
+         self._sequence = 0
+-        self._updates: deque[dict[str, Any]] = deque(maxlen=2000)
++        self._updates: deque[dict[str, Any]] = deque(
++            maxlen=self.config.storage.update_buffer_events
++        )
+         self._last_store_at = 0.0
++        self._last_storage_status_at = 0.0
++        self._storage_status_cache = self.store.status()
++        self._active_alarm_cache = {
++            alarm["alarm_key"]: alarm
++            for alarm in self.store.list_alarms(active_only=True, limit=5000)
++        }
+         self._last_poll_error: str | None = None
+         self._poll_stats: dict[str, dict[str, Any]] = {
+             name: {
+@@ -353,6 +361,17 @@
+         if location == "pcs_devices" and asset_id == self.config.pcs.primary_device.asset_id:
+             self._snapshot["pcs"] = deepcopy(current)
+ 
++    def _storage_status(self, *, force: bool = False) -> dict[str, Any]:
++        now = time.monotonic()
++        if (
++            force
++            or not self._storage_status_cache
++            or now - self._last_storage_status_at >= self.config.storage.status_refresh_seconds
++        ):
++            self._storage_status_cache = self.store.status()
++            self._last_storage_status_at = now
++        return deepcopy(self._storage_status_cache)
++
+     def _finalize_poll(
+         self,
+         poll_class: str,
+@@ -368,7 +387,7 @@
+         self._snapshot["sequence"] = self._sequence
+         self._snapshot["timestamp"] = timestamp
+         self._snapshot["alarms"] = self._update_alarms(self._snapshot)
+-        self._snapshot["storage"] = self.store.status()
++        self._snapshot["storage"] = self._storage_status()
+         self._last_poll_error = error_text
+         event = {
+             "type": "telemetry_update",
+@@ -477,16 +496,36 @@
+             if asset.get("disabled"):
+                 continue
+             for alarm in self.alarm_engine.extract(asset):
+-                current[alarm["alarm_key"]] = alarm
+-        previous = {alarm["alarm_key"]: alarm for alarm in self.store.list_alarms(active_only=True, limit=5000)}
+-        for alarm in current.values():
+-            self.store.upsert_alarm(alarm)
+-        for key, alarm in previous.items():
++                key = alarm["alarm_key"]
++                previous = self._active_alarm_cache.get(key)
++                if previous:
++                    alarm["raised_at"] = previous.get("raised_at") or alarm.get("raised_at")
++                current[key] = alarm
++
++        def comparable(alarm: dict[str, Any]) -> dict[str, Any]:
++            return {
++                "alarm_key": alarm.get("alarm_key"),
++                "asset_id": alarm.get("asset_id"),
++                "code": alarm.get("code"),
++                "severity": alarm.get("severity"),
++                "active": bool(alarm.get("active", True)),
++                "message": alarm.get("message"),
++                "payload": alarm.get("payload") or {},
++            }
++
++        for key, alarm in current.items():
++            previous = self._active_alarm_cache.get(key)
++            if previous is None or comparable(previous) != comparable(alarm):
++                self.store.upsert_alarm(alarm)
++
++        for key, alarm in self._active_alarm_cache.items():
+             if key not in current:
+                 cleared = dict(alarm)
+                 cleared["active"] = False
+                 cleared["cleared_at"] = now_iso()
+                 self.store.upsert_alarm(cleared)
++
++        self._active_alarm_cache = deepcopy(current)
+         return list(current.values())
+ 
+     def _history_asset(self, asset: dict[str, Any]) -> dict[str, Any]:
+@@ -510,25 +549,36 @@
+ 
+     def _store_snapshot_if_due(self, snapshot: dict[str, Any], *, force: bool = False) -> None:
+         now = time.monotonic()
+-        if not force and now - self._last_store_at < self.config.storage.sample_interval_seconds:
++        interval = self.store.sample_interval_seconds
++        if not force and now - self._last_store_at < interval:
+             return
+         self._last_store_at = now
+-        raw_total = stored_total = 0
+-        for asset in self._all_assets(snapshot):
+-            asset_id = str(asset.get("asset_id", "unknown"))
+-            sizes = self.store.store_telemetry(
+-                asset_id, self._history_asset(asset), snapshot.get("timestamp")
++
++        timestamp = snapshot.get("timestamp")
++        samples = [
++            (
++                str(asset.get("asset_id", "unknown")),
++                self._history_asset(asset),
++                timestamp,
+             )
+-            raw_total += sizes["uncompressed_bytes"]
+-            stored_total += sizes["stored_bytes"]
++            for asset in self._all_assets(snapshot)
++        ]
++        sizes = self.store.store_telemetry_batch(samples)
++        raw_total = sizes["uncompressed_bytes"]
++        stored_total = sizes["stored_bytes"]
++
+         stats = self._storage_sample_stats
+         stats["samples"] += 1
+         stats["last_uncompressed_bytes"] = raw_total
+         stats["last_stored_bytes"] = stored_total
+         stats["total_uncompressed_bytes"] += raw_total
+         stats["total_stored_bytes"] += stored_total
+-        stats["average_uncompressed_bytes"] = round(stats["total_uncompressed_bytes"] / stats["samples"], 2)
+-        stats["average_stored_bytes"] = round(stats["total_stored_bytes"] / stats["samples"], 2)
++        stats["average_uncompressed_bytes"] = round(
++            stats["total_uncompressed_bytes"] / stats["samples"], 2
++        )
++        stats["average_stored_bytes"] = round(
++            stats["total_stored_bytes"] / stats["samples"], 2
++        )
+ 
+     def set_mock_scenario(self, scenario: str) -> dict[str, Any]:
+         with self._lock:

@@ -1,0 +1,7 @@
+#!/bin/bash
+TOKEN=$(curl -fsS http://127.0.0.1:8000/api/auth/login \
+  -H 'Content-Type: application/json' \
+  -d '{"username":"internal","password":"Internal@123"}' \
+  | /opt/kinetics-gateway/venv/bin/python -c 'import json,sys; print(json.load(sys.stdin)["access_token"])') || exit 1
+
+watch -n 3 -t "/opt/kinetics-gateway/venv/bin/python /root/bess_dashboard.py '$TOKEN'"
