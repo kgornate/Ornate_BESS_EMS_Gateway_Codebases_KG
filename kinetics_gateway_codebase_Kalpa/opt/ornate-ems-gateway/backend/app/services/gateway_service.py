@@ -10,6 +10,7 @@ from copy import deepcopy
 from datetime import datetime, timezone
 from typing import Any
 
+from app.assets.acrel_meter import AcrelMeterDriver
 from app.assets.bms_driver import BmsModbusDriver
 from app.assets.mock_plant import MockPlant, SCENARIOS
 from app.assets.pcs_driver import PcsModbusDriver
@@ -42,6 +43,7 @@ class GatewayService:
         eager_initialization: bool = True,
     ) -> None:
         self.config = config
+        self.meter_driver = AcrelMeterDriver(config.meter)
         self.store = store
         self.runtime_metrics = runtime_metrics
         self.bms_catalog = ProtocolCatalog.load(resolve_path(config.bms_catalog_file))
@@ -84,7 +86,7 @@ class GatewayService:
                 "last_event_bytes": 0,
                 "total_event_bytes": 0,
             }
-            for name in (*POLL_CLASSES, "pcs")
+            for name in (*POLL_CLASSES, "pcs", *(("meter",) if config.meter.enabled else ()))
         }
         self._storage_sample_stats = {
             "samples": 0,
@@ -255,6 +257,31 @@ class GatewayService:
             result = deepcopy(event)
         self._store_prepared_historian_samples(historian_samples)
         return result
+
+    def poll_meter(self) -> dict[str, Any]:
+        if not self.config.meter.enabled:
+            return {}
+        started = time.perf_counter()
+        started_at = now_iso()
+        update = self.meter_driver.poll()
+        errors = update.get("read_errors", [])
+        with self._lock:
+            self._snapshot["meters"] = {update["asset_id"]: update}
+            event = self._finalize_poll(
+                "meter", [update], started_at,
+                (time.perf_counter() - started) * 1000,
+                "; ".join(item["error"] for item in errors) if errors else None,
+            )
+            samples = self._prepare_historian_samples_if_due_locked(self._snapshot)
+            result = deepcopy(event)
+        self._store_prepared_historian_samples(samples)
+        return result
+
+    def meters(self) -> dict[str, Any]:
+        if not self.config.meter.enabled:
+            return {}
+        asset = self.meter_driver.snapshot()
+        return {asset["asset_id"]: asset}
 
     def poll_pcs(self) -> dict[str, Any]:
         """Poll all configured PCS slaves sequentially on the shared transport."""
@@ -574,7 +601,9 @@ class GatewayService:
 
     def snapshot(self) -> dict[str, Any]:
         with self._lock:
-            return deepcopy(self._snapshot)
+            result = deepcopy(self._snapshot)
+        result["meters"] = self.meters()
+        return result
 
     def compact_snapshot(self) -> dict[str, Any]:
         with self._lock:
@@ -599,6 +628,7 @@ class GatewayService:
                     asset_id: self._compact_asset(asset)
                     for asset_id, asset in self._snapshot.get("pcs_devices", {}).items()
                 },
+                "meters": {key: self._compact_asset(asset) for key, asset in self.meters().items()},
                 "normalized": deepcopy(self._snapshot.get("normalized", {})),
                 "alarms": deepcopy(self._snapshot.get("alarms", [])),
             }
@@ -689,7 +719,8 @@ class GatewayService:
             for asset_id, asset in snapshot.get("bms_banks", {}).items()
             if asset_id != "bms_bank_1"
         )
-        assets = [*bank_assets, *snapshot["racks"], *snapshot["environment"].values(), *pcs_assets]
+        meter_assets = self.meters() if snapshot is self._snapshot else snapshot.get("meters", {})
+        assets = [*bank_assets, *snapshot["racks"], *snapshot["environment"].values(), *pcs_assets, *meter_assets.values()]
         return [asset for asset in assets if isinstance(asset, dict)]
 
     def _update_alarms(self, snapshot: dict[str, Any]) -> list[dict[str, Any]]:
@@ -731,6 +762,8 @@ class GatewayService:
         return list(current.values())
 
     def _history_asset(self, asset: dict[str, Any]) -> dict[str, Any]:
+        if asset.get("asset_type") == "energy_meter":
+            return deepcopy(asset)
         if not self.config.storage.compact_history:
             return {
                 "online": asset.get("online"),
@@ -761,6 +794,9 @@ class GatewayService:
         happen here; JSON encoding, compression and SQLite I/O happen after the
         cache lock is released.
         """
+        from pathlib import Path
+        if Path("/etc/ornate-ems-gateway/telemetry-logging.pause").exists():
+            return None
         if self._initializing and not force:
             return None
         now = time.monotonic()
@@ -831,6 +867,8 @@ class GatewayService:
 
     def execute_control(self, username: str, asset_id: str, point_key: str, value: Any) -> dict[str, Any]:
         try:
+            if asset_id == self.config.meter.asset_id:
+                raise PermissionError("ACREL meter integration is strictly read-only")
             # New-vendor safety boundary: the generic raw-point endpoint must not
             # bypass the pair controller's commissioning gates. Kinetics behavior
             # is preserved; only Elecod/Lineage critical writes are redirected.
@@ -1070,6 +1108,25 @@ class GatewayService:
         total_registers_per_minute += pcs_registers_min
         total_modbus_bytes_per_minute += pcs_payload_min
         total_wire_bytes_per_minute += pcs_wire_min
+        if self.config.meter.enabled:
+            meter = self.config.meter
+            cycles = 60.0 / meter.poll_seconds if meter.mode == "hardware" else 0.0
+            energy_cycles = (60.0 / meter.energy_poll_seconds) if meter.energy_enabled and meter.mode == "hardware" else 0.0
+            meter_requests = cycles + energy_cycles
+            meter_registers = 54 * cycles + 14 * energy_cycles
+            meter_bytes = 121 * cycles + 41 * energy_cycles
+            groups["meter"] = {
+                "enabled": True, "transport": "rtu", "mode": meter.mode,
+                "interval_seconds": meter.poll_seconds,
+                "energy_interval_seconds": meter.energy_poll_seconds,
+                "requests_per_minute": round(meter_requests, 2),
+                "registers_per_minute": round(meter_registers, 2),
+                "estimated_wire_bytes_per_minute": round(meter_bytes, 2),
+            }
+            total_requests_per_minute += meter_requests
+            total_registers_per_minute += meter_registers
+            total_modbus_bytes_per_minute += meter_bytes
+            total_wire_bytes_per_minute += meter_bytes
         return {
             "transport": f"BMS Modbus TCP + PCS Modbus {self.config.pcs.transport.upper()}",
             "groups": groups,
@@ -1093,6 +1150,8 @@ class GatewayService:
             "pcs": self.config.pcs.poll_seconds,
         }
         stream_bytes_per_minute = 0.0
+        if self.config.meter.enabled:
+            intervals["meter"] = self.config.meter.poll_seconds
         groups: dict[str, Any] = {}
         for name, interval in intervals.items():
             stats = self._poll_stats[name]

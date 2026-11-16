@@ -1,0 +1,22 @@
+{
+  "version": "1.1",
+  "date": "2026-10-30",
+  "tests_passed": 14,
+  "tests_failed": 0,
+  "shell_syntax": "PASS",
+  "scope": "Read-only viewer, no uploader or gateway behavior changes",
+  "volume_metric": "Live retained messages acknowledged in trailing 60 seconds, new accepted separate from already_processed",
+  "units": "records[] elements; decimal MB original logical-message JSON",
+  "coverage_limit": "Archive recovery record/byte ACK volumes unavailable from current status/retention",
+  "checks": [
+    "All v1 rate/reset/read-only/redaction/CLI tests retained",
+    "ACK time used instead of source creation time",
+    "Subsecond and future boundary filtering",
+    "Per-stream and S2-substream records and bytes reconcile",
+    "Already-processed excluded from new acceptance totals",
+    "Pending/retry rows excluded",
+    "Scan timeout and byte limits display unavailable instead of partial zero",
+    "Valid empty windows show zero",
+    "Record list fallback supported"
+  ]
+}

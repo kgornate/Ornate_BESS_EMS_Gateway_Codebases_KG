@@ -1,0 +1,16 @@
+{
+  "README.txt": "853601048021d31e1504c8801929744380544e9ce1128bfcb18dea6422846542",
+  "expected.json": "9ad3e01cfc74fcba85e4e8f7548b315424e9ae2b30ee5388a7b7c7da24c5097d",
+  "install.py": "c45825cf2051d841d94ad0d95e005695b6af6b007ad99ae543325c9d73e15e3d",
+  "payload/app/central_sync/alarm_event_producer.py": "57a30dc537b0a68ed86334d7225d293262c3a006719c0a5c3f28824f6a1d6f04",
+  "payload/app/central_sync/alarm_wire_format.py": "13578494b02a692eb566918cadf04b6ccc6297f710abd1bcabf7e7fd1dba60a8",
+  "payload/app/central_sync/overflow_recovery.py": "043fe8edd9421bcbc1bec3b96108274a9c37b8d35f13558f83c9dce5014d258e",
+  "payload/app/central_sync/recovery_budget.py": "270b60aa96ebc9820cb6050980c439dd32f4cb9c3ffb2f4f8bb60e36fbf65686",
+  "recorded_live_trace.json": "b0451105c8f86844a44b78dacc2df97c5b8e49c75d5d6b0915d1c46a001b6dc1",
+  "repair_alarms.py": "a74099bd11cb406e8b882b169ccaebd569bca784ac01f5c3b7f58459a420616d",
+  "test_budget.py": "b6a10094e4a8da33e83bc64c557c72eee3b209179619d8190518bef750034c12",
+  "test_install.py": "d1d361cf9813f8ccb83d2c0888f0040051b1d0c62c1f1b1c66d4e4fca289f5b3",
+  "test_throughput.py": "0d6649a1665fc0e269bd203bc5dcb69fdbb106155698d09497981aa000f4a155",
+  "validation.txt": "add3f59a243478c4aca4fb0878f45704c1f7abe82c7de60d3965e48d1551cb2f",
+  "verify.py": "6e69e7b3ada70e87c9e71f77dc78d03d9a3c3a4227345c927f5bfb21f7eacc11"
+}

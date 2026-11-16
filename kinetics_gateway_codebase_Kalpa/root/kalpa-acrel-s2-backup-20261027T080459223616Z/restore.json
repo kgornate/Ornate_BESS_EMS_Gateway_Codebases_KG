@@ -1,0 +1,59 @@
+{
+  "was_active": false,
+  "files": {
+    "/opt/ornate-ems-gateway/backend/app/central_sync/general_asset_producer.py": {
+      "existed": true,
+      "saved": "original-0",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "daca779649c2f758d633b3c8a8dea81e24425c62a2750b1cc56a30a7631a78cf",
+      "installed_sha256": "363613c8f2437b5deca6b0b0ac6b9e9fa8d503b2d13d9c5e47237bbab6388364"
+    },
+    "/opt/ornate-ems-gateway/backend/app/central_sync/s2_policy.py": {
+      "existed": true,
+      "saved": "original-1",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "85def514745137720b12ec3f9d2dc25802232776f1d475684130e6cc67d08544",
+      "installed_sha256": "cf54630fe75f218eb0f91304f49913c446f1ceefae111d83091c43c61cd5e864"
+    },
+    "/opt/ornate-ems-gateway/backend/generated_protocols/acrel_combiner_meter_catalog.json": {
+      "existed": false,
+      "saved": "original-2",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": null,
+      "installed_sha256": "2aa047974b14a785e54eff384f663a8c4f7d52fd24c66c6e102af467e25a9d2c"
+    },
+    "/opt/ornate-ems-gateway/backend/configs/kalpa_s2_policy_frozen_v1_2.json": {
+      "existed": false,
+      "saved": "original-3",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": null,
+      "installed_sha256": "917a793a3425de8ee986838a4b0d8d0e3338a2708c192406f603a9433ebf0cf6"
+    },
+    "/opt/kalpa-sync-dashboard/dashboard.py": {
+      "existed": true,
+      "saved": "original-4",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "c320599600a8206b631eebaad5852d7e0ad4b6608ffe72ba0d6ba4624491b754",
+      "installed_sha256": "ba5aa96b93acf8d552879bda014e3ffaab11ddad830a8eb7087293eacd4ec6cd"
+    },
+    "/etc/ornate-ems-gateway/central_sync.json": {
+      "existed": true,
+      "saved": "original-5",
+      "mode": 384,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "6b4c914c0866f7825f48887cfca766de7e3c17b4139dc435354eba1fa755987c",
+      "installed_sha256": "e1afba39434f745c08ff54ec1b52f4060ce7a4536ac7770480688e888ccc7b4a"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+Read-only two-snapshot capture. Each DB query has a time budget.
+Unavailable queries are incomplete evidence, not zero counts.
+Compact ACK receipts are short-lived; these are not lifetime totals.
+Recovery uploader status may describe only its latest replay instance.
+Concurrent new archival can offset successful recovery in pending counts.

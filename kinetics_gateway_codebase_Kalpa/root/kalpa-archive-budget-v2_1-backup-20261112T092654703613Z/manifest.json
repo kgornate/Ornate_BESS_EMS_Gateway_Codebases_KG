@@ -1,0 +1,21 @@
+{
+  "installed_at_utc": "2026-11-12T09:26:54.704215+00:00",
+  "files": {
+    "app/central_sync/overflow_recovery.py": {
+      "existed": true,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "72cca5683a63d8e7a662d15f1bf2d0c7129b43cf6e8d0f69c843f0e2f5582660",
+      "original": "212804a7fb4d7c90ec4592000f1d4c16e9d017dc0be5545b565ed91d6d91b11e"
+    },
+    "app/central_sync/recovery_budget.py": {
+      "existed": true,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "270b60aa96ebc9820cb6050980c439dd32f4cb9c3ffb2f4f8bb60e36fbf65686",
+      "original": "5dde093d9be1f5298ae9365aee5a8dd4636a5e0cb9e0693271c5d9db440744ef"
+    }
+  }
+}

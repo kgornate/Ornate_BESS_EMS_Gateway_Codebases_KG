@@ -1,0 +1,6 @@
+=== kalpa-v22-archive-24h.service ===
+Result=success
+ExecMainStartTimestamp=
+ExecMainExitTimestamp=
+ActiveState=inactive
+SubState=dead

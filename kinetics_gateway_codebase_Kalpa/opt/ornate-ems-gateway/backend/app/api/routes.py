@@ -117,6 +117,34 @@ def build_router(
         items = service.assets()
         return {"assets": items, "count": len(items)}
 
+    @router.get("/api/meters")
+    def meters(user: User = Depends(current_user)) -> dict[str, Any]:
+        items = service.meters()
+        return {"meters": items, "count": len(items)}
+
+    @router.get("/api/meters/config")
+    def meter_config(user: User = Depends(require_internal)) -> dict[str, Any]:
+        return service.config.meter.model_dump()
+
+    @router.get("/api/meters/{asset_id}")
+    def meter_details(asset_id: str, user: User = Depends(current_user)) -> dict[str, Any]:
+        items = service.meters()
+        if asset_id not in items:
+            raise HTTPException(status_code=404, detail="Meter is not enabled or does not exist")
+        return items[asset_id]
+
+    @router.get("/api/meters/{asset_id}/history")
+    def meter_history(
+        asset_id: str,
+        limit: int = Query(500, ge=1, le=5000),
+        since: str | None = Query(None),
+        user: User = Depends(current_user),
+    ) -> dict[str, Any]:
+        if asset_id != service.config.meter.asset_id:
+            raise HTTPException(status_code=404, detail="Unknown meter")
+        items = service.store.query_telemetry(asset_id, limit=limit, since=since)
+        return {"asset_id": asset_id, "samples": items, "count": len(items)}
+
     @router.get("/api/telemetry/snapshot")
     def telemetry_snapshot(
         refresh: bool = Query(False),

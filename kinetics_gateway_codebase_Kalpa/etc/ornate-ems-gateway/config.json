@@ -135,7 +135,7 @@
     "fallback_root": "data",
     "database_name": "ornate_ems_gateway.db",
     "log_name": "ornate_ems_gateway.log",
-    "telemetry_retention_days": 90,
+    "telemetry_retention_days": 5,
     "sample_interval_seconds": 5.0,
     "quota_gb": 25.0,
     "quota_high_watermark_percent": 90.0,
@@ -206,5 +206,25 @@
     "power_tracking_timeout_seconds": 2.0,
     "pcs_start_timeout_seconds": 2.0,
     "sample_interval_seconds": 0.05
+  },
+  "meter": {
+    "enabled": true,
+    "asset_id": "acrel_meter_1",
+    "label": "ACREL APM520",
+    "location": "unassigned",
+    "mode": "hardware",
+    "device": "/dev/ttyLP6",
+    "unit_id": 1,
+    "baudrate": 9600,
+    "parity": "N",
+    "stopbits": 1,
+    "word_order": "big",
+    "timeout_seconds": 2,
+    "retries": 1,
+    "poll_seconds": 5,
+    "stale_after_seconds": 20,
+    "energy_enabled": true,
+    "energy_poll_seconds": 60,
+    "scaling_validated": false
   }
 }

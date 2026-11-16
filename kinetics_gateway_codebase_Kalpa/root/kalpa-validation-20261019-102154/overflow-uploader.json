@@ -1,0 +1,99 @@
+{
+  "backend": {
+    "auth_failure_count": 0,
+    "auth_request_count": 0,
+    "auth_success_count": 0,
+    "consecutive_transport_failures": 0,
+    "dynamic_auth_available": false,
+    "gzip_enabled": true,
+    "http_client_recreate_count": 0,
+    "ingest_url": "http://validation.invalid/api/v1/ingest/batch",
+    "token_configured": true,
+    "verify_tls": true
+  },
+  "enabled": true,
+  "identity": {
+    "gateway_id": "debix-local-validation",
+    "schema_version": "1.0",
+    "site_id": "local-validation",
+    "software_version": "kalpa-central-sync-v0.12"
+  },
+  "outbox": {
+    "acked_count": 1,
+    "by_priority": {},
+    "capacity": {
+      "can_accept": true,
+      "db_size_bytes": 143656,
+      "filesystem_free_mb": 22931,
+      "logical_used_bytes": 65536,
+      "max_db_size_bytes": null,
+      "min_free_space_mb": 0,
+      "reasons": [],
+      "reusable_page_bytes": 0,
+      "wal_bytes": 45352
+    },
+    "db_size_bytes": 143656,
+    "dead_count": 0,
+    "inflight_count": 0,
+    "logical_used_bytes": 65536,
+    "oldest_sendable_age_sec": null,
+    "path": "/root/kalpa-validation-20261019-102154/overflow-archives/central_sync_overflow_20261019T10.db",
+    "pending_count": 0,
+    "retry_count": 0,
+    "reusable_page_bytes": 0,
+    "sendable_bytes": 0,
+    "sendable_count": 0,
+    "unacked_count": 0,
+    "wal_bytes": 45352
+  },
+  "running": false,
+  "started_utc": "2026-10-19T10:24:26.301969Z",
+  "status_generated_utc": "2026-10-19T10:24:26.322379Z",
+  "stream_backend_ack": {
+    "gateway_health": {
+      "accepted_count": 1,
+      "acked_count": 1,
+      "already_processed_count": 0,
+      "last_ack_sequence": 900010,
+      "last_ack_status": "accepted",
+      "last_ack_substream": "validation",
+      "last_ack_utc": "2026-10-19T10:24:26.315971Z",
+      "last_backend_result": "accepted",
+      "last_backend_result_utc": "2026-10-19T10:24:26.315971Z",
+      "last_error": null,
+      "missing_ack_count": 0,
+      "permanent_rejected_count": 0,
+      "retryable_rejected_count": 0,
+      "stream": "gateway_health",
+      "transport_failure_count": 0
+    }
+  },
+  "transport_control": {
+    "metadata": null,
+    "pause_file": "/root/kalpa-validation-20261019-102154/uploader.pause",
+    "paused": false,
+    "status_generated_utc": "2026-10-19T10:24:26.319934Z"
+  },
+  "uploader": {
+    "accepted_count": 1,
+    "active_request_count": 0,
+    "already_processed_count": 0,
+    "bytes_sent_uncompressed": 578,
+    "last_attempt_utc": "2026-10-19T10:24:26.310281Z",
+    "last_error": null,
+    "last_http_status": 200,
+    "last_pause_utc": null,
+    "last_request_id": "19735319-4ddd-4745-b9ea-3079f02321de",
+    "last_success_utc": "2026-10-19T10:24:26.312961Z",
+    "missing_ack_count": 0,
+    "pause_cycle_count": 0,
+    "paused": false,
+    "peak_active_request_count": 1,
+    "permanent_rejected_count": 0,
+    "request_count": 1,
+    "request_failure_count": 0,
+    "request_success_count": 1,
+    "retryable_rejected_count": 0,
+    "worker_count": 1
+  }
+}

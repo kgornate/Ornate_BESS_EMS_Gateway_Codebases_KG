@@ -1,0 +1,16 @@
+[
+  {
+    "target": "/opt/kalpa-delivery-dashboard/dashboard.py",
+    "existed": true,
+    "backup": "dashboard.py",
+    "mode": 420,
+    "installed_sha": "337e80a396ad4b026611f035e05532141b887a536db17e47b63a0c2c5fa44a6f"
+  },
+  {
+    "target": "/opt/kalpa-delivery-dashboard/monitor_evidence.py",
+    "existed": false,
+    "backup": "monitor_evidence.py",
+    "mode": 420,
+    "installed_sha": "530fb28f901710394b306cc2bac4c6029602718a58c4ec0d9ca67dbfa4c93ea5"
+  }
+]

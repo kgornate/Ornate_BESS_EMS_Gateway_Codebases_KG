@@ -1,0 +1,1 @@
+These tests ran against the complete exported backend with the payload applied. Copy the test files to that backend tests directory and run pytest there. The old frozen manifest/catalogs and existing tests remain part of the backend. Installer tests additionally used a local fake systemctl and temporary gateway copies; their results are recorded in validation.json.

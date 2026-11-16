@@ -1,0 +1,29 @@
+{
+  "archive_dir": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives",
+  "archive_free_mb": 90953,
+  "counters": {
+    "archived_message_count": 32676,
+    "archived_payload_bytes": 2851481501,
+    "check_count": 60576,
+    "disk_pause_count": 0,
+    "duplicate_archive_count": 12,
+    "failure_count": 0,
+    "last_archive_path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261113T23.db",
+    "last_check_utc": "2026-11-14T00:44:52.753755Z",
+    "last_error": null,
+    "last_spill_utc": "2026-11-13T23:44:29.702829Z",
+    "last_trigger": null,
+    "no_candidate_count": 1,
+    "source_deleted_count": 32467,
+    "spill_cycle_count": 5699
+  },
+  "enabled": true,
+  "high_watermark_mb": 64,
+  "min_archive_free_space_mb": 1024,
+  "oldest_spillable_age_sec": 9.788304328918457,
+  "running": true,
+  "spill_min_age_sec": 60.0,
+  "started_utc": "2026-11-12T10:12:59.628298Z",
+  "status_generated_utc": "2026-11-14T00:44:52.755443Z",
+  "target_watermark_mb": 32
+}

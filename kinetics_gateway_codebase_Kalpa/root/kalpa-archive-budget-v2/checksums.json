@@ -1,0 +1,12 @@
+{
+  "README.txt": "931959f2ad0678f5714e8e5cb7d2e5fb2da1059e0e47ded267a10b5078536c7a",
+  "expected.json": "ee081e5724a9963ca563d2647f6dbc5843138d3e4e32ceec4ca30e2f461f2115",
+  "install.py": "755124a3c1ef22f6849232fc9f0c5f872a439d6e8907c777c9eaf02c14245159",
+  "payload/app/central_sync/archive_transport.py": "b4e799b33f97cb0e1c6d66fed1198692905e7f04fe5c4c3274e433b9711d9d7c",
+  "payload/app/central_sync/overflow_recovery.py": "212804a7fb4d7c90ec4592000f1d4c16e9d017dc0be5545b565ed91d6d91b11e",
+  "payload/app/central_sync/recovery_budget.py": "5dde093d9be1f5298ae9365aee5a8dd4636a5e0cb9e0693271c5d9db440744ef",
+  "test_budget.py": "afa2ea12855ac2ccd1ac1c752403b93681fba2c7c05cb480474af7d7ad882286",
+  "test_install.py": "38c07c94b3f93865a6999493a0b6b8ac1646f7a06cde6ba133b2e2f6c26640dd",
+  "validation.txt": "784c369de72d34778f621bf80498a72e78bd3735fb07c93802b6f63b86b6a26c",
+  "verify.py": "a61c3164eb6c70901a97b949f981e39d0cb5142198ea31e62348e09938f99ec9"
+}

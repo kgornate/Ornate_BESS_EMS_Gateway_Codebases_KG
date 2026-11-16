@@ -1,0 +1,29 @@
+{
+  "archive_dir": "/root/kalpa-validation-20261019-102154/overflow-archives",
+  "archive_free_mb": 22931,
+  "counters": {
+    "archived_message_count": 1,
+    "archived_payload_bytes": 429,
+    "check_count": 1,
+    "disk_pause_count": 0,
+    "duplicate_archive_count": 0,
+    "failure_count": 0,
+    "last_archive_path": "/root/kalpa-validation-20261019-102154/overflow-archives/central_sync_overflow_20261019T10.db",
+    "last_check_utc": "2026-10-19T10:24:26.236665Z",
+    "last_error": null,
+    "last_spill_utc": "2026-10-19T10:24:26.287264Z",
+    "last_trigger": "age",
+    "no_candidate_count": 0,
+    "source_deleted_count": 1,
+    "spill_cycle_count": 1
+  },
+  "enabled": false,
+  "high_watermark_mb": 64,
+  "min_archive_free_space_mb": 0,
+  "oldest_spillable_age_sec": null,
+  "running": false,
+  "spill_min_age_sec": 1,
+  "started_utc": "2026-10-19T10:24:26.236554Z",
+  "status_generated_utc": "2026-10-19T10:24:26.288608Z",
+  "target_watermark_mb": 32
+}

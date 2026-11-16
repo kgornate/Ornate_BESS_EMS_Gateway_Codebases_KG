@@ -1,0 +1,47 @@
+{
+  "elapsed_sec": 299.9994794499944,
+  "same_processes_and_boot": true,
+  "recovery_decision_samples": {
+    "archive_budget_wait": 18,
+    "backend_cooldown": 3
+  },
+  "samples_with_errors": 0,
+  "limits": [
+    "CPU figures are percent of one core.",
+    "Accepted counters can include queued older messages.",
+    "No generation-cohort delivery percentage or cadence certification.",
+    "Status outbox counts may be cached; inspect status ages and errors.",
+    "Archive counters are recovery-instance totals, not remaining backlog counts.",
+    "Receipt capture is sampled and bounded; cleaned or missed receipts cannot be reconstructed.",
+    "No cross-database unique backlog count: source deletions and archive receipts are separate observations."
+  ],
+  "cpu_percent_one_core": {
+    "main_process": 92.19,
+    "sync_process": 37.81
+  },
+  "live_uploader_deltas": {
+    "accepted_count": 497,
+    "already_processed_count": 0,
+    "retryable_rejected_count": 0,
+    "request_count": 149,
+    "request_failure_count": 0
+  },
+  "durable_generation_MB_per_min": 4.835,
+  "observed_live_accepted_MB_per_min": 5.518,
+  "observed_live_accepted_messages": 493,
+  "archive_deltas": {
+    "archive_accepted_count": 30,
+    "archive_accepted_bytes": 747557,
+    "archive_retryable_rejected_count": 0,
+    "archive_http_attempt_count": 3,
+    "archive_http_failure_count": 0,
+    "archive_http_duration_total_ms": 8286.428730003536,
+    "archive_http_duration_max_ms": 0.0
+  },
+  "archive_accepted_MB_per_min": 0.14951165942765052,
+  "archiver_deltas": {
+    "archived_message_count": 11,
+    "archived_payload_bytes": 1068981,
+    "source_deleted_count": 11
+  }
+}

@@ -1,0 +1,607 @@
+{
+  "completed": true,
+  "error": null,
+  "elapsed_sec": 41164.708956328,
+  "manifest_checks": {
+    "available": true,
+    "approved_checksum_matches": true,
+    "sha256": "917a793a3425de8ee986838a4b0d8d0e3338a2708c192406f603a9433ebf0cf6",
+    "policy_drift": [],
+    "missing_excel_points": []
+  },
+  "canonical_reference_points": 2506,
+  "runtime_signals_observed": 9495,
+  "unobserved_canonical_points": [
+    {
+      "point_id": "meter.measurement.voltage_a_v",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.voltage_b_v",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.voltage_c_v",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.voltage_ab_v",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.voltage_bc_v",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.voltage_ca_v",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.current_a_a",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.current_b_a",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.current_c_a",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.current_neutral_a",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.active_power_a_kw",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.active_power_b_kw",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.active_power_c_kw",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.active_power_total_kw",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 5.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.reactive_power_a_kvar",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.reactive_power_b_kvar",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.reactive_power_c_kvar",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.reactive_power_total_kvar",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.apparent_power_a_kva",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.apparent_power_b_kva",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.apparent_power_c_kva",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.apparent_power_total_kva",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.power_factor_a",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.power_factor_b",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.power_factor_c",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.power_factor_total",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.measurement.frequency_hz",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 30.0,
+      "retention": "T2_1Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.energy.active_energy_total_kwh",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 60.0,
+      "retention": "T3_3Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.energy.active_energy_forward_kwh",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 60.0,
+      "retention": "T3_3Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.energy.active_energy_reverse_kwh",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 60.0,
+      "retention": "T3_3Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.energy.reactive_energy_total_kvarh",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 60.0,
+      "retention": "T3_3Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.energy.reactive_energy_forward_kvarh",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 60.0,
+      "retention": "T3_3Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.energy.reactive_energy_reverse_kvarh",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 60.0,
+      "retention": "T3_3Y",
+      "expected_instances": 1
+    },
+    {
+      "point_id": "meter.energy.apparent_energy_total_kvah",
+      "vendor": "acrel",
+      "substream": "combiner_box_meter",
+      "mode": "PERIODIC",
+      "interval_sec": 60.0,
+      "retention": "T3_3Y",
+      "expected_instances": 1
+    }
+  ],
+  "signal_flags": {
+    "early_heartbeat_candidate": 5648,
+    "early_periodic_candidate": 22262,
+    "late_gap_review": 2817
+  },
+  "trigger_totals": {
+    "heartbeat": 285150,
+    "periodic": 990184,
+    "change": 537493
+  },
+  "read_errors": {
+    "central_sync_overflow_20261102T18.db:RuntimeError": 121,
+    "central_sync_overflow_20261102T19.db:RuntimeError": 147,
+    "cycle_read_budget": 453,
+    "central_sync_overflow_20261102T20.db:RuntimeError": 161,
+    "central_sync_overflow_20261102T17.db:OperationalError": 1,
+    "central_sync.db:OperationalError": 91,
+    "central_sync_overflow_20261102T21.db:RuntimeError": 176,
+    "central_sync_overflow_20261102T12.db:OperationalError": 8,
+    "central_sync_overflow_20261102T22.db:RuntimeError": 26,
+    "central_sync_overflow_20261102T21.db:OperationalError": 2,
+    "central_sync_overflow_20261102T19.db:OperationalError": 4,
+    "central_sync_overflow_20261102T22.db:OperationalError": 1,
+    "central_sync_overflow_20261102T20.db:OperationalError": 1,
+    "central_sync_overflow_20261102T18.db:OperationalError": 1
+  },
+  "stream_summary": [
+    {
+      "stream": "battery_charge_discharge_control",
+      "substream": "pair_controller",
+      "messages": 2002,
+      "records": 8008,
+      "bytes": 6618404
+    },
+    {
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast",
+      "messages": 5673,
+      "records": 22692,
+      "bytes": 193897467
+    },
+    {
+      "stream": "gateway_health",
+      "substream": "gateway",
+      "messages": 693,
+      "records": 693,
+      "bytes": 2388116
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "bms_extended",
+      "messages": 16632,
+      "records": 1510956,
+      "bytes": 1418923502
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "dehumidifier",
+      "messages": 467,
+      "records": 2931,
+      "bytes": 2935065
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "ems_system",
+      "messages": 1471,
+      "records": 25253,
+      "bytes": 23841882
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "fire_protection",
+      "messages": 395,
+      "records": 2765,
+      "bytes": 2681260
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "io_module",
+      "messages": 574,
+      "records": 5947,
+      "bytes": 5802326
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "liquid_cooling",
+      "messages": 1197,
+      "records": 10594,
+      "bytes": 10410678
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "pcs_extended",
+      "messages": 2936,
+      "records": 180032,
+      "bytes": 157103476
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "remote_control",
+      "messages": 3104,
+      "records": 74349,
+      "bytes": 71246721
+    }
+  ],
+  "generation_counter_start": [
+    {
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast",
+      "messages": 2227,
+      "payload_bytes": 76116262,
+      "first_epoch": 1793619943.971515
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "ems_system",
+      "messages": 603,
+      "payload_bytes": 8579596,
+      "first_epoch": 1793619944.162937
+    },
+    {
+      "stream": "battery_charge_discharge_control",
+      "substream": "pair_controller",
+      "messages": 791,
+      "payload_bytes": 2614147,
+      "first_epoch": 1793619944.1880443
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "bms_extended",
+      "messages": 6117,
+      "payload_bytes": 522158488,
+      "first_epoch": 1793619944.3763242
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "io_module",
+      "messages": 242,
+      "payload_bytes": 2112578,
+      "first_epoch": 1793619944.4062526
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "fire_protection",
+      "messages": 178,
+      "payload_bytes": 985122,
+      "first_epoch": 1793619944.4689295
+    },
+    {
+      "stream": "alarms_events",
+      "substream": "events",
+      "messages": 3,
+      "payload_bytes": 293138,
+      "first_epoch": 1793619944.4791017
+    },
+    {
+      "stream": "gateway_health",
+      "substream": "gateway",
+      "messages": 257,
+      "payload_bytes": 886774,
+      "first_epoch": 1793619945.661545
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "liquid_cooling",
+      "messages": 440,
+      "payload_bytes": 3757042,
+      "first_epoch": 1793619946.300075
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "dehumidifier",
+      "messages": 169,
+      "payload_bytes": 1062333,
+      "first_epoch": 1793619946.3175216
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "remote_control",
+      "messages": 1232,
+      "payload_bytes": 28337767,
+      "first_epoch": 1793619946.3295565
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "pcs_extended",
+      "messages": 1110,
+      "payload_bytes": 59292163,
+      "first_epoch": 1793619956.9457467
+    }
+  ],
+  "generation_counter_end": [
+    {
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast",
+      "messages": 7900,
+      "payload_bytes": 270013729,
+      "first_epoch": 1793619943.971515
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "ems_system",
+      "messages": 2074,
+      "payload_bytes": 32421478,
+      "first_epoch": 1793619944.162937
+    },
+    {
+      "stream": "battery_charge_discharge_control",
+      "substream": "pair_controller",
+      "messages": 2793,
+      "payload_bytes": 9232551,
+      "first_epoch": 1793619944.1880443
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "bms_extended",
+      "messages": 22751,
+      "payload_bytes": 1941211340,
+      "first_epoch": 1793619944.3763242
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "io_module",
+      "messages": 816,
+      "payload_bytes": 7914904,
+      "first_epoch": 1793619944.4062526
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "fire_protection",
+      "messages": 573,
+      "payload_bytes": 3666382,
+      "first_epoch": 1793619944.4689295
+    },
+    {
+      "stream": "alarms_events",
+      "substream": "events",
+      "messages": 3,
+      "payload_bytes": 293138,
+      "first_epoch": 1793619944.4791017
+    },
+    {
+      "stream": "gateway_health",
+      "substream": "gateway",
+      "messages": 950,
+      "payload_bytes": 3274890,
+      "first_epoch": 1793619945.661545
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "liquid_cooling",
+      "messages": 1637,
+      "payload_bytes": 14167720,
+      "first_epoch": 1793619946.300075
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "dehumidifier",
+      "messages": 636,
+      "payload_bytes": 3997398,
+      "first_epoch": 1793619946.3175216
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "remote_control",
+      "messages": 4337,
+      "payload_bytes": 99607486,
+      "first_epoch": 1793619946.3295565
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "pcs_extended",
+      "messages": 4048,
+      "payload_bytes": 216500345,
+      "first_epoch": 1793619956.9457467
+    }
+  ],
+  "limits": [
+    "Only post-start messages still readable in live/SD DBs are captured; cleanup and move races can cause gaps.",
+    "Not all hardware polls are observed. Missing source data, offline meters and gaps prevent all-point certification.",
+    "Intervals use envelope creation time with 2s early tolerance; scheduling/HTTP collection latency can affect gaps.",
+    "Late gaps and unchanged-change flags are review candidates, not automatic failures.",
+    "S2 signal-level audit uses bundled master Excel v1.1; other streams have message-level timing/volume evidence only.",
+    "No audit of hardware calibration or backend commit. No upload configuration changes or restart."
+  ]
+}

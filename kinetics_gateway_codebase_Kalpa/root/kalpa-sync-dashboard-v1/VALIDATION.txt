@@ -1,0 +1,4 @@
+Four local tests passed.
+Shell installer syntax check passed.
+No service control or application/database writes are performed by dashboard.py.
+DEBIX deployment still requires field verification.

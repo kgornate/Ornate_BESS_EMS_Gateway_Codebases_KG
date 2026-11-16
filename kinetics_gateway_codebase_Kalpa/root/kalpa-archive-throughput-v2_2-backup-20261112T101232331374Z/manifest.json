@@ -1,0 +1,36 @@
+{
+  "installed_at_utc": "2026-11-12T10:12:32.333477+00:00",
+  "files": {
+    "app/central_sync/alarm_event_producer.py": {
+      "existed": true,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "57a30dc537b0a68ed86334d7225d293262c3a006719c0a5c3f28824f6a1d6f04",
+      "original": "33cf3628b5b01bd3700411f4f1ec180e066bb97b5f15628df74d19e7e7e1ff14"
+    },
+    "app/central_sync/alarm_wire_format.py": {
+      "existed": false,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "13578494b02a692eb566918cadf04b6ccc6297f710abd1bcabf7e7fd1dba60a8"
+    },
+    "app/central_sync/overflow_recovery.py": {
+      "existed": true,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "043fe8edd9421bcbc1bec3b96108274a9c37b8d35f13558f83c9dce5014d258e",
+      "original": "72cca5683a63d8e7a662d15f1bf2d0c7129b43cf6e8d0f69c843f0e2f5582660"
+    },
+    "app/central_sync/recovery_budget.py": {
+      "existed": true,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "270b60aa96ebc9820cb6050980c439dd32f4cb9c3ffb2f4f8bb60e36fbf65686",
+      "original": "270b60aa96ebc9820cb6050980c439dd32f4cb9c3ffb2f4f8bb60e36fbf65686"
+    }
+  }
+}

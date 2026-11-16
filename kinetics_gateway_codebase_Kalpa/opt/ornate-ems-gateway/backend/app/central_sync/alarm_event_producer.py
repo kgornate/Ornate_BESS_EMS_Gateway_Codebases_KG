@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 from uuid import NAMESPACE_URL, uuid5
 
+from .alarm_wire_format import severity as wire_severity
 from .config import CentralSyncConfig
 from .contracts import utc_now_iso
 from .local_gateway_api import LocalGatewayApiClient
@@ -103,8 +104,8 @@ class AlarmEventProducer(ProducerLoopMixin):
                 "asset_id": item.get("asset_id"),
                 "signal_name": payload.get("signal_name") or item.get("code") or item.get("alarm_key"),
                 "event_type": payload.get("event_type") or "alarm",
-                "severity": item.get("severity") or payload.get("severity") or "warning",
-                "state": "active" if action == "raised" else "cleared",
+                "severity": wire_severity(item.get("severity") or payload.get("severity") or "warning"),
+                "state": "ACTIVE" if action == "raised" else "CLEARED",
                 "previous_value": payload.get("previous_value"),
                 "current_value": payload.get("current_value"),
                 "message": payload.get("message") or payload.get("description") or str(item.get("alarm_key") or "alarm"),

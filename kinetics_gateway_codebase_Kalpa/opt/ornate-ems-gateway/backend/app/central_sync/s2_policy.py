@@ -12,7 +12,7 @@ from .producer_common import fingerprint
 SUPPORTED_MODES = frozenset({"PERIODIC", "ON_CHANGE_HEARTBEAT"})
 SUBSTREAMS = (
     "ems_system", "pcs_extended", "bms_extended", "io_module", "liquid_cooling",
-    "fire_protection", "dehumidifier", "remote_control", "utility_meter",
+    "fire_protection", "dehumidifier", "remote_control", "bess_aux_consumption_meter", "combiner_box_meter",
 )
 
 class S2PolicyError(ValueError):
@@ -28,6 +28,7 @@ class S2RecordingPolicy:
     mode: str
     interval_sec: float
     revision: str
+    retention_class: str | None = None
 
 
 class S2PolicyManifest:
@@ -38,13 +39,16 @@ class S2PolicyManifest:
         if expected_sha256 and actual_sha256 != expected_sha256:
             raise S2PolicyError("frozen S2 manifest checksum mismatch; refuse to run unapproved policies")
         data = json.loads(raw.decode("utf-8"))
-        if data.get("policy_version") != "kalpa-s2-frozen-v1.0":
+        versions = {"kalpa-s2-frozen-v1.0": (2471, 9494), "kalpa-s2-frozen-v1.1": (2472, 9495), "kalpa-s2-frozen-v1.2": (2506, 9529)}
+        if data.get("policy_version") not in versions:
             raise S2PolicyError("unexpected S2 policy version")
-        if data.get("substreams") != list(SUBSTREAMS):
+        expected_substreams = list(SUBSTREAMS) if data["policy_version"] == "kalpa-s2-frozen-v1.2" else list(SUBSTREAMS[:-2]) + ["utility_meter"]
+        if data.get("substreams") != expected_substreams:
             raise S2PolicyError("frozen S2 substreams differ from backend contract")
+        canonical_count, runtime_count = versions[data["policy_version"]]
         points = data.get("points")
-        if not isinstance(points, list) or len(points) != 2471:
-            raise S2PolicyError("frozen Kalpa manifest must contain all 2471 canonical S2 points")
+        if not isinstance(points, list) or len(points) != canonical_count:
+            raise S2PolicyError(f"frozen Kalpa manifest must contain all {canonical_count} canonical S2 points")
         self.version = data["policy_version"]
         self.source_sha256 = str(data.get("contract_sha256") or "")
         self.by_key: dict[tuple[str, str, str], S2RecordingPolicy] = {}
@@ -58,9 +62,14 @@ class S2PolicyManifest:
                 multiplier = int(p["expected_instances"])
             except (KeyError, TypeError, ValueError) as e:
                 raise S2PolicyError(f"invalid policy at row {i}") from e
-            if vendor not in {"lineage", "elecod"} or scope not in {"bank", "rack", "pcs", "environment"}:
+            if vendor not in {"lineage", "elecod", "acrel"} or scope not in {"bank", "rack", "pcs", "environment", "meter"}:
                 raise S2PolicyError(f"unexpected vendor or scope: {vendor}/{scope}")
-            if mode not in SUPPORTED_MODES or substream not in SUBSTREAMS:
+            if (vendor == "acrel" or scope == "meter" or substream == "combiner_box_meter") and not (
+                self.version == "kalpa-s2-frozen-v1.2" and vendor == "acrel" and scope == "meter"
+                and substream == "combiner_box_meter" and mode == "PERIODIC" and multiplier == 1
+            ):
+                raise S2PolicyError(f"invalid combiner meter identity for {point_id}")
+            if mode not in SUPPORTED_MODES or substream not in expected_substreams:
                 raise S2PolicyError(f"invalid recording mode/substream for {point_id}")
             if not (0 < interval <= 86400) or not (1 <= multiplier <= 4):
                 raise S2PolicyError(f"invalid interval or instance count for {point_id}")
@@ -69,10 +78,15 @@ class S2PolicyManifest:
             ident = (vendor, scope, key)
             if ident in self.by_key:
                 raise S2PolicyError(f"duplicate policy: {ident}")
-            revision = fingerprint([self.version, vendor, scope, key, substream, mode, interval])
-            self.by_key[ident] = S2RecordingPolicy(point_id, vendor, scope, key, substream, mode, interval, revision)
+            # Cadence identity remains stable across the additive v1.1 contract.
+            # Retention metadata is deliberately not a recording trigger.
+            revision = fingerprint(["kalpa-s2-frozen-v1.0", vendor, scope, key, substream, mode, interval])
+            retention = p.get("retention_class")
+            if retention is not None and retention not in {"T1_90D", "T2_1Y", "T3_3Y"}:
+                raise S2PolicyError(f"invalid retention class for {point_id}")
+            self.by_key[ident] = S2RecordingPolicy(point_id, vendor, scope, key, substream, mode, interval, revision, retention)
             total_instances += multiplier
-        if total_instances != 9494 or data.get("expected_runtime_signals") != 9494:
+        if total_instances != runtime_count or data.get("expected_runtime_signals") != runtime_count:
             raise S2PolicyError("frozen four-pair runtime count mismatch")
 
     def resolve(self, vendor: str, scope: str, key: str, substream: str, catalog_point: dict[str, Any] | None) -> S2RecordingPolicy:

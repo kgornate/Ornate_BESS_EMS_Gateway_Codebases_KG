@@ -1,0 +1,14 @@
+[Unit]
+Description=DEBIX OnePlus Wi-Fi
+Requires=sys-subsystem-net-devices-mlan0.device
+After=sys-subsystem-net-devices-mlan0.device
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/wpa_supplicant -D nl80211 -i mlan0 -c /etc/wpa_supplicant/mlan0.conf
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

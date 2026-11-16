@@ -1,0 +1,3 @@
+.less-history-file:
+.search
+"etc/ornate-ems-gateway/central_sync.json").read_text()

@@ -1,0 +1,12 @@
+[wifi_68c8c0af6c79_4f524e41544520534f4c415220_managed_psk]
+Name=ORNATE SOLAR 
+SSID=4f524e41544520534f4c415220
+Frequency=5180
+Favorite=true
+AutoConnect=true
+Modified=2026-10-19T08:41:24Z
+Passphrase=Ornate@A87
+IPv4.method=dhcp
+IPv4.DHCP.LastAddress=192.168.0.122
+IPv6.method=auto
+IPv6.privacy=disabled

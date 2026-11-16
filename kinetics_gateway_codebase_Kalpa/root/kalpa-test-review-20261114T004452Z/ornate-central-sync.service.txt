@@ -1,0 +1,26 @@
+=== ornate-central-sync.service ===
+Result=success
+ExecMainStartTimestamp=Thu 2026-11-12 10:12:55 UTC
+ExecMainExitTimestamp=
+ActiveState=active
+SubState=running
+2026-11-14 00:44:43,997 INFO httpx - HTTP Request: POST https://ems-gateway-api.unityess.cloud/api/v1/gateway/ingest "HTTP/1.1 200 OK"
+2026-11-14 00:44:44,892 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/telemetry/snapshot "HTTP/1.1 200 OK"
+2026-11-14 00:44:44,952 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/normalized/snapshot "HTTP/1.1 200 OK"
+2026-11-14 00:44:46,641 INFO httpx - HTTP Request: POST https://ems-gateway-api.unityess.cloud/api/v1/gateway/ingest "HTTP/1.1 200 OK"
+2026-11-14 00:44:46,648 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/alarms/history?limit=5000&since=2026-11-09T08%3A18%3A29.983278%2B00%3A00 "HTTP/1.1 200 OK"
+2026-11-14 00:44:47,350 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/control-sequence/status/all/compact "HTTP/1.1 200 OK"
+2026-11-14 00:44:47,434 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/normalized/snapshot "HTTP/1.1 200 OK"
+2026-11-14 00:44:47,773 INFO httpx - HTTP Request: POST https://ems-gateway-api.unityess.cloud/api/v1/gateway/ingest "HTTP/1.1 200 OK"
+2026-11-14 00:44:47,841 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/platform/readiness "HTTP/1.1 200 OK"
+2026-11-14 00:44:48,091 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/alarms/history?limit=5000&since=2026-11-09T08%3A18%3A29.983278%2B00%3A00 "HTTP/1.1 200 OK"
+2026-11-14 00:44:48,845 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/health "HTTP/1.1 200 OK"
+2026-11-14 00:44:49,267 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/alarms/history?limit=5000&since=2026-11-09T08%3A18%3A29.983278%2B00%3A00 "HTTP/1.1 200 OK"
+2026-11-14 00:44:49,429 INFO httpx - HTTP Request: POST https://ems-gateway-api.unityess.cloud/api/v1/gateway/ingest "HTTP/1.1 200 OK"
+2026-11-14 00:44:49,718 INFO httpx - HTTP Request: POST https://ems-gateway-api.unityess.cloud/api/v1/gateway/ingest "HTTP/1.1 200 OK"
+2026-11-14 00:44:50,422 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/alarms/history?limit=5000&since=2026-11-09T08%3A18%3A29.983278%2B00%3A00 "HTTP/1.1 200 OK"
+2026-11-14 00:44:50,740 INFO httpx - HTTP Request: POST https://ems-gateway-api.unityess.cloud/api/v1/gateway/ingest "HTTP/1.1 200 OK"
+2026-11-14 00:44:50,995 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/telemetry/snapshot "HTTP/1.1 200 OK"
+2026-11-14 00:44:51,609 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/normalized/snapshot "HTTP/1.1 200 OK"
+2026-11-14 00:44:51,950 INFO httpx - HTTP Request: GET http://127.0.0.1:8000/api/alarms/history?limit=5000&since=2026-11-09T08%3A18%3A29.983278%2B00%3A00 "HTTP/1.1 200 OK"
+2026-11-14 00:44:52,388 INFO httpx - HTTP Request: POST https://ems-gateway-api.unityess.cloud/api/v1/gateway/ingest "HTTP/1.1 200 OK"

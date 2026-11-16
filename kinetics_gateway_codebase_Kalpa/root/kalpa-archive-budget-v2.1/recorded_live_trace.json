@@ -1,0 +1,628 @@
+[
+  {
+    "elapsed": 0.0,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 15.39327073097229,
+        "unacked_count": 8
+      },
+      "live_transport": {
+        "available": false
+      },
+      "load1": 2.50048828125,
+      "mem_available_mb": 1110,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "yield",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 15.162974097998813,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": null,
+        "unacked_count": 0
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.014
+      },
+      "load1": 2.71142578125,
+      "mem_available_mb": 1095,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 30.276504654000746,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 4.695698499679565,
+        "unacked_count": 2
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 2.005
+      },
+      "load1": 2.66943359375,
+      "mem_available_mb": 1095,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 45.41570589799085,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 5.800654411315918,
+        "unacked_count": 1
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.232
+      },
+      "load1": 2.48095703125,
+      "mem_available_mb": 1077,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 60.57050715800142,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": null,
+        "unacked_count": 0
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.513
+      },
+      "load1": 2.36865234375,
+      "mem_available_mb": 1058,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 75.6765080759942,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 14.149887800216675,
+        "unacked_count": 4
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 2.001
+      },
+      "load1": 2.06494140625,
+      "mem_available_mb": 1081,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 90.81151555798715,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 8.428975105285645,
+        "unacked_count": 14
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.512
+      },
+      "load1": 2.27294921875,
+      "mem_available_mb": 1071,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 105.91321313701337,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 12.852751016616821,
+        "unacked_count": 3
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 2.79
+      },
+      "load1": 2.13818359375,
+      "mem_available_mb": 1066,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 121.07931140100118,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 5.364415884017944,
+        "unacked_count": 3
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.512
+      },
+      "load1": 2.02099609375,
+      "mem_available_mb": 1054,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 136.19023839599686,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": null,
+        "unacked_count": 0
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.17
+      },
+      "load1": 2.29833984375,
+      "mem_available_mb": 1053,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 151.31097910000244,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 6.394356727600098,
+        "unacked_count": 2
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.01
+      },
+      "load1": 2.251953125,
+      "mem_available_mb": 1052,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 166.4322011639888,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 4.799774408340454,
+        "unacked_count": 1
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.311
+      },
+      "load1": 2.4169921875,
+      "mem_available_mb": 1042,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 181.53657991901855,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 5.6897149085998535,
+        "unacked_count": 4
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.361
+      },
+      "load1": 2.37841796875,
+      "mem_available_mb": 1046,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 196.63885331401252,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 1.6428577899932861,
+        "unacked_count": 1
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.525
+      },
+      "load1": 2.21337890625,
+      "mem_available_mb": 1052,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 211.7469554230047,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 16.435532808303833,
+        "unacked_count": 26
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.046
+      },
+      "load1": 2.4208984375,
+      "mem_available_mb": 1051,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 5.67,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "yield",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 226.88408692801022,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 26.007610321044922,
+        "unacked_count": 16
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.913
+      },
+      "load1": 2.3115234375,
+      "mem_available_mb": 1039,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 241.99117336198105,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 40.65873837471008,
+        "unacked_count": 19
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 2.02
+      },
+      "load1": 2.37158203125,
+      "mem_available_mb": 1042,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "limited",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 257.13831143602147,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 16.322811126708984,
+        "unacked_count": 16
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.99
+      },
+      "load1": 2.23388671875,
+      "mem_available_mb": 1060,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 272.2562414299755,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 27.399017333984375,
+        "unacked_count": 8
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.198
+      },
+      "load1": 2.18115234375,
+      "mem_available_mb": 1059,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 287.4053669179848,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 5.192817211151123,
+        "unacked_count": 1
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 1.267
+      },
+      "load1": 2.19677734375,
+      "mem_available_mb": 1061,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  },
+  {
+    "elapsed": 299.99974168502376,
+    "health": {
+      "cpu_count": 2,
+      "live": {
+        "available": true,
+        "oldest_age_sec": 6.316927671432495,
+        "unacked_count": 12
+      },
+      "live_transport": {
+        "available": true,
+        "last_error": null,
+        "request_failure_count": 0,
+        "started_utc": "2026-11-12T09:04:25.149716Z",
+        "status_age_sec": 0.888
+      },
+      "load1": 2.23388671875,
+      "mem_available_mb": 1045,
+      "recovery_policy": {
+        "cooldown_remaining_sec": 0,
+        "interval_sec": 1.0,
+        "max_live_age_sec": 75.0,
+        "max_live_count": 100,
+        "mode": "catch_up",
+        "soft_live_age_sec": 30.0,
+        "soft_live_count": 25
+      },
+      "transport_paused": false
+    }
+  }
+]

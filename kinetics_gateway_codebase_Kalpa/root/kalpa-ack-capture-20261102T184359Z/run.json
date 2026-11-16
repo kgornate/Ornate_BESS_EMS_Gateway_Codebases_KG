@@ -1,0 +1,11 @@
+{
+  "started_utc": "2026-11-02T18:43:59.515037+00:00",
+  "original_run": "/root/kalpa-overnight-test-20261102T172612Z",
+  "original_start": "2026-11-02T17:26:13.640425Z",
+  "limits": [
+    "ACKs unioned by message ID from original evidence and still-retained live rows.",
+    "Cleaned rows missed by both collectors cannot be reconstructed. Direct archive replay ACKs remain excluded.",
+    "Original observer continues; its displayed count may remain frozen. Use this combined evidence for analysis.",
+    "Source SQLite is read-only; no services, configuration, source or queue state changed."
+  ]
+}

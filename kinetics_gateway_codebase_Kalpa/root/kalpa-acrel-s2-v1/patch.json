@@ -1,0 +1,24 @@
+{
+  "files": {
+    "app/central_sync/general_asset_producer.py": {
+      "before_sha256": "daca779649c2f758d633b3c8a8dea81e24425c62a2750b1cc56a30a7631a78cf",
+      "after_sha256": "363613c8f2437b5deca6b0b0ac6b9e9fa8d503b2d13d9c5e47237bbab6388364"
+    },
+    "app/central_sync/s2_policy.py": {
+      "before_sha256": "85def514745137720b12ec3f9d2dc25802232776f1d475684130e6cc67d08544",
+      "after_sha256": "cf54630fe75f218eb0f91304f49913c446f1ceefae111d83091c43c61cd5e864"
+    },
+    "generated_protocols/acrel_combiner_meter_catalog.json": {
+      "before_sha256": null,
+      "after_sha256": "2aa047974b14a785e54eff384f663a8c4f7d52fd24c66c6e102af467e25a9d2c"
+    },
+    "configs/kalpa_s2_policy_frozen_v1_2.json": {
+      "before_sha256": null,
+      "after_sha256": "917a793a3425de8ee986838a4b0d8d0e3338a2708c192406f603a9433ebf0cf6"
+    }
+  },
+  "manifest_path": "configs/kalpa_s2_policy_frozen_v1_2.json",
+  "manifest_sha256": "917a793a3425de8ee986838a4b0d8d0e3338a2708c192406f603a9433ebf0cf6",
+  "dashboard_before_sha256": "c320599600a8206b631eebaad5852d7e0ad4b6608ffe72ba0d6ba4624491b754",
+  "dashboard_after_sha256": "ba5aa96b93acf8d552879bda014e3ffaab11ddad830a8eb7087293eacd4ec6cd"
+}

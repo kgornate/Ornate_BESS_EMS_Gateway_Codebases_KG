@@ -1,0 +1,19 @@
+{
+  "initial_MB_per_min": 6.0,
+  "max_MB_per_min": 20.0,
+  "min_MB_per_min": 0.25,
+  "limited_MB_per_min": 2.0,
+  "increase_MB_per_min": 2.0,
+  "increase_interval_sec": 30.0,
+  "burst_bytes": 262400,
+  "poll_interval_sec": 1.0,
+  "soft_live_count": 25,
+  "soft_live_age_sec": 30.0,
+  "hard_live_count": 100,
+  "hard_live_age_sec": 75.0,
+  "trend_window_sec": 30.0,
+  "growth_messages": 10,
+  "healthy_samples": 2,
+  "live_failure_cooldown_sec": 30.0,
+  "live_status_max_age_sec": 10.0
+}

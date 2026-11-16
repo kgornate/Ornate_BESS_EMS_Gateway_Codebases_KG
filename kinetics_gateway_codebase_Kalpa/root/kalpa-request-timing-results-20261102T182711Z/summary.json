@@ -1,0 +1,146 @@
+{
+  "requests": 13361,
+  "first_completed_utc": "2026-11-02T18:27:19.164992+00:00",
+  "last_completed_utc": "2026-11-03T05:28:01.057832+00:00",
+  "http_status_counts": {
+    "200": 13360,
+    "502": 1
+  },
+  "phase_summary": {
+    "200/ack_apply_ms": {
+      "count": 13360,
+      "mean_ms": 30.012565230175888,
+      "p95_ms": 72.25175799976569,
+      "max_ms": 3022.6645110014942
+    },
+    "200/auth_ms": {
+      "count": 13360,
+      "mean_ms": 1.2796091668234455,
+      "p95_ms": 0.02808299905154854,
+      "max_ms": 3035.6550319993403
+    },
+    "200/connect_tcp_ms": {
+      "count": 59,
+      "mean_ms": 286.42707149092683,
+      "p95_ms": 719.3914230010705,
+      "max_ms": 1548.9362209991668
+    },
+    "200/lock_wait_ms": {
+      "count": 13360,
+      "mean_ms": 0.030527166015423053,
+      "p95_ms": 0.03266600106144324,
+      "max_ms": 12.472058999264846
+    },
+    "200/network_total_ms": {
+      "count": 13360,
+      "mean_ms": 1140.5839654822835,
+      "p95_ms": 2228.6657670010754,
+      "max_ms": 6966.81290700144
+    },
+    "200/prepare_ms": {
+      "count": 13360,
+      "mean_ms": 102.75005220489525,
+      "p95_ms": 206.04020900282194,
+      "max_ms": 2487.3126270031207
+    },
+    "200/read_body_ms": {
+      "count": 13360,
+      "mean_ms": 2.2071096379499022,
+      "p95_ms": 6.225846998859197,
+      "max_ms": 50.62093000015011
+    },
+    "200/send_and_ack_total_ms": {
+      "count": 13360,
+      "mean_ms": 1301.238439984545,
+      "p95_ms": 2717.1314460028952,
+      "max_ms": 17474.124800995924
+    },
+    "200/send_body_ms": {
+      "count": 13360,
+      "mean_ms": 9.812529566047733,
+      "p95_ms": 12.91186899470631,
+      "max_ms": 2675.1970059995074
+    },
+    "200/send_headers_ms": {
+      "count": 13360,
+      "mean_ms": 3.5358676675734855,
+      "p95_ms": 9.906194001814583,
+      "max_ms": 1422.4229540013766
+    },
+    "200/tls_ms": {
+      "count": 59,
+      "mean_ms": 290.44773506763505,
+      "p95_ms": 319.6455910001532,
+      "max_ms": 2607.6843359987834
+    },
+    "200/wait_headers_ms": {
+      "count": 13360,
+      "mean_ms": 1097.168769755695,
+      "p95_ms": 2138.2079610011715,
+      "max_ms": 6935.344511002768
+    },
+    "502/auth_ms": {
+      "count": 1,
+      "mean_ms": 0.017207999917445704,
+      "p95_ms": 0.017207999917445704,
+      "max_ms": 0.017207999917445704
+    },
+    "502/lock_wait_ms": {
+      "count": 1,
+      "mean_ms": 0.020542000129353255,
+      "p95_ms": 0.020542000129353255,
+      "max_ms": 0.020542000129353255
+    },
+    "502/network_total_ms": {
+      "count": 1,
+      "mean_ms": 15744.36780600081,
+      "p95_ms": 15744.36780600081,
+      "max_ms": 15744.36780600081
+    },
+    "502/prepare_ms": {
+      "count": 1,
+      "mean_ms": 54.108024000015575,
+      "p95_ms": 54.108024000015575,
+      "max_ms": 54.108024000015575
+    },
+    "502/read_body_ms": {
+      "count": 1,
+      "mean_ms": 0.3952859988203272,
+      "p95_ms": 0.3952859988203272,
+      "max_ms": 0.3952859988203272
+    },
+    "502/send_and_ack_total_ms": {
+      "count": 1,
+      "mean_ms": 15884.713619998365,
+      "p95_ms": 15884.713619998365,
+      "max_ms": 15884.713619998365
+    },
+    "502/send_body_ms": {
+      "count": 1,
+      "mean_ms": 2.1607589987979736,
+      "p95_ms": 2.1607589987979736,
+      "max_ms": 2.1607589987979736
+    },
+    "502/send_headers_ms": {
+      "count": 1,
+      "mean_ms": 1.1592740011110436,
+      "p95_ms": 1.1592740011110436,
+      "max_ms": 1.1592740011110436
+    },
+    "502/wait_headers_ms": {
+      "count": 1,
+      "mean_ms": 15710.754601997905,
+      "p95_ms": 15710.754601997905,
+      "max_ms": 15710.754601997905
+    }
+  },
+  "limits": [
+    "Response header wait includes network, proxy and backend delay; not isolated backend CPU/database time.",
+    "TCP timing includes name resolution and connection setup when traced; reused connections have no new TCP/TLS event.",
+    "Missing phase means unobserved/not applicable, not zero. Failed operations can have partial timings.",
+    "Auth/client HTTP/total timings overlap; do not sum all phase fields.",
+    "413 parent totals can include recursive split children; inspect rows before aggregating those.",
+    "Request completion time excludes post-recording overhead and worker idle sleep; consecutive completion gaps are not pure HTTP latency.",
+    "Counters before/after the planned Central Sync restart must be analysed separately."
+  ]
+}

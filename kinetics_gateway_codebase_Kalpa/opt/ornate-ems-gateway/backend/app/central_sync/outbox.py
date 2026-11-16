@@ -14,6 +14,8 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from .contracts import LogicalMessage
+from .queue_metrics import init_receipts, release_acked, prune_receipts
+# KALPA_IMMEDIATE_ACK_RELEASE_V1
 
 
 def _utc_now() -> str:
@@ -97,6 +99,9 @@ class OutboxStore:
         except Exception:
             pass
         self._init_schema()
+        init_receipts(self.conn)
+        self.conn.commit()
+        self._init_generation_metrics()
         self._recover_inflight()
 
     def _init_schema(self) -> None:
@@ -243,6 +248,24 @@ class OutboxStore:
             ).fetchone()
             return int(row["last_sequence"]) if row else 0
 
+    # KALPA_GENERATION_BYTES_V1
+    def _init_generation_metrics(self):
+        self.conn.execute("""CREATE TABLE IF NOT EXISTS generation_metrics_v1 (
+            stream TEXT NOT NULL, substream TEXT NOT NULL,
+            messages INTEGER NOT NULL, payload_bytes INTEGER NOT NULL,
+            first_epoch REAL NOT NULL,
+            PRIMARY KEY(stream,substream))""")
+        self.conn.commit()
+
+    def _add_generation_metrics(self, stream, substream, messages, payload_bytes):
+        # Caller holds the existing lock and transaction. No separate COMMIT.
+        self.conn.execute("""INSERT INTO generation_metrics_v1
+            (stream,substream,messages,payload_bytes,first_epoch)
+            VALUES(?,?,?,?,?) ON CONFLICT(stream,substream) DO UPDATE SET
+            messages=messages+excluded.messages,
+            payload_bytes=payload_bytes+excluded.payload_bytes""",
+            (stream,substream or '',messages,payload_bytes,time.time()))
+
     def enqueue(self, message: LogicalMessage) -> bool:
         capacity = self.capacity_status()
         if not capacity["can_accept"]:
@@ -274,6 +297,7 @@ class OutboxStore:
                         "pending",
                     ),
                 )
+                self._add_generation_metrics(message.stream, message.substream, 1, payload_bytes)
                 self.conn.commit()
                 self._invalidate_stats_cache()
                 return True
@@ -373,6 +397,7 @@ class OutboxStore:
                            policy_revision=excluded.policy_revision""",
                     [(stream,substream,sid,ts,fp,revision) for sid,(ts,fp,revision) in checkpoints.items()],
                 )
+                self._add_generation_metrics(stream, substream, len(emitted), total_size)
                 self.conn.commit()
                 self._invalidate_stats_cache()
                 return emitted
@@ -701,13 +726,8 @@ class OutboxStore:
                 raise
 
     def mark_accepted(self, message_id: str, ack_status: str, detail: str | None = None) -> None:
-        with self._lock:
-            self.conn.execute(
-                """UPDATE outbox_messages SET state='acked',acknowledged_utc=?,ack_status=?,
-                   backend_detail=?,last_error=NULL WHERE message_id=?""",
-                (_utc_now(), ack_status, detail, message_id),
-            )
-            self.conn.commit()
+        self.apply_batch_updates(accepted=[(message_id, ack_status, detail)])
+
 
     def mark_retry(
         self,
@@ -753,14 +773,9 @@ class OutboxStore:
             self.conn.execute("BEGIN IMMEDIATE")
             try:
                 if accepted_rows:
-                    self.conn.executemany(
-                        """UPDATE outbox_messages
-                           SET state='acked',acknowledged_utc=?,ack_status=?,
-                               backend_detail=?,last_error=NULL
-                           WHERE message_id=?""",
-                        [(acked_utc, status, detail, message_id)
-                         for message_id, status, detail in accepted_rows],
-                    )
+                    for message_id, status, detail in accepted_rows:
+                        release_acked(self.conn, message_id, status, time.time())
+                    prune_receipts(self.conn)
                 if retry_rows:
                     self.conn.executemany(
                         """UPDATE outbox_messages
@@ -983,7 +998,7 @@ class OutboxStore:
         ).isoformat().replace("+00:00", "Z")
         with self._lock:
             a = self.conn.execute(
-                "DELETE FROM outbox_messages WHERE state='acked' AND acknowledged_utc < ?",
+                "DELETE FROM outbox_messages WHERE state='acked' AND acknowledged_utc < ? AND ack_status IN ('accepted','already_processed')",
                 (acked_cutoff,),
             ).rowcount
             d = self.conn.execute(
@@ -994,6 +1009,7 @@ class OutboxStore:
                 "DELETE FROM transport_attempts WHERE attempted_utc < ?",
                 (attempt_cutoff,),
             ).rowcount
+            prune_receipts(self.conn)
             self.conn.commit()
             self._invalidate_stats_cache()
             try:

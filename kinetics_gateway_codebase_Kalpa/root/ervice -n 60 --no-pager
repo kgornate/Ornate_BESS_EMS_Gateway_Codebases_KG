@@ -1,0 +1,20 @@
+[0;1;34m# ]8;;file://Debix/etc/systemd/system/ornate-central-sync.service\/etc/systemd/system/ornate-central-sync.service]8;;\[0m
+[0;1;36m[Unit][0m
+[0;1;32mDescription=[0mOrnate EMS Central Sync (Kalpa v0.12, disabled by default)
+[0;1;32mAfter=[0mnetwork-online.target ornate-ems-gateway.service
+[0;1;32mWants=[0mnetwork-online.target
+[0;1;38:5:245m[0m
+[0;1;36m[Service][0m
+[0;1;32mType=[0msimple
+[0;1;32mUser=[0mroot
+[0;1;32mWorkingDirectory=[0m/opt/ornate-ems-gateway/backend
+[0;1;32mEnvironment=[0mPYTHONUNBUFFERED=1
+[0;1;32mEnvironmentFile=[0m-/etc/ornate-ems-gateway/ornate-ems-gateway.env
+[0;1;32mExecStart=[0m/opt/ornate-ems-gateway/venv/bin/python -m app.central_sync.service --config /etc/ornate-ems-gateway/central_sync.json
+[0;1;32mRestart=[0malways
+[0;1;32mRestartSec=[0m5
+[0;1;32mNoNewPrivileges=[0mtrue
+[0;1;32mUMask=[0m0077
+[0;1;38:5:245m[0m
+[0;1;36m[Install][0m
+[0;1;32mWantedBy=[0mmulti-user.target

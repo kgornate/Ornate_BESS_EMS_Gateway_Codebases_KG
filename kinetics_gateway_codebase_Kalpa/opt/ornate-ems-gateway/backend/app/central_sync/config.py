@@ -20,7 +20,7 @@ class CentralIdentityConfig(BaseModel):
 
 class CentralBackendConfig(BaseModel):
     base_url: str = "https://central-backend.example.invalid"
-    ingest_path: str = "/api/v1/ingest/batch"
+    ingest_path: str = "/api/v1/gateway/ingest"
     gateway_token: str | None = None
     gateway_token_env: str = "CENTRAL_SYNC_GATEWAY_TOKEN"
     verify_tls: bool = True

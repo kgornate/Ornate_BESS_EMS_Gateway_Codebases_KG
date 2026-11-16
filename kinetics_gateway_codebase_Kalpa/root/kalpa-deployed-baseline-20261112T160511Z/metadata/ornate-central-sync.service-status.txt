@@ -1,0 +1,6 @@
+MainPID=189316
+NRestarts=0
+ExecMainStartTimestamp=Thu 2026-11-12 10:12:55 UTC
+ExecStart={ path=/opt/ornate-ems-gateway/venv/bin/python ; argv[]=/opt/ornate-ems-gateway/venv/bin/python -m app.central_sync.service --config /etc/ornate-ems-gateway/central_sync.json ; ignore_errors=no ; start_time=[Thu 2026-11-12 10:12:55 UTC] ; stop_time=[n/a] ; pid=189316 ; code=(null) ; status=0/0 }
+ActiveState=active
+SubState=running

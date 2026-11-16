@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /opt/ornate-ems-gateway/venv/bin/python /opt/kalpa-central-monitor/monitor.py "$@"

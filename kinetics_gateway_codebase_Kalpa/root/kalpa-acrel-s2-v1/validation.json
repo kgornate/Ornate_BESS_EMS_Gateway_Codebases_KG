@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-27",
+  "physical_gateway_installation": "Pending; offline validation only",
+  "tests": {
+    "passed": 41,
+    "failed": 0,
+    "elapsed_seconds": 8.04,
+    "suites": [
+      "test_central_sync_frozen_v013.py (taxonomy expectation updated)",
+      "test_s2_frozen_optimized_phase4.py",
+      "test_kalpa_conclusions.py",
+      "test_acrel_s2.py",
+      "test_install_acrel_s2.py"
+    ]
+  },
+  "s2_canonical_points": 2506,
+  "s2_runtime_instances_four_pairs_one_meter": 9529,
+  "acrel_fields": 34,
+  "cadence_seconds": {
+    "active_power_total_kw": 5,
+    "other_measurements": 30,
+    "energy_counters": 60
+  },
+  "retention": {
+    "measurement": "T2_1Y",
+    "energy": "T3_3Y"
+  },
+  "unchanged_existing_policies": 2472,
+  "upgrade_emits_only_new_meter_records": 34,
+  "excel_checks": [
+    "34 field rows match exact manifest intervals and retention",
+    "typed numeric intervals and register function codes",
+    "formula cached rates = 71/60 records per second and 102240 records per day",
+    "interval perturbation recalculates rates and restores original",
+    "all three sheets rendered and visually reviewed",
+    "no formula error matches",
+    "workbook SHA256 matches manifest provenance"
+  ],
+  "installer_checks": [
+    "check-only changes no installed files",
+    "preserves credentials, URL, endpoint and outbox",
+    "source drift rejected",
+    "active Central Sync rejected",
+    "inactive service remains inactive through install and rollback",
+    "repeat install no-op",
+    "protected backup and guarded rollback"
+  ],
+  "manifest_sha256": "917a793a3425de8ee986838a4b0d8d0e3338a2708c192406f603a9433ebf0cf6"
+}

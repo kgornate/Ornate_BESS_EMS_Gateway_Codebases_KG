@@ -1,0 +1,47 @@
+{
+  "started_utc": "2026-11-03T08:20:27.053944+00:00",
+  "duration_sec": 300,
+  "settings": {
+    "backend": {
+      "timeout_sec": 30.0,
+      "connect_timeout_sec": 5.0,
+      "gzip_enabled": false
+    },
+    "uploader": {
+      "worker_count": 1,
+      "max_messages_per_request": 10,
+      "max_request_bytes": 262144,
+      "idle_sleep_sec": 0.25,
+      "coalescing_window_sec": 1.0
+    },
+    "outbox": {
+      "acked_retention_hours": 0,
+      "cleanup_interval_sec": 60.0,
+      "max_db_size_mb": 1024
+    },
+    "overflow_recovery": {
+      "enabled": true,
+      "request_pause_sec": 10.0,
+      "max_messages_per_request": 25,
+      "max_request_bytes": 131072,
+      "live_pause_sendable_count": 25,
+      "live_pause_oldest_age_sec": 3.0,
+      "max_load1": 2.0
+    }
+  },
+  "sampled_archive_files": [
+    "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T11.db",
+    "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T12.db",
+    "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T23.db",
+    "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T00.db",
+    "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T01.db",
+    "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T08.db"
+  ],
+  "limits": [
+    "Current 5-minute observation, not a recreation of overnight backend responses.",
+    "Live ACK receipts exclude direct archive ACKs. Rejection counters count outcomes, not distinct messages.",
+    "Retry/payload examples are a bounded sample, not a complete backlog inventory.",
+    "Full HTTP 200 per-message response bodies are not stored by existing tracing.",
+    "Includes up to three raw S2 telemetry envelopes per endpoint sample; no credentials/config/env exports."
+  ]
+}

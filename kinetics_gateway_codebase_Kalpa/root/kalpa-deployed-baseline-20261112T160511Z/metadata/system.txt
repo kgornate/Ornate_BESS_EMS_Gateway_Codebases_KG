@@ -1,0 +1,1 @@
+Linux Debix 6.12.49 #1 SMP PREEMPT Fri Sep 11 10:11:25 UTC 2026 aarch64 GNU/Linux

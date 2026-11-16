@@ -1,0 +1,18 @@
+{
+  "README.md": "9d617aecc6c83e7a002e89331b3ce259ac24d8e6a2ead4dffc077e8e6ece0b64",
+  "__pycache__/install.cpython-312.pyc": "08540df40c0cd937f9a5fe1e434e7c8c4051c4a9fdc4e1e6fc96cb0b1d738ba1",
+  "install.py": "4f3980a0dcb3f433aa01acb18981280045c2c92989ba04e7e22f001b6eb539c3",
+  "patch.json": "537343f571b6573c6051ff9274bc2f9a621af2e90bd5de49773b335c01a8834f",
+  "payload/app/central_sync/client.py": "576170db5fc0ee3932322556ad22eafdc87cf0d27c9d12797cfdf148a7374254",
+  "payload/app/central_sync/config.py": "d21638ca1ca3eb8e56f90c51478986a1878704c81f4329889a42793a5102b8f4",
+  "payload/app/central_sync/configuration_audit_producer.py": "fccaf30860f1c4ad3a9b4bd7ebd06967a5451200e1036b44bf2c462144209ffe",
+  "payload/app/central_sync/general_asset_producer.py": "daca779649c2f758d633b3c8a8dea81e24425c62a2750b1cc56a30a7631a78cf",
+  "payload/app/central_sync/s2_policy.py": "85def514745137720b12ec3f9d2dc25802232776f1d475684130e6cc67d08544",
+  "payload/configs/kalpa_s2_policy_frozen_v1_1.json": "1eb84162ef83b2398691ae04e22ac433ef27bfad8a55a1dd10422bea55c59032",
+  "source_changes.diff": "10815f8053cdd54d707196eb7d01915082e347b24d37763bcca7daf9a10f986f",
+  "tests/README.txt": "8785cea0060fc3c1414ac6342b797a5768ed478ccb3bb3a452cd01ac546678c5",
+  "tests/test_kalpa_conclusions.py": "f60009a00d8fc362ed75015c91ad19621d105e3c3914b5540301f2fa04a7226f",
+  "tests/test_s2_frozen_optimized_phase4.py": "784fa65e107b78fa5865ecedb279084b82ea7c4df8865df7bc0baf381d0e152b",
+  "validation.json": "cf1ef237285ef0d2ea3e7d87e3c4b48bdd5465054d73f26bd71ba4b6a0758ac6",
+  "verify_gateway.py": "bd51134a8345ab9f072d2d83519c0403bf44dfa32fe09375760fdb6ddd5d5a45"
+}

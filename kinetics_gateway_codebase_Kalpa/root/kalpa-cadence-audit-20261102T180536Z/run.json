@@ -1,0 +1,13 @@
+{
+  "started_utc": "2026-11-02T18:05:37.548196Z",
+  "duration_sec": 41064.0,
+  "excel_file": "Kalpa_Central_Sync_Master_Contract_v1_1(1).xlsx",
+  "excel_sha256": "6f96d4fb8fd5119595b4f8911da598b49b067bb218e637e46e67e3571073d2ba",
+  "manifest_checks": {
+    "available": true,
+    "approved_checksum_matches": true,
+    "sha256": "917a793a3425de8ee986838a4b0d8d0e3338a2708c192406f603a9433ebf0cf6",
+    "policy_drift": [],
+    "missing_excel_points": []
+  }
+}

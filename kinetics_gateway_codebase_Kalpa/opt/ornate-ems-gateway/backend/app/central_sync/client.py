@@ -11,6 +11,8 @@ from dataclasses import dataclass
 from typing import Any
 
 import httpx
+from .timing_probe import timed_network, measured_phase, trace_callback
+# KALPA_REQUEST_TIMING_V1
 
 
 log = logging.getLogger(__name__)
@@ -66,7 +68,7 @@ class CentralBackendClient:
         ).rstrip("/")
 
         self.ingest_path = str(
-            getattr(config, "ingest_path", "/api/v1/ingest/batch")
+            getattr(config, "ingest_path", "/api/v1/gateway/ingest")
         )
 
         self.ingest_url = (
@@ -219,6 +221,7 @@ class CentralBackendClient:
             - self.TOKEN_REFRESH_MARGIN_SEC
         )
 
+    @measured_phase("auth_ms")
     async def _obtain_token(
         self,
         *,
@@ -347,6 +350,7 @@ class CentralBackendClient:
     # Transport
     # ------------------------------------------------------------------
 
+    @timed_network
     async def _post_once(
         self,
         body: bytes,
@@ -375,6 +379,7 @@ class CentralBackendClient:
                 self.ingest_url,
                 content=payload,
                 headers=headers,
+                extensions={"trace": trace_callback},
             )
 
         except Exception as exc:

@@ -1,0 +1,9 @@
+opt/ornate-ems-gateway
+opt/kalpa-delivery-dashboard
+root
+etc/ornate-ems-gateway
+etc/ssh
+etc/systemd/system
+usr/local
+var/log
+mnt/ems-logs/ornate-ems-gateway

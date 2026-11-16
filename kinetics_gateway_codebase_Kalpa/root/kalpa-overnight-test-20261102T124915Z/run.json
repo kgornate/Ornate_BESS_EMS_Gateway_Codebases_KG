@@ -1,0 +1,33 @@
+{
+  "duration_sec": 60045.0,
+  "interval_sec": 30.0,
+  "kind": "OVERNIGHT_LIVE_ONLY",
+  "limits": [
+    "Generation message/record counts use producer-counter deltas, not retained-row generation estimates.",
+    "Live accepted record/MB totals include pre-existing messages accepted during the test; not a matched generation cohort.",
+    "Direct archive replay ACK record/byte volume is unavailable; never added to the live totals.",
+    "Live/archive queue counts deduplicate copies, but cross-database snapshots are not atomic.",
+    "No outage, upload pause, gateway configuration/source changes, service restart or hardware commands are performed.",
+    "All-stream delivery requires source/substream evidence; idle/disabled/unmapped streams cannot be certified.",
+    "Gateway ACK evidence is not an independent verification of backend database commit."
+  ],
+  "settings": {
+    "backend": {
+      "connect_timeout_sec": 5.0,
+      "gzip_enabled": false,
+      "timeout_sec": 30.0
+    },
+    "overflow_archive": {
+      "enabled": true
+    },
+    "overflow_recovery": {
+      "enabled": true
+    },
+    "uploader": {
+      "max_messages_per_request": 10,
+      "max_request_bytes": 262144,
+      "worker_count": 1
+    }
+  },
+  "started_utc": "2026-11-02T12:49:16.803342Z"
+}

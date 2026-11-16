@@ -1,0 +1,24 @@
+{
+  "removed_valid_acked_rows": 24422,
+  "protected_state": {
+    "unsent_and_dead": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "sequences": {
+      "rows": 12,
+      "sha256": "8c2dac884758b9c5706aec98569383dbb9d784cb2e948d57c2907acf6fd59569"
+    },
+    "s2_recording_checkpoint": {
+      "rows": 9495,
+      "sha256": "0e669bb92c2d19605f5796f06624de0e5574ef1714ba066b89a9a3cff61dbdc2"
+    },
+    "generation_metrics_v1": {
+      "rows": 12,
+      "sha256": "29d58ee34bfd80073231afc9639c666d196967cca7ef939a68e6e7639dcb2c04"
+    }
+  },
+  "logical_used_MiB": 5.80078125,
+  "reusable_MiB": 1018.30078125,
+  "remaining_states": []
+}

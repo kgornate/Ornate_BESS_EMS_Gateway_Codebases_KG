@@ -1,0 +1,14 @@
+{
+  "BASELINE.json": "688afb18a6f1f40645b7f4b5d62ecb76221dcb56155cd09eb8e6db61d25a2a3e",
+  "README.md": "70ad84c01df92473a3d0f8f44251a163bb8d46ea339b1fcdcb05bd02972244c4",
+  "VALIDATION.txt": "36b5120e2fb41fd487ef7b4a261d797abd88d6e4ee7d42e51e99f36668a04840",
+  "hmi/app.js": "c26059ecd3d3a6ad28df4f084899825bd04002194a8a21a96569ba8cdf7c3645",
+  "hmi/index.html": "d8a7fdefe199864efc9ef7994f3e77e7eff7a077fa3fd768404b0018d2e7fcc4",
+  "hmi/styles.css": "8af3b117aa99c18f575c745a0902b57c741115beff47e6525ed4241347ef44e5",
+  "install.py": "b26818ae7f1104cfe27621533fdeb89c5177036e085bc183b1214c624834a045",
+  "test_installer.py": "a6c17d1dfbff81f05b68c05f518cf0bfaf585b727a19dbab0f5e918de33cffc5",
+  "tests/baseline/app.js": "2585fed3c4ca008203728bcfefeb9375f872d7f35eb8e93bef6d4153fb8e3c17",
+  "tests/baseline/index.html": "f990b1c49536e658d307adfbdcd824c39bd4c771831c2ce7df393ec0f7548825",
+  "tests/baseline/styles.css": "a77f5eb30cd5b5e7be8098959fe70e582ccbf212c18ed5f4471fea76a1754446",
+  "tests/ui_dom_test.cjs": "cce376c3db05ef98823bf5815bf183c4aa76f88e5f09e5f4d5bb496a2e369493"
+}

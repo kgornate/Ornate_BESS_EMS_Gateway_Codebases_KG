@@ -1,0 +1,140 @@
+{
+  "adaptive_mode": "catch_up",
+  "archive_bandwidth_budget": {
+    "MB_per_min": 1.25,
+    "attempted_logical_bytes_charged": 14713737,
+    "available_bytes": 256196,
+    "burst_bytes": 262400
+  },
+  "archive_budget_settings": {
+    "burst_bytes": 262400,
+    "growth_messages": 10,
+    "hard_live_age_sec": 75.0,
+    "hard_live_count": 100,
+    "healthy_samples": 2,
+    "increase_MB_per_min": 0.5,
+    "increase_interval_sec": 60.0,
+    "initial_MB_per_min": 2.0,
+    "limited_MB_per_min": 0.5,
+    "live_failure_cooldown_sec": 30.0,
+    "live_status_max_age_sec": 10.0,
+    "max_MB_per_min": 10.0,
+    "min_MB_per_min": 0.25,
+    "poll_interval_sec": 1.0,
+    "soft_live_age_sec": 30.0,
+    "soft_live_count": 25,
+    "trend_window_sec": 15.0
+  },
+  "archive_dir": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives",
+  "archive_glob": "central_sync_overflow_*.db",
+  "archive_interval_sec": 1.0,
+  "archive_retention": "retain_with_replayed_marker",
+  "auth_mode": "shared_token_broker",
+  "batch_bytes": 262144,
+  "batch_messages": 10,
+  "counters": {
+    "archive_accepted_bytes": 13205772,
+    "archive_accepted_count": 303,
+    "archive_accepted_records": 10636,
+    "archive_ack_metric_error_count": 0,
+    "archive_active_requests": 0,
+    "archive_already_processed_count": 1,
+    "archive_drained_count": 0,
+    "archive_duplicate_bytes": 3307,
+    "archive_http_attempt_count": 67,
+    "archive_http_duration_max_ms": 4741.090618947055,
+    "archive_http_duration_total_ms": 155518.57601382653,
+    "archive_http_failure_count": 0,
+    "archive_http_success_count": 67,
+    "archive_last_http_duration_ms": 3770.638,
+    "archive_last_request_bytes": 249345,
+    "archive_missing_ack_count": 0,
+    "archive_open_count": 67,
+    "archive_peak_active_requests": 1,
+    "archive_permanent_rejected_count": 0,
+    "archive_retryable_rejected_count": 33,
+    "bounded_opportunity_count": 67,
+    "deferred_before_http_count": 0,
+    "failure_count": 0,
+    "last_archive_path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261107T16.db",
+    "last_defer_reason": null,
+    "last_error": null,
+    "last_pause_reason": "archive_budget_wait",
+    "last_request_utc": "2026-11-12T09:26:35.968747Z",
+    "last_success_utc": "2026-11-12T09:26:42.808742Z",
+    "pause_live_count": 15,
+    "pause_load_count": 0,
+    "pause_memory_count": 0,
+    "pause_opportunity_count": 781,
+    "pause_transport_count": 0,
+    "request_cycle_count": 67,
+    "retained_drained_count": 0,
+    "scan_count": 863
+  },
+  "enabled": true,
+  "max_archive_concurrency": 1,
+  "recent_archive_rejections": [
+    {
+      "code": "temporary_backend_unavailable",
+      "detail": "store not confirmed; retry",
+      "message_id": "50323bd3-a43c-4f70-bbbc-f1a5aa9c9c3e"
+    },
+    {
+      "code": "temporary_backend_unavailable",
+      "detail": "store not confirmed; retry",
+      "message_id": "0dfe0df1-526f-40b9-88e9-602706aaaa6d"
+    },
+    {
+      "code": "temporary_backend_unavailable",
+      "detail": "store not confirmed; retry",
+      "message_id": "2384b589-85c5-4775-80e5-eb1120e731c8"
+    },
+    {
+      "code": "temporary_backend_unavailable",
+      "detail": "store not confirmed; retry",
+      "message_id": "64365ac5-78c3-42ae-a806-5557a8a2e7ed"
+    },
+    {
+      "code": "temporary_backend_unavailable",
+      "detail": "store not confirmed; retry",
+      "message_id": "68a50aef-a3c9-44c9-a9d3-003735e7cf76"
+    },
+    {
+      "code": "temporary_backend_unavailable",
+      "detail": "store not confirmed; retry",
+      "message_id": "704dbce5-7d69-4925-bcb5-8c0be5c94a46"
+    }
+  ],
+  "recovery_scheduler": "byte_budget_v1",
+  "resource_gate": {
+    "cpu_count": 2,
+    "live": {
+      "available": true,
+      "oldest_age_sec": 4.338435411453247,
+      "unacked_count": 1
+    },
+    "live_transport": {
+      "available": true,
+      "last_error": null,
+      "request_failure_count": 0,
+      "started_utc": "2026-11-12T09:04:25.149716Z",
+      "status_age_sec": 2.005
+    },
+    "load1": 2.21826171875,
+    "mem_available_mb": 1034,
+    "recovery_policy": {
+      "cooldown_remaining_sec": 0,
+      "interval_sec": 1.0,
+      "max_live_age_sec": 75.0,
+      "max_live_count": 100,
+      "mode": "catch_up",
+      "soft_live_age_sec": 30.0,
+      "soft_live_count": 25
+    },
+    "transport_paused": false
+  },
+  "running": true,
+  "started_utc": "2026-11-12T09:04:26.219143Z",
+  "status_generated_utc": "2026-11-12T09:26:50.533224Z",
+  "transport_mode": "dedicated_archive_client"
+}

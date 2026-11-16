@@ -1,0 +1,3 @@
+Local validation: 3 unittest tests passed.
+Tests: rates/sizes/percentiles and bins; full synthetic SQLite run across pending/acked/retry rows with preserved baseline queue; sequence mismatch flagged as incomplete.
+No live DEBIX measurement has been performed here. Run the benchmark on the gateway to obtain actual workload numbers.

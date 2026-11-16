@@ -7,6 +7,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, model_validator
 
+from app.core.acrel_config import AcrelMeterConfig
+
 
 class EndpointConfig(BaseModel):
     port: int = 503
@@ -467,6 +469,7 @@ class GatewayConfig(BaseModel):
     pcs_catalog_file: str = "generated_protocols/pcs_catalog.json"
     bms: BmsConfig = Field(default_factory=BmsConfig)
     pcs: PcsConfig = Field(default_factory=PcsConfig)
+    meter: AcrelMeterConfig = Field(default_factory=AcrelMeterConfig)
     storage: StorageConfig = Field(default_factory=StorageConfig)
     security: SecurityConfig = Field(default_factory=SecurityConfig)
     mock: MockConfig = Field(default_factory=MockConfig)
@@ -475,6 +478,9 @@ class GatewayConfig(BaseModel):
 
     @model_validator(mode="after")
     def validate_write_mode(self) -> "GatewayConfig":
+        if self.meter.enabled and self.meter.mode == "hardware" and self.pcs.enabled and self.pcs.transport == "rtu":
+            if Path(self.meter.device).resolve() == Path(self.pcs.serial.device).resolve():
+                raise ValueError("Meter and PCS cannot independently own the same serial bus")
         if self.websocket_max_clients < 1:
             raise ValueError("websocket_max_clients must be at least 1")
         if self.websocket_send_timeout_seconds <= 0:

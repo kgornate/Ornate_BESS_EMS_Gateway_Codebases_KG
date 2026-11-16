@@ -15,6 +15,9 @@ from datetime import datetime, timezone
 from typing import Any
 
 from .batcher import OutboxBatcher, PreparedBatch
+from .timing_probe import timed_batch, measured_phase, lock_started, lock_acquired
+# KALPA_REQUEST_TIMING_V1
+from .batch_trace import record_batch_trace
 from .client import CentralBackendClient, TransportResponse
 from .config import CentralSyncConfig
 from .outbox import OutboxItem, OutboxStore
@@ -203,6 +206,7 @@ class CentralSyncUploader:
         await self._send_prepared(prepared)
         return True
 
+    @timed_batch
     async def _send_prepared(self, prepared: PreparedBatch) -> None:
         self.counters.request_count += 1
         self.counters.last_attempt_utc = utc_now_iso()
@@ -216,13 +220,20 @@ class CentralSyncUploader:
         try:
             # Shared lock serializes live and overflow-recovery HTTP requests,
             # preserving the validated single-request transport architecture.
+            lock_started()
             async with self.transport_lock:
+                lock_acquired()
                 response = await self.client.post_batch(prepared.json_bytes)
         finally:
             self.counters.active_request_count = max(
                 0, self.counters.active_request_count - 1
             )
         self.counters.last_http_status = response.status_code
+        # KALPA_BATCH_STREAM_TRACE_V1
+        try:
+            await asyncio.to_thread(record_batch_trace, prepared, response, str(self.outbox.path))
+        except Exception as trace_error:
+            log.warning("Batch membership trace unavailable: %s", type(trace_error).__name__)
 
         # 413 is explicitly split so one oversized transport request does not
         # repeatedly block otherwise valid logical messages.
@@ -302,6 +313,7 @@ class CentralSyncUploader:
         prepared = PreparedBatch(request_id=batch.request_id, body=body, items=items, json_bytes=raw)
         await self._send_prepared(prepared)
 
+    @measured_phase("ack_apply_ms")
     async def _apply_partial_ack(self, items: list[OutboxItem], response: TransportResponse) -> None:
         body = response.body or {}
         accepted_raw = body.get("accepted", [])

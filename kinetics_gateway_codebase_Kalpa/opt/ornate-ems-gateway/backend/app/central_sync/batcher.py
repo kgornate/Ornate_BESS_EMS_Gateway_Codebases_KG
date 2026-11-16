@@ -7,6 +7,8 @@ from typing import Any
 
 from .contracts import TransportBatch
 from .outbox import OutboxItem, OutboxStore
+from .timing_probe import timed_prepare
+# KALPA_REQUEST_TIMING_V1
 
 
 @dataclass(frozen=True)
@@ -43,6 +45,7 @@ class OutboxBatcher:
         self.priority_bias_sec = float(priority_bias_sec)
         self.candidate_scan_limit = int(candidate_scan_limit)
 
+    @timed_prepare
     def prepare(self) -> PreparedBatch | None:
         items = self.outbox.eligible(
             now_epoch=time.time(),

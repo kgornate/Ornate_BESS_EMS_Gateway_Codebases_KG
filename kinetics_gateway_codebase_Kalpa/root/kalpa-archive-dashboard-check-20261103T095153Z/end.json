@@ -1,0 +1,725 @@
+{
+  "utc": "2026-11-03T09:52:53.737232+00:00",
+  "live": {
+    "status_generated_utc": "2026-11-03T09:52:51.859080Z",
+    "started_utc": "2026-11-03T09:42:40.985126Z",
+    "running": true,
+    "counters": null,
+    "resource_gate": null,
+    "uploader": {
+      "accepted_count": 815,
+      "active_request_count": 0,
+      "already_processed_count": 0,
+      "bytes_sent_uncompressed": 43387359,
+      "last_attempt_utc": "2026-11-03T09:52:51.009736Z",
+      "last_error": null,
+      "last_http_status": 200,
+      "last_pause_utc": null,
+      "last_request_id": "fefad92a-d5a3-4af3-82f9-b4cbbcbf6209",
+      "last_success_utc": "2026-11-03T09:52:51.504097Z",
+      "missing_ack_count": 0,
+      "pause_cycle_count": 0,
+      "paused": false,
+      "peak_active_request_count": 1,
+      "permanent_rejected_count": 0,
+      "request_count": 250,
+      "request_failure_count": 0,
+      "request_success_count": 250,
+      "retryable_rejected_count": 0,
+      "worker_count": 1
+    },
+    "stream_backend_ack": {
+      "battery_charge_discharge_control": {
+        "accepted_count": 48,
+        "acked_count": 48,
+        "already_processed_count": 0,
+        "last_ack_sequence": 5526,
+        "last_ack_status": "accepted",
+        "last_ack_substream": "pair_controller",
+        "last_ack_utc": "2026-11-03T09:52:45.654599Z",
+        "last_backend_result": "accepted",
+        "last_backend_result_utc": "2026-11-03T09:52:45.654599Z",
+        "last_error": null,
+        "missing_ack_count": 0,
+        "permanent_rejected_count": 0,
+        "retryable_rejected_count": 0,
+        "stream": "battery_charge_discharge_control",
+        "transport_failure_count": 0
+      },
+      "fast_bess_telemetry": {
+        "accepted_count": 132,
+        "acked_count": 132,
+        "already_processed_count": 0,
+        "last_ack_sequence": 14984,
+        "last_ack_status": "accepted",
+        "last_ack_substream": "bess_fast",
+        "last_ack_utc": "2026-11-03T09:52:51.508165Z",
+        "last_backend_result": "accepted",
+        "last_backend_result_utc": "2026-11-03T09:52:51.508165Z",
+        "last_error": null,
+        "missing_ack_count": 0,
+        "permanent_rejected_count": 0,
+        "retryable_rejected_count": 0,
+        "stream": "fast_bess_telemetry",
+        "transport_failure_count": 0
+      },
+      "gateway_health": {
+        "accepted_count": 17,
+        "acked_count": 17,
+        "already_processed_count": 0,
+        "last_ack_sequence": 3259,
+        "last_ack_status": "accepted",
+        "last_ack_substream": "gateway",
+        "last_ack_utc": "2026-11-03T09:52:50.662165Z",
+        "last_backend_result": "accepted",
+        "last_backend_result_utc": "2026-11-03T09:52:50.662165Z",
+        "last_error": null,
+        "missing_ack_count": 0,
+        "permanent_rejected_count": 0,
+        "retryable_rejected_count": 0,
+        "stream": "gateway_health",
+        "transport_failure_count": 0
+      },
+      "general_asset_telemetry": {
+        "accepted_count": 618,
+        "acked_count": 618,
+        "already_processed_count": 0,
+        "last_ack_sequence": 4836,
+        "last_ack_status": "accepted",
+        "last_ack_substream": "pcs_extended",
+        "last_ack_utc": "2026-11-03T09:52:50.662165Z",
+        "last_backend_result": "accepted",
+        "last_backend_result_utc": "2026-11-03T09:52:50.662165Z",
+        "last_error": null,
+        "missing_ack_count": 0,
+        "permanent_rejected_count": 0,
+        "retryable_rejected_count": 0,
+        "stream": "general_asset_telemetry",
+        "transport_failure_count": 0
+      }
+    },
+    "outbox": {
+      "acked_count": 0,
+      "by_priority": {},
+      "capacity": {
+        "can_accept": true,
+        "db_size_bytes": 1080403080,
+        "filesystem_free_mb": 21289,
+        "logical_used_bytes": 6561792,
+        "max_db_size_bytes": 1073741824,
+        "min_free_space_mb": 256,
+        "reasons": [],
+        "reusable_page_bytes": 1067286528,
+        "wal_bytes": 6521992
+      },
+      "db_size_bytes": 1080403080,
+      "dead_count": 0,
+      "inflight_count": 0,
+      "logical_used_bytes": 6561792,
+      "oldest_sendable_age_sec": null,
+      "path": "/var/lib/ornate-central-sync/central_sync.db",
+      "pending_count": 0,
+      "retry_count": 0,
+      "reusable_page_bytes": 1067286528,
+      "sendable_bytes": 0,
+      "sendable_count": 0,
+      "unacked_count": 0,
+      "wal_bytes": 6521992
+    }
+  },
+  "recovery": {
+    "status_generated_utc": "2026-11-03T09:52:47.708184Z",
+    "started_utc": "2026-11-03T09:42:42.010231Z",
+    "running": true,
+    "counters": {
+      "archive_drained_count": 0,
+      "archive_open_count": 15,
+      "bounded_opportunity_count": 15,
+      "failure_count": 0,
+      "last_archive_path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T08.db",
+      "last_error": null,
+      "last_pause_reason": "opportunity_wait",
+      "last_request_utc": "2026-11-03T09:52:22.624397Z",
+      "last_success_utc": "2026-11-03T09:52:24.328378Z",
+      "pause_live_count": 23,
+      "pause_load_count": 0,
+      "pause_memory_count": 0,
+      "pause_opportunity_count": 56,
+      "pause_transport_count": 0,
+      "request_cycle_count": 15,
+      "retained_drained_count": 0,
+      "scan_count": 94
+    },
+    "resource_gate": {
+      "live": {
+        "available": true,
+        "oldest_age_sec": 18.09870672225952,
+        "unacked_count": 3
+      },
+      "load1": 3.055,
+      "mem_available_mb": 1243,
+      "recovery_policy": {
+        "cpu_count": 2,
+        "mode": "paused",
+        "opportunity_age_limit_sec": 30.0,
+        "opportunity_interval_sec": 30.0,
+        "opportunity_live_limit": 25,
+        "opportunity_load_limit": 4.0,
+        "reason": "opportunity_wait",
+        "wait_remaining_sec": 4.9
+      },
+      "transport_paused": false
+    },
+    "uploader": null,
+    "stream_backend_ack": null,
+    "outbox": null
+  },
+  "recovery_uploader": {
+    "status_generated_utc": "2026-11-03T09:52:24.287385Z",
+    "started_utc": "2026-11-03T09:52:22.624304Z",
+    "running": false,
+    "counters": null,
+    "resource_gate": null,
+    "uploader": {
+      "accepted_count": 1,
+      "active_request_count": 0,
+      "already_processed_count": 0,
+      "bytes_sent_uncompressed": 97552,
+      "last_attempt_utc": "2026-11-03T09:52:22.896245Z",
+      "last_error": null,
+      "last_http_status": 200,
+      "last_pause_utc": null,
+      "last_request_id": "8f592ee5-6011-4594-b38a-8d62a6525195",
+      "last_success_utc": "2026-11-03T09:52:24.124144Z",
+      "missing_ack_count": 0,
+      "pause_cycle_count": 0,
+      "paused": false,
+      "peak_active_request_count": 1,
+      "permanent_rejected_count": 0,
+      "request_count": 1,
+      "request_failure_count": 0,
+      "request_success_count": 1,
+      "retryable_rejected_count": 0,
+      "worker_count": 1
+    },
+    "stream_backend_ack": {
+      "general_asset_telemetry": {
+        "accepted_count": 1,
+        "acked_count": 1,
+        "already_processed_count": 0,
+        "last_ack_sequence": 22773,
+        "last_ack_status": "accepted",
+        "last_ack_substream": "bms_extended",
+        "last_ack_utc": "2026-11-03T09:52:24.164484Z",
+        "last_backend_result": "accepted",
+        "last_backend_result_utc": "2026-11-03T09:52:24.164484Z",
+        "last_error": null,
+        "missing_ack_count": 0,
+        "permanent_rejected_count": 0,
+        "retryable_rejected_count": 0,
+        "stream": "general_asset_telemetry",
+        "transport_failure_count": 0
+      }
+    },
+    "outbox": {
+      "acked_count": 0,
+      "by_priority": {
+        "P3": 50
+      },
+      "capacity": {
+        "can_accept": true,
+        "db_size_bytes": 5497968,
+        "filesystem_free_mb": 116754,
+        "logical_used_bytes": 4984832,
+        "max_db_size_bytes": null,
+        "min_free_space_mb": 0,
+        "reasons": [],
+        "reusable_page_bytes": 290816,
+        "wal_bytes": 189552
+      },
+      "db_size_bytes": 5497968,
+      "dead_count": 0,
+      "inflight_count": 0,
+      "logical_used_bytes": 4984832,
+      "oldest_sendable_age_sec": 6610.675,
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T08.db",
+      "pending_count": 50,
+      "retry_count": 0,
+      "reusable_page_bytes": 290816,
+      "sendable_bytes": 4838668,
+      "sendable_count": 50,
+      "unacked_count": 50,
+      "wal_bytes": 189552
+    }
+  },
+  "databases": [
+    {
+      "path": "/var/lib/ornate-central-sync/central_sync.db",
+      "message_states": [],
+      "recent_retained_ACKs": [
+        {
+          "stream": "battery_charge_discharge_control",
+          "substream": "pair_controller",
+          "ack_status": "accepted",
+          "messages": 20,
+          "records": 80,
+          "payload_bytes": 66120,
+          "latest_ack_epoch": 1793699565.658894
+        },
+        {
+          "stream": "fast_bess_telemetry",
+          "substream": "bess_fast",
+          "ack_status": "accepted",
+          "messages": 58,
+          "records": 232,
+          "payload_bytes": 1982440,
+          "latest_ack_epoch": 1793699571.5113678
+        },
+        {
+          "stream": "gateway_health",
+          "substream": "gateway",
+          "ack_status": "accepted",
+          "messages": 8,
+          "records": 8,
+          "payload_bytes": 27569,
+          "latest_ack_epoch": 1793699570.6670134
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 165,
+          "records": 15135,
+          "payload_bytes": 14178672,
+          "latest_ack_epoch": 1793699570.693281
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "dehumidifier",
+          "ack_status": "accepted",
+          "messages": 5,
+          "records": 30,
+          "payload_bytes": 30128,
+          "latest_ack_epoch": 1793699521.443385
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "ems_system",
+          "ack_status": "accepted",
+          "messages": 19,
+          "records": 268,
+          "payload_bytes": 254488,
+          "latest_ack_epoch": 1793699569.1265216
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "fire_protection",
+          "ack_status": "accepted",
+          "messages": 4,
+          "records": 28,
+          "payload_bytes": 27152,
+          "latest_ack_epoch": 1793699518.4628067
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "io_module",
+          "ack_status": "accepted",
+          "messages": 6,
+          "records": 60,
+          "payload_bytes": 58620,
+          "latest_ack_epoch": 1793699518.4333842
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "liquid_cooling",
+          "ack_status": "accepted",
+          "messages": 13,
+          "records": 119,
+          "payload_bytes": 116844,
+          "latest_ack_epoch": 1793699549.322343
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "pcs_extended",
+          "ack_status": "accepted",
+          "messages": 37,
+          "records": 2232,
+          "payload_bytes": 1947824,
+          "latest_ack_epoch": 1793699570.7146301
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "remote_control",
+          "ack_status": "accepted",
+          "messages": 32,
+          "records": 768,
+          "payload_bytes": 735936,
+          "latest_ack_epoch": 1793699570.7122784
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T11.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 623
+        },
+        {
+          "state": "retry",
+          "messages": 84
+        }
+      ],
+      "recent_retained_ACKs": []
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T12.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 1751
+        },
+        {
+          "state": "retry",
+          "messages": 1142
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "pcs_extended",
+          "ack_status": "accepted",
+          "messages": 2,
+          "records": 120,
+          "payload_bytes": 104704,
+          "latest_ack_epoch": 1793699209.8191915
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T13.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 422
+        },
+        {
+          "state": "retry",
+          "messages": 1266
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 107,
+          "payload_bytes": 96968,
+          "latest_ack_epoch": 1793699253.3729575
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T17.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 235
+        },
+        {
+          "state": "retry",
+          "messages": 1087
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 102,
+          "payload_bytes": 96834,
+          "latest_ack_epoch": 1793699291.467183
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T18.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 483
+        },
+        {
+          "state": "retry",
+          "messages": 2014
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 103,
+          "payload_bytes": 96890,
+          "latest_ack_epoch": 1793699318.074494
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T19.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 282
+        },
+        {
+          "state": "retry",
+          "messages": 2095
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 44,
+          "payload_bytes": 41113,
+          "latest_ack_epoch": 1793699351.3050468
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "fire_protection",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 7,
+          "payload_bytes": 6788,
+          "latest_ack_epoch": 1793699351.3389559
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "pcs_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 56,
+          "payload_bytes": 48846,
+          "latest_ack_epoch": 1793699351.329225
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T20.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 375
+        },
+        {
+          "state": "retry",
+          "messages": 2070
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 2,
+          "records": 132,
+          "payload_bytes": 129352,
+          "latest_ack_epoch": 1793699382.3786402
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T21.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 220
+        },
+        {
+          "state": "retry",
+          "messages": 2105
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 105,
+          "payload_bytes": 97227,
+          "latest_ack_epoch": 1793699415.6839175
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T22.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 255
+        },
+        {
+          "state": "retry",
+          "messages": 2120
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 99,
+          "payload_bytes": 96806,
+          "latest_ack_epoch": 1793699449.2981825
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "ems_system",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 2,
+          "payload_bytes": 2292,
+          "latest_ack_epoch": 1793699449.3714716
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "pcs_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 8,
+          "payload_bytes": 7375,
+          "latest_ack_epoch": 1793699449.3914337
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261102T23.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 246
+        },
+        {
+          "state": "retry",
+          "messages": 2053
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 99,
+          "payload_bytes": 96982,
+          "latest_ack_epoch": 1793699482.081309
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T00.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 243
+        },
+        {
+          "state": "retry",
+          "messages": 2066
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 104,
+          "payload_bytes": 97092,
+          "latest_ack_epoch": 1793699108.2611043
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T01.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 7
+        },
+        {
+          "state": "retry",
+          "messages": 89
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 48,
+          "payload_bytes": 46893,
+          "latest_ack_epoch": 1793699144.2908218
+        },
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "pcs_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 48,
+          "payload_bytes": 42059,
+          "latest_ack_epoch": 1793699144.2854748
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T08.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 50
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 102,
+          "payload_bytes": 97404,
+          "latest_ack_epoch": 1793699544.1678345
+        }
+      ]
+    },
+    {
+      "path": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives/central_sync_overflow_20261103T09.db",
+      "message_states": [
+        {
+          "state": "pending",
+          "messages": 146
+        }
+      ],
+      "recent_retained_ACKs": [
+        {
+          "stream": "general_asset_telemetry",
+          "substream": "bms_extended",
+          "ack_status": "accepted",
+          "messages": 1,
+          "records": 102,
+          "payload_bytes": 97074,
+          "latest_ack_epoch": 1793699514.4878542
+        }
+      ]
+    }
+  ]
+}

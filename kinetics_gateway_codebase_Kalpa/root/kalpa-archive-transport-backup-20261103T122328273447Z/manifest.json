@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "target": "/opt/ornate-ems-gateway/backend/app/central_sync/overflow_recovery.py",
+      "existed": true,
+      "backup": "0.original",
+      "mode": 420,
+      "installed_sha256": "e83d0fbd0178b10283b775e4bee5d13abc8e49250fb735b4deeaf8723f1115f5"
+    },
+    {
+      "target": "/opt/ornate-ems-gateway/backend/app/central_sync/archive_transport.py",
+      "existed": false,
+      "backup": "1.original",
+      "mode": 420,
+      "installed_sha256": "ecc8d7ae2cc77419c605d63b6fa8e4434ca275a79e2d0382a27efd41c91cca9a"
+    },
+    {
+      "target": "/etc/ornate-ems-gateway/archive_transport.json",
+      "existed": false,
+      "backup": "2.original",
+      "mode": 420,
+      "installed_sha256": "95349133995eb743a57cec79d6be82dd3a9924e333f8b90cdee793a63d9a332c"
+    },
+    {
+      "target": "/opt/kalpa-delivery-dashboard/dashboard.py",
+      "existed": true,
+      "backup": "3.original",
+      "mode": 420,
+      "installed_sha256": "a71223bd66271014c98e0619af6c18d2dcf91445ed7739102906515bfcbf9aa9"
+    },
+    {
+      "target": "/opt/kalpa-delivery-dashboard/monitor_evidence.py",
+      "existed": true,
+      "backup": "4.original",
+      "mode": 420,
+      "installed_sha256": "6eb736d654950c35689111959a1a44ff383184f28e19e03147cb5e40b845cd45"
+    }
+  ],
+  "was_active": true
+}

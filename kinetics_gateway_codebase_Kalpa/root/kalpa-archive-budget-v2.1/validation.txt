@@ -1,0 +1,33 @@
+PREFLIGHT PASS against exact v2 deployment
+test_budget_deferral_sends_no_http (test_budget.IntegrationTests.test_budget_deferral_sends_no_http) ... ok
+test_deferred_claims_are_retained_without_incrementing_attempts (test_budget.IntegrationTests.test_deferred_claims_are_retained_without_incrementing_attempts) ... ok
+test_http_429_keeps_retry_after_cooldown (test_budget.IntegrationTests.test_http_429_keeps_retry_after_cooldown) ... ok
+test_partial_ack_releases_only_accepted_and_preserves_retry (test_budget.IntegrationTests.test_partial_ack_releases_only_accepted_and_preserves_retry) ... ok
+test_active_live_error_blocks (test_budget.PolicyTests.test_active_live_error_blocks) ... ok
+test_archive_failure_has_distinct_cooldown_reason (test_budget.PolicyTests.test_archive_failure_has_distinct_cooldown_reason) ... ok
+test_attempted_byte_rate_bound_for_normal_requests (test_budget.PolicyTests.test_attempted_byte_rate_bound_for_normal_requests) ... ok
+test_brief_burst_does_not_halve_target (test_budget.PolicyTests.test_brief_burst_does_not_halve_target) ... ok
+test_budget_charges_bytes_and_no_idle_burst_accumulates (test_budget.PolicyTests.test_budget_charges_bytes_and_no_idle_burst_accumulates) ... ok
+test_count_growth_without_old_age_does_not_halve (test_budget.PolicyTests.test_count_growth_without_old_age_does_not_halve) ... ok
+test_gradual_ramp_is_bounded (test_budget.PolicyTests.test_gradual_ramp_is_bounded) ... ok
+test_growing_queue_with_improving_age_does_not_halve (test_budget.PolicyTests.test_growing_queue_with_improving_age_does_not_halve) ... ok
+test_hard_live_count_and_age_not_overridden (test_budget.PolicyTests.test_hard_live_count_and_age_not_overridden) ... ok
+test_healthy_break_interrupts_sustained_pressure (test_budget.PolicyTests.test_healthy_break_interrupts_sustained_pressure) ... ok
+test_jittered_observations_still_detect_persistent_pressure (test_budget.PolicyTests.test_jittered_observations_still_detect_persistent_pressure) ... ok
+test_live_failure_even_if_already_recovered_forces_cooldown (test_budget.PolicyTests.test_live_failure_even_if_already_recovered_forces_cooldown) ... ok
+test_manual_pause_memory_load_and_unavailable_probes_block (test_budget.PolicyTests.test_manual_pause_memory_load_and_unavailable_probes_block) ... ok
+test_nonfinite_health_and_missing_age_fail_closed (test_budget.PolicyTests.test_nonfinite_health_and_missing_age_fail_closed) ... ok
+test_normal_live_burst_limits_rate_instead_of_starving (test_budget.PolicyTests.test_normal_live_burst_limits_rate_instead_of_starving) ... ok
+test_oversized_first_request_repays_debt (test_budget.PolicyTests.test_oversized_first_request_repays_debt) ... ok
+test_recorded_five_minute_trace_does_not_halve_on_brief_burst (test_budget.PolicyTests.test_recorded_five_minute_trace_does_not_halve_on_brief_burst) ... ok
+test_settings_reject_unknown_and_invalid_values (test_budget.PolicyTests.test_settings_reject_unknown_and_invalid_values) ... ok
+test_sustained_growth_yields (test_budget.PolicyTests.test_sustained_growth_yields) ... ok
+test_two_fresh_observations_required (test_budget.PolicyTests.test_two_fresh_observations_required) ... ok
+test_restore_keeps_unrelated_files_and_restores_exact_bytes (test_install.InstallerTests.test_restore_keeps_unrelated_files_and_restores_exact_bytes) ... ok
+test_rollback_refuses_later_edit_before_stopping_service (test_install.InstallerTests.test_rollback_refuses_later_edit_before_stopping_service) ... ok
+test_source_change_refused (test_install.InstallerTests.test_source_change_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.013s
+
+OK

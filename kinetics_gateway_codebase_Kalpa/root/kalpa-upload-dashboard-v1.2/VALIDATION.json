@@ -1,0 +1,15 @@
+{
+  "version": "1.2",
+  "validated_utc": "2026-11-02T06:25:19.796581+00:00",
+  "unit_tests": 18,
+  "result": "PASS",
+  "changes_gateway_code": false,
+  "changes_services": false,
+  "network_requests": false,
+  "limitations": [
+    "Live retained ACK and HTTP attempt windows only; excludes archive recovery",
+    "Per-request elapsed time unavailable",
+    "Planning targets are user-supplied historical references, not capacity certification",
+    "No physical gateway test performed in this environment"
+  ]
+}

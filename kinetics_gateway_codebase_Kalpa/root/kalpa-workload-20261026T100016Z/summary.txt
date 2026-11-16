@@ -1,0 +1,14 @@
+KALPA generated workload benchmark
+Mode: mock
+Result: error_partial
+Duration: 125.4s; steady window: 65.4s
+Steady messages/s: 1.376
+Steady records/s: 66.151
+Steady logical JSON KiB/s: 67.752
+Projected logical JSON GiB/day: 5.583
+Message mean/p95/max bytes: 50423.5/97600/97692
+Peak fixed-1s messages/records/bytes: 24/1980/1841905
+Capture counts reconciled: False
+Central Sync stopped: False
+Issues: ["Command '['systemctl', 'stop', 'ornate-central-sync.service']' died with <Signals.SIGINT: 2>.", 'Sequence allocation and captured counts differ: generation failed or rows were missed; do not use as complete capacity evidence']
+Read report.json method notes before using these figures for capacity planning.

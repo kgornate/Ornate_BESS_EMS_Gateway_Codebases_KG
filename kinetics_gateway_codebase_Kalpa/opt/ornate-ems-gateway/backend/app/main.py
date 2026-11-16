@@ -131,9 +131,17 @@ async def polling_supervisor() -> None:
                 await child
 
 
+async def meter_polling_loop() -> None:
+    # Independent of BMS/PCS warm-up; a slow or missing meter cannot delay them.
+    await asyncio.to_thread(service.poll_meter)
+    await periodic_loop("meter", config.meter.poll_seconds, service.poll_meter)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     tasks = [asyncio.create_task(polling_supervisor(), name="ornate-ems-polling-supervisor")]
+    if config.meter.enabled:
+        tasks.append(asyncio.create_task(meter_polling_loop(), name="ornate-ems-meter"))
     tasks.append(asyncio.create_task(maintenance_loop(), name="ornate-ems-maintenance"))
     tasks.append(asyncio.create_task(event_loop_monitor(), name="ornate-ems-runtime-metrics"))
     store.event(
@@ -159,6 +167,7 @@ async def lifespan(app: FastAPI):
         for task in tasks:
             with contextlib.suppress(asyncio.CancelledError):
                 await task
+        await asyncio.to_thread(service.meter_driver.close)
         store.event("gateway", "Gateway application stopped")
 
 

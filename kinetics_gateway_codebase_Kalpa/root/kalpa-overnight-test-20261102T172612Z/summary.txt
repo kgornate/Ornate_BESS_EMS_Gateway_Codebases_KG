@@ -1,0 +1,36 @@
+KALPA OVERNIGHT LIVE UPLOAD / GENERATION TEST
+Completed requested 12.06 hours: True
+Error: none
+No outage or upload pause was introduced.
+
+Generation counters complete: False
+
+Combined unique pending: ? -> ?
+Archived pending messages: ? -> ?
+Oldest combined pending age: ? -> ? sec
+
+Generation logical JSON: 2066.993 MB; average 2.856 MB/min
+
+Review flags:
+- Incomplete/reset measurement evidence; no pass conclusion.
+
+Recorded live HTTP attempts: {"requests": 15002, "attempted_bytes": 3696110898, "http_200": 15001, "http_502": 1}
+Live accepted averages (direct archive ACKs excluded): {"messages_per_min": 3.370770495541022, "records_per_min": 113.99835298854308, "MB_per_min": 0.13958113892686805}
+
+Observed live ACK totals (archive replay excluded; may include older queued data):
+battery_charge_discharge_control/pair_controller: accepted, 274 msg, 1096 records, 0.906 MB
+fast_bess_telemetry/bess_fast: accepted, 778 msg, 3112 records, 26.591 MB
+fast_bess_telemetry/bess_fast: already_processed, 1 msg, 4 records, 0.034 MB
+gateway_health/gateway: accepted, 99 msg, 99 records, 0.341 MB
+general_asset_telemetry/bms_extended: accepted, 717 msg, 60686 records, 57.337 MB
+general_asset_telemetry/dehumidifier: accepted, 33 msg, 213 records, 0.213 MB
+general_asset_telemetry/ems_system: accepted, 10 msg, 90 records, 0.086 MB
+general_asset_telemetry/fire_protection: accepted, 28 msg, 196 records, 0.190 MB
+general_asset_telemetry/io_module: accepted, 33 msg, 342 records, 0.334 MB
+general_asset_telemetry/liquid_cooling: accepted, 80 msg, 681 records, 0.670 MB
+general_asset_telemetry/pcs_extended: accepted, 194 msg, 11341 records, 9.901 MB
+general_asset_telemetry/remote_control: accepted, 194 msg, 4664 records, 4.469 MB
+
+Review steady-state counters, ACK continuity, per-stream coverage and total pending trend. No automatic all-stream certification.
+Files: /root/kalpa-overnight-test-20261102T172612Z
+Central Sync and all existing gateway settings were left unchanged.

@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-30",
+  "tests_passed": 11,
+  "tests_failed": 0,
+  "shell_syntax": "PASS",
+  "physical_gateway_installation": "Pending; package tested locally",
+  "checks": [
+    "Counter deltas use status timestamps; repeated screens do not fabricate rates",
+    "Restart/counter reset establishes a fresh baseline",
+    "HTTP 200 preserves visible per-stream rejection status",
+    "Disabled, stale, no evidence and accepted states remain distinct",
+    "Read-only SQLite aggregation preserves database bytes; missing DB not created",
+    "SQL query-work budget aborts without writes",
+    "Archive file sizes do not imply invented backlog message counts",
+    "Malformed, missing and oversized JSON handled",
+    "Credential field, bearer, JWT and terminal escape filtering",
+    "CLI --once reads existing status without changing inputs",
+    "Existing configured paths and default recovery paths resolve correctly"
+  ],
+  "scope": "Viewer only: no API requests, cloud calls, producer startup, uploader runs, service changes or database writes"
+}

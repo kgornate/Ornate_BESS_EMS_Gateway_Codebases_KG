@@ -1,0 +1,14 @@
+{
+  "archive_path": "/root/kalpa-validation-20261019-102154/overflow-archives/central_sync_overflow_20261019T10.db",
+  "archive_retained": true,
+  "completed_utc": "2026-10-19T10:24:26.333741Z",
+  "dead_count": 0,
+  "signature": {
+    "db": {
+      "mtime_ns": 1792405466323488366,
+      "size": 65536
+    },
+    "shm": null,
+    "wal": null
+  }
+}

@@ -1,0 +1,8 @@
+KALPA S2 CADENCE AUDIT
+Completed: True
+Runtime signals observed: 9495
+Canonical Excel points not observed: 34
+Signal flags: {"early_heartbeat_candidate": 5648, "early_periodic_candidate": 22262, "late_gap_review": 2817}
+Trigger totals: {"heartbeat": 285150, "periodic": 990184, "change": 537493}
+Capture errors: {"central_sync_overflow_20261102T18.db:RuntimeError": 121, "central_sync_overflow_20261102T19.db:RuntimeError": 147, "cycle_read_budget": 453, "central_sync_overflow_20261102T20.db:RuntimeError": 161, "central_sync_overflow_20261102T17.db:OperationalError": 1, "central_sync.db:OperationalError": 91, "central_sync_overflow_20261102T21.db:RuntimeError": 176, "central_sync_overflow_20261102T12.db:OperationalError": 8, "central_sync_overflow_20261102T22.db:RuntimeError": 26, "central_sync_overflow_20261102T21.db:OperationalError": 2, "central_sync_overflow_20261102T19.db:OperationalError": 4, "central_sync_overflow_20261102T22.db:OperationalError": 1, "central_sync_overflow_20261102T20.db:OperationalError": 1, "central_sync_overflow_20261102T18.db:OperationalError": 1}
+Coverage must be reviewed before cadence certification. See report.json and signals.json.

@@ -1,0 +1,27 @@
+KALPA REQUEST TIMING
+Completed logical batch operations: 13361
+HTTP status counts: {"200": 13360, "502": 1}
+Phase | samples | mean ms | p95 ms | max ms
+200/ack_apply_ms | 13360 | 30.01 | 72.25 | 3022.66
+200/auth_ms | 13360 | 1.28 | 0.03 | 3035.66
+200/connect_tcp_ms | 59 | 286.43 | 719.39 | 1548.94
+200/lock_wait_ms | 13360 | 0.03 | 0.03 | 12.47
+200/network_total_ms | 13360 | 1140.58 | 2228.67 | 6966.81
+200/prepare_ms | 13360 | 102.75 | 206.04 | 2487.31
+200/read_body_ms | 13360 | 2.21 | 6.23 | 50.62
+200/send_and_ack_total_ms | 13360 | 1301.24 | 2717.13 | 17474.12
+200/send_body_ms | 13360 | 9.81 | 12.91 | 2675.20
+200/send_headers_ms | 13360 | 3.54 | 9.91 | 1422.42
+200/tls_ms | 59 | 290.45 | 319.65 | 2607.68
+200/wait_headers_ms | 13360 | 1097.17 | 2138.21 | 6935.34
+502/auth_ms | 1 | 0.02 | 0.02 | 0.02
+502/lock_wait_ms | 1 | 0.02 | 0.02 | 0.02
+502/network_total_ms | 1 | 15744.37 | 15744.37 | 15744.37
+502/prepare_ms | 1 | 54.11 | 54.11 | 54.11
+502/read_body_ms | 1 | 0.40 | 0.40 | 0.40
+502/send_and_ack_total_ms | 1 | 15884.71 | 15884.71 | 15884.71
+502/send_body_ms | 1 | 2.16 | 2.16 | 2.16
+502/send_headers_ms | 1 | 1.16 | 1.16 | 1.16
+502/wait_headers_ms | 1 | 15710.75 | 15710.75 | 15710.75
+
+Response wait is network + proxy + backend, not backend database time alone.

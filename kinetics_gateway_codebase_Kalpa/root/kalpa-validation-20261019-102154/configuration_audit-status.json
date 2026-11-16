@@ -1,0 +1,15 @@
+{
+  "failure_count": 0,
+  "last_enqueue_utc": "2026-10-19T10:24:19.782624Z",
+  "last_error": null,
+  "last_message_id": "356d063a-d490-4851-a4bf-aba27f498c20",
+  "last_poll_utc": "2026-10-19T10:24:19.780510Z",
+  "last_sequence": 1,
+  "last_success_utc": "2026-10-19T10:24:19.782624Z",
+  "message_count": 1,
+  "poll_count": 2,
+  "record_count": 1,
+  "running": false,
+  "started_utc": "2026-10-19T10:24:09.724115Z",
+  "success_count": 2
+}

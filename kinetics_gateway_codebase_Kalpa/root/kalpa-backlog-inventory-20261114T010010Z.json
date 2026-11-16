@@ -1,0 +1,796 @@
+{
+  "started_utc": "2026-11-14T01:00:10.910820+00:00",
+  "archives_found": 195,
+  "archives": [],
+  "errors": [
+    {
+      "file": "central_sync_overflow_20261102T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T22.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261102T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T00.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T01.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261103T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T00.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T01.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T03.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T22.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261104T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T00.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T01.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T02.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T03.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T06.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261105T22.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T06.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261106T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T02.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T06.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261107T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T22.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261109T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T00.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T01.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T02.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T03.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T06.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T22.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261110T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T00.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T01.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T02.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T03.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T06.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261111T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T00.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T01.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T06.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T15.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T17.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T22.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261112T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T00.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T01.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T02.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T03.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T04.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T05.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T06.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T07.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T08.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T09.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T10.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T11.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T12.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T13.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T14.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T16.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T18.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T19.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T20.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T21.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T22.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    },
+    {
+      "file": "central_sync_overflow_20261113T23.db",
+      "error": "RuntimeError: Unexpected messages schema; missing ['payload_bytes', 'state']"
+    }
+  ],
+  "finished_utc": "2026-11-14T01:00:23.372756+00:00",
+  "archives_scanned_successfully": 0,
+  "totals_by_state": {},
+  "limits": [
+    "Counts are stored copies; duplicate IDs across archives may remain.",
+    "Uploads and archival continue; this is not an atomic snapshot.",
+    "Errors make totals incomplete.",
+    "ACKed rows and retained archive files are not pending backlog."
+  ]
+}

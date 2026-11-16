@@ -1,0 +1,35 @@
+{
+  "installed_at_utc": "2026-11-12T09:04:17.425519+00:00",
+  "files": {
+    "app/central_sync/archive_transport.py": {
+      "existed": true,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "b4e799b33f97cb0e1c6d66fed1198692905e7f04fe5c4c3274e433b9711d9d7c",
+      "original": "ecc8d7ae2cc77419c605d63b6fa8e4434ca275a79e2d0382a27efd41c91cca9a"
+    },
+    "app/central_sync/overflow_recovery.py": {
+      "existed": true,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "212804a7fb4d7c90ec4592000f1d4c16e9d017dc0be5545b565ed91d6d91b11e",
+      "original": "06f5c3afacb2d11bde4e1e4fc0dbdae525330f1af68be0c3b546a6bf461c4f12"
+    },
+    "app/central_sync/recovery_budget.py": {
+      "existed": false,
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "installed": "5dde093d9be1f5298ae9365aee5a8dd4636a5e0cb9e0693271c5d9db440744ef"
+    }
+  },
+  "config": {
+    "original": "96a302cb81c3c86a0403e4ef750018a0e2ad54cd9c18a37ca2b02267ff3a5539",
+    "installed": "9b6f78fc08c9d92471a63bfdc8532d86d39ad76ade29209c0b7d89086700fc79",
+    "mode": 384,
+    "uid": 0,
+    "gid": 0
+  }
+}

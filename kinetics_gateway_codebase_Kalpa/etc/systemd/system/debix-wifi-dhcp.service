@@ -1,0 +1,14 @@
+[Unit]
+Description=DEBIX Wi-Fi DHCP client
+Requires=debix-wifi.service
+After=debix-wifi.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/udhcpc -f -i mlan0 -p /run/debix-wifi-dhcp.pid
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

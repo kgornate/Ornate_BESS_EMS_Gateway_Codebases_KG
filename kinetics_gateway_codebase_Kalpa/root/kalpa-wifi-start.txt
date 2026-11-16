@@ -1,0 +1,15 @@
+Station 3c:78:95:e6:f4:1c (on mlan0)
+	rx bytes:	732092152
+	rx packets:	6628598
+	tx bytes:	4020478121
+	tx packets:	10110549
+	tx retries:	3746883
+	tx failed:	211208
+	signal:  	-74 dBm
+	signal avg:	-71 dBm
+	tx bitrate:	6.0 MBit/s
+	rx bitrate:	6.5 MBit/s MCS 0
+	DTIM period:	1
+	beacon interval:100
+	short slot time:yes
+	current time:	1794376209991 ms

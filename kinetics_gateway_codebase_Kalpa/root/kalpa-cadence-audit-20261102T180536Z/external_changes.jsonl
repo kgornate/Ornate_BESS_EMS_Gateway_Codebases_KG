@@ -1,0 +1,2 @@
+{"utc": "2026-11-02T18:27:06.593969+00:00", "event": "timing_install_begin", "reason": "request timing instrumentation; planned Central Sync restart; analyse producer/uploader counters by instance"}
+{"utc": "2026-11-02T18:27:10.790355+00:00", "event": "timing_install_complete", "reason": "request timing instrumentation; planned Central Sync restart; analyse producer/uploader counters by instance"}

@@ -1,0 +1,108 @@
+--- before/app/central_sync/s2_policy.py
++++ after/app/central_sync/s2_policy.py
+@@ -28,6 +28,7 @@
+     mode: str
+     interval_sec: float
+     revision: str
++    retention_class: str | None = None
+ 
+ 
+ class S2PolicyManifest:
+@@ -38,13 +39,15 @@
+         if expected_sha256 and actual_sha256 != expected_sha256:
+             raise S2PolicyError("frozen S2 manifest checksum mismatch; refuse to run unapproved policies")
+         data = json.loads(raw.decode("utf-8"))
+-        if data.get("policy_version") != "kalpa-s2-frozen-v1.0":
++        versions = {"kalpa-s2-frozen-v1.0": (2471, 9494), "kalpa-s2-frozen-v1.1": (2472, 9495)}
++        if data.get("policy_version") not in versions:
+             raise S2PolicyError("unexpected S2 policy version")
+         if data.get("substreams") != list(SUBSTREAMS):
+             raise S2PolicyError("frozen S2 substreams differ from backend contract")
++        canonical_count, runtime_count = versions[data["policy_version"]]
+         points = data.get("points")
+-        if not isinstance(points, list) or len(points) != 2471:
+-            raise S2PolicyError("frozen Kalpa manifest must contain all 2471 canonical S2 points")
++        if not isinstance(points, list) or len(points) != canonical_count:
++            raise S2PolicyError(f"frozen Kalpa manifest must contain all {canonical_count} canonical S2 points")
+         self.version = data["policy_version"]
+         self.source_sha256 = str(data.get("contract_sha256") or "")
+         self.by_key: dict[tuple[str, str, str], S2RecordingPolicy] = {}
+@@ -69,10 +72,15 @@
+             ident = (vendor, scope, key)
+             if ident in self.by_key:
+                 raise S2PolicyError(f"duplicate policy: {ident}")
+-            revision = fingerprint([self.version, vendor, scope, key, substream, mode, interval])
+-            self.by_key[ident] = S2RecordingPolicy(point_id, vendor, scope, key, substream, mode, interval, revision)
++            # Cadence identity remains stable across the additive v1.1 contract.
++            # Retention metadata is deliberately not a recording trigger.
++            revision = fingerprint(["kalpa-s2-frozen-v1.0", vendor, scope, key, substream, mode, interval])
++            retention = p.get("retention_class")
++            if retention is not None and retention not in {"T1_90D", "T2_1Y", "T3_3Y"}:
++                raise S2PolicyError(f"invalid retention class for {point_id}")
++            self.by_key[ident] = S2RecordingPolicy(point_id, vendor, scope, key, substream, mode, interval, revision, retention)
+             total_instances += multiplier
+-        if total_instances != 9494 or data.get("expected_runtime_signals") != 9494:
++        if total_instances != runtime_count or data.get("expected_runtime_signals") != runtime_count:
+             raise S2PolicyError("frozen four-pair runtime count mismatch")
+ 
+     def resolve(self, vendor: str, scope: str, key: str, substream: str, catalog_point: dict[str, Any] | None) -> S2RecordingPolicy:
+--- before/app/central_sync/general_asset_producer.py
++++ after/app/central_sync/general_asset_producer.py
+@@ -189,7 +189,14 @@
+                 if point and point.get("poll_enabled") is False:
+                     continue
+                 if str(key) in S1_CRITICAL_KEYS:
+-                    continue
++                    # Overall bank SoC is not in S1's per-pair payload. Opt in
++                    # only when the selected frozen manifest explicitly maps it.
++                    include_system_soc = (
++                        str(key) == "system_soc" and self.s2_policy is not None
++                        and (vendor, scope, str(key)) in self.s2_policy.by_key
++                    )
++                    if not include_system_soc:
++                        continue
+                 substream = classify_substream(asset, str(key), point)
+                 if substream not in due:
+                     continue
+@@ -199,6 +206,8 @@
+                 if self.s2_policy:
+                     frozen = self.s2_policy.resolve(vendor, scope, str(key), substream, point)
+                     policy, record_sec = frozen.mode, frozen.interval_sec
++                    if frozen.retention_class is not None:
++                        retention = frozen.retention_class
+                     mode = "change_or_heartbeat" if policy == "ON_CHANGE_HEARTBEAT" else "periodic"
+                     previous = self._s2_checkpoints.get(runtime_signal_id)
+                     if previous is None:
+--- before/app/central_sync/config.py
++++ after/app/central_sync/config.py
+@@ -20,7 +20,7 @@
+ 
+ class CentralBackendConfig(BaseModel):
+     base_url: str = "https://central-backend.example.invalid"
+-    ingest_path: str = "/api/v1/ingest/batch"
++    ingest_path: str = "/api/v1/gateway/ingest"
+     gateway_token: str | None = None
+     gateway_token_env: str = "CENTRAL_SYNC_GATEWAY_TOKEN"
+     verify_tls: bool = True
+--- before/app/central_sync/client.py
++++ after/app/central_sync/client.py
+@@ -66,7 +66,7 @@
+         ).rstrip("/")
+ 
+         self.ingest_path = str(
+-            getattr(config, "ingest_path", "/api/v1/ingest/batch")
++            getattr(config, "ingest_path", "/api/v1/gateway/ingest")
+         )
+ 
+         self.ingest_url = (
+--- before/app/central_sync/configuration_audit_producer.py
++++ after/app/central_sync/configuration_audit_producer.py
+@@ -76,7 +76,7 @@
+         return {
+             # Frozen S8 vocabulary
+             "central_sync.enabled": central.get("enabled"),
+-            "central_sync.endpoint_url": (str(backend.get("base_url") or "").rstrip("/") + str(backend.get("ingest_path") or "/api/v1/ingest/batch")) if backend else None,
++            "central_sync.endpoint_url": (str(backend.get("base_url") or "").rstrip("/") + str(backend.get("ingest_path") or "/api/v1/gateway/ingest")) if backend else None,
+             "central_sync.tls_verify": backend.get("verify_tls"),
+             "central_sync.fast_bess_sample_interval_sec": fast.get("poll_interval_sec", fast.get("sample_interval_sec")),
+             "central_sync.general_policy_revision": "kalpa_vendor_catalog_mapping_v1",

@@ -1,0 +1,3 @@
+Combined retained live ACK evidence: 19738 unique message IDs
+Errors: {}
+Direct archive ACKs excluded; missing cleaned evidence cannot be recovered.

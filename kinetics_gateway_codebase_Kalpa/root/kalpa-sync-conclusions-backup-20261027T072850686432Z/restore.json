@@ -1,0 +1,68 @@
+{
+  "was_active": true,
+  "files": {
+    "/opt/ornate-ems-gateway/backend/app/central_sync/s2_policy.py": {
+      "existed": true,
+      "saved": "original-0",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "c051b57f2a551abbcf732fa08ba911233f2bb6f0f0ed52dcea89e04c07105bf3",
+      "installed_sha256": "85def514745137720b12ec3f9d2dc25802232776f1d475684130e6cc67d08544"
+    },
+    "/opt/ornate-ems-gateway/backend/app/central_sync/general_asset_producer.py": {
+      "existed": true,
+      "saved": "original-1",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "539ec99bbe17be862a343841183a138f3b75ecae8711176b11099b6b793e6cf1",
+      "installed_sha256": "daca779649c2f758d633b3c8a8dea81e24425c62a2750b1cc56a30a7631a78cf"
+    },
+    "/opt/ornate-ems-gateway/backend/app/central_sync/config.py": {
+      "existed": true,
+      "saved": "original-2",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "d0cdd209f80046cc624922528e6e712dc8ab1099eaa3c38bb3bfd93429862414",
+      "installed_sha256": "d21638ca1ca3eb8e56f90c51478986a1878704c81f4329889a42793a5102b8f4"
+    },
+    "/opt/ornate-ems-gateway/backend/app/central_sync/client.py": {
+      "existed": true,
+      "saved": "original-3",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "b92fad7f30cff99396aa13287fa55ce06b3ea1d735d9ac4bde4dd15fb8eb7dd3",
+      "installed_sha256": "576170db5fc0ee3932322556ad22eafdc87cf0d27c9d12797cfdf148a7374254"
+    },
+    "/opt/ornate-ems-gateway/backend/app/central_sync/configuration_audit_producer.py": {
+      "existed": true,
+      "saved": "original-4",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "d5c9f0d6f1b5568c3d79a09411632f05172c600aa56be3aa4bf2f4b18d230eaf",
+      "installed_sha256": "fccaf30860f1c4ad3a9b4bd7ebd06967a5451200e1036b44bf2c462144209ffe"
+    },
+    "/opt/ornate-ems-gateway/backend/configs/kalpa_s2_policy_frozen_v1_1.json": {
+      "existed": false,
+      "saved": "original-5",
+      "mode": 420,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": null,
+      "installed_sha256": "1eb84162ef83b2398691ae04e22ac433ef27bfad8a55a1dd10422bea55c59032"
+    },
+    "/etc/ornate-ems-gateway/central_sync.json": {
+      "existed": true,
+      "saved": "original-6",
+      "mode": 384,
+      "uid": 0,
+      "gid": 0,
+      "before_sha256": "1ed3819a8d9a2ca7d825a80c7fc89a87dbf112ef3379ce2075c644593322593e",
+      "installed_sha256": "6b4c914c0866f7825f48887cfca766de7e3c17b4139dc435354eba1fa755987c"
+    }
+  }
+}

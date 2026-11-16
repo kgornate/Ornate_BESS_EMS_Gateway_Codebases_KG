@@ -1,0 +1,1903 @@
+{
+  "started_utc": "2026-11-14T01:02:07.758797+00:00",
+  "archives_found": 195,
+  "archives": [
+    {
+      "file": "central_sync_overflow_20261102T11.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261102T12.db",
+      "states": {
+        "pending": {
+          "messages": 928,
+          "payload_bytes": 79937168
+        },
+        "retry": {
+          "messages": 1080,
+          "payload_bytes": 53758639
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T13.db",
+      "states": {
+        "pending": {
+          "messages": 26,
+          "payload_bytes": 2526408
+        },
+        "retry": {
+          "messages": 316,
+          "payload_bytes": 18412178
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T17.db",
+      "states": {
+        "pending": {
+          "messages": 6,
+          "payload_bytes": 583457
+        },
+        "retry": {
+          "messages": 35,
+          "payload_bytes": 1945571
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T18.db",
+      "states": {
+        "pending": {
+          "messages": 303,
+          "payload_bytes": 29446212
+        },
+        "retry": {
+          "messages": 1396,
+          "payload_bytes": 83032024
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T19.db",
+      "states": {
+        "pending": {
+          "messages": 127,
+          "payload_bytes": 12321095
+        },
+        "retry": {
+          "messages": 1049,
+          "payload_bytes": 65646823
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T20.db",
+      "states": {
+        "pending": {
+          "messages": 188,
+          "payload_bytes": 18264185
+        },
+        "retry": {
+          "messages": 831,
+          "payload_bytes": 50776042
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T21.db",
+      "states": {
+        "pending": {
+          "messages": 80,
+          "payload_bytes": 7778928
+        },
+        "retry": {
+          "messages": 722,
+          "payload_bytes": 44395044
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T22.db",
+      "states": {
+        "pending": {
+          "messages": 123,
+          "payload_bytes": 11921387
+        },
+        "retry": {
+          "messages": 889,
+          "payload_bytes": 55131893
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261102T23.db",
+      "states": {
+        "pending": {
+          "messages": 91,
+          "payload_bytes": 8837378
+        },
+        "retry": {
+          "messages": 850,
+          "payload_bytes": 53015582
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261103T00.db",
+      "states": {
+        "pending": {
+          "messages": 92,
+          "payload_bytes": 8944538
+        },
+        "retry": {
+          "messages": 861,
+          "payload_bytes": 54158591
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261103T01.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T08.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T09.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T10.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T12.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T13.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T15.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T19.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T20.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261103T21.db",
+      "states": {
+        "retry": {
+          "messages": 5,
+          "payload_bytes": 178761
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261103T23.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T00.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T01.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T03.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T04.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T05.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T07.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T08.db",
+      "states": {
+        "retry": {
+          "messages": 6,
+          "payload_bytes": 260776
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T10.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261104T11.db",
+      "states": {
+        "pending": {
+          "messages": 604,
+          "payload_bytes": 58425312
+        },
+        "retry": {
+          "messages": 2287,
+          "payload_bytes": 122213583
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T12.db",
+      "states": {
+        "pending": {
+          "messages": 599,
+          "payload_bytes": 56869852
+        },
+        "retry": {
+          "messages": 2390,
+          "payload_bytes": 130735240
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T13.db",
+      "states": {
+        "pending": {
+          "messages": 514,
+          "payload_bytes": 49937219
+        },
+        "retry": {
+          "messages": 2403,
+          "payload_bytes": 132140424
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T14.db",
+      "states": {
+        "pending": {
+          "messages": 504,
+          "payload_bytes": 48937211
+        },
+        "retry": {
+          "messages": 2475,
+          "payload_bytes": 136985028
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T15.db",
+      "states": {
+        "pending": {
+          "messages": 595,
+          "payload_bytes": 57671013
+        },
+        "retry": {
+          "messages": 2292,
+          "payload_bytes": 123022463
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T16.db",
+      "states": {
+        "pending": {
+          "messages": 690,
+          "payload_bytes": 66777068
+        },
+        "retry": {
+          "messages": 2264,
+          "payload_bytes": 117491008
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T17.db",
+      "states": {
+        "pending": {
+          "messages": 621,
+          "payload_bytes": 60214579
+        },
+        "retry": {
+          "messages": 2397,
+          "payload_bytes": 126954898
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T18.db",
+      "states": {
+        "pending": {
+          "messages": 643,
+          "payload_bytes": 62329470
+        },
+        "retry": {
+          "messages": 2347,
+          "payload_bytes": 123806975
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T19.db",
+      "states": {
+        "pending": {
+          "messages": 604,
+          "payload_bytes": 58538812
+        },
+        "retry": {
+          "messages": 2438,
+          "payload_bytes": 131165530
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T20.db",
+      "states": {
+        "pending": {
+          "messages": 670,
+          "payload_bytes": 64857753
+        },
+        "retry": {
+          "messages": 2198,
+          "payload_bytes": 114648082
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T21.db",
+      "states": {
+        "pending": {
+          "messages": 666,
+          "payload_bytes": 64305343
+        },
+        "retry": {
+          "messages": 2312,
+          "payload_bytes": 120971495
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T22.db",
+      "states": {
+        "pending": {
+          "messages": 600,
+          "payload_bytes": 57935517
+        },
+        "retry": {
+          "messages": 2358,
+          "payload_bytes": 128365072
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261104T23.db",
+      "states": {
+        "pending": {
+          "messages": 622,
+          "payload_bytes": 60364783
+        },
+        "retry": {
+          "messages": 2384,
+          "payload_bytes": 127725996
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T00.db",
+      "states": {
+        "pending": {
+          "messages": 617,
+          "payload_bytes": 59738767
+        },
+        "retry": {
+          "messages": 2354,
+          "payload_bytes": 126598542
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T01.db",
+      "states": {
+        "pending": {
+          "messages": 620,
+          "payload_bytes": 60097442
+        },
+        "retry": {
+          "messages": 2211,
+          "payload_bytes": 116631058
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T02.db",
+      "states": {
+        "pending": {
+          "messages": 700,
+          "payload_bytes": 67531186
+        },
+        "retry": {
+          "messages": 2266,
+          "payload_bytes": 119373786
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T03.db",
+      "states": {
+        "pending": {
+          "messages": 382,
+          "payload_bytes": 37087042
+        },
+        "retry": {
+          "messages": 2596,
+          "payload_bytes": 149108626
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T04.db",
+      "states": {
+        "pending": {
+          "messages": 891,
+          "payload_bytes": 77110406
+        },
+        "retry": {
+          "messages": 2173,
+          "payload_bytes": 116027563
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T05.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T06.db",
+      "states": {
+        "retry": {
+          "messages": 11,
+          "payload_bytes": 649257
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T07.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T08.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T09.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T10.db",
+      "states": {
+        "pending": {
+          "messages": 200,
+          "payload_bytes": 17281507
+        },
+        "retry": {
+          "messages": 15,
+          "payload_bytes": 390755
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261105T11.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T14.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T16.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T17.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T19.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T20.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T21.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261105T22.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T04.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T05.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T06.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T07.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T08.db",
+      "states": {
+        "pending": {
+          "messages": 206,
+          "payload_bytes": 17889114
+        },
+        "retry": {
+          "messages": 5,
+          "payload_bytes": 103839
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261106T09.db",
+      "states": {
+        "pending": {
+          "messages": 215,
+          "payload_bytes": 14514620
+        },
+        "retry": {
+          "messages": 12,
+          "payload_bytes": 237414
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261106T10.db",
+      "states": {
+        "retry": {
+          "messages": 3,
+          "payload_bytes": 201934
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261106T11.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T12.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T15.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261106T20.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261107T02.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261107T04.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261107T05.db",
+      "states": {
+        "pending": {
+          "messages": 425,
+          "payload_bytes": 41309642
+        },
+        "retry": {
+          "messages": 1775,
+          "payload_bytes": 96675501
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T06.db",
+      "states": {
+        "pending": {
+          "messages": 673,
+          "payload_bytes": 65408572
+        },
+        "retry": {
+          "messages": 2968,
+          "payload_bytes": 164155546
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T07.db",
+      "states": {
+        "pending": {
+          "messages": 967,
+          "payload_bytes": 93914746
+        },
+        "retry": {
+          "messages": 2690,
+          "payload_bytes": 136495773
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T08.db",
+      "states": {
+        "pending": {
+          "messages": 1004,
+          "payload_bytes": 97467260
+        },
+        "retry": {
+          "messages": 2628,
+          "payload_bytes": 131004386
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T09.db",
+      "states": {
+        "pending": {
+          "messages": 1043,
+          "payload_bytes": 101061020
+        },
+        "retry": {
+          "messages": 2690,
+          "payload_bytes": 133389815
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T10.db",
+      "states": {
+        "pending": {
+          "messages": 1035,
+          "payload_bytes": 100379429
+        },
+        "retry": {
+          "messages": 2748,
+          "payload_bytes": 139187883
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T11.db",
+      "states": {
+        "pending": {
+          "messages": 1044,
+          "payload_bytes": 101124498
+        },
+        "retry": {
+          "messages": 2718,
+          "payload_bytes": 135163840
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T12.db",
+      "states": {
+        "pending": {
+          "messages": 1008,
+          "payload_bytes": 97674873
+        },
+        "retry": {
+          "messages": 2727,
+          "payload_bytes": 136229101
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T13.db",
+      "states": {
+        "pending": {
+          "messages": 1033,
+          "payload_bytes": 100096782
+        },
+        "retry": {
+          "messages": 2667,
+          "payload_bytes": 132570283
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T14.db",
+      "states": {
+        "pending": {
+          "messages": 1052,
+          "payload_bytes": 101885049
+        },
+        "retry": {
+          "messages": 2622,
+          "payload_bytes": 129197538
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T15.db",
+      "states": {
+        "pending": {
+          "messages": 1031,
+          "payload_bytes": 99901724
+        },
+        "retry": {
+          "messages": 2720,
+          "payload_bytes": 135710216
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T16.db",
+      "states": {
+        "pending": {
+          "messages": 1086,
+          "payload_bytes": 105402279
+        },
+        "retry": {
+          "messages": 2604,
+          "payload_bytes": 127044720
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T17.db",
+      "states": {
+        "pending": {
+          "messages": 1602,
+          "payload_bytes": 142677560
+        },
+        "retry": {
+          "messages": 2112,
+          "payload_bytes": 90339835
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T18.db",
+      "states": {
+        "pending": {
+          "messages": 1430,
+          "payload_bytes": 132580502
+        },
+        "retry": {
+          "messages": 2401,
+          "payload_bytes": 107635871
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T19.db",
+      "states": {
+        "pending": {
+          "messages": 1191,
+          "payload_bytes": 114141202
+        },
+        "retry": {
+          "messages": 2517,
+          "payload_bytes": 117045717
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261107T20.db",
+      "states": {
+        "pending": {
+          "messages": 1761,
+          "payload_bytes": 137614400
+        },
+        "retry": {
+          "messages": 1711,
+          "payload_bytes": 80858331
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T08.db",
+      "states": {
+        "pending": {
+          "messages": 870,
+          "payload_bytes": 76201220
+        },
+        "retry": {
+          "messages": 1423,
+          "payload_bytes": 66920753
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T09.db",
+      "states": {
+        "pending": {
+          "messages": 1022,
+          "payload_bytes": 98803805
+        },
+        "retry": {
+          "messages": 2745,
+          "payload_bytes": 136528451
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T10.db",
+      "states": {
+        "pending": {
+          "messages": 947,
+          "payload_bytes": 91767300
+        },
+        "retry": {
+          "messages": 2776,
+          "payload_bytes": 139479072
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T11.db",
+      "states": {
+        "pending": {
+          "messages": 1042,
+          "payload_bytes": 100971428
+        },
+        "retry": {
+          "messages": 2762,
+          "payload_bytes": 136338577
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T12.db",
+      "states": {
+        "pending": {
+          "messages": 1141,
+          "payload_bytes": 109804076
+        },
+        "retry": {
+          "messages": 2740,
+          "payload_bytes": 132455871
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T13.db",
+      "states": {
+        "pending": {
+          "messages": 996,
+          "payload_bytes": 96461631
+        },
+        "retry": {
+          "messages": 2663,
+          "payload_bytes": 131972269
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T14.db",
+      "states": {
+        "pending": {
+          "messages": 972,
+          "payload_bytes": 94254272
+        },
+        "retry": {
+          "messages": 2720,
+          "payload_bytes": 136487683
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T15.db",
+      "states": {
+        "pending": {
+          "messages": 972,
+          "payload_bytes": 93934605
+        },
+        "retry": {
+          "messages": 2715,
+          "payload_bytes": 136204914
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T16.db",
+      "states": {
+        "pending": {
+          "messages": 991,
+          "payload_bytes": 96022516
+        },
+        "retry": {
+          "messages": 2613,
+          "payload_bytes": 128188600
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T17.db",
+      "states": {
+        "pending": {
+          "messages": 970,
+          "payload_bytes": 94164259
+        },
+        "retry": {
+          "messages": 2705,
+          "payload_bytes": 135398365
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T18.db",
+      "states": {
+        "pending": {
+          "messages": 1318,
+          "payload_bytes": 117158840
+        },
+        "retry": {
+          "messages": 2315,
+          "payload_bytes": 109714646
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T19.db",
+      "states": {
+        "pending": {
+          "messages": 975,
+          "payload_bytes": 94436385
+        },
+        "retry": {
+          "messages": 2669,
+          "payload_bytes": 132299248
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T20.db",
+      "states": {
+        "pending": {
+          "messages": 950,
+          "payload_bytes": 92297401
+        },
+        "retry": {
+          "messages": 2722,
+          "payload_bytes": 137515474
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T21.db",
+      "states": {
+        "pending": {
+          "messages": 990,
+          "payload_bytes": 95578242
+        },
+        "retry": {
+          "messages": 2635,
+          "payload_bytes": 130600921
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T22.db",
+      "states": {
+        "pending": {
+          "messages": 976,
+          "payload_bytes": 94784550
+        },
+        "retry": {
+          "messages": 2723,
+          "payload_bytes": 138235956
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261109T23.db",
+      "states": {
+        "pending": {
+          "messages": 931,
+          "payload_bytes": 90325391
+        },
+        "retry": {
+          "messages": 2747,
+          "payload_bytes": 140079641
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T00.db",
+      "states": {
+        "pending": {
+          "messages": 985,
+          "payload_bytes": 95629468
+        },
+        "retry": {
+          "messages": 2728,
+          "payload_bytes": 137233619
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T01.db",
+      "states": {
+        "pending": {
+          "messages": 965,
+          "payload_bytes": 93594718
+        },
+        "retry": {
+          "messages": 2733,
+          "payload_bytes": 138610741
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T02.db",
+      "states": {
+        "pending": {
+          "messages": 987,
+          "payload_bytes": 95642349
+        },
+        "retry": {
+          "messages": 2770,
+          "payload_bytes": 138821859
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T03.db",
+      "states": {
+        "pending": {
+          "messages": 962,
+          "payload_bytes": 93351846
+        },
+        "retry": {
+          "messages": 2674,
+          "payload_bytes": 134977086
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T04.db",
+      "states": {
+        "pending": {
+          "messages": 964,
+          "payload_bytes": 93521888
+        },
+        "retry": {
+          "messages": 2776,
+          "payload_bytes": 140014146
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T05.db",
+      "states": {
+        "pending": {
+          "messages": 1030,
+          "payload_bytes": 100000150
+        },
+        "retry": {
+          "messages": 2666,
+          "payload_bytes": 132177705
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T06.db",
+      "states": {
+        "pending": {
+          "messages": 988,
+          "payload_bytes": 95854532
+        },
+        "retry": {
+          "messages": 2667,
+          "payload_bytes": 133133351
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T07.db",
+      "states": {
+        "pending": {
+          "messages": 1002,
+          "payload_bytes": 97303656
+        },
+        "retry": {
+          "messages": 2684,
+          "payload_bytes": 134330812
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T08.db",
+      "states": {
+        "pending": {
+          "messages": 1094,
+          "payload_bytes": 105369517
+        },
+        "retry": {
+          "messages": 2544,
+          "payload_bytes": 123717985
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T09.db",
+      "states": {
+        "pending": {
+          "messages": 3396,
+          "payload_bytes": 219433719
+        },
+        "retry": {
+          "messages": 358,
+          "payload_bytes": 15938069
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T10.db",
+      "states": {
+        "pending": {
+          "messages": 3843,
+          "payload_bytes": 240173501
+        },
+        "retry": {
+          "messages": 16,
+          "payload_bytes": 114008
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T11.db",
+      "states": {
+        "pending": {
+          "messages": 3768,
+          "payload_bytes": 235620276
+        },
+        "retry": {
+          "messages": 7,
+          "payload_bytes": 44640
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T12.db",
+      "states": {
+        "pending": {
+          "messages": 3576,
+          "payload_bytes": 225633294
+        },
+        "retry": {
+          "messages": 14,
+          "payload_bytes": 117422
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T13.db",
+      "states": {
+        "pending": {
+          "messages": 3465,
+          "payload_bytes": 222034130
+        },
+        "retry": {
+          "messages": 155,
+          "payload_bytes": 3141149
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T14.db",
+      "states": {
+        "pending": {
+          "messages": 3675,
+          "payload_bytes": 229896611
+        },
+        "retry": {
+          "messages": 18,
+          "payload_bytes": 165497
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T15.db",
+      "states": {
+        "pending": {
+          "messages": 3722,
+          "payload_bytes": 233866390
+        },
+        "retry": {
+          "messages": 21,
+          "payload_bytes": 180404
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T16.db",
+      "states": {
+        "pending": {
+          "messages": 3596,
+          "payload_bytes": 228910846
+        },
+        "retry": {
+          "messages": 110,
+          "payload_bytes": 1827168
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T17.db",
+      "states": {
+        "pending": {
+          "messages": 3554,
+          "payload_bytes": 233342265
+        },
+        "retry": {
+          "messages": 230,
+          "payload_bytes": 4069746
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T18.db",
+      "states": {
+        "pending": {
+          "messages": 3617,
+          "payload_bytes": 229795276
+        },
+        "retry": {
+          "messages": 108,
+          "payload_bytes": 1803046
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T19.db",
+      "states": {
+        "pending": {
+          "messages": 3673,
+          "payload_bytes": 231413931
+        },
+        "retry": {
+          "messages": 46,
+          "payload_bytes": 655433
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T20.db",
+      "states": {
+        "pending": {
+          "messages": 3340,
+          "payload_bytes": 222025544
+        },
+        "retry": {
+          "messages": 328,
+          "payload_bytes": 7379934
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T21.db",
+      "states": {
+        "pending": {
+          "messages": 3134,
+          "payload_bytes": 214676442
+        },
+        "retry": {
+          "messages": 490,
+          "payload_bytes": 11581342
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T22.db",
+      "states": {
+        "pending": {
+          "messages": 3174,
+          "payload_bytes": 218102298
+        },
+        "retry": {
+          "messages": 512,
+          "payload_bytes": 11912799
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261110T23.db",
+      "states": {
+        "pending": {
+          "messages": 3745,
+          "payload_bytes": 238717501
+        },
+        "retry": {
+          "messages": 112,
+          "payload_bytes": 2287326
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T00.db",
+      "states": {
+        "pending": {
+          "messages": 3607,
+          "payload_bytes": 236101386
+        },
+        "retry": {
+          "messages": 219,
+          "payload_bytes": 4196347
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T01.db",
+      "states": {
+        "pending": {
+          "messages": 3293,
+          "payload_bytes": 224470012
+        },
+        "retry": {
+          "messages": 498,
+          "payload_bytes": 11581476
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T02.db",
+      "states": {
+        "pending": {
+          "messages": 3691,
+          "payload_bytes": 235556778
+        },
+        "retry": {
+          "messages": 102,
+          "payload_bytes": 1553882
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T03.db",
+      "states": {
+        "pending": {
+          "messages": 3334,
+          "payload_bytes": 213268599
+        },
+        "retry": {
+          "messages": 325,
+          "payload_bytes": 14933168
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T04.db",
+      "states": {
+        "pending": {
+          "messages": 1079,
+          "payload_bytes": 103331774
+        },
+        "retry": {
+          "messages": 2678,
+          "payload_bytes": 131935977
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T05.db",
+      "states": {
+        "pending": {
+          "messages": 296,
+          "payload_bytes": 21993855
+        },
+        "retry": {
+          "messages": 36,
+          "payload_bytes": 1377596
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T06.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T07.db",
+      "states": {
+        "retry": {
+          "messages": 8,
+          "payload_bytes": 485180
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T08.db",
+      "states": {
+        "retry": {
+          "messages": 5,
+          "payload_bytes": 346302
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T09.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T10.db",
+      "states": {
+        "pending": {
+          "messages": 573,
+          "payload_bytes": 44265112
+        },
+        "retry": {
+          "messages": 78,
+          "payload_bytes": 2724646
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T11.db",
+      "states": {
+        "retry": {
+          "messages": 6,
+          "payload_bytes": 453899
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T13.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T14.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T15.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T16.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T17.db",
+      "states": {
+        "retry": {
+          "messages": 13,
+          "payload_bytes": 735595
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261111T18.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T19.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261111T23.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261112T00.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261112T01.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261112T04.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261112T05.db",
+      "states": {
+        "pending": {
+          "messages": 704,
+          "payload_bytes": 53485919
+        },
+        "retry": {
+          "messages": 40,
+          "payload_bytes": 1314330
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T06.db",
+      "states": {
+        "pending": {
+          "messages": 2035,
+          "payload_bytes": 145728248
+        },
+        "retry": {
+          "messages": 83,
+          "payload_bytes": 2438104
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T07.db",
+      "states": {
+        "pending": {
+          "messages": 498,
+          "payload_bytes": 37937654
+        },
+        "retry": {
+          "messages": 9,
+          "payload_bytes": 280113
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T08.db",
+      "states": {
+        "pending": {
+          "messages": 632,
+          "payload_bytes": 56637514
+        },
+        "retry": {
+          "messages": 9,
+          "payload_bytes": 646337
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T09.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261112T10.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261112T11.db",
+      "states": {
+        "pending": {
+          "messages": 19,
+          "payload_bytes": 1845345
+        },
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 193948
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T12.db",
+      "states": {
+        "pending": {
+          "messages": 692,
+          "payload_bytes": 66244012
+        },
+        "retry": {
+          "messages": 4,
+          "payload_bytes": 387704
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T13.db",
+      "states": {
+        "pending": {
+          "messages": 1208,
+          "payload_bytes": 111016266
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T14.db",
+      "states": {
+        "pending": {
+          "messages": 1253,
+          "payload_bytes": 116563759
+        },
+        "retry": {
+          "messages": 3,
+          "payload_bytes": 291697
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T15.db",
+      "states": {
+        "pending": {
+          "messages": 1353,
+          "payload_bytes": 125060236
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T16.db",
+      "states": {
+        "pending": {
+          "messages": 1030,
+          "payload_bytes": 95059101
+        },
+        "retry": {
+          "messages": 6,
+          "payload_bytes": 394213
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T17.db",
+      "states": {
+        "pending": {
+          "messages": 1248,
+          "payload_bytes": 115089007
+        },
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 124709
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T18.db",
+      "states": {
+        "pending": {
+          "messages": 1266,
+          "payload_bytes": 116478730
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T19.db",
+      "states": {
+        "pending": {
+          "messages": 1250,
+          "payload_bytes": 115637278
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T20.db",
+      "states": {
+        "pending": {
+          "messages": 1049,
+          "payload_bytes": 97703538
+        },
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 194100
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T21.db",
+      "states": {
+        "pending": {
+          "messages": 1465,
+          "payload_bytes": 128593490
+        },
+        "retry": {
+          "messages": 4,
+          "payload_bytes": 249337
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T22.db",
+      "states": {
+        "pending": {
+          "messages": 1244,
+          "payload_bytes": 116927043
+        },
+        "retry": {
+          "messages": 3,
+          "payload_bytes": 243563
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261112T23.db",
+      "states": {
+        "pending": {
+          "messages": 1209,
+          "payload_bytes": 111780121
+        },
+        "retry": {
+          "messages": 1,
+          "payload_bytes": 97228
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T00.db",
+      "states": {
+        "pending": {
+          "messages": 1532,
+          "payload_bytes": 135320081
+        },
+        "retry": {
+          "messages": 7,
+          "payload_bytes": 448761
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T01.db",
+      "states": {
+        "pending": {
+          "messages": 1024,
+          "payload_bytes": 94109880
+        },
+        "retry": {
+          "messages": 4,
+          "payload_bytes": 388344
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T02.db",
+      "states": {
+        "pending": {
+          "messages": 1360,
+          "payload_bytes": 122152297
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T03.db",
+      "states": {
+        "pending": {
+          "messages": 956,
+          "payload_bytes": 90200880
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T04.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T05.db",
+      "states": {
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 193972
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T06.db",
+      "states": {
+        "pending": {
+          "messages": 209,
+          "payload_bytes": 18776384
+        },
+        "retry": {
+          "messages": 185,
+          "payload_bytes": 9108650
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T07.db",
+      "states": {
+        "pending": {
+          "messages": 1439,
+          "payload_bytes": 113480543
+        },
+        "retry": {
+          "messages": 749,
+          "payload_bytes": 28160718
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T08.db",
+      "states": {
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 194652
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T09.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T10.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T11.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T12.db",
+      "states": {
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 194097
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T13.db",
+      "states": {
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 194686
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T14.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T16.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T18.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T19.db",
+      "states": {
+        "retry": {
+          "messages": 2,
+          "payload_bytes": 194466
+        }
+      }
+    },
+    {
+      "file": "central_sync_overflow_20261113T20.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T21.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T22.db",
+      "states": {}
+    },
+    {
+      "file": "central_sync_overflow_20261113T23.db",
+      "states": {
+        "pending": {
+          "messages": 4,
+          "payload_bytes": 388762
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "finished_utc": "2026-11-14T01:02:21.000880+00:00",
+  "archives_scanned_successfully": 195,
+  "totals_by_state": {
+    "pending": {
+      "messages": 149982,
+      "payload_bytes": 12027693983
+    },
+    "retry": {
+      "messages": 164060,
+      "payload_bytes": 8297878373
+    }
+  },
+  "limits": [
+    "Stored copies, not deduplicated message IDs.",
+    "Concurrent uploads and archival; not an atomic snapshot.",
+    "Read errors make totals incomplete."
+  ]
+}

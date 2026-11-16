@@ -1,0 +1,16 @@
+{
+  "Kalpa_ACREL_S2_Cadence_v1.xlsx": "62e243e198d728f92a4b58ca98d3e49dcc26d2fd1f9d3e6f7d5438a53e05e28d",
+  "README.md": "49c337c98e2cd9ed6c8178391de9a2d05f01f2b9bff7348cddf160e9e8581e6f",
+  "dashboard.py": "ba5aa96b93acf8d552879bda014e3ffaab11ddad830a8eb7087293eacd4ec6cd",
+  "install.py": "2bf7e54d24f70140191a66fcb5be12cdcebca9d9c5294d5ca1b794f8e27bf6de",
+  "patch.json": "9b5b7727991190ccf69c8faa28bde2f62b68ecef208e1722203a17ab6f229eb9",
+  "payload/app/central_sync/general_asset_producer.py": "363613c8f2437b5deca6b0b0ac6b9e9fa8d503b2d13d9c5e47237bbab6388364",
+  "payload/app/central_sync/s2_policy.py": "cf54630fe75f218eb0f91304f49913c446f1ceefae111d83091c43c61cd5e864",
+  "payload/configs/kalpa_s2_policy_frozen_v1_2.json": "917a793a3425de8ee986838a4b0d8d0e3338a2708c192406f603a9433ebf0cf6",
+  "payload/generated_protocols/acrel_combiner_meter_catalog.json": "2aa047974b14a785e54eff384f663a8c4f7d52fd24c66c6e102af467e25a9d2c",
+  "source_changes.diff": "d314b3f688359c0c783278c907875a1d5371655196d275cd3ddc222728f0fac2",
+  "tests/README.txt": "7fb3aa92810aaa185c076675f6255868c2b4a8609ba157ea9bca34e9aa9c53be",
+  "tests/test_acrel_s2.py": "f12bba37fe7fd814cb14ecead2f62ceccbf17c2f0712990b781abec1601df4b8",
+  "validation.json": "1c527fdb1c48c5a51c7d9e7ae366624c91304ed70d91457da37606693e633f8d",
+  "verify_patch.py": "6fedd53f3f14f34746465c7d95b7f3260b2352939711e7dc4a767c0dc45d5b3a"
+}

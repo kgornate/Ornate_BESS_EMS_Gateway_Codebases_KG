@@ -1,0 +1,12 @@
+[Match]
+Name=mlan0
+
+[Link]
+RequiredForOnline=no
+
+[Network]
+DHCP=ipv4
+
+[DHCPv4]
+RouteMetric=100
+UseDNS=yes

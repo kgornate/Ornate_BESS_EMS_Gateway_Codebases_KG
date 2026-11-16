@@ -1,0 +1,37 @@
+{
+  "archive_dir": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives",
+  "archive_glob": "central_sync_overflow_*.db",
+  "archive_retention": "retain_with_replayed_marker",
+  "batch_bytes": 131072,
+  "batch_messages": 25,
+  "counters": {
+    "archive_drained_count": 0,
+    "archive_open_count": 0,
+    "failure_count": 0,
+    "last_archive_path": null,
+    "last_pause_reason": "live_oldest_age_sec=16.0",
+    "last_request_utc": null,
+    "last_success_utc": null,
+    "pause_live_count": 299,
+    "pause_load_count": 71,
+    "pause_memory_count": 0,
+    "pause_transport_count": 0,
+    "request_cycle_count": 0,
+    "retained_drained_count": 0,
+    "scan_count": 370
+  },
+  "enabled": true,
+  "resource_gate": {
+    "live": {
+      "available": true,
+      "oldest_age_sec": 16.040951013565063,
+      "unacked_count": 14
+    },
+    "load1": 2.458,
+    "mem_available_mb": 1271,
+    "transport_paused": false
+  },
+  "running": true,
+  "started_utc": "2026-11-03T08:02:11.960660Z",
+  "status_generated_utc": "2026-11-03T08:35:22.621835Z"
+}

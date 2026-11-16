@@ -1,0 +1,34 @@
+# /etc/systemd/system/ornate-ems-gateway.service
+[Unit]
+Description=Ornate EMS Gateway Platform - Kinetics / Elecod + Lineage
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/ornate-ems-gateway/backend
+EnvironmentFile=-/etc/ornate-ems-gateway/ornate-ems-gateway.env
+Environment=ORNATE_EMS_CONFIG=/etc/ornate-ems-gateway/config.json
+ExecStart=/opt/ornate-ems-gateway/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=5
+TimeoutStopSec=15
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+UMask=0077
+ReadWritePaths=/mnt/ems-logs/ornate-ems-gateway /opt/ornate-ems-gateway/backend/data
+
+[Install]
+WantedBy=multi-user.target
+
+# /etc/systemd/system/ornate-ems-gateway.service.d/90-kalpa-direct-api.conf
+[Service]
+ExecStart=
+ExecStart=/opt/ornate-ems-gateway/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+# /etc/systemd/system/ornate-ems-gateway.service.d/95-sd-storage.conf
+[Unit]
+Wants=mnt-ems\x2dlogs.mount
+After=mnt-ems\x2dlogs.mount

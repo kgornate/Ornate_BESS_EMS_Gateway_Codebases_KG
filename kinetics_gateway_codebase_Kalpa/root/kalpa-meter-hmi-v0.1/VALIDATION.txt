@@ -1,0 +1,28 @@
+Kalpa Energy Meter HMI v0.1 - 2026-10-21
+
+Scope: existing web HMI only; requires installed ACREL backend v0.1.
+No backend, network, Cloudflare, systemd, credentials, database or dependency changes.
+
+Executed checks:
+- Node.js JavaScript syntax validation.
+- Full JavaScript executed against the HTML DOM using jsdom with representative
+  authenticated API fixtures. Checked login, navigation, live KPI values, phase
+  table, all seven energy counters, history, offline value masking, recovery,
+  failed-energy quality masking, independent API failure behavior, explicit
+  simulation labeling, safe text rendering, disabled meter, empty history,
+  session expiry and absence of control/write requests.
+- Existing FastAPI HMI route/asset-serving test.
+- Five installer checks: exact apply/rollback, repeat install, conflict rejection,
+  missing backend rejection, post-install edit protection and check-only mode.
+
+Not claimed: live DEBIX HMI deployment, readings from connected physical meter,
+loaded CT/PT calibration or visual browser screenshot verification. Browser
+runtime downloads failed in this environment; DOM behavior was tested instead.
+The new UI reuses the existing dashboard theme and layout rules.
+
+Meter API 503/timeout and other dashboard endpoint 530 failures were simulated
+independently; only the affected content reports an error. Cloudflare HTTP 530
+itself is an access/connectivity issue and is not fixed by this static HMI update.
+
+The previous backend meter update passed 125 local tests separately. Its physical
+continuous polling and energy counter commissioning remain gateway-side checks.

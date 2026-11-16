@@ -1,0 +1,162 @@
+{
+  "audit": "read-only retained S2 record metadata and trigger audit",
+  "window_minutes": 35,
+  "window_start_epoch": 1793010903.0165224,
+  "window_end_epoch": 1793013003.0165224,
+  "policy_matches_excel_reviewed_manifest": true,
+  "policy_matches_configured_expected_checksum": true,
+  "actual_policy_sha256": "97f59c18ec78698ace04438725d3a6a68c4f65fd4be32f62cd5c8dba3284e336",
+  "central_sync_config_sha256": "1ed3819a8d9a2ca7d825a80c7fc89a87dbf112ef3379ce2075c644593322593e",
+  "reviewed_code_comparison": {
+    "general_asset_producer.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "539ec99bbe17be862a343841183a138f3b75ecae8711176b11099b6b793e6cf1"
+    },
+    "s2_policy.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "c051b57f2a551abbcf732fa08ba911233f2bb6f0f0ed52dcea89e04c07105bf3"
+    },
+    "s2_chunks.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "cf87377343784e8869108ade19a5b72e65793cf79e90fb6da911a2720fe82f15"
+    },
+    "producer_common.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "6cecb1d92a284ee7310bd262e43d443f5ab5f8d0ec286d0778747a33c0fd5476"
+    },
+    "outbox.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "fa0ac10563175d371fbfd928fd6480ff90e713e33d839a62d6556f10b01b3f0f"
+    },
+    "service.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "612ad6c7f7a526e09f48af58a87ca8ac60007dfa1b8644cfe6ff0b6dbc8f51e4"
+    },
+    "config.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "d0cdd209f80046cc624922528e6e712dc8ab1099eaa3c38bb3bfd93429862414"
+    },
+    "contracts.py": {
+      "matches_reviewed_reference": true,
+      "actual_sha256": "7d4ed66d665e6be8648e8f924be9b74b58789c8b0d50286407de19ebb8b0074b"
+    }
+  },
+  "records_checked": 111296,
+  "issues": {},
+  "mismatch_examples": [],
+  "substreams": [
+    {
+      "substream": "ems_system",
+      "contract_runtime_signals": 45,
+      "observed_unique_signals": 45,
+      "records": 1396,
+      "trigger_counts": {
+        "heartbeat": 114,
+        "periodic": 1204,
+        "change": 78
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "pcs_extended",
+      "contract_runtime_signals": 344,
+      "observed_unique_signals": 168,
+      "records": 10584,
+      "trigger_counts": {
+        "periodic": 9940,
+        "heartbeat": 644
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "bms_extended",
+      "contract_runtime_signals": 9020,
+      "observed_unique_signals": 9020,
+      "records": 93194,
+      "trigger_counts": {
+        "heartbeat": 17028,
+        "change": 29634,
+        "periodic": 46532
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "io_module",
+      "contract_runtime_signals": 17,
+      "observed_unique_signals": 17,
+      "records": 347,
+      "trigger_counts": {
+        "heartbeat": 301,
+        "periodic": 46
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "liquid_cooling",
+      "contract_runtime_signals": 26,
+      "observed_unique_signals": 26,
+      "records": 613,
+      "trigger_counts": {
+        "periodic": 433,
+        "heartbeat": 180
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "fire_protection",
+      "contract_runtime_signals": 7,
+      "observed_unique_signals": 7,
+      "records": 161,
+      "trigger_counts": {
+        "heartbeat": 161
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "dehumidifier",
+      "contract_runtime_signals": 9,
+      "observed_unique_signals": 9,
+      "records": 171,
+      "trigger_counts": {
+        "periodic": 161,
+        "heartbeat": 10
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "remote_control",
+      "contract_runtime_signals": 26,
+      "observed_unique_signals": 26,
+      "records": 4830,
+      "trigger_counts": {
+        "change": 4824,
+        "heartbeat": 6
+      },
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    },
+    {
+      "substream": "utility_meter",
+      "contract_runtime_signals": 0,
+      "observed_unique_signals": 0,
+      "records": 0,
+      "trigger_counts": {},
+      "metadata_mismatches": 0,
+      "unexpected_triggers": 0
+    }
+  ],
+  "limitations": [
+    "Only retained live-outbox records are checked; archived/deleted rows are absent.",
+    "Fewer observed signals than contract total is not proof of loss: six-hour heartbeat points may not emit in this window.",
+    "Trigger metadata identifies change-driven traffic but does not independently prove changes occurred.",
+    "This checks emitted policy metadata and code identity, not exact emission timing, suppressed/missing emissions or signal value correctness.",
+    "A full cadence timing test requires controlled source changes and producer emission/checkpoint timestamps."
+  ]
+}

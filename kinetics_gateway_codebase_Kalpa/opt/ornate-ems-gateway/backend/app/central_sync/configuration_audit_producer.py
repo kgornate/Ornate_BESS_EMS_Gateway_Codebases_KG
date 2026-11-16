@@ -76,7 +76,7 @@ class ConfigurationAuditProducer(ProducerLoopMixin):
         return {
             # Frozen S8 vocabulary
             "central_sync.enabled": central.get("enabled"),
-            "central_sync.endpoint_url": (str(backend.get("base_url") or "").rstrip("/") + str(backend.get("ingest_path") or "/api/v1/ingest/batch")) if backend else None,
+            "central_sync.endpoint_url": (str(backend.get("base_url") or "").rstrip("/") + str(backend.get("ingest_path") or "/api/v1/gateway/ingest")) if backend else None,
             "central_sync.tls_verify": backend.get("verify_tls"),
             "central_sync.fast_bess_sample_interval_sec": fast.get("poll_interval_sec", fast.get("sample_interval_sec")),
             "central_sync.general_policy_revision": "kalpa_vendor_catalog_mapping_v1",

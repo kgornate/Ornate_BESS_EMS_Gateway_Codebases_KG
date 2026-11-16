@@ -1,0 +1,105 @@
+{
+  "completed": true,
+  "error": null,
+  "original_run": "/root/kalpa-overnight-test-20261102T172612Z",
+  "errors": {},
+  "combined_unique_live_ACKs": 19738,
+  "by_group": [
+    {
+      "stream": "battery_charge_discharge_control",
+      "substream": "pair_controller",
+      "status": "accepted",
+      "messages": 2164,
+      "records": 8656,
+      "bytes": 7153814
+    },
+    {
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast",
+      "status": "accepted",
+      "messages": 6147,
+      "records": 24588,
+      "bytes": 210098313
+    },
+    {
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast",
+      "status": "already_processed",
+      "messages": 1,
+      "records": 4,
+      "bytes": 34179
+    },
+    {
+      "stream": "gateway_health",
+      "substream": "gateway",
+      "status": "accepted",
+      "messages": 756,
+      "records": 756,
+      "bytes": 2605226
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "bms_extended",
+      "status": "accepted",
+      "messages": 6293,
+      "records": 540201,
+      "bytes": 508578292
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "dehumidifier",
+      "status": "accepted",
+      "messages": 236,
+      "records": 1483,
+      "bytes": 1484848
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "ems_system",
+      "status": "accepted",
+      "messages": 76,
+      "records": 672,
+      "bytes": 646614
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "fire_protection",
+      "status": "accepted",
+      "messages": 187,
+      "records": 1309,
+      "bytes": 1269356
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "io_module",
+      "status": "accepted",
+      "messages": 280,
+      "records": 2957,
+      "bytes": 2882606
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "liquid_cooling",
+      "status": "accepted",
+      "messages": 546,
+      "records": 4805,
+      "bytes": 4723927
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "pcs_extended",
+      "status": "accepted",
+      "messages": 1459,
+      "records": 91040,
+      "bytes": 79431051
+    },
+    {
+      "stream": "general_asset_telemetry",
+      "substream": "remote_control",
+      "status": "accepted",
+      "messages": 1593,
+      "records": 38138,
+      "bytes": 36546810
+    }
+  ]
+}

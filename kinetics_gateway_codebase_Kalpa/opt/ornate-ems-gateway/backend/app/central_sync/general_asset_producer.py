@@ -4,6 +4,7 @@ import asyncio
 import json
 import time
 from pathlib import Path
+from datetime import datetime, timezone
 from typing import Any, Iterable
 
 from .config import CentralSyncConfig
@@ -11,13 +12,10 @@ from .contracts import utc_now_iso
 from .local_gateway_api import LocalGatewayApiClient
 from .outbox import OutboxCapacityError, OutboxStore
 from .producer_common import ProducerCounters, ProducerLoopMixin, emit_message, fingerprint
-from .s2_policy import S2PolicyManifest
+from .s2_policy import S2PolicyManifest, SUBSTREAMS
 from .s2_chunks import split_s2_records
 
-S2_SUBSTREAMS = (
-    "ems_system", "pcs_extended", "bms_extended", "io_module", "liquid_cooling",
-    "fire_protection", "dehumidifier", "remote_control", "utility_meter",
-)
+S2_SUBSTREAMS = SUBSTREAMS
 
 # These raw points are represented in S1 through the normalized fast-pair view.
 S1_CRITICAL_KEYS = {
@@ -50,6 +48,7 @@ class CatalogIndex:
         root = Path(root)
         self.by_vendor_scope_key: dict[tuple[str, str, str], dict[str, Any]] = {}
         for vendor, name in (
+            ("acrel", "acrel_combiner_meter_catalog.json"),
             ("lineage", "lineage_bms_catalog.json"),
             ("elecod", "elecod_pcs_catalog.json"),
             ("kinetics_bms", "bms_catalog.json"),
@@ -67,6 +66,8 @@ class CatalogIndex:
 
 def _vendor_tag(asset: dict[str, Any], vendors: dict[str, Any]) -> str:
     asset_type = str(asset.get("asset_type") or "").lower()
+    if asset_type == "energy_meter" and asset.get("vendor") == "acrel":
+        return "acrel"
     aid = str(asset.get("asset_id") or "").lower()
     if "pcs" in asset_type or aid.startswith("pcs_"):
         v = str(vendors.get("pcs") or "kinetics").lower()
@@ -78,6 +79,8 @@ def _vendor_tag(asset: dict[str, Any], vendors: dict[str, Any]) -> str:
 def _scope(asset: dict[str, Any]) -> str:
     aid = str(asset.get("asset_id") or "").lower()
     asset_type = str(asset.get("asset_type") or "").lower()
+    if asset_type == "energy_meter" and asset.get("vendor") == "acrel":
+        return "meter"
     if aid.startswith("pcs_") or "pcs" in asset_type:
         return "pcs"
     if aid.startswith("bms_rack_") or asset.get("rack_id") is not None:
@@ -95,6 +98,8 @@ def _is_writable(point: dict[str, Any]) -> bool:
 def classify_substream(asset: dict[str, Any], key: str, point: dict[str, Any] | None) -> str:
     p = point or {}
     scope = _scope(asset)
+    if scope == "meter":
+        return "combiner_box_meter"
     category = str(p.get("category") or "").lower()
     text = " ".join([key.lower(), category, str(p.get("name_en") or "").lower()])
 
@@ -178,6 +183,11 @@ class GeneralAssetProducer(ProducerLoopMixin):
         due: dict[str, list[dict[str, Any]]] = {s: [] for s in S2_SUBSTREAMS}
         pending_checkpoints: dict[str, dict[str, tuple[float, str, str]]] = {s: {} for s in S2_SUBSTREAMS}
         for asset in self._assets(snapshot):
+            if asset.get("asset_type") == "energy_meter" and (
+                not self.s2_policy or self.s2_policy.version != "kalpa-s2-frozen-v1.2"
+                or asset.get("disabled") or asset.get("vendor") != "acrel"
+            ):
+                continue
             vendor = _vendor_tag(asset, vendors or {})
             scope = _scope(asset)
             source_id = f"{vendor}_source"
@@ -189,7 +199,14 @@ class GeneralAssetProducer(ProducerLoopMixin):
                 if point and point.get("poll_enabled") is False:
                     continue
                 if str(key) in S1_CRITICAL_KEYS:
-                    continue
+                    # Overall bank SoC is not in S1's per-pair payload. Opt in
+                    # only when the selected frozen manifest explicitly maps it.
+                    include_system_soc = (
+                        str(key) == "system_soc" and self.s2_policy is not None
+                        and (vendor, scope, str(key)) in self.s2_policy.by_key
+                    )
+                    if not include_system_soc:
+                        continue
                 substream = classify_substream(asset, str(key), point)
                 if substream not in due:
                     continue
@@ -199,6 +216,8 @@ class GeneralAssetProducer(ProducerLoopMixin):
                 if self.s2_policy:
                     frozen = self.s2_policy.resolve(vendor, scope, str(key), substream, point)
                     policy, record_sec = frozen.mode, frozen.interval_sec
+                    if frozen.retention_class is not None:
+                        retention = frozen.retention_class
                     mode = "change_or_heartbeat" if policy == "ON_CHANGE_HEARTBEAT" else "periodic"
                     previous = self._s2_checkpoints.get(runtime_signal_id)
                     if previous is None:
@@ -267,6 +286,24 @@ class GeneralAssetProducer(ProducerLoopMixin):
                     "read_fc": (point or {}).get("read_fc") if not self.s2_policy else (point or {}).get("read_fc", (point or {}).get("read_function")),
                     "datatype": (point or {}).get("datatype") if not self.s2_policy else (point or {}).get("datatype", (point or {}).get("data_type")),
                 }
+                if vendor == "acrel":
+                    # Use each block's real read time, not the newer asset time.
+                    updated = raw_point.get("timestamp")
+                    record["source_updated_utc"] = updated
+                    try:
+                        stamp = datetime.fromisoformat(str(updated).replace("Z", "+00:00"))
+                        if stamp.tzinfo is None:
+                            raise ValueError("source timestamp must include timezone")
+                        record["source_data_age_ms"] = max(0.0, (now_epoch - stamp.timestamp()) * 1000)
+                    except (ValueError, TypeError, OverflowError):
+                        record["source_data_age_ms"] = None
+                    record["snapshot_age_sec"] = asset.get("age_seconds")
+                    record["source_mode"] = asset.get("source")
+                    record["scaling_validated"] = asset.get("scaling_validated", False)
+                    record["meter_online"] = asset.get("online", False)
+                    record["upload_batch_sec"] = 5.0
+                    if not asset.get("online") and record["quality"] not in {"bad", "stale"}:
+                        record["quality"] = "bad"
                 due[substream].append(record)
                 if not self.s2_policy:
                     self._last_emit[runtime_signal_id] = now_mono
@@ -334,6 +371,8 @@ class GeneralAssetProducer(ProducerLoopMixin):
         if isinstance(snapshot.get("bms_banks"), dict):
             candidates.extend(snapshot["bms_banks"].values())
         candidates.extend(snapshot.get("racks") or [])
+        if isinstance(snapshot.get("meters"), dict):
+            candidates.extend(snapshot["meters"].values())
         if isinstance(snapshot.get("environment"), dict):
             candidates.extend(snapshot["environment"].values())
         if isinstance(snapshot.get("pcs_devices"), dict):

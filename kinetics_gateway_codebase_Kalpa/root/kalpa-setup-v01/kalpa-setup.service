@@ -1,0 +1,19 @@
+[Unit]
+Description=Kalpa wired gateway setup API
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/kalpa-setup/agent.py
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+ProtectHome=true
+PrivateTmp=true
+ProtectSystem=full
+ReadWritePaths=/etc/wpa_supplicant /var/lib/kalpa-setup
+
+[Install]
+WantedBy=multi-user.target

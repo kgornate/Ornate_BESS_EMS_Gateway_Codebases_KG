@@ -1,0 +1,26 @@
+{
+  "app.js": {
+    "target": "/opt/ornate-ems-gateway/backend/app/local_hmi/app.js",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "installed_sha256": "c26059ecd3d3a6ad28df4f084899825bd04002194a8a21a96569ba8cdf7c3645",
+    "original_sha256": "2585fed3c4ca008203728bcfefeb9375f872d7f35eb8e93bef6d4153fb8e3c17"
+  },
+  "styles.css": {
+    "target": "/opt/ornate-ems-gateway/backend/app/local_hmi/styles.css",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "installed_sha256": "8af3b117aa99c18f575c745a0902b57c741115beff47e6525ed4241347ef44e5",
+    "original_sha256": "a77f5eb30cd5b5e7be8098959fe70e582ccbf212c18ed5f4471fea76a1754446"
+  },
+  "index.html": {
+    "target": "/opt/ornate-ems-gateway/backend/app/local_hmi/index.html",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "installed_sha256": "d8a7fdefe199864efc9ef7994f3e77e7eff7a077fa3fd768404b0018d2e7fcc4",
+    "original_sha256": "f990b1c49536e658d307adfbdcd824c39bd4c771831c2ce7df393ec0f7548825"
+  }
+}

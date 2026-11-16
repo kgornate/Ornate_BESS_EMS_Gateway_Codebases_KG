@@ -1,0 +1,224 @@
+{
+  "completed": true,
+  "error": null,
+  "started_utc": "2026-11-12T10:37:04.047881+00:00",
+  "updated_utc": "2026-11-13T10:37:04.148132+00:00",
+  "elapsed_sec": 86400.09986749798,
+  "requested_duration_sec": 86400,
+  "samples": 5715,
+  "samples_with_errors": 0,
+  "stale_or_unavailable_status_samples": {
+    "archiver": 1,
+    "recovery": 12
+  },
+  "generation_observed_MB_per_min": 4.742540408499483,
+  "generation_counter_resets": 0,
+  "live_receipts_observed_MB_per_min": 2.7862557606899125,
+  "live_receipts_observed_messages": 96715,
+  "receipt_bounds_reached": 0,
+  "live_receipts_by_stream": {
+    "general_asset_telemetry/remote_control": {
+      "messages": 11216,
+      "bytes": 257653172
+    },
+    "battery_charge_discharge_control/pair_controller": {
+      "messages": 7673,
+      "bytes": 25374611
+    },
+    "fast_bess_telemetry/bess_fast": {
+      "messages": 21247,
+      "bytes": 726243707
+    },
+    "general_asset_telemetry/bms_extended": {
+      "messages": 32273,
+      "bytes": 2470566157
+    },
+    "general_asset_telemetry/liquid_cooling": {
+      "messages": 4022,
+      "bytes": 33756646
+    },
+    "gateway_health/gateway": {
+      "messages": 2426,
+      "bytes": 8364414
+    },
+    "general_asset_telemetry/ems_system": {
+      "messages": 4720,
+      "bytes": 73847012
+    },
+    "general_asset_telemetry/pcs_extended": {
+      "messages": 8386,
+      "bytes": 379052023
+    },
+    "general_asset_telemetry/fire_protection": {
+      "messages": 1311,
+      "bytes": 8901690
+    },
+    "general_asset_telemetry/dehumidifier": {
+      "messages": 1561,
+      "bytes": 9752957
+    },
+    "general_asset_telemetry/io_module": {
+      "messages": 1880,
+      "bytes": 18700544
+    }
+  },
+  "archive_accepted_MB_per_min_covered": 1.1545761372251664,
+  "max_sampled_live_waiting": 140,
+  "max_sampled_live_oldest_age_sec": 83.487,
+  "decisions": {
+    "admitted": 1031,
+    "archive_budget_wait": 4199,
+    "live_pressure_cooldown": 108,
+    "healthy_observation_wait": 40,
+    "archive_transport_cooldown": 20,
+    "live_queue_growing_and_aging": 18,
+    "live_transport_failure": 168,
+    "live_transport_cooldown": 11,
+    "live_queue_hard_limit": 117,
+    "live_age_hard_limit": 3
+  },
+  "live": {
+    "observed_counter_deltas": {
+      "accepted_count": 96719,
+      "already_processed_count": 0,
+      "bytes_sent_uncompressed": 4202592106,
+      "missing_ack_count": 0,
+      "permanent_rejected_count": 0,
+      "request_count": 18751,
+      "request_failure_count": 784,
+      "retryable_rejected_count": 0
+    },
+    "covered_seconds": 86400.38551902771,
+    "segments": [
+      {
+        "instance": "83c21fde-48f5-498d-a321-d31ac7b6c8fe:2026-11-12T10:12:58.644769Z",
+        "first_utc": "2026-11-12T10:37:03.074564Z",
+        "last_utc": "2026-11-13T10:37:03.460083Z",
+        "first": {
+          "accepted_count": 2144,
+          "already_processed_count": 0,
+          "bytes_sent_uncompressed": 115020922,
+          "missing_ack_count": 0,
+          "permanent_rejected_count": 0,
+          "request_count": 707,
+          "request_failure_count": 0,
+          "retryable_rejected_count": 0
+        },
+        "last": {
+          "accepted_count": 98863,
+          "already_processed_count": 0,
+          "bytes_sent_uncompressed": 4317613028,
+          "missing_ack_count": 0,
+          "permanent_rejected_count": 0,
+          "request_count": 19458,
+          "request_failure_count": 784,
+          "retryable_rejected_count": 0
+        },
+        "samples": 5715
+      }
+    ],
+    "counter_resets": 0,
+    "segment_bound_reached": 0
+  },
+  "archive": {
+    "observed_counter_deltas": {
+      "archive_accepted_bytes": 1662589235,
+      "archive_accepted_count": 41598,
+      "archive_already_processed_count": 38,
+      "archive_duplicate_bytes": 1417003,
+      "archive_housekeeping_total_ms": 168963.35971384542,
+      "archive_http_attempt_count": 7674,
+      "archive_http_duration_total_ms": 18133018.03454318,
+      "archive_http_failure_count": 11,
+      "archive_missing_ack_count": 0,
+      "archive_open_count": 1011,
+      "archive_permanent_rejected_count": 0,
+      "archive_retryable_rejected_count": 779,
+      "archive_selection_total_ms": 323656.70618682634,
+      "archive_session_reuse_count": 6671,
+      "archive_store_open_total_ms": 12884.63983539259
+    },
+    "covered_seconds": 86399.97907781601,
+    "segments": [
+      {
+        "instance": "83c21fde-48f5-498d-a321-d31ac7b6c8fe:2026-11-12T10:12:59.630533Z",
+        "first_utc": "2026-11-12T10:37:03.677606Z",
+        "last_utc": "2026-11-13T10:37:03.656684Z",
+        "first": {
+          "archive_accepted_bytes": 125387419,
+          "archive_accepted_count": 4819,
+          "archive_already_processed_count": 0,
+          "archive_duplicate_bytes": 0,
+          "archive_housekeeping_total_ms": 7600.810663367156,
+          "archive_http_attempt_count": 508,
+          "archive_http_duration_total_ms": 783660.8106127824,
+          "archive_http_failure_count": 0,
+          "archive_missing_ack_count": 0,
+          "archive_open_count": 24,
+          "archive_permanent_rejected_count": 0,
+          "archive_retryable_rejected_count": 0,
+          "archive_selection_total_ms": 16516.803716076538,
+          "archive_session_reuse_count": 484,
+          "archive_store_open_total_ms": 382.18926009722054
+        },
+        "last": {
+          "archive_accepted_bytes": 1787976654,
+          "archive_accepted_count": 46417,
+          "archive_already_processed_count": 38,
+          "archive_duplicate_bytes": 1417003,
+          "archive_housekeeping_total_ms": 176564.17037721258,
+          "archive_http_attempt_count": 8182,
+          "archive_http_duration_total_ms": 18916678.84515596,
+          "archive_http_failure_count": 11,
+          "archive_missing_ack_count": 0,
+          "archive_open_count": 1035,
+          "archive_permanent_rejected_count": 0,
+          "archive_retryable_rejected_count": 779,
+          "archive_selection_total_ms": 340173.5099029029,
+          "archive_session_reuse_count": 7155,
+          "archive_store_open_total_ms": 13266.829095489811
+        },
+        "samples": 5703
+      }
+    ],
+    "counter_resets": 0,
+    "segment_bound_reached": 0
+  },
+  "archiver": {
+    "observed_counter_deltas": {
+      "archived_message_count": 32412,
+      "archived_payload_bytes": 2831409822,
+      "source_deleted_count": 32211
+    },
+    "covered_seconds": 86399.41458916664,
+    "segments": [
+      {
+        "instance": "83c21fde-48f5-498d-a321-d31ac7b6c8fe:2026-11-12T10:12:59.628298Z",
+        "first_utc": "2026-11-12T10:37:03.060880Z",
+        "last_utc": "2026-11-13T10:37:02.475469Z",
+        "first": {
+          "archived_message_count": 12,
+          "archived_payload_bytes": 1168454,
+          "source_deleted_count": 12
+        },
+        "last": {
+          "archived_message_count": 32424,
+          "archived_payload_bytes": 2832578276,
+          "source_deleted_count": 32223
+        },
+        "samples": 5714
+      }
+    ],
+    "counter_resets": 0,
+    "segment_bound_reached": 0
+  },
+  "limits": [
+    "Rates describe observed evidence; no complete per-message delivery certification.",
+    "Counter deltas are calculated only within matching service instances and reset segments.",
+    "Intervals between segments and before first fresh sample are excluded from covered rates.",
+    "Fresh status samples may bridge observation gaps; inspect raw samples for coverage.",
+    "Receipt deduplication retains at most 10000 IDs for 10 minutes; observations older than 5 minutes are skipped.",
+    "SD individual message receipts and global unique remaining backlog are not scanned.",
+    "Raw samples remain available if interrupted; summary.partial.json is checkpointed every minute."
+  ]
+}

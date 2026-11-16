@@ -1,0 +1,12 @@
+{
+  "fast_interval_sec": 10.0,
+  "limited_interval_sec": 30.0,
+  "fast_live_count": 10,
+  "fast_live_age_sec": 15.0,
+  "max_live_count": 25,
+  "max_live_age_sec": 30.0,
+  "fast_load_per_cpu": 1.5,
+  "max_load_per_cpu": 2.0,
+  "healthy_samples": 2,
+  "failure_cooldown_sec": 30.0
+}

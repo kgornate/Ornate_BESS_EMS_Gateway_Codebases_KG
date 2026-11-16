@@ -1,0 +1,13 @@
+{
+  "README.md": "698959f20a5f951a58e9d66970c2f45f0f1dde6a7c6fac90f059aad1b3dadf21",
+  "VALIDATION.txt": "3640f36156051fbf97f3428e683b778c940be8d01ab7bb6bc6ee0bfc82acdfd9",
+  "changes.diff": "c822556591d4e483405c6159acd51016dd5bb4ffee27781847d3e5fe6fe9208b",
+  "install.py": "6c87eb1a7f2e6c80d90efb7bbd6878453a81faf470f02829da86184e69b9dfdc",
+  "integration-patches.json": "769148edcf63f2628e4acf54e9065b22c77a2dd2f340cca3d636cc4ace6bf649",
+  "payload/app/assets/acrel_meter.py": "3c19010cc4ce77bc8dd5a4690ff598021a3b665fac578bb32d6fcd48132194d7",
+  "payload/app/core/acrel_config.py": "50c037e4cf0d8176c5c9f6687d3a7d20a0324f18a226a408f870c82a7ae0513a",
+  "rollback.py": "09c9215e139798e120589e633fea634553774fc1d0a05fa9ef1e97ded088e7ae",
+  "tests/test_acrel_meter.py": "af20509c8a325c629a1a74b040f0e541ede190d7b8daff9aa176a6383c08b68d",
+  "tests/test_installer.py": "7112c71ab18eb3f3854fdf12e925c1176e44da3ef53d18faecfbff1d19b5fdb0",
+  "verify_meter.py": "5cbc8f62f8c083c80fe084e886dc3a09e453b47352e4705366a9e38b6accccc4"
+}

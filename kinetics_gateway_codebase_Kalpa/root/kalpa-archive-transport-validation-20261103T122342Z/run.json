@@ -1,0 +1,59 @@
+{
+  "started_utc": "2026-11-03T12:23:42.726364+00:00",
+  "duration_sec": 1800,
+  "archive_policy": {
+    "fast_interval_sec": 10.0,
+    "limited_interval_sec": 30.0,
+    "fast_live_count": 10,
+    "fast_live_age_sec": 15.0,
+    "max_live_count": 25,
+    "max_live_age_sec": 30.0,
+    "fast_load_per_cpu": 1.5,
+    "max_load_per_cpu": 2.0,
+    "healthy_samples": 2,
+    "failure_cooldown_sec": 30.0
+  },
+  "uploader_settings": {
+    "scan_interval_sec": 1.0,
+    "coalescing_window_sec": 1.0,
+    "max_messages_per_request": 10,
+    "max_request_bytes": 262144,
+    "worker_count": 1,
+    "fair_batching_enabled": true,
+    "priority_bias_sec": 2.0,
+    "candidate_scan_limit": 512,
+    "backoff_initial_sec": 5.0,
+    "backoff_multiplier": 2.0,
+    "backoff_max_sec": 300.0,
+    "jitter_percent": 0.2,
+    "max_retry_after_sec": 600.0,
+    "status_interval_sec": 2.0,
+    "idle_sleep_sec": 0.25,
+    "pause_file": "/var/lib/ornate-central-sync/uploader.pause",
+    "pause_poll_sec": 1.0
+  },
+  "outbox_settings": {
+    "path": "/var/lib/ornate-central-sync/central_sync.db",
+    "required_mount_path": null,
+    "fail_if_mount_missing": false,
+    "acked_retention_hours": 0,
+    "dead_letter_retention_days": 30,
+    "transport_attempt_retention_days": 3,
+    "max_db_size_mb": 1024,
+    "min_free_space_mb": 256,
+    "cleanup_interval_sec": 60.0
+  },
+  "recovery_settings": {
+    "enabled": true,
+    "archive_dir": "/mnt/ems-logs/ornate-ems-gateway/backlog_archives",
+    "archive_glob": "central_sync_overflow_*.db",
+    "scan_interval_sec": 5.0,
+    "request_pause_sec": 10.0,
+    "max_messages_per_request": 25,
+    "max_request_bytes": 131072,
+    "live_pause_sendable_count": 25,
+    "live_pause_oldest_age_sec": 3.0,
+    "min_available_memory_mb": 500,
+    "max_load1": 2.0
+  }
+}

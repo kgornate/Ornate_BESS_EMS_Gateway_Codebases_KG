@@ -1,0 +1,41 @@
+Kalpa ACREL meter v0.1 - local validation, 2026-10-21
+
+Python 3.12.14; FastAPI 0.147.0; Pydantic 2.14.1; Starlette 1.9.0;
+pyserial 3.5; httpx 0.28.1; pytest 9.1.1. Linux x86_64 local test runtime.
+DEBIX is ARM64 / Python 3.13: final runtime and live hardware verification pending deployment.
+
+125 passed, 1 warning: 101 existing regression tests + 19 meter tests +
+5 installer tests. Warning: existing Starlette/httpx TestClient deprecation.
+
+Covered:
+- Existing BMS/PCS APIs/control, mock plant, polling, historian, normalized
+  views, Central Sync and frozen optimized S2 regression suite.
+- Exact FC03 blocks: 54 registers at 0x2000, 14 registers at 0x3080.
+- Float word orders, signed active power, primary energy without extra scaling.
+- No hardware reads with meter disabled or explicitly simulated.
+- Global mock BMS/PCS mode can coexist with separately enabled real meter.
+- Timeouts/disconnect, stale caches, energy failure/recovery, nonfinite floats.
+- Real RTU client framing and CRC validation against an emulated serial endpoint.
+- HTTP cache reads remain responsive during a blocked serial read.
+- Authenticated meter API, history, bounded queries, read-only control rejection.
+- SQLite restart persistence and existing four-rack/four-PCS assets retained.
+- ASGI lifecycle starts meter polling and closes the transport on shutdown.
+- Rate diagnostics account for 12 measurement + 1 energy requests/minute.
+- Installer preflight validates/compiles without changing deployed files.
+- Unrelated connectivity source changes survive clean contextual patching.
+- Source conflicts abort before deployment; failed API startup restores files.
+
+Hardware evidence supplied by Kunal before implementation:
+DEBIX /dev/ttyLP6, slave 1, 9600 8N1, FC03 54-register read at 0x2000:
+valid CRC; no-load zero electrical readings; total PF 1.0.
+
+Not claimed: production deployment, continuous physical polling, primary-energy
+counter support on this exact meter firmware, loaded CT/PT scaling/direction,
+reboot persistence of this update, frontend meter panel, or new Central Sync
+meter-stream mapping. These require the deployment/commissioning steps in README.
+
+Changes to existing source: app/main.py, app/core/config.py,
+app/services/gateway_service.py, app/api/routes.py.
+New source: app/core/acrel_config.py, app/assets/acrel_meter.py.
+No edits to existing BMS/PCS drivers, control modules, RTU transport,
+Central Sync modules/policy, OS/network/WPA/Cloudflare files or unit files.

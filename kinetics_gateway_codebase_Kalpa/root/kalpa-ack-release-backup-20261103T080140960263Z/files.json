@@ -1,0 +1,42 @@
+[
+  {
+    "target": "/opt/ornate-ems-gateway/backend/app/central_sync/outbox.py",
+    "exists": true,
+    "copy": "0"
+  },
+  {
+    "target": "/opt/ornate-ems-gateway/backend/app/central_sync/queue_metrics.py",
+    "exists": false,
+    "copy": "1"
+  },
+  {
+    "target": "/etc/ornate-ems-gateway/central_sync.json",
+    "exists": true,
+    "copy": "2"
+  },
+  {
+    "target": "/opt/kalpa-delivery-dashboard/metrics.py",
+    "exists": true,
+    "copy": "3"
+  },
+  {
+    "target": "/opt/kalpa-delivery-dashboard/queue_metrics.py",
+    "exists": false,
+    "copy": "4"
+  },
+  {
+    "target": "/opt/kalpa-upload-dashboard/dashboard.py",
+    "exists": true,
+    "copy": "5"
+  },
+  {
+    "target": "/opt/kalpa-upload-dashboard/queue_metrics.py",
+    "exists": false,
+    "copy": "6"
+  },
+  {
+    "target": "/opt/kalpa-delivery-dashboard/dashboard.py",
+    "exists": true,
+    "copy": "7"
+  }
+]

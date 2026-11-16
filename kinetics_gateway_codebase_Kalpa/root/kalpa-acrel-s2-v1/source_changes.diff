@@ -1,0 +1,149 @@
+--- before/app/central_sync/general_asset_producer.py
++++ after/app/central_sync/general_asset_producer.py
+@@ -4,6 +4,7 @@
+ import json
+ import time
+ from pathlib import Path
++from datetime import datetime, timezone
+ from typing import Any, Iterable
+ 
+ from .config import CentralSyncConfig
+@@ -11,13 +12,10 @@
+ from .local_gateway_api import LocalGatewayApiClient
+ from .outbox import OutboxCapacityError, OutboxStore
+ from .producer_common import ProducerCounters, ProducerLoopMixin, emit_message, fingerprint
+-from .s2_policy import S2PolicyManifest
++from .s2_policy import S2PolicyManifest, SUBSTREAMS
+ from .s2_chunks import split_s2_records
+ 
+-S2_SUBSTREAMS = (
+-    "ems_system", "pcs_extended", "bms_extended", "io_module", "liquid_cooling",
+-    "fire_protection", "dehumidifier", "remote_control", "utility_meter",
+-)
++S2_SUBSTREAMS = SUBSTREAMS
+ 
+ # These raw points are represented in S1 through the normalized fast-pair view.
+ S1_CRITICAL_KEYS = {
+@@ -50,6 +48,7 @@
+         root = Path(root)
+         self.by_vendor_scope_key: dict[tuple[str, str, str], dict[str, Any]] = {}
+         for vendor, name in (
++            ("acrel", "acrel_combiner_meter_catalog.json"),
+             ("lineage", "lineage_bms_catalog.json"),
+             ("elecod", "elecod_pcs_catalog.json"),
+             ("kinetics_bms", "bms_catalog.json"),
+@@ -67,6 +66,8 @@
+ 
+ def _vendor_tag(asset: dict[str, Any], vendors: dict[str, Any]) -> str:
+     asset_type = str(asset.get("asset_type") or "").lower()
++    if asset_type == "energy_meter" and asset.get("vendor") == "acrel":
++        return "acrel"
+     aid = str(asset.get("asset_id") or "").lower()
+     if "pcs" in asset_type or aid.startswith("pcs_"):
+         v = str(vendors.get("pcs") or "kinetics").lower()
+@@ -78,6 +79,8 @@
+ def _scope(asset: dict[str, Any]) -> str:
+     aid = str(asset.get("asset_id") or "").lower()
+     asset_type = str(asset.get("asset_type") or "").lower()
++    if asset_type == "energy_meter" and asset.get("vendor") == "acrel":
++        return "meter"
+     if aid.startswith("pcs_") or "pcs" in asset_type:
+         return "pcs"
+     if aid.startswith("bms_rack_") or asset.get("rack_id") is not None:
+@@ -95,6 +98,8 @@
+ def classify_substream(asset: dict[str, Any], key: str, point: dict[str, Any] | None) -> str:
+     p = point or {}
+     scope = _scope(asset)
++    if scope == "meter":
++        return "combiner_box_meter"
+     category = str(p.get("category") or "").lower()
+     text = " ".join([key.lower(), category, str(p.get("name_en") or "").lower()])
+ 
+@@ -178,6 +183,11 @@
+         due: dict[str, list[dict[str, Any]]] = {s: [] for s in S2_SUBSTREAMS}
+         pending_checkpoints: dict[str, dict[str, tuple[float, str, str]]] = {s: {} for s in S2_SUBSTREAMS}
+         for asset in self._assets(snapshot):
++            if asset.get("asset_type") == "energy_meter" and (
++                not self.s2_policy or self.s2_policy.version != "kalpa-s2-frozen-v1.2"
++                or asset.get("disabled") or asset.get("vendor") != "acrel"
++            ):
++                continue
+             vendor = _vendor_tag(asset, vendors or {})
+             scope = _scope(asset)
+             source_id = f"{vendor}_source"
+@@ -276,6 +286,24 @@
+                     "read_fc": (point or {}).get("read_fc") if not self.s2_policy else (point or {}).get("read_fc", (point or {}).get("read_function")),
+                     "datatype": (point or {}).get("datatype") if not self.s2_policy else (point or {}).get("datatype", (point or {}).get("data_type")),
+                 }
++                if vendor == "acrel":
++                    # Use each block's real read time, not the newer asset time.
++                    updated = raw_point.get("timestamp")
++                    record["source_updated_utc"] = updated
++                    try:
++                        stamp = datetime.fromisoformat(str(updated).replace("Z", "+00:00"))
++                        if stamp.tzinfo is None:
++                            raise ValueError("source timestamp must include timezone")
++                        record["source_data_age_ms"] = max(0.0, (now_epoch - stamp.timestamp()) * 1000)
++                    except (ValueError, TypeError, OverflowError):
++                        record["source_data_age_ms"] = None
++                    record["snapshot_age_sec"] = asset.get("age_seconds")
++                    record["source_mode"] = asset.get("source")
++                    record["scaling_validated"] = asset.get("scaling_validated", False)
++                    record["meter_online"] = asset.get("online", False)
++                    record["upload_batch_sec"] = 5.0
++                    if not asset.get("online") and record["quality"] not in {"bad", "stale"}:
++                        record["quality"] = "bad"
+                 due[substream].append(record)
+                 if not self.s2_policy:
+                     self._last_emit[runtime_signal_id] = now_mono
+@@ -343,6 +371,8 @@
+         if isinstance(snapshot.get("bms_banks"), dict):
+             candidates.extend(snapshot["bms_banks"].values())
+         candidates.extend(snapshot.get("racks") or [])
++        if isinstance(snapshot.get("meters"), dict):
++            candidates.extend(snapshot["meters"].values())
+         if isinstance(snapshot.get("environment"), dict):
+             candidates.extend(snapshot["environment"].values())
+         if isinstance(snapshot.get("pcs_devices"), dict):
+--- before/app/central_sync/s2_policy.py
++++ after/app/central_sync/s2_policy.py
+@@ -12,7 +12,7 @@
+ SUPPORTED_MODES = frozenset({"PERIODIC", "ON_CHANGE_HEARTBEAT"})
+ SUBSTREAMS = (
+     "ems_system", "pcs_extended", "bms_extended", "io_module", "liquid_cooling",
+-    "fire_protection", "dehumidifier", "remote_control", "utility_meter",
++    "fire_protection", "dehumidifier", "remote_control", "bess_aux_consumption_meter", "combiner_box_meter",
+ )
+ 
+ class S2PolicyError(ValueError):
+@@ -39,10 +39,11 @@
+         if expected_sha256 and actual_sha256 != expected_sha256:
+             raise S2PolicyError("frozen S2 manifest checksum mismatch; refuse to run unapproved policies")
+         data = json.loads(raw.decode("utf-8"))
+-        versions = {"kalpa-s2-frozen-v1.0": (2471, 9494), "kalpa-s2-frozen-v1.1": (2472, 9495)}
++        versions = {"kalpa-s2-frozen-v1.0": (2471, 9494), "kalpa-s2-frozen-v1.1": (2472, 9495), "kalpa-s2-frozen-v1.2": (2506, 9529)}
+         if data.get("policy_version") not in versions:
+             raise S2PolicyError("unexpected S2 policy version")
+-        if data.get("substreams") != list(SUBSTREAMS):
++        expected_substreams = list(SUBSTREAMS) if data["policy_version"] == "kalpa-s2-frozen-v1.2" else list(SUBSTREAMS[:-2]) + ["utility_meter"]
++        if data.get("substreams") != expected_substreams:
+             raise S2PolicyError("frozen S2 substreams differ from backend contract")
+         canonical_count, runtime_count = versions[data["policy_version"]]
+         points = data.get("points")
+@@ -61,9 +62,14 @@
+                 multiplier = int(p["expected_instances"])
+             except (KeyError, TypeError, ValueError) as e:
+                 raise S2PolicyError(f"invalid policy at row {i}") from e
+-            if vendor not in {"lineage", "elecod"} or scope not in {"bank", "rack", "pcs", "environment"}:
++            if vendor not in {"lineage", "elecod", "acrel"} or scope not in {"bank", "rack", "pcs", "environment", "meter"}:
+                 raise S2PolicyError(f"unexpected vendor or scope: {vendor}/{scope}")
+-            if mode not in SUPPORTED_MODES or substream not in SUBSTREAMS:
++            if (vendor == "acrel" or scope == "meter" or substream == "combiner_box_meter") and not (
++                self.version == "kalpa-s2-frozen-v1.2" and vendor == "acrel" and scope == "meter"
++                and substream == "combiner_box_meter" and mode == "PERIODIC" and multiplier == 1
++            ):
++                raise S2PolicyError(f"invalid combiner meter identity for {point_id}")
++            if mode not in SUPPORTED_MODES or substream not in expected_substreams:
+                 raise S2PolicyError(f"invalid recording mode/substream for {point_id}")
+             if not (0 < interval <= 86400) or not (1 <= multiplier <= 4):
+                 raise S2PolicyError(f"invalid interval or instance count for {point_id}")

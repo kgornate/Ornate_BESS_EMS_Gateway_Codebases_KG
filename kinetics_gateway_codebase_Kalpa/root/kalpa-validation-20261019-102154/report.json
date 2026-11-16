@@ -1,0 +1,2008 @@
+{
+  "checks": [
+    {
+      "name": "Gateway is in mock mode",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Hardware write gates disabled",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Production uploads disabled",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Packaged regression suite",
+      "pass": true,
+      "detail": "........................................................................ [ 71%]\n.............................                                            [100%]\n=============================== warnings summary ===============================\n../../../opt/ornate-ems-gateway/venv/lib/python3.13/site-packages/fastapi/testclient.py:1\n  /opt/ornate-ems-gateway/venv/lib/python3.13/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n101 passed, 1 warning in 104.46s (0:01:44)\n"
+    },
+    {
+      "name": "Local API password available",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Live API authentication",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "GET /api/health",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.02
+      }
+    },
+    {
+      "name": "GET /api/assets",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 1.033
+      }
+    },
+    {
+      "name": "GET /api/telemetry/snapshot",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 1.177
+      }
+    },
+    {
+      "name": "GET /api/telemetry/compact",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.396
+      }
+    },
+    {
+      "name": "GET /api/normalized/snapshot",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.436
+      }
+    },
+    {
+      "name": "GET /api/normalized/pairs",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.028
+      }
+    },
+    {
+      "name": "GET /api/normalized/safety",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.028
+      }
+    },
+    {
+      "name": "GET /api/bms/bank",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 1.695
+      }
+    },
+    {
+      "name": "GET /api/bms/racks",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 2.11
+      }
+    },
+    {
+      "name": "GET /api/bms/racks/summary",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.882
+      }
+    },
+    {
+      "name": "GET /api/bms/environment",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 2.022
+      }
+    },
+    {
+      "name": "GET /api/pcs/all",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 1.448
+      }
+    },
+    {
+      "name": "GET /api/alarms",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.043
+      }
+    },
+    {
+      "name": "GET /api/alarms/history",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.056
+      }
+    },
+    {
+      "name": "GET /api/events",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.023
+      }
+    },
+    {
+      "name": "GET /api/storage/status",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.022
+      }
+    },
+    {
+      "name": "GET /api/diagnostics/polling",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.02
+      }
+    },
+    {
+      "name": "GET /api/diagnostics/runtime",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.032
+      }
+    },
+    {
+      "name": "GET /api/diagnostics/data-rate",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.155
+      }
+    },
+    {
+      "name": "GET /api/control-sequence/status/all",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 3.583
+      }
+    },
+    {
+      "name": "GET /api/control/capabilities",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.183
+      }
+    },
+    {
+      "name": "GET /api/platform/readiness",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.097
+      }
+    },
+    {
+      "name": "GET /api/commissioning/status",
+      "pass": true,
+      "detail": {
+        "http_status": 200,
+        "seconds": 0.12
+      }
+    },
+    {
+      "name": "Live fast polling advances",
+      "pass": true,
+      "detail": {
+        "before": 533,
+        "after": 540
+      }
+    },
+    {
+      "name": "Four normalized battery/PCS pairs",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Telemetry present: bms_bank",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_bank",
+        "online": true,
+        "signal_count": 71,
+        "quality_counts": {
+          "good": 71
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: bms_bank",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_bank",
+        "online": true,
+        "signal_count": 71,
+        "quality_counts": {
+          "good": 71
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: bms_rack_1",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_1",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: bms_rack_1",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_1",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: bms_rack_2",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_2",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: bms_rack_2",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_2",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: bms_rack_3",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_3",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: bms_rack_3",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_3",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: bms_rack_4",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_4",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: bms_rack_4",
+      "pass": true,
+      "detail": {
+        "asset_id": "bms_rack_4",
+        "online": true,
+        "signal_count": 2272,
+        "quality_counts": {
+          "good": 2272
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: pcs_1",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_1",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: pcs_1",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_1",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: pcs_2",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_2",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: pcs_2",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_2",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: pcs_3",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_3",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: pcs_3",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_3",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: pcs_4",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_4",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: pcs_4",
+      "pass": true,
+      "detail": {
+        "asset_id": "pcs_4",
+        "online": true,
+        "signal_count": 98,
+        "quality_counts": {
+          "good": 98
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: liquid_cooling",
+      "pass": true,
+      "detail": {
+        "asset_id": "liquid_cooling",
+        "online": true,
+        "signal_count": 4,
+        "quality_counts": {
+          "good": 4
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: liquid_cooling",
+      "pass": true,
+      "detail": {
+        "asset_id": "liquid_cooling",
+        "online": true,
+        "signal_count": 4,
+        "quality_counts": {
+          "good": 4
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: safety_io",
+      "pass": true,
+      "detail": {
+        "asset_id": "safety_io",
+        "online": true,
+        "signal_count": 20,
+        "quality_counts": {
+          "good": 20
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: safety_io",
+      "pass": true,
+      "detail": {
+        "asset_id": "safety_io",
+        "online": true,
+        "signal_count": 20,
+        "quality_counts": {
+          "good": 20
+        }
+      }
+    },
+    {
+      "name": "Telemetry present: environment_other",
+      "pass": true,
+      "detail": {
+        "asset_id": "environment_other",
+        "online": true,
+        "signal_count": 43,
+        "quality_counts": {
+          "good": 43
+        }
+      }
+    },
+    {
+      "name": "Mock telemetry quality: environment_other",
+      "pass": true,
+      "detail": {
+        "asset_id": "environment_other",
+        "online": true,
+        "signal_count": 43,
+        "quality_counts": {
+          "good": 43
+        }
+      }
+    },
+    {
+      "name": "Four racks and four PCS exposed",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "S1 emits four BESS records",
+      "pass": true,
+      "detail": {
+        "emitted": true,
+        "record_count": 4,
+        "message_id": "dcd0e7f9-a7e2-4d80-9654-1fe75551772e"
+      }
+    },
+    {
+      "name": "Optimized S2 emits all 9494 frozen runtime signals",
+      "pass": true,
+      "detail": {
+        "record_count": 9494,
+        "message_count": 96
+      }
+    },
+    {
+      "name": "S3 gateway health emitted",
+      "pass": true,
+      "detail": {
+        "emitted": true,
+        "message_id": "bdb0f7a0-ac9d-47f7-8a85-abf975082b54",
+        "transition": false,
+        "reason": null
+      }
+    },
+    {
+      "name": "S10 charge/discharge status emitted",
+      "pass": true,
+      "detail": {
+        "emitted": true,
+        "record_count": 4,
+        "message_id": "1f94deba-50f5-432e-b680-1548dec1718d",
+        "transition": false
+      }
+    },
+    {
+      "name": "S4 establishes history cursor",
+      "pass": true,
+      "detail": {
+        "emitted": false,
+        "reason": "baseline_established",
+        "baseline_count": 308
+      }
+    },
+    {
+      "name": "S8 establishes configuration baseline",
+      "pass": true,
+      "detail": {
+        "emitted": false,
+        "reason": "baseline_established",
+        "setting_count": 21
+      }
+    },
+    {
+      "name": "S8 detects isolated configuration change",
+      "pass": true,
+      "detail": {
+        "emitted": true,
+        "record_count": 1,
+        "message_id": "356d063a-d490-4851-a4bf-aba27f498c20"
+      }
+    },
+    {
+      "name": "Optimized S2 checkpoints survive producer restart",
+      "pass": true,
+      "detail": {
+        "emitted": false,
+        "message_count": 0,
+        "messages": [],
+        "record_count": 0
+      }
+    },
+    {
+      "name": "All generated message envelopes validate",
+      "pass": true,
+      "detail": {
+        "messages": 100
+      }
+    },
+    {
+      "name": "S2 logical messages bounded to 96 KiB",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12730368,
+        "reusable_page_bytes": 94208,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 100,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12730368,
+          "reusable_page_bytes": 94208,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12730368,
+        "reusable_page_bytes": 94208,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 101,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12730368,
+          "reusable_page_bytes": 94208,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Gzip transport exercised",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Backend outage retains message for retry",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12730368,
+        "reusable_page_bytes": 94208,
+        "wal_bytes": 12936832,
+        "sendable_count": 1,
+        "unacked_count": 1,
+        "pending_count": 0,
+        "retry_count": 1,
+        "inflight_count": 0,
+        "acked_count": 101,
+        "dead_count": 0,
+        "sendable_bytes": 429,
+        "oldest_sendable_age_sec": 0.016,
+        "by_priority": {
+          "P2": 1
+        },
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12730368,
+          "reusable_page_bytes": 94208,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12730368,
+        "reusable_page_bytes": 94208,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 102,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12730368,
+          "reusable_page_bytes": 94208,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "HTTP 429 honors Retry-After",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12730368,
+        "reusable_page_bytes": 94208,
+        "wal_bytes": 12936832,
+        "sendable_count": 1,
+        "unacked_count": 1,
+        "pending_count": 0,
+        "retry_count": 1,
+        "inflight_count": 0,
+        "acked_count": 102,
+        "dead_count": 0,
+        "sendable_bytes": 429,
+        "oldest_sendable_age_sec": 0.018,
+        "by_priority": {
+          "P2": 1
+        },
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12730368,
+          "reusable_page_bytes": 94208,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12730368,
+        "reusable_page_bytes": 94208,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 103,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12730368,
+          "reusable_page_bytes": 94208,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Partial ACK retries only unacknowledged message",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12734464,
+        "reusable_page_bytes": 90112,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 105,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12734464,
+          "reusable_page_bytes": 90112,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12734464,
+        "reusable_page_bytes": 90112,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 106,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12734464,
+          "reusable_page_bytes": 90112,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Duplicate ACK treated as success",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12734464,
+        "reusable_page_bytes": 90112,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 108,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12734464,
+          "reusable_page_bytes": 90112,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "HTTP 413 splits multi-message request",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Uploader pause retains pending data",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Isolated outbox drains after ACK",
+      "pass": true,
+      "detail": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12734464,
+        "reusable_page_bytes": 90112,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 109,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12734464,
+          "reusable_page_bytes": 90112,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      }
+    },
+    {
+      "name": "Overflow archives old data before deleting live copy",
+      "pass": true,
+      "detail": {
+        "spilled": true,
+        "trigger": "age",
+        "archived_messages": 1,
+        "source_deleted": 1,
+        "payload_bytes": 429,
+        "logical_used_bytes": 12734464,
+        "oldest_spillable_age_sec": null,
+        "archive_free_mb": 22931,
+        "archive_path": "/root/kalpa-validation-20261019-102154/overflow-archives/central_sync_overflow_20261019T10.db"
+      }
+    },
+    {
+      "name": "Overflow recovery obeys transport pause",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Overflow replay ACKs and retains archive evidence",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Outbox database integrity",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Production configurations unchanged",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "limitations": [
+    "Mock/SIL validation, not physical BMS/PCS commissioning.",
+    "Simulated backend ACKs, not production ingestion or backend authentication.",
+    "Short functional check, not a long-duration performance/retention soak.",
+    "SOC/Solis/Edge AI streams are configuration-dependent; disabled streams are not treated as failures."
+  ],
+  "asset_telemetry": [
+    {
+      "asset_id": "bms_bank",
+      "online": true,
+      "signal_count": 71,
+      "quality_counts": {
+        "good": 71
+      }
+    },
+    {
+      "asset_id": "bms_rack_1",
+      "online": true,
+      "signal_count": 2272,
+      "quality_counts": {
+        "good": 2272
+      }
+    },
+    {
+      "asset_id": "bms_rack_2",
+      "online": true,
+      "signal_count": 2272,
+      "quality_counts": {
+        "good": 2272
+      }
+    },
+    {
+      "asset_id": "bms_rack_3",
+      "online": true,
+      "signal_count": 2272,
+      "quality_counts": {
+        "good": 2272
+      }
+    },
+    {
+      "asset_id": "bms_rack_4",
+      "online": true,
+      "signal_count": 2272,
+      "quality_counts": {
+        "good": 2272
+      }
+    },
+    {
+      "asset_id": "pcs_1",
+      "online": true,
+      "signal_count": 98,
+      "quality_counts": {
+        "good": 98
+      }
+    },
+    {
+      "asset_id": "pcs_2",
+      "online": true,
+      "signal_count": 98,
+      "quality_counts": {
+        "good": 98
+      }
+    },
+    {
+      "asset_id": "pcs_3",
+      "online": true,
+      "signal_count": 98,
+      "quality_counts": {
+        "good": 98
+      }
+    },
+    {
+      "asset_id": "pcs_4",
+      "online": true,
+      "signal_count": 98,
+      "quality_counts": {
+        "good": 98
+      }
+    },
+    {
+      "asset_id": "liquid_cooling",
+      "online": true,
+      "signal_count": 4,
+      "quality_counts": {
+        "good": 4
+      }
+    },
+    {
+      "asset_id": "safety_io",
+      "online": true,
+      "signal_count": 20,
+      "quality_counts": {
+        "good": 20
+      }
+    },
+    {
+      "asset_id": "environment_other",
+      "online": true,
+      "signal_count": 43,
+      "quality_counts": {
+        "good": 43
+      }
+    }
+  ],
+  "central_producers": {
+    "S1": {
+      "emitted": true,
+      "record_count": 4,
+      "message_id": "dcd0e7f9-a7e2-4d80-9654-1fe75551772e"
+    },
+    "S2": {
+      "emitted": true,
+      "message_count": 96,
+      "messages": [
+        {
+          "substream": "ems_system",
+          "message_id": "05704d43-5f45-4ff0-99db-47c42ae98291",
+          "sequence": 1,
+          "record_count": 45
+        },
+        {
+          "substream": "pcs_extended",
+          "message_id": "b3e76851-4301-4f95-8a4d-0ff9a337f5d5",
+          "sequence": 1,
+          "record_count": 109
+        },
+        {
+          "substream": "pcs_extended",
+          "message_id": "c509cec9-a38f-4712-b61e-a16d555729ee",
+          "sequence": 2,
+          "record_count": 110
+        },
+        {
+          "substream": "pcs_extended",
+          "message_id": "dcffc31d-7881-4e9d-835a-4a22c114af94",
+          "sequence": 3,
+          "record_count": 110
+        },
+        {
+          "substream": "pcs_extended",
+          "message_id": "e08f01c5-1aa0-4d09-bd67-981fa20cc161",
+          "sequence": 4,
+          "record_count": 15
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "51b940d5-1653-4fcd-b9fb-2ad3fd11d470",
+          "sequence": 1,
+          "record_count": 100
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "485e94bb-5fe5-447b-af0c-fcc97d9a2b5d",
+          "sequence": 2,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "21d977e0-8a3e-4e6c-b5f6-e9ee37b8a35d",
+          "sequence": 3,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "20ead1ba-e916-46a7-96d2-a6d7923b0720",
+          "sequence": 4,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "243fd0d7-cd59-4937-a31e-d70f8f817440",
+          "sequence": 5,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "ac9fbd95-2b9f-4a9b-b2f3-0ed918411500",
+          "sequence": 6,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "e4f77da4-d50a-4b85-a24a-afebcc1dce21",
+          "sequence": 7,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "3a00a912-044e-4238-a9a5-a1d6d6e58461",
+          "sequence": 8,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "621012ce-a880-49d8-91a9-06dda90c47dd",
+          "sequence": 9,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "504654d8-05ac-4257-bfcf-5d16f5b76c45",
+          "sequence": 10,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "c03d468b-1c30-4658-afcd-cda44991702c",
+          "sequence": 11,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "8b998471-430c-4a2b-b356-1eb563a00023",
+          "sequence": 12,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "84d0bcd0-6625-474f-98a0-72b9b5975248",
+          "sequence": 13,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "279f9f52-a9a5-46f5-a64c-d6b6f8505af6",
+          "sequence": 14,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "ea5447fd-5d2b-4d78-9666-a0bda46503bb",
+          "sequence": 15,
+          "record_count": 108
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "4049fd29-9308-47d0-81a4-273810aee21b",
+          "sequence": 16,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "301e6a34-a657-45b9-9440-ca0ee747b4f0",
+          "sequence": 17,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "949c9c91-a0ae-48ea-98ba-80bfb27e9703",
+          "sequence": 18,
+          "record_count": 110
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "02751337-912a-4abc-8a59-e5d7d606376a",
+          "sequence": 19,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "7a2b7194-468c-4f5b-a412-4d8236ced144",
+          "sequence": 20,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "4f361d80-f36d-4b58-91a9-df5798233eeb",
+          "sequence": 21,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "1544ffe9-e848-4389-a4bb-9c50c4a5e549",
+          "sequence": 22,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "69a5fae2-2bf0-4923-8928-8ccd2025d549",
+          "sequence": 23,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "2b32b3a1-fc6c-4e38-9ac0-46a15eb313cf",
+          "sequence": 24,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "42d1f679-d4b1-43f0-9e9e-6ce98bce479c",
+          "sequence": 25,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "18d53df9-5408-4bb4-b66c-4feb0bb4837d",
+          "sequence": 26,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "9b8b1ebc-e5a9-47d2-b1af-63199e909f3d",
+          "sequence": 27,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "8b83d294-ab60-4f6e-a24a-9e49f4a2e0e7",
+          "sequence": 28,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "af7c1fd8-5a44-4d8e-8722-1a988fdb8773",
+          "sequence": 29,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "dea7c528-aba6-43be-8971-42e08a185fec",
+          "sequence": 30,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "99ac2b16-48bc-4cc3-b398-057e9d59dd95",
+          "sequence": 31,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "b24ddc06-eef5-44a6-8962-1c739a445f8e",
+          "sequence": 32,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "0f991f07-f25a-40f4-b0df-c6d3134e31c0",
+          "sequence": 33,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "e05f43c4-202a-4b9f-a4e0-2406bdeb03a8",
+          "sequence": 34,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "51170b2d-d609-483f-972a-432970e4d21c",
+          "sequence": 35,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "163338e3-4897-45df-be43-b07f9d2a58f6",
+          "sequence": 36,
+          "record_count": 108
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "d59f8dbd-0f69-4e2f-9573-60ab882b8928",
+          "sequence": 37,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "c502a10e-b895-42a2-a837-10d26f8f3dee",
+          "sequence": 38,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "03f72c7d-51fc-41e6-aee6-96f7ae07c3d1",
+          "sequence": 39,
+          "record_count": 109
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "02a0d4b0-7bfb-4b0c-b755-4c3279276c17",
+          "sequence": 40,
+          "record_count": 112
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "066209e2-3aac-4dc5-9f2e-1421fbacc968",
+          "sequence": 41,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "26a5470f-3963-4d45-9770-16d8bdadfbd0",
+          "sequence": 42,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "5eada49c-ab3c-45b3-b04a-705b05913dcb",
+          "sequence": 43,
+          "record_count": 106
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "4f135c4e-7410-4474-a813-39ca7839ab64",
+          "sequence": 44,
+          "record_count": 100
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "65fe2d8b-d524-40cd-9be2-e76fd8a49146",
+          "sequence": 45,
+          "record_count": 106
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "8c6e7243-85d8-44e4-b465-638f6402f1b9",
+          "sequence": 46,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "44c99ca1-9bfe-415e-991f-e496cb9cf3b3",
+          "sequence": 47,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "5a8d2d82-2779-4e82-aae0-e47cb66aa842",
+          "sequence": 48,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "7bd42036-7063-476c-9ef5-88ecb4802c7d",
+          "sequence": 49,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "b1479427-e157-418d-933b-b205e9bfeaa9",
+          "sequence": 50,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "63b361b1-816a-4659-a39c-40ce6eeaa1e8",
+          "sequence": 51,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "4f2d1dca-a686-46cf-aa23-63ff6ad06194",
+          "sequence": 52,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "65335a00-f398-4875-84f1-8bfa3efc6cfb",
+          "sequence": 53,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "0582b644-8120-400f-97fa-8405866e7055",
+          "sequence": 54,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "f7044bb3-3bab-4a69-bb43-381ae38ccbda",
+          "sequence": 55,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "c75f3fdd-a9a6-495c-8046-b20897175f30",
+          "sequence": 56,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "a74ce5d4-d2f5-4a42-bb49-bf493d7789a4",
+          "sequence": 57,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "5424a6c9-68e2-495d-9ca9-bcca4e031c9a",
+          "sequence": 58,
+          "record_count": 108
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "020d3474-f409-4b16-b14e-c7aa3869a997",
+          "sequence": 59,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "8b75005d-e4a4-4f13-9fc8-aa78182ff3d0",
+          "sequence": 60,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "dbce2b64-a226-4c6b-82a1-2b79ea2c1ea2",
+          "sequence": 61,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "15c7bdad-281b-4f35-9db2-d79f68d01ecf",
+          "sequence": 62,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "7aaa977b-9176-430f-b568-082dae072313",
+          "sequence": 63,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "7f5dbbe0-c43e-4013-b3b3-201afd7b23c9",
+          "sequence": 64,
+          "record_count": 109
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "1f3d27eb-02a2-4ae7-be0f-f7b159131f0f",
+          "sequence": 65,
+          "record_count": 101
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "1f850c21-d09a-4c03-9a0b-5dd9569591c8",
+          "sequence": 66,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "1cf5dc0c-97ff-498a-8890-c4f432c35a80",
+          "sequence": 67,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "9a0ee717-bdb2-4901-a518-7f55f26cbc28",
+          "sequence": 68,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "57ad7ba3-9222-48a3-a10a-cd8ebdd9cf11",
+          "sequence": 69,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "ac1276be-2f1d-4dd9-b540-4cda01e06840",
+          "sequence": 70,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "161e05f5-4cc3-4e27-ad6f-aef77cc74265",
+          "sequence": 71,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "fae9263e-7f8c-4a01-945f-fbaf6c40cda9",
+          "sequence": 72,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "5c647741-edcd-4416-a964-3a523f817bb9",
+          "sequence": 73,
+          "record_count": 104
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "0f10a188-ee87-4ef6-a3c0-5782e431dc8f",
+          "sequence": 74,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "d5878858-5ad1-4be0-944d-b43dbaa8e062",
+          "sequence": 75,
+          "record_count": 103
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "16d1f0aa-42da-4096-a589-82240e7c7d8f",
+          "sequence": 76,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "0c75409c-e4c6-4e1e-8282-38cdef45fdcc",
+          "sequence": 77,
+          "record_count": 102
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "aed88268-d5ea-43e6-a04e-f2c1dfd3fe3f",
+          "sequence": 78,
+          "record_count": 105
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "f500861b-a002-4345-8860-aec31a47c3ab",
+          "sequence": 79,
+          "record_count": 108
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "e1c67a78-92fa-43d6-a53c-51ee424e5984",
+          "sequence": 80,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "8a379c69-e934-4c34-a388-e9c60fbf2206",
+          "sequence": 81,
+          "record_count": 107
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "55de0c56-63f7-468e-b7d7-c499d752e2cd",
+          "sequence": 82,
+          "record_count": 110
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "c7961195-3c44-4be1-892f-27d04b20bf70",
+          "sequence": 83,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "e913506d-01f2-4a6d-8dab-95fec15b7fe8",
+          "sequence": 84,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "58853806-40ac-4123-9ae3-6c72f4d9b9e5",
+          "sequence": 85,
+          "record_count": 111
+        },
+        {
+          "substream": "bms_extended",
+          "message_id": "f888b1fe-d758-419c-b521-0fd195661e4a",
+          "sequence": 86,
+          "record_count": 48
+        },
+        {
+          "substream": "io_module",
+          "message_id": "691636f1-70b9-4470-a12a-3b0ac7a002bf",
+          "sequence": 1,
+          "record_count": 17
+        },
+        {
+          "substream": "liquid_cooling",
+          "message_id": "9dba7519-d490-4b61-b6e5-f9f672bcce63",
+          "sequence": 1,
+          "record_count": 26
+        },
+        {
+          "substream": "fire_protection",
+          "message_id": "9baf83a5-0020-41d2-a81f-4e4a88482019",
+          "sequence": 1,
+          "record_count": 7
+        },
+        {
+          "substream": "dehumidifier",
+          "message_id": "872dc4b7-671d-4fc2-a21e-16ee324fc08a",
+          "sequence": 1,
+          "record_count": 9
+        },
+        {
+          "substream": "remote_control",
+          "message_id": "dddab4ea-cde8-4e3d-b6ff-383ccc7990e0",
+          "sequence": 1,
+          "record_count": 26
+        }
+      ],
+      "record_count": 9494
+    },
+    "S3": {
+      "emitted": true,
+      "message_id": "bdb0f7a0-ac9d-47f7-8a85-abf975082b54",
+      "transition": false,
+      "reason": null
+    },
+    "S4": {
+      "emitted": false,
+      "reason": "baseline_established",
+      "baseline_count": 308
+    },
+    "S8": {
+      "emitted": false,
+      "reason": "baseline_established",
+      "setting_count": 21
+    },
+    "S10": {
+      "emitted": true,
+      "record_count": 4,
+      "message_id": "1f94deba-50f5-432e-b680-1548dec1718d",
+      "transition": false
+    }
+  },
+  "s2_substreams": {
+    "ems_system": 1,
+    "pcs_extended": 4,
+    "bms_extended": 86,
+    "io_module": 1,
+    "liquid_cooling": 1,
+    "fire_protection": 1,
+    "dehumidifier": 1,
+    "remote_control": 1
+  },
+  "s2_records_by_substream": {
+    "ems_system": 45,
+    "pcs_extended": 344,
+    "bms_extended": 9020,
+    "io_module": 17,
+    "liquid_cooling": 26,
+    "fire_protection": 7,
+    "dehumidifier": 9,
+    "remote_control": 26
+  },
+  "disabled_streams": [
+    "soc_controller",
+    "solis",
+    "edge_ai"
+  ],
+  "overflow_spill": {
+    "spilled": true,
+    "trigger": "age",
+    "archived_messages": 1,
+    "source_deleted": 1,
+    "payload_bytes": 429,
+    "logical_used_bytes": 12734464,
+    "oldest_spillable_age_sec": null,
+    "archive_free_mb": 22931,
+    "archive_path": "/root/kalpa-validation-20261019-102154/overflow-archives/central_sync_overflow_20261019T10.db"
+  },
+  "simulated_transport": {
+    "requests": [
+      {
+        "messages": 30,
+        "wire_bytes": 2095834,
+        "gzip": false
+      },
+      {
+        "messages": 22,
+        "wire_bytes": 2066205,
+        "gzip": false
+      },
+      {
+        "messages": 22,
+        "wire_bytes": 2084804,
+        "gzip": false
+      },
+      {
+        "messages": 21,
+        "wire_bytes": 2042825,
+        "gzip": false
+      },
+      {
+        "messages": 5,
+        "wire_bytes": 486771,
+        "gzip": false
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 336,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 335,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 332,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 334,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 334,
+        "gzip": true
+      },
+      {
+        "messages": 2,
+        "wire_bytes": 383,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 334,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 335,
+        "gzip": true
+      },
+      {
+        "messages": 2,
+        "wire_bytes": 384,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 335,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 335,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 335,
+        "gzip": true
+      },
+      {
+        "messages": 1,
+        "wire_bytes": 334,
+        "gzip": true
+      }
+    ],
+    "uploader": {
+      "enabled": true,
+      "running": false,
+      "started_utc": "2026-10-19T10:24:23.279101Z",
+      "identity": {
+        "site_id": "local-validation",
+        "gateway_id": "debix-local-validation",
+        "schema_version": "1.0",
+        "software_version": "kalpa-central-sync-v0.12"
+      },
+      "backend": {
+        "ingest_url": "http://validation.invalid/api/v1/ingest/batch",
+        "verify_tls": true,
+        "gzip_enabled": true,
+        "token_configured": true,
+        "dynamic_auth_available": false,
+        "auth_request_count": 0,
+        "auth_success_count": 0,
+        "auth_failure_count": 0,
+        "http_client_recreate_count": 0,
+        "consecutive_transport_failures": 0
+      },
+      "transport_control": {
+        "paused": false,
+        "pause_file": "/root/kalpa-validation-20261019-102154/uploader.pause",
+        "metadata": null,
+        "status_generated_utc": "2026-10-19T10:24:26.376623Z"
+      },
+      "outbox": {
+        "path": "/root/kalpa-validation-20261019-102154/validation-outbox.db",
+        "db_size_bytes": 25794176,
+        "logical_used_bytes": 12734464,
+        "reusable_page_bytes": 90112,
+        "wal_bytes": 12936832,
+        "sendable_count": 0,
+        "unacked_count": 0,
+        "pending_count": 0,
+        "retry_count": 0,
+        "inflight_count": 0,
+        "acked_count": 109,
+        "dead_count": 0,
+        "sendable_bytes": 0,
+        "oldest_sendable_age_sec": null,
+        "by_priority": {},
+        "capacity": {
+          "can_accept": true,
+          "reasons": [],
+          "db_size_bytes": 25794176,
+          "logical_used_bytes": 12734464,
+          "reusable_page_bytes": 90112,
+          "wal_bytes": 12936832,
+          "max_db_size_bytes": null,
+          "filesystem_free_mb": 22931,
+          "min_free_space_mb": 0
+        }
+      },
+      "uploader": {
+        "request_count": 17,
+        "request_success_count": 14,
+        "request_failure_count": 2,
+        "accepted_count": 108,
+        "already_processed_count": 1,
+        "retryable_rejected_count": 0,
+        "permanent_rejected_count": 0,
+        "missing_ack_count": 1,
+        "bytes_sent_uncompressed": 8784235,
+        "last_attempt_utc": "2026-10-19T10:24:26.164177Z",
+        "last_success_utc": "2026-10-19T10:24:26.167289Z",
+        "last_http_status": 200,
+        "last_error": null,
+        "last_request_id": "be23cbcb-59b6-4968-a95e-47210fda7d65",
+        "worker_count": 1,
+        "active_request_count": 0,
+        "peak_active_request_count": 1,
+        "paused": false,
+        "pause_cycle_count": 1,
+        "last_pause_utc": "2026-10-19T10:24:26.157194Z"
+      },
+      "stream_backend_ack": {
+        "battery_charge_discharge_control": {
+          "stream": "battery_charge_discharge_control",
+          "acked_count": 1,
+          "accepted_count": 1,
+          "already_processed_count": 0,
+          "retryable_rejected_count": 0,
+          "permanent_rejected_count": 0,
+          "missing_ack_count": 0,
+          "transport_failure_count": 0,
+          "last_ack_utc": "2026-10-19T10:24:23.864424Z",
+          "last_ack_status": "accepted",
+          "last_ack_substream": "pair_controller",
+          "last_ack_sequence": 1,
+          "last_backend_result_utc": "2026-10-19T10:24:23.864424Z",
+          "last_backend_result": "accepted",
+          "last_error": null
+        },
+        "configuration_audit": {
+          "stream": "configuration_audit",
+          "acked_count": 1,
+          "accepted_count": 1,
+          "already_processed_count": 0,
+          "retryable_rejected_count": 0,
+          "permanent_rejected_count": 0,
+          "missing_ack_count": 0,
+          "transport_failure_count": 0,
+          "last_ack_utc": "2026-10-19T10:24:23.864424Z",
+          "last_ack_status": "accepted",
+          "last_ack_substream": "gateway",
+          "last_ack_sequence": 1,
+          "last_backend_result_utc": "2026-10-19T10:24:23.864424Z",
+          "last_backend_result": "accepted",
+          "last_error": null
+        },
+        "fast_bess_telemetry": {
+          "stream": "fast_bess_telemetry",
+          "acked_count": 1,
+          "accepted_count": 1,
+          "already_processed_count": 0,
+          "retryable_rejected_count": 0,
+          "permanent_rejected_count": 0,
+          "missing_ack_count": 0,
+          "transport_failure_count": 0,
+          "last_ack_utc": "2026-10-19T10:24:23.864424Z",
+          "last_ack_status": "accepted",
+          "last_ack_substream": "bess_fast",
+          "last_ack_sequence": 1,
+          "last_backend_result_utc": "2026-10-19T10:24:23.864424Z",
+          "last_backend_result": "accepted",
+          "last_error": null
+        },
+        "gateway_health": {
+          "stream": "gateway_health",
+          "acked_count": 10,
+          "accepted_count": 9,
+          "already_processed_count": 1,
+          "retryable_rejected_count": 0,
+          "permanent_rejected_count": 0,
+          "missing_ack_count": 1,
+          "transport_failure_count": 2,
+          "last_ack_utc": "2026-10-19T10:24:26.170097Z",
+          "last_ack_status": "accepted",
+          "last_ack_substream": "validation",
+          "last_ack_sequence": 900009,
+          "last_backend_result_utc": "2026-10-19T10:24:26.170097Z",
+          "last_backend_result": "accepted",
+          "last_error": null
+        },
+        "general_asset_telemetry": {
+          "stream": "general_asset_telemetry",
+          "acked_count": 96,
+          "accepted_count": 96,
+          "already_processed_count": 0,
+          "retryable_rejected_count": 0,
+          "permanent_rejected_count": 0,
+          "missing_ack_count": 0,
+          "transport_failure_count": 0,
+          "last_ack_utc": "2026-10-19T10:24:25.928557Z",
+          "last_ack_status": "accepted",
+          "last_ack_substream": "bms_extended",
+          "last_ack_sequence": 72,
+          "last_backend_result_utc": "2026-10-19T10:24:25.928557Z",
+          "last_backend_result": "accepted",
+          "last_error": null
+        }
+      },
+      "status_generated_utc": "2026-10-19T10:24:26.376790Z"
+    }
+  },
+  "result": "PASS"
+}

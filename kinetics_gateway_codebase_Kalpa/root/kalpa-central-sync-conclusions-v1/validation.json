@@ -1,0 +1,33 @@
+{
+  "date_utc": "2026-10-27",
+  "deployment": "Not installed on physical gateway; prepared and tested offline against supplied export",
+  "baseline_export_sha256": "61f0f9db61610230e6190bbc89e05ec38aaeb004db9ede3a230ec3e78af11f2d",
+  "new_canonical_points": 2472,
+  "expected_runtime_instances": 9495,
+  "energy_canonical_fields": 12,
+  "energy_runtime_instances": 30,
+  "system_soc": {
+    "stream": "general_asset_telemetry",
+    "substream": "ems_system",
+    "mode": "PERIODIC",
+    "interval_sec": 30
+  },
+  "checks": {
+    "unchanged_existing_cadence_revisions": 2471,
+    "four_pair_full_generation": 9495,
+    "new_records_on_checkpoint_upgrade": 1,
+    "max_s2_logical_message_bytes": 98304,
+    "acrel_added": false
+  },
+  "test_result": {
+    "passed": 27,
+    "failed": 0,
+    "elapsed_seconds": 11.52,
+    "suites": [
+      "test_central_sync_frozen_v013.py",
+      "test_s2_frozen_optimized_phase4.py",
+      "test_kalpa_conclusions.py",
+      "test_install.py"
+    ]
+  }
+}

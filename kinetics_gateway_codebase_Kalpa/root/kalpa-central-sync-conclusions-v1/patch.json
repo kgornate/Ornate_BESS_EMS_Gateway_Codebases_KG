@@ -1,0 +1,30 @@
+{
+  "files": {
+    "app/central_sync/s2_policy.py": {
+      "before_sha256": "c051b57f2a551abbcf732fa08ba911233f2bb6f0f0ed52dcea89e04c07105bf3",
+      "after_sha256": "85def514745137720b12ec3f9d2dc25802232776f1d475684130e6cc67d08544"
+    },
+    "app/central_sync/general_asset_producer.py": {
+      "before_sha256": "539ec99bbe17be862a343841183a138f3b75ecae8711176b11099b6b793e6cf1",
+      "after_sha256": "daca779649c2f758d633b3c8a8dea81e24425c62a2750b1cc56a30a7631a78cf"
+    },
+    "app/central_sync/config.py": {
+      "before_sha256": "d0cdd209f80046cc624922528e6e712dc8ab1099eaa3c38bb3bfd93429862414",
+      "after_sha256": "d21638ca1ca3eb8e56f90c51478986a1878704c81f4329889a42793a5102b8f4"
+    },
+    "app/central_sync/client.py": {
+      "before_sha256": "b92fad7f30cff99396aa13287fa55ce06b3ea1d735d9ac4bde4dd15fb8eb7dd3",
+      "after_sha256": "576170db5fc0ee3932322556ad22eafdc87cf0d27c9d12797cfdf148a7374254"
+    },
+    "app/central_sync/configuration_audit_producer.py": {
+      "before_sha256": "d5c9f0d6f1b5568c3d79a09411632f05172c600aa56be3aa4bf2f4b18d230eaf",
+      "after_sha256": "fccaf30860f1c4ad3a9b4bd7ebd06967a5451200e1036b44bf2c462144209ffe"
+    },
+    "configs/kalpa_s2_policy_frozen_v1_1.json": {
+      "before_sha256": null,
+      "after_sha256": "1eb84162ef83b2398691ae04e22ac433ef27bfad8a55a1dd10422bea55c59032"
+    }
+  },
+  "manifest_path": "configs/kalpa_s2_policy_frozen_v1_1.json",
+  "manifest_sha256": "1eb84162ef83b2398691ae04e22ac433ef27bfad8a55a1dd10422bea55c59032"
+}

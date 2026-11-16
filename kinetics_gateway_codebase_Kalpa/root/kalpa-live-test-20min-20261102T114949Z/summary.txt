@@ -1,0 +1,42 @@
+KALPA LIVE UPLOAD / GENERATION TEST
+Completed twenty minutes: True
+Error: none
+No outage or upload pause was introduced.
+
+Generation counters complete: True
+Generated: 1921 messages / 93219 records; average 96.0 msg/min, 4660.9 records/min
+
+Live uploader counter deltas: {"request_count": 144, "request_success_count": 115, "request_failure_count": 29, "accepted_count": 649, "already_processed_count": 2, "retryable_rejected_count": 161, "permanent_rejected_count": 0, "missing_ack_count": 0}
+
+Combined unique pending: 119 -> 1389
+Archived pending messages: 100 -> 1330
+Oldest combined pending age: 246.9501929283142 -> 1446.850668668747 sec
+
+Generation logical JSON: 97.251 MB; average 4.863 MB/min
+
+Review flags:
+- request_failure_count increased by 29
+- retryable_rejected_count increased by 161
+- Archived pending workload grew during the healthy live-only test.
+- Combined live + SD pending count increased; sustained delivery keeping pace is not established.
+
+Recorded live HTTP attempts: {"requests": 143, "attempted_bytes": 35660549, "http_200": 114, "http_0": 29}
+Live accepted averages (direct archive ACKs excluded): {"messages_per_min": 32.4240903196713, "records_per_min": 782.6246145726517, "MB_per_min": 1.093251646441693}
+
+Observed live ACK totals (archive replay excluded; may include older queued data):
+battery_charge_discharge_control/pair_controller: accepted, 84 msg, 336 records, 0.278 MB
+fast_bess_telemetry/bess_fast: accepted, 236 msg, 944 records, 8.066 MB
+fast_bess_telemetry/bess_fast: already_processed, 2 msg, 8 records, 0.068 MB
+gateway_health/gateway: accepted, 16 msg, 16 records, 0.055 MB
+general_asset_telemetry/bms_extended: accepted, 138 msg, 11037 records, 10.410 MB
+general_asset_telemetry/dehumidifier: accepted, 9 msg, 53 records, 0.053 MB
+general_asset_telemetry/ems_system: accepted, 21 msg, 51 records, 0.054 MB
+general_asset_telemetry/fire_protection: accepted, 13 msg, 48 records, 0.049 MB
+general_asset_telemetry/io_module: accepted, 20 msg, 110 records, 0.111 MB
+general_asset_telemetry/liquid_cooling: accepted, 22 msg, 174 records, 0.172 MB
+general_asset_telemetry/pcs_extended: accepted, 41 msg, 1720 records, 1.507 MB
+general_asset_telemetry/remote_control: accepted, 49 msg, 1176 records, 1.127 MB
+
+Review steady-state counters, ACK continuity, per-stream coverage and total pending trend. No automatic all-stream certification.
+Files: /root/kalpa-live-test-20min-20261102T114949Z
+Central Sync and all existing gateway settings were left unchanged.

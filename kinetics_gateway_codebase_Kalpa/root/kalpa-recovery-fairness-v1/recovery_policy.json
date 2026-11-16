@@ -1,0 +1,7 @@
+{
+  "opportunity_interval_sec": 30.0,
+  "max_live_unacked": 25,
+  "max_live_age_sec": 30.0,
+  "max_load_per_cpu": 2.0,
+  "eligible_samples": 2
+}

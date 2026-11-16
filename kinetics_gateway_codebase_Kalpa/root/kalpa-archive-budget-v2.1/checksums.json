@@ -1,0 +1,12 @@
+{
+  "README.txt": "f1ee307eddaf7c8f29929d5644a5cb178de6bceff4f9936030d5f8870e921198",
+  "expected.json": "15bd7fdd7cab3c2e1904af3acb4d707a85dfc0886cdbb4940d92d5e780088e53",
+  "install.py": "60d77ca7891286b9a8b8d3ae50e4a72c2b0571951712fa319e601ac91d79b05f",
+  "payload/app/central_sync/overflow_recovery.py": "72cca5683a63d8e7a662d15f1bf2d0c7129b43cf6e8d0f69c843f0e2f5582660",
+  "payload/app/central_sync/recovery_budget.py": "270b60aa96ebc9820cb6050980c439dd32f4cb9c3ffb2f4f8bb60e36fbf65686",
+  "recorded_live_trace.json": "b0451105c8f86844a44b78dacc2df97c5b8e49c75d5d6b0915d1c46a001b6dc1",
+  "test_budget.py": "b6a10094e4a8da33e83bc64c557c72eee3b209179619d8190518bef750034c12",
+  "test_install.py": "d1d361cf9813f8ccb83d2c0888f0040051b1d0c62c1f1b1c66d4e4fca289f5b3",
+  "validation.txt": "7f45441d18d7390d808604a3126b920739deff5ea541f7a8df3c639a0922b2de",
+  "verify.py": "a61c3164eb6c70901a97b949f981e39d0cb5142198ea31e62348e09938f99ec9"
+}

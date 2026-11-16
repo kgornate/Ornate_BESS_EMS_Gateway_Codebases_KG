@@ -1,0 +1,1 @@
+34 tests passed: byte-budget/pressure/partial ACK guards, installer rollback guards, archive session reuse and closure, future S4 output, historical repair identity preservation and concurrent-change refusal. Field throughput must be measured after install.

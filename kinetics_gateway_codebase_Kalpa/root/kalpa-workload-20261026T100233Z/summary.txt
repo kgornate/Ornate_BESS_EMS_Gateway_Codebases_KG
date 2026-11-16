@@ -1,0 +1,14 @@
+KALPA generated workload benchmark
+Mode: mock
+Result: duration_complete
+Duration: 1800.0s; steady window: 1740.0s
+Steady messages/s: 1.530
+Steady records/s: 77.274
+Steady logical JSON KiB/s: 78.644
+Projected logical JSON GiB/day: 6.480
+Message mean/p95/max bytes: 52638.9/97558/97697
+Peak fixed-1s messages/records/bytes: 37/3494/3334063
+Capture counts reconciled: True
+Central Sync stopped: True
+Issues: []
+Read report.json method notes before using these figures for capacity planning.

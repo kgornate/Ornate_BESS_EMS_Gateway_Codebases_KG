@@ -1,0 +1,12 @@
+{
+  "completed": true,
+  "error": null,
+  "samples": 5734,
+  "finished_utc": "2026-11-04T13:01:16.427349+00:00",
+  "limits": [
+    "Counter deltas require same service instance; segment any reset.",
+    "Live outbox stats may be cached up to 30 seconds.",
+    "No complete per-message ledger or cadence certification.",
+    "Unexpected observer stop/reboot may leave partial samples without this completion file."
+  ]
+}

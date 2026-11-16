@@ -1,0 +1,65 @@
+{
+  "/opt/ornate-ems-gateway/backend/app/main.py": {
+    "existed": true,
+    "saved": "/root/kalpa-acrel-backup-20261021-110012-801752/original-0",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "before_sha256": "528a8aa0a4781177c8144425f95d475674484d75ca3420e9c31581ecca4f3c71",
+    "installed_sha256": "17bac8be1cc3b7d7249db00f5792588f841e7a5240426d1f018ce97882309be4"
+  },
+  "/opt/ornate-ems-gateway/backend/app/core/config.py": {
+    "existed": true,
+    "saved": "/root/kalpa-acrel-backup-20261021-110012-801752/original-1",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "before_sha256": "743fac8358d1e01537b8dc1db635cf8bceb44e2a78b2bb2f9b7faaf075ceb0ac",
+    "installed_sha256": "8c56707f193226063649bfc64aacd22a67b6a7209fdb789e7fbf55bee895e538"
+  },
+  "/opt/ornate-ems-gateway/backend/app/services/gateway_service.py": {
+    "existed": true,
+    "saved": "/root/kalpa-acrel-backup-20261021-110012-801752/original-2",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "before_sha256": "7d32eecf938b79a44b0f67aa5ccf2354d77bbca4197e070a895acf9afc12225d",
+    "installed_sha256": "ebc37e782fbac0f14e5496ad91ee1efca548889ed78a399d8007c3530f7d226f"
+  },
+  "/opt/ornate-ems-gateway/backend/app/api/routes.py": {
+    "existed": true,
+    "saved": "/root/kalpa-acrel-backup-20261021-110012-801752/original-3",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "before_sha256": "3fdc7cee151ed2876d7627e5085f8f0b8c70946f454c226e27941b9f01bcd5dc",
+    "installed_sha256": "1d5fd404aaa21eb64b23f5c2734919fccca7c0200866b5f76685233098226030"
+  },
+  "/opt/ornate-ems-gateway/backend/app/assets/acrel_meter.py": {
+    "existed": false,
+    "saved": "/root/kalpa-acrel-backup-20261021-110012-801752/original-4",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "before_sha256": null,
+    "installed_sha256": "3c19010cc4ce77bc8dd5a4690ff598021a3b665fac578bb32d6fcd48132194d7"
+  },
+  "/opt/ornate-ems-gateway/backend/app/core/acrel_config.py": {
+    "existed": false,
+    "saved": "/root/kalpa-acrel-backup-20261021-110012-801752/original-5",
+    "mode": 420,
+    "uid": 0,
+    "gid": 0,
+    "before_sha256": null,
+    "installed_sha256": "50c037e4cf0d8176c5c9f6687d3a7d20a0324f18a226a408f870c82a7ae0513a"
+  },
+  "/etc/ornate-ems-gateway/config.json": {
+    "existed": true,
+    "saved": "/root/kalpa-acrel-backup-20261021-110012-801752/original-6",
+    "mode": 384,
+    "uid": 0,
+    "gid": 0,
+    "before_sha256": "ef83729d8afd83512b844df8376e368812ea797ecc057c9a72fa87d4a16236dc",
+    "installed_sha256": "9273f561e3dfc77708f9084a25271563068891f45f3b91dca52cec354198b300"
+  }
+}

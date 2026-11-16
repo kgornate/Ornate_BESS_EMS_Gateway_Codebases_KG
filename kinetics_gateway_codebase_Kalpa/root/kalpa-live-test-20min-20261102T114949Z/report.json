@@ -1,0 +1,435 @@
+{
+  "completed_1200s": true,
+  "conclusion": "Review steady-state counters, ACK continuity, per-stream coverage and total pending trend. No automatic all-stream certification.",
+  "end_utc": "2026-11-02T12:09:50.973834Z",
+  "error": null,
+  "final_inventory": {
+    "archive_files": 2,
+    "archive_unacked": 1330,
+    "dead_ids": 0,
+    "groups": [
+      {
+        "stream": "alarms_events",
+        "substream": "events",
+        "unacked": 2
+      },
+      {
+        "stream": "battery_charge_discharge_control",
+        "substream": "pair_controller",
+        "unacked": 31
+      },
+      {
+        "stream": "fast_bess_telemetry",
+        "substream": "bess_fast",
+        "unacked": 91
+      },
+      {
+        "stream": "gateway_health",
+        "substream": "gateway",
+        "unacked": 19
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "bms_extended",
+        "unacked": 799
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "dehumidifier",
+        "unacked": 14
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "ems_system",
+        "unacked": 95
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "fire_protection",
+        "unacked": 26
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "io_module",
+        "unacked": 28
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "liquid_cooling",
+        "unacked": 40
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "pcs_extended",
+        "unacked": 114
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "remote_control",
+        "unacked": 130
+      }
+    ],
+    "live_unacked": 59,
+    "logical_bytes": 85167426,
+    "oldest_age_sec": 1446.850668668747,
+    "unique_unacked": 1389
+  },
+  "final_recovery": {
+    "pause_reason": "live_unacked_count=65",
+    "request_cycles": 0,
+    "running": true,
+    "status_generated_utc": "2026-11-02T12:09:45.808801Z"
+  },
+  "final_stream_results": {
+    "alarms_events": {
+      "accepted_count": 0,
+      "acked_count": 0,
+      "already_processed_count": 0,
+      "last_backend_result": "retryable_rejected",
+      "missing_ack_count": 0,
+      "permanent_rejected_count": 0,
+      "retryable_rejected_count": 5
+    },
+    "battery_charge_discharge_control": {
+      "accepted_count": 109,
+      "acked_count": 109,
+      "already_processed_count": 0,
+      "last_backend_result": "accepted",
+      "missing_ack_count": 0,
+      "permanent_rejected_count": 0,
+      "retryable_rejected_count": 3
+    },
+    "fast_bess_telemetry": {
+      "accepted_count": 302,
+      "acked_count": 304,
+      "already_processed_count": 2,
+      "last_backend_result": "accepted",
+      "missing_ack_count": 0,
+      "permanent_rejected_count": 0,
+      "retryable_rejected_count": 10
+    },
+    "gateway_health": {
+      "accepted_count": 24,
+      "acked_count": 24,
+      "already_processed_count": 0,
+      "last_backend_result": "accepted",
+      "missing_ack_count": 0,
+      "permanent_rejected_count": 0,
+      "retryable_rejected_count": 7
+    },
+    "general_asset_telemetry": {
+      "accepted_count": 513,
+      "acked_count": 513,
+      "already_processed_count": 0,
+      "last_backend_result": "accepted",
+      "missing_ack_count": 0,
+      "permanent_rejected_count": 0,
+      "retryable_rejected_count": 304
+    }
+  },
+  "generated_total": {
+    "messages": 1921,
+    "minutes": 20.0,
+    "records": 93219
+  },
+  "generation_MB_per_min": 4.862561717060803,
+  "generation_by_producer": {
+    "alarms_events": {
+      "available": true,
+      "failure_count": 0,
+      "message_count": 0,
+      "record_count": 0
+    },
+    "charge_discharge": {
+      "available": true,
+      "failure_count": 0,
+      "message_count": 115,
+      "record_count": 460
+    },
+    "configuration_audit": {
+      "available": true,
+      "failure_count": 0,
+      "message_count": 0,
+      "record_count": 0
+    },
+    "fast_bess": {
+      "available": true,
+      "failure_count": 0,
+      "message_count": 328,
+      "record_count": 1312
+    },
+    "gateway_health": {
+      "available": true,
+      "failure_count": 0,
+      "message_count": 35,
+      "record_count": 35
+    },
+    "general_assets": {
+      "available": true,
+      "failure_count": 0,
+      "message_count": 1443,
+      "record_count": 91412
+    }
+  },
+  "generation_bytes_by_group": [
+    {
+      "bytes": 0,
+      "messages": 0,
+      "stream": "alarms_events",
+      "substream": "events"
+    },
+    {
+      "bytes": 380001,
+      "messages": 115,
+      "stream": "battery_charge_discharge_control",
+      "substream": "pair_controller"
+    },
+    {
+      "bytes": 11210352,
+      "messages": 328,
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast"
+    },
+    {
+      "bytes": 120967,
+      "messages": 35,
+      "stream": "gateway_health",
+      "substream": "gateway"
+    },
+    {
+      "bytes": 71210957,
+      "messages": 840,
+      "stream": "general_asset_telemetry",
+      "substream": "bms_extended"
+    },
+    {
+      "bytes": 141388,
+      "messages": 23,
+      "stream": "general_asset_telemetry",
+      "substream": "dehumidifier"
+    },
+    {
+      "bytes": 1146354,
+      "messages": 103,
+      "stream": "general_asset_telemetry",
+      "substream": "ems_system"
+    },
+    {
+      "bytes": 142688,
+      "messages": 39,
+      "stream": "general_asset_telemetry",
+      "substream": "fire_protection"
+    },
+    {
+      "bytes": 298659,
+      "messages": 48,
+      "stream": "general_asset_telemetry",
+      "substream": "io_module"
+    },
+    {
+      "bytes": 504300,
+      "messages": 61,
+      "stream": "general_asset_telemetry",
+      "substream": "liquid_cooling"
+    },
+    {
+      "bytes": 8021546,
+      "messages": 152,
+      "stream": "general_asset_telemetry",
+      "substream": "pcs_extended"
+    },
+    {
+      "bytes": 4074121,
+      "messages": 177,
+      "stream": "general_asset_telemetry",
+      "substream": "remote_control"
+    }
+  ],
+  "generation_counters_complete": true,
+  "generation_logical_MB": 97.251333,
+  "http_totals": {
+    "attempted_bytes": 35660549,
+    "http_0": 29,
+    "http_200": 114,
+    "requests": 143
+  },
+  "initial_inventory": {
+    "archive_files": 1,
+    "archive_unacked": 100,
+    "dead_ids": 0,
+    "groups": [
+      {
+        "stream": "alarms_events",
+        "substream": "events",
+        "unacked": 2
+      },
+      {
+        "stream": "fast_bess_telemetry",
+        "substream": "bess_fast",
+        "unacked": 1
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "bms_extended",
+        "unacked": 97
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "ems_system",
+        "unacked": 13
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "liquid_cooling",
+        "unacked": 1
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "pcs_extended",
+        "unacked": 3
+      },
+      {
+        "stream": "general_asset_telemetry",
+        "substream": "remote_control",
+        "unacked": 2
+      }
+    ],
+    "live_unacked": 19,
+    "logical_bytes": 9866954,
+    "oldest_age_sec": 246.9501929283142,
+    "unique_unacked": 119
+  },
+  "limits": [
+    "Generation message/record counts use producer-counter deltas, not retained-row generation estimates.",
+    "Live accepted record/MB totals include pre-existing messages accepted during the test; not a matched generation cohort.",
+    "Direct archive replay ACK record/byte volume is unavailable; never added to the live totals.",
+    "Live/archive queue counts deduplicate copies, but cross-database snapshots are not atomic.",
+    "No outage, upload pause, gateway configuration/source changes, service restart or hardware commands are performed.",
+    "All-stream delivery requires source/substream evidence; idle/disabled/unmapped streams cannot be certified.",
+    "Gateway ACK evidence is not an independent verification of backend database commit."
+  ],
+  "live_accepted_average": {
+    "MB_per_min": 1.093251646441693,
+    "messages_per_min": 32.4240903196713,
+    "records_per_min": 782.6246145726517
+  },
+  "live_uploader_counter_deltas": {
+    "accepted_count": 649,
+    "already_processed_count": 2,
+    "missing_ack_count": 0,
+    "permanent_rejected_count": 0,
+    "request_count": 144,
+    "request_failure_count": 29,
+    "request_success_count": 115,
+    "retryable_rejected_count": 161
+  },
+  "observed_live_ack_totals": [
+    {
+      "logical_MB": 0.277575,
+      "messages": 84,
+      "records": 336,
+      "status": "accepted",
+      "stream": "battery_charge_discharge_control",
+      "substream": "pair_controller"
+    },
+    {
+      "logical_MB": 8.065977,
+      "messages": 236,
+      "records": 944,
+      "status": "accepted",
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast"
+    },
+    {
+      "logical_MB": 0.068356,
+      "messages": 2,
+      "records": 8,
+      "status": "already_processed",
+      "stream": "fast_bess_telemetry",
+      "substream": "bess_fast"
+    },
+    {
+      "logical_MB": 0.055295,
+      "messages": 16,
+      "records": 16,
+      "status": "accepted",
+      "stream": "gateway_health",
+      "substream": "gateway"
+    },
+    {
+      "logical_MB": 10.409794,
+      "messages": 138,
+      "records": 11037,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "bms_extended"
+    },
+    {
+      "logical_MB": 0.053276,
+      "messages": 9,
+      "records": 53,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "dehumidifier"
+    },
+    {
+      "logical_MB": 0.0544,
+      "messages": 21,
+      "records": 51,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "ems_system"
+    },
+    {
+      "logical_MB": 0.049062,
+      "messages": 13,
+      "records": 48,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "fire_protection"
+    },
+    {
+      "logical_MB": 0.111371,
+      "messages": 20,
+      "records": 110,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "io_module"
+    },
+    {
+      "logical_MB": 0.172022,
+      "messages": 22,
+      "records": 174,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "liquid_cooling"
+    },
+    {
+      "logical_MB": 1.506899,
+      "messages": 41,
+      "records": 1720,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "pcs_extended"
+    },
+    {
+      "logical_MB": 1.126834,
+      "messages": 49,
+      "records": 1176,
+      "status": "accepted",
+      "stream": "general_asset_telemetry",
+      "substream": "remote_control"
+    }
+  ],
+  "observed_new_pending_groups_without_live_ack": [],
+  "review_flags": [
+    "request_failure_count increased by 29",
+    "retryable_rejected_count increased by 161",
+    "Archived pending workload grew during the healthy live-only test.",
+    "Combined live + SD pending count increased; sustained delivery keeping pace is not established."
+  ],
+  "samples": 121,
+  "snapshot_errors": [],
+  "start_utc": "2026-11-02T11:49:50.016519Z",
+  "uploader_restarted": false
+}
